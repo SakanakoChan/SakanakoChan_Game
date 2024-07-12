@@ -21,5 +21,32 @@ public class PlayerWallSlideState : PlayerState
     public override void Update()
     {
         base.Update();
+
+        //if pressing down while in wallslide, speeding up the slide speed
+        if (yInput < 0)
+        {
+            player.SetVelocity(0, rb.velocity.y);
+        }
+        else
+        {
+            //default wallslide speed
+            player.SetVelocity(0, rb.velocity.y * 0.2f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            stateMachine.ChangeState(player.wallJumpState);
+            return;
+        }
+
+        if (xInput != 0 && player.facingDirection != xInput)
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
+
+        if (player.IsGroundDetected())
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
     }
 }

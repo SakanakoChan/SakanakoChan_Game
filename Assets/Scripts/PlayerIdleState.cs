@@ -23,9 +23,17 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Update();
 
-        if (xInput != 0)
+        player.SetVelocity(0, rb.velocity.y);
+
+        if (!(xInput == 0 || (player.IsWallDetected() && xInput == player.facingDirection)))
         {
             stateMachine.ChangeState(player.moveState);
         }
+
+        //if (xInput != 0)
+        //{
+        //    stateMachine.ChangeState(player.moveState);
+        //}
+
     }
 }

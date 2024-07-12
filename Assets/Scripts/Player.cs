@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,11 +5,13 @@ public class Player : MonoBehaviour
     [Header("Move Info")]
     public float moveSpeed;
     public float jumpForce;
+    public float wallJumpXSpeed;
+    public float wallJumpDuration;
 
     [Header("Dash Info")]
     public float dashSpeed;
     public float dashDuration;
-    public float dashDirection {  get; private set; }
+    public float dashDirection { get; private set; }
     [SerializeField] private float dashCooldown;
     private float dashUsageTimer;
 
@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     public PlayerJumpState jumpState { get; private set; }
     public PlayerAirState airState { get; private set; }
     public PlayerDashState dashState { get; private set; }
+    public PlayerWallSlideState wallSlideState { get; private set; }
+    public PlayerWallJumpState wallJumpState { get; private set; }
     #endregion
 
     private void Awake()
@@ -50,6 +52,8 @@ public class Player : MonoBehaviour
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
         airState = new PlayerAirState(this, stateMachine, "Jump");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
+        wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
+        wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
     }
 
     private void Start()
@@ -81,6 +85,12 @@ public class Player : MonoBehaviour
         return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     }
 
+    public bool IsWallDetected()
+    {
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, whatIsGround);
+
+    }
+
     public void Flip()
     {
         facingDirection = -facingDirection;
@@ -102,6 +112,11 @@ public class Player : MonoBehaviour
 
     private void CheckForDashInput()
     {
+        if (IsWallDetected())
+        {
+            return;
+        }
+
         dashUsageTimer -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
