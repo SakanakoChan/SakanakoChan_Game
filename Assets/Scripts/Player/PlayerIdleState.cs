@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerIdleState : PlayerGroundedState
@@ -13,7 +15,6 @@ public class PlayerIdleState : PlayerGroundedState
         base.Enter();
 
         player.SetZeroVelocity();
-
     }
 
     public override void Exit()
