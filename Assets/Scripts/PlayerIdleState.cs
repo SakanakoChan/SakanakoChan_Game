@@ -12,6 +12,8 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
 
+        player.SetZeroVelocity();
+
     }
 
     public override void Exit()
@@ -23,17 +25,22 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Update();
 
-        player.SetVelocity(0, rb.velocity.y);
-
-        if (!(xInput == 0 || (player.IsWallDetected() && xInput == player.facingDirection)))
+        //if player is already not in ilde state,
+        //its not gonna execute the remaining code in idleState update function
+        if (stateMachine.currentState != player.idleState)
         {
-            stateMachine.ChangeState(player.moveState);
+            return;
         }
 
-        //if (xInput != 0)
-        //{
-        //    stateMachine.ChangeState(player.moveState);
-        //}
+        //player cannot move while in the busy condition after attack
+        if (xInput != 0 && !player.isBusy)
+        {
+            //player cannot move towards the wall while is next to the wall
+            if (!(player.IsWallDetected() && xInput == player.facingDirection))
+            {
+                stateMachine.ChangeState(player.moveState);
+            }
+        }
 
     }
 }
