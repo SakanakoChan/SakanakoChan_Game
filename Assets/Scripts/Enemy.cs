@@ -13,6 +13,11 @@ public class Enemy : Entity
         stateMachine = new EnemyStateMachine();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     protected override void Update()
     {
         base.Update();

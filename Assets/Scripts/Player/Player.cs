@@ -21,7 +21,7 @@ public class Player : Entity
 
     public bool isBusy { get; private set; }
 
-    #region States
+    #region States and Statemachine
     public PlayerStateMachine stateMachine { get; private set; }
 
     public PlayerIdleState idleState { get; private set; }
