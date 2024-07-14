@@ -14,16 +14,24 @@ public class Entity : MonoBehaviour
     public Transform attackCheck;
     public float attackCheckRadius;
 
+    [Header("Knockback Info")]
+    [SerializeField] protected Vector2 knockbackMovement;
+    [SerializeField] protected float knockbackDuration;
+    [HideInInspector] public bool isKnockbacked;
+    [HideInInspector] public float knockbackDirection;
+
     public int facingDirection { get; private set; } = 1;
     protected bool facingRight = true;
 
     #region components
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
+    public EntityFX fx { get; private set; }
     #endregion
 
     protected virtual void Awake()
     {
+        fx = GetComponent<EntityFX>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -39,18 +47,43 @@ public class Entity : MonoBehaviour
 
     public virtual void Damage()
     {
+        fx.StartCoroutine("FlashFX");
+        StartCoroutine(HitKnockback());
 
+        Debug.Log($"{gameObject.name} is damaged");
+    }
+
+    protected virtual IEnumerator HitKnockback()
+    {
+        //Enemy's knockbackDirection is set in Enemy
+        //Player's knockbackDirection is set in EnemyAnimationTrigger
+        isKnockbacked = true;
+        rb.velocity = new Vector2(knockbackMovement.x * knockbackDirection, knockbackMovement.y);
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        isKnockbacked = false;
     }
 
     #region Velocity
     public virtual void SetVelocity(float _xVelocity, float _yVelocity)
     {
+        if (isKnockbacked)
+        {
+            return;
+        }
+
         rb.velocity = new Vector2(_xVelocity, _yVelocity);
         FlipController(_xVelocity);
     }
 
     public virtual void SetZeroVelocity()
     {
+        if (isKnockbacked)
+        {
+            return;
+        }
+
         rb.velocity = new Vector2(0, 0);
     }
     #endregion

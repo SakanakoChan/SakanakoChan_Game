@@ -22,13 +22,20 @@ public class Enemy : Entity
     public float attackCooldown;
     [HideInInspector] public float lastTimeAttacked;
 
+    [Header("Stunned Info")]
+    public float stunDuration;
+    public Vector2 stunMovement;
+
     public EnemyStateMachine stateMachine {  get; private set; }
+    protected Player player { get; private set; }
+
 
     protected override void Awake()
     {
         base.Awake();
 
         stateMachine = new EnemyStateMachine();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     protected override void Start()
@@ -60,4 +67,11 @@ public class Enemy : Entity
     {
         stateMachine.currentState.AnimationFinishTrigger();
     }
+
+    //protected override IEnumerator HitKnockback()
+    //{
+    //    knockbackDirection = player.facingDirection;
+        
+    //    return base.HitKnockback();
+    //}
 }

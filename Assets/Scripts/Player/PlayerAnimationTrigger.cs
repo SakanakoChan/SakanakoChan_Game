@@ -17,11 +17,13 @@ public class PlayerAnimationTrigger : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            //if(hit.GetComponent<Enemy>() != null)
-            //{
-            //    hit.GetComponent<Enemy>().Damage();
-            //}
-            hit.GetComponent<Enemy>()?.Damage();
+            if (hit.GetComponent<Enemy>() != null)
+            {
+                Enemy enemy = hit.GetComponent<Enemy>();
+
+                enemy.knockbackDirection = player.facingDirection;
+                hit.GetComponent<Enemy>().Damage();
+            }
         }
     }
 }
