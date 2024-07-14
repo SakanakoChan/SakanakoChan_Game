@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Vector2 knockbackMovement;
     [SerializeField] protected float knockbackDuration;
     [HideInInspector] public bool isKnockbacked;
-    [HideInInspector] public float knockbackDirection;
+    [HideInInspector] public float knockbackDirection;  //knockbackDirection is set in PlayerAnimationTrigger and EnemyAnimationTrigger
 
     public int facingDirection { get; private set; } = 1;
     protected bool facingRight = true;

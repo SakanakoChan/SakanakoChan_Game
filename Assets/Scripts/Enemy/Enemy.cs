@@ -25,6 +25,8 @@ public class Enemy : Entity
     [Header("Stunned Info")]
     public float stunDuration;
     public Vector2 stunMovement;
+    protected bool canBeStunned;
+    [SerializeField] protected GameObject counterPromptImage;
 
     public EnemyStateMachine stateMachine {  get; private set; }
     protected Player player { get; private set; }
@@ -66,6 +68,28 @@ public class Enemy : Entity
     public void AnimationTrigger()
     {
         stateMachine.currentState.AnimationFinishTrigger();
+    }
+
+    public void OpenCounterAttackWindow()
+    {
+        canBeStunned = true;
+        counterPromptImage.SetActive(true);
+    }
+
+    public void CloseCounterAttackWindow()
+    {
+        canBeStunned = false;
+        counterPromptImage.SetActive(false);
+    }
+
+    public virtual bool CanBeStunnedByCounterAttack()
+    {
+        if (canBeStunned)
+        {
+            CloseCounterAttackWindow();
+            return true;
+        }
+        return false;
     }
 
     //protected override IEnumerator HitKnockback()

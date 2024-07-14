@@ -39,4 +39,15 @@ public class Enemy_Skeleton : Enemy
             stateMachine.ChangeState(stunnedState);
         }
     }
+
+    public override bool CanBeStunnedByCounterAttack()
+    {
+        if (base.CanBeStunnedByCounterAttack())
+        {
+            stateMachine.ChangeState(stunnedState);
+            return true;
+        }
+
+        return false;
+    }
 }

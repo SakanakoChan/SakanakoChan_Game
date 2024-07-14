@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimationTrigger : MonoBehaviour
+public class Enemy_SkeletonAnimationTrigger : MonoBehaviour
 {
     private Enemy enemy => GetComponentInParent<Enemy>();
 
@@ -25,5 +25,15 @@ public class EnemyAnimationTrigger : MonoBehaviour
                 player.Damage();
             }
         }
+    }
+
+    private void OpenCounterAttackWindow()
+    {
+        enemy.OpenCounterAttackWindow();
+    }
+
+    private void CloseCounterAttackWindow()
+    {
+        enemy.CloseCounterAttackWindow();
     }
 }
