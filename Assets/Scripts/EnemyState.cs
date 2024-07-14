@@ -7,9 +7,9 @@ using UnityEngine;
 public class EnemyState
 {
     protected EnemyStateMachine stateMachine;
-    protected Enemy enemy;
+    protected Enemy enemyBase;
 
-    protected Rigidbody rb;
+    protected Rigidbody2D rb;
     protected Animator anim;
 
     private string animBoolName;
@@ -20,13 +20,18 @@ public class EnemyState
 
     public EnemyState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName)
     {
-        this.enemy = _enemy;
-        this.stateMachine = _stateMachine;
+        enemyBase = _enemy;
+        stateMachine = _stateMachine;
+        animBoolName = _animBoolName;
     }
 
     public virtual void Enter()
     {
         triggerCalled = false;
+
+        rb = enemyBase.rb;
+        anim = enemyBase.anim;
+
         anim.SetBool(animBoolName, true);
     }
 
