@@ -18,9 +18,9 @@ public class EnemyState
     protected bool triggerCalled;
 
 
-    public EnemyState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName)
+    public EnemyState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName)
     {
-        enemyBase = _enemy;
+        enemyBase = _enemyBase;
         stateMachine = _stateMachine;
         animBoolName = _animBoolName;
     }
@@ -43,5 +43,10 @@ public class EnemyState
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
+    }
+
+    public virtual void AnimationFinishTrigger()
+    {
+        triggerCalled = true;
     }
 }

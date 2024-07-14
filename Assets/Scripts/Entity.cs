@@ -10,6 +10,9 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected LayerMask whatIsGround;
+    [Space]
+    public Transform attackCheck;
+    public float attackCheckRadius;
 
     public int facingDirection { get; private set; } = 1;
     protected bool facingRight = true;
@@ -27,11 +30,16 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
-        
+
     }
     protected virtual void Update()
     {
-        
+
+    }
+
+    public virtual void Damage()
+    {
+
     }
 
     #region Velocity
@@ -52,6 +60,7 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance * facingDirection, wallCheck.position.y));
+        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
 
     public virtual bool IsGroundDetected()

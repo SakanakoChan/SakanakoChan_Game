@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonIdleState : EnemyState
+public class SkeletonIdleState : SkeletonGroundedState
 {
-    private Enemy_Skeleton enemy;
-    public SkeletonIdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public SkeletonIdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName, _enemy)
     {
-        enemy = _enemy;
     }
 
     public override void Enter()
@@ -25,6 +23,12 @@ public class SkeletonIdleState : EnemyState
     public override void Update()
     {
         base.Update();
+
+        //if skeleton is already not in idleState, it's not gonna execute the remaining code
+        if (stateMachine.currentState != enemy.idleState)
+        {
+            return;
+        }
 
         enemy.SetZeroVelocity();
 

@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationTrigger : MonoBehaviour
+public class EnemyAnimationTrigger : MonoBehaviour
 {
-    private Player player => GetComponentInParent<Player>();
+    private Enemy enemy => GetComponentInParent<Enemy>();
 
     private void AnimationTrigger()
     {
-        player.AnimationTrigger();
+        enemy.AnimationTrigger();
     }
 
     private void AttackTrigger()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(enemy.attackCheck.position, enemy.attackCheckRadius);
 
         foreach (var hit in colliders)
         {
@@ -21,7 +21,7 @@ public class PlayerAnimationTrigger : MonoBehaviour
             //{
             //    hit.GetComponent<Enemy>().Damage();
             //}
-            hit.GetComponent<Enemy>()?.Damage();
+            hit.GetComponent<Player>()?.Damage();
         }
     }
 }

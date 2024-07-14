@@ -13,8 +13,6 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-
-        player.SetZeroVelocity();
     }
 
     public override void Exit()
@@ -32,6 +30,8 @@ public class PlayerIdleState : PlayerGroundedState
         {
             return;
         }
+
+        player.SetVelocity(0, rb.velocity.y);
 
         //player cannot move while in the busy condition after attack
         if (xInput != 0 && !player.isBusy)

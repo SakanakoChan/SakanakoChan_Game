@@ -9,8 +9,9 @@ public class Player : Entity
     public float wallJumpXSpeed;
     public float wallJumpDuration;
 
-    [Header("Attacl Info")]
+    [Header("Attack Info")]
     public Vector2[] attackMovement;
+
 
     [Header("Dash Info")]
     public float dashSpeed;
