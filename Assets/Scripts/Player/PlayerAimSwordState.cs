@@ -11,6 +11,9 @@ public class PlayerAimSwordState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        //show aim dots while entering AimSword State
+        player.skill.sword.ShowDots(true);
     }
 
     public override void Exit()
@@ -24,12 +27,17 @@ public class PlayerAimSwordState : PlayerState
 
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
+            //Not showing dots after exiting AimSwordState
+            player.skill.sword.ShowDots(false);
             stateMachine.ChangeState(player.idleState);
         }
 
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    stateMachine.ChangeState(player.throwSwordState);
-        //}
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            //in ThrowSword animation will call ThrowSword()
+            //which will call CreateSword()
+            //which will call ShowDots(false)
+            stateMachine.ChangeState(player.throwSwordState);
+        }
     }
 }

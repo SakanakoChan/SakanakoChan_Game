@@ -21,5 +21,10 @@ public class PlayerThrowSwordState : PlayerState
     public override void Update()
     {
         base.Update();
+
+        if (triggerCalled)
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
     }
 }
