@@ -37,7 +37,7 @@ public class Enemy : Entity
         base.Awake();
 
         stateMachine = new EnemyStateMachine();
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = PlayerManager.instance.player;
     }
 
     protected override void Start()

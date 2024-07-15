@@ -32,6 +32,11 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.counterAttackState);
         }
 
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            stateMachine.ChangeState(player.aimSwordState);
+        }
+
         if (!player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.airState);

@@ -22,7 +22,8 @@ public class SkeletonBattleState : EnemyState
         //To prevent the case where if player approaching enemy from behind
         //enemy will get stuck in switching between idleState and battleState
         stateTimer = enemy.aggressiveTime;
-        player = GameObject.Find("Player").transform;
+
+        player = PlayerManager.instance.player.transform;
     }
 
     public override void Exit()

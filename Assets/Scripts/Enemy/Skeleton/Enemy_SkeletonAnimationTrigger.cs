@@ -22,7 +22,7 @@ public class Enemy_SkeletonAnimationTrigger : MonoBehaviour
                 Player player = hit.GetComponent<Player>();
 
                 player.knockbackDirection = enemy.facingDirection;
-                player.Damage();
+                player.Damage(player.knockbackDirection);
             }
         }
     }

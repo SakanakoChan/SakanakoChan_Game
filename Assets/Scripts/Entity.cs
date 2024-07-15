@@ -45,20 +45,20 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void Damage()
+    public virtual void Damage(float _knocbackDirection)
     {
         fx.StartCoroutine("FlashFX");
-        StartCoroutine(HitKnockback());
+        StartCoroutine(HitKnockback(_knocbackDirection));
 
         Debug.Log($"{gameObject.name} is damaged");
     }
 
-    protected virtual IEnumerator HitKnockback()
+    protected virtual IEnumerator HitKnockback(float _knockbackDirection)
     {
-        //Enemy's knockbackDirection is set in Enemy
+        //Enemy's knockbackDirection is set in PlayerAnimationTrigger
         //Player's knockbackDirection is set in EnemyAnimationTrigger
         isKnockbacked = true;
-        rb.velocity = new Vector2(knockbackMovement.x * knockbackDirection, knockbackMovement.y);
+        rb.velocity = new Vector2(knockbackMovement.x * _knockbackDirection, knockbackMovement.y);
 
         yield return new WaitForSeconds(knockbackDuration);
 

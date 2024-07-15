@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Player : Entity
 {
+    public SkillManager skill { get; private set; }
+
     [Header("Move Info")]
     public float moveSpeed;
     public float jumpForce;
@@ -17,8 +19,6 @@ public class Player : Entity
     public float dashSpeed;
     public float dashDuration;
     public float dashDirection { get; private set; }
-    [SerializeField] private float dashCooldown;
-    private float dashUsageTimer;
 
     public bool isBusy { get; private set; }
 
@@ -34,6 +34,9 @@ public class Player : Entity
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerPrimaryAttackState primaryAttackState { get; private set; }
     public PlayerCounterAttackState counterAttackState { get; private set; }
+    public PlayerAimSwordState aimSwordState { get; private set; }
+    public PlayerThrowSwordState throwSwordState { get; private set; }
+    public PlayerCatchSwordState catchSwordState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -51,11 +54,16 @@ public class Player : Entity
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
+        aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
+        throwSwordState = new PlayerThrowSwordState(this, stateMachine, "ThrowSword");
+        catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
     }
 
     protected override void Start()
     {
         base.Start();
+
+        skill = SkillManager.instance;
 
         stateMachine.Initialize(idleState);
     }
@@ -76,11 +84,9 @@ public class Player : Entity
             return;
         }
 
-        dashUsageTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.UseSkillIfAvailable())
         {
-            dashUsageTimer = dashCooldown;
             dashDirection = Input.GetAxisRaw("Horizontal");
 
             if (dashDirection == 0)
