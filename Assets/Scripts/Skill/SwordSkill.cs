@@ -8,6 +8,7 @@ public class SwordSkill : Skill
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchSpeed;
     [SerializeField] private float swordGravity;
+    [SerializeField] private float swordReturnSpeed;
 
     private Vector2 finalDirection;
 
@@ -53,7 +54,9 @@ public class SwordSkill : Skill
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         SwordSkillController newSwordScript = newSword.GetComponent<SwordSkillController>();
 
-        newSwordScript.SetupSword(finalDirection, swordGravity);
+        newSwordScript.SetupSword(finalDirection, swordGravity, swordReturnSpeed);
+
+        player.AssignNewSword(newSword);
 
         ShowDots(false);
     }

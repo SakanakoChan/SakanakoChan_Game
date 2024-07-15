@@ -37,12 +37,13 @@ public class Enemy : Entity
         base.Awake();
 
         stateMachine = new EnemyStateMachine();
-        player = PlayerManager.instance.player;
     }
 
     protected override void Start()
     {
         base.Start();
+
+        player = PlayerManager.instance.player;
     }
 
     protected override void Update()

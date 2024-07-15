@@ -32,7 +32,10 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.counterAttackState);
         }
 
-        if (Input.GetKey(KeyCode.Mouse1))
+        //!player.sword   is same as   player.sword == null
+        //HasNoSword() will return true if there's no sword in player
+        //or return falase and return the sword if player has sword
+        if (Input.GetKey(KeyCode.Mouse1) && player.HasNoSword())
         {
             stateMachine.ChangeState(player.aimSwordState);
         }

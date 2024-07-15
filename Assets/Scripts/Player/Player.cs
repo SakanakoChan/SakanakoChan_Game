@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : Entity
 {
     public SkillManager skill { get; private set; }
+    public GameObject sword {  get; private set; }
 
     [Header("Move Info")]
     public float moveSpeed;
@@ -112,7 +113,27 @@ public class Player : Entity
         //Debug.Log("not busy");
     }
 
-    
+    public void AssignNewSword(GameObject _newSword)
+    {
+        sword = _newSword;
+    }
 
+    public void ClearSword()
+    {
+        Destroy(sword);
+    }
+
+    //if no sword, return null
+    //if has sowrd, return the sword and return true;
+    public bool HasNoSword()
+    {
+        if (!sword)
+        {
+            return true;
+        }
+
+        sword.GetComponent<SwordSkillController>().ReturnSword();
+        return false;
+    }
     
 }
