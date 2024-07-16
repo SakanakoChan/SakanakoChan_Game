@@ -15757,7 +15757,7 @@ MonoBehaviour:
   pierceSwordGravity: 0.5
   maxTravelDistance: 10
   spinDuration: 3
-  spinHitCooldown: 0.2
+  spinHitCooldown: 0.1
   spinSwordGravity: 0.5
   swordPrefab: {fileID: 6890596882183202840, guid: c51fba828345694459c3b78391fecf59, type: 3}
   launchSpeed: {x: 25, y: 25}
