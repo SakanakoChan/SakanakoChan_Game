@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Data;
 using UnityEngine;
 
 public class Player : Entity
@@ -88,6 +89,12 @@ public class Player : Entity
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.UseSkillIfAvailable())
         {
+            //if current state is AimSwordState or ThrowSwordState, hide the aim dots first
+            if (stateMachine.currentState == aimSwordState || stateMachine.currentState == throwSwordState)
+            {
+                skill.sword.ShowDots(false);
+            }
+
             dashDirection = Input.GetAxisRaw("Horizontal");
 
             if (dashDirection == 0)
@@ -118,8 +125,9 @@ public class Player : Entity
         sword = _newSword;
     }
 
-    public void ClearSword()
+    public void CatchSword()
     {
+        stateMachine.ChangeState(catchSwordState);
         Destroy(sword);
     }
 

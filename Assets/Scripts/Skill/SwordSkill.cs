@@ -1,14 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
+
+public enum SwordType
+{
+    Regular,
+    Bounce,
+    Pierce,
+    Spin
+}
 
 public class SwordSkill : Skill
 {
+    public SwordType swordType = SwordType.Regular;
+
+    [Header("Regular Sword Info")]
+    [SerializeField] private float regularSwordGravity;
+
+    [Header("Bounce Sword Info")]
+    [SerializeField] private int bounceAmount;
+    [SerializeField] private float bounceSwordGravity;
+    [SerializeField] private float bounceSpeed;
+
+    [Header("Pierce Sword Info")]
+    [SerializeField] private int pierceAmount;
+    [SerializeField] private float pierceSwordGravity;
+
     [Header("Skill Info")]
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchSpeed;
-    [SerializeField] private float swordGravity;
     [SerializeField] private float swordReturnSpeed;
+    private float swordGravity;
 
     private Vector2 finalDirection;
 
@@ -38,6 +62,7 @@ public class SwordSkill : Skill
         //adjust dots position according to player's aim position
         if (Input.GetKey(KeyCode.Mouse1))
         {
+            SetupSwordGravity();
             //dots position will not get adjusted anymore when pressing mouse left
             if (player.stateMachine.currentState != player.throwSwordState)
             {
@@ -54,6 +79,17 @@ public class SwordSkill : Skill
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         SwordSkillController newSwordScript = newSword.GetComponent<SwordSkillController>();
 
+        SetupSwordGravity();
+
+        if (swordType == SwordType.Bounce)
+        {
+            newSwordScript.SetupBounceSword(true, bounceAmount, bounceSpeed);
+        }
+        else if (swordType == SwordType.Pierce)
+        {
+            newSwordScript.SetupPierceSword(true, pierceAmount);
+        }
+
         newSwordScript.SetupSword(finalDirection, swordGravity, swordReturnSpeed);
 
         player.AssignNewSword(newSword);
@@ -61,6 +97,23 @@ public class SwordSkill : Skill
         ShowDots(false);
     }
 
+    private void SetupSwordGravity()
+    {
+        if (swordType == SwordType.Bounce)
+        {
+            swordGravity = bounceSwordGravity;
+        }
+        else if (swordType == SwordType.Pierce)
+        {
+            swordGravity = pierceSwordGravity;
+        }
+        else if (swordType == SwordType.Regular)
+        {
+            swordGravity = regularSwordGravity;
+        }
+    }
+
+    #region Aim
     public Vector2 AimDirection()
     {
         Vector2 playerPosition = player.transform.position;
@@ -102,4 +155,5 @@ public class SwordSkill : Skill
 
         return position;
     }
+    #endregion
 }
