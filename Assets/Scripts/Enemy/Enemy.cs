@@ -8,6 +8,8 @@ public class Enemy : Entity
     public float patrolMoveSpeed;
     public float patrolStayTime;
 
+    private float defaultPatrolMoveSpeed;
+
     [Header("Recon Info")]
     public float playerScanDistance;
     public float playerHearDistance;
@@ -16,6 +18,8 @@ public class Enemy : Entity
     [Header("Battle/Aggressive Info")]
     public float battleMoveSpeed;
     public float aggressiveTime;
+
+    private float defaultBattleMoveSpeed;
 
     [Header("Attack Info")]
     public float attackDistance;
@@ -37,6 +41,9 @@ public class Enemy : Entity
         base.Awake();
 
         stateMachine = new EnemyStateMachine();
+
+        defaultBattleMoveSpeed = battleMoveSpeed;
+        defaultPatrolMoveSpeed = patrolMoveSpeed;
     }
 
     protected override void Start()
@@ -71,6 +78,32 @@ public class Enemy : Entity
         stateMachine.currentState.AnimationFinishTrigger();
     }
 
+    public virtual void FreezeEnemy(bool _freeze)
+    {
+        if (_freeze)
+        {
+            battleMoveSpeed = 0;
+            patrolMoveSpeed = 0;
+            anim.speed = 0;
+        }
+        else
+        {
+            battleMoveSpeed = defaultBattleMoveSpeed;
+            patrolMoveSpeed = defaultPatrolMoveSpeed;
+            anim.speed = 1;
+        }
+    }
+
+    protected virtual IEnumerator FreezeEnemyForTime(float _seconds)
+    {
+        FreezeEnemy(true);
+
+        yield return new WaitForSeconds(_seconds);
+
+        FreezeEnemy(false);
+    }
+
+    #region Counter Attack
     public void OpenCounterAttackWindow()
     {
         canBeStunned = true;
@@ -92,11 +125,12 @@ public class Enemy : Entity
         }
         return false;
     }
+    #endregion
 
     //protected override IEnumerator HitKnockback()
     //{
     //    knockbackDirection = player.facingDirection;
-        
+
     //    return base.HitKnockback();
     //}
 }

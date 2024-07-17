@@ -38,6 +38,7 @@ public class SwordSkill : Skill
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchSpeed;
     [SerializeField] private float swordReturnSpeed;
+    [SerializeField] private float enemyFreezeDuration;
     private float swordGravity;
 
     private Vector2 finalDirection;
@@ -100,7 +101,7 @@ public class SwordSkill : Skill
             newSwordScript.SetupSpinSword(true, maxTravelDistance, spinDuration, spinHitCooldown);
         }
 
-        newSwordScript.SetupSword(finalDirection, swordGravity, swordReturnSpeed);
+        newSwordScript.SetupSword(finalDirection, swordGravity, swordReturnSpeed, enemyFreezeDuration);
 
         player.AssignNewSword(newSword);
 

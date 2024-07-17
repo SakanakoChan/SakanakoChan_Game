@@ -4051,7 +4051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1922352285}
-  groundCheckDistance: 0.4
+  groundCheckDistance: 1
   wallCheck: {fileID: 1296893333}
   wallCheckDistance: 0.6
   whatIsGround:
@@ -4149,7 +4149,7 @@ Transform:
   m_GameObject: {fileID: 165074447}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.95, y: 1.03, z: 0}
+  m_LocalPosition: {x: 19.17, y: 1.8, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4599,7 +4599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1045536515}
-  groundCheckDistance: 0.4
+  groundCheckDistance: 1
   wallCheck: {fileID: 197390907}
   wallCheckDistance: 0.6
   whatIsGround:
@@ -4635,7 +4635,7 @@ Transform:
   m_GameObject: {fileID: 666281798}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.24, y: 0.59, z: 0}
+  m_LocalPosition: {x: 13.3, y: 1.54, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15165,7 +15165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 550701949}
-  groundCheckDistance: 0.4
+  groundCheckDistance: 1
   wallCheck: {fileID: 174754513}
   wallCheckDistance: 0.6
   whatIsGround:
@@ -15263,7 +15263,7 @@ Transform:
   m_GameObject: {fileID: 1854444386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.57, y: 0.81, z: 0}
+  m_LocalPosition: {x: 24.97, y: 1.76, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15748,7 +15748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0
-  swordType: 3
+  swordType: 0
   regularSwordGravity: 4
   bounceAmount: 4
   bounceSwordGravity: 4
@@ -15757,11 +15757,12 @@ MonoBehaviour:
   pierceSwordGravity: 0.5
   maxTravelDistance: 10
   spinDuration: 3
-  spinHitCooldown: 0.1
+  spinHitCooldown: 0.2
   spinSwordGravity: 0.5
   swordPrefab: {fileID: 6890596882183202840, guid: c51fba828345694459c3b78391fecf59, type: 3}
-  launchSpeed: {x: 25, y: 25}
+  launchSpeed: {x: 30, y: 25}
   swordReturnSpeed: 25
+  enemyFreezeDuration: 1
   dotNumber: 20
   spaceBetweenDots: 0.07
   dotPrefab: {fileID: 8851052543190774116, guid: 85ff809178b36d3418edcf1cc4a91a83, type: 3}

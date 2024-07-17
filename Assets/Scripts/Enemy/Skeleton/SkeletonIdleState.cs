@@ -30,7 +30,7 @@ public class SkeletonIdleState : SkeletonGroundedState
             return;
         }
 
-        enemy.SetZeroVelocity();
+        enemy.SetVelocity(0, rb.velocity.y);
 
         if (stateTimer < 0)
         {

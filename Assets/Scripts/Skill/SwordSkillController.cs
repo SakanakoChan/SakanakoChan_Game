@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -12,6 +13,8 @@ public class SwordSkillController : MonoBehaviour
     private bool canRotate = true;
     private bool isReturning;
     private float swordReturnSpeed;
+
+    private float enemyFreezeDuration;
 
     [Header("Bounce Sword Info")]
     private bool isBouncingSword;
@@ -66,6 +69,8 @@ public class SwordSkillController : MonoBehaviour
         BounceSwordLogic();
 
         SpinSwordLogic();
+
+        DestroySwordIfTooFar(30);
     }
 
 
@@ -90,7 +95,14 @@ public class SwordSkillController : MonoBehaviour
             return;
         }
 
+        if (collision.GetComponent<Enemy>() != null)
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+        }
+
         //spin sword will stop and spin when hittin the first enemy
+        //in order to make spin sword hit cooldown work correctly
+        //this if statement is necessary
         if (isSpinSword)
         {
             StopAndSpin();
@@ -98,7 +110,7 @@ public class SwordSkillController : MonoBehaviour
         }
         else
         {
-            KnockbackEnemy(collision);
+            KnockbackAndFreezeEnemy(collision, enemyFreezeDuration);
         }
 
 
@@ -108,10 +120,11 @@ public class SwordSkillController : MonoBehaviour
     }
 
 
-    private void KnockbackEnemy(Collider2D collision)
+    private void KnockbackAndFreezeEnemy(Collider2D collision, float _enemyFreezeDuration)
     {
-        float knockbackDirection = 0;
+        float knockbackDirection = 0;     
 
+        //determine knocback direction
         if (transform.position.x > collision.GetComponent<Enemy>()?.transform.position.x)
         {
             knockbackDirection = -1;
@@ -121,7 +134,11 @@ public class SwordSkillController : MonoBehaviour
             knockbackDirection = 1;
         }
 
+        //knock back enemy
         collision.GetComponent<Enemy>()?.Damage(knockbackDirection);
+
+        //freeze enemy
+        collision.GetComponent<Enemy>()?.StartCoroutine("FreezeEnemyForTime", _enemyFreezeDuration);
     }
 
     private void SwordStuckInto(Collider2D collision)
@@ -133,9 +150,11 @@ public class SwordSkillController : MonoBehaviour
             return;
         }
 
+        //spin sword will stop and spin when hittin the first enemy
         //spin sword can't stuck into enemy
         if (isSpinSword && collision.GetComponent<Enemy>() != null)
         {
+            StopAndSpin();
             return;
         }
 
@@ -164,7 +183,7 @@ public class SwordSkillController : MonoBehaviour
 
             if (Vector2.Distance(transform.position, bounceTargets[bounceTargetIndex].position) < 0.15f)
             {
-                KnockbackEnemy(bounceTargets[bounceTargetIndex].GetComponent<Collider2D>());
+                KnockbackAndFreezeEnemy(bounceTargets[bounceTargetIndex].GetComponent<Collider2D>(), enemyFreezeDuration);
                 bounceTargetIndex++;
                 bounceAmount--;
 
@@ -240,7 +259,7 @@ public class SwordSkillController : MonoBehaviour
                     {
                         if (hit.GetComponent<Enemy>() != null)
                         {
-                            KnockbackEnemy(hit);
+                            KnockbackAndFreezeEnemy(hit, enemyFreezeDuration);
                         }
                     }
                 }
@@ -248,11 +267,12 @@ public class SwordSkillController : MonoBehaviour
         }
     }
 
-    public void SetupSword(Vector2 _launchSpeed, float _swordGravity, float _swordReturnSpeed)
+    public void SetupSword(Vector2 _launchSpeed, float _swordGravity, float _swordReturnSpeed, float _enemyFreezeDuration)
     {
         rb.velocity = _launchSpeed;
         rb.gravityScale = _swordGravity;
         swordReturnSpeed = _swordReturnSpeed;
+        enemyFreezeDuration = _enemyFreezeDuration;
 
         if (!isPierceSword)
         {
@@ -286,11 +306,25 @@ public class SwordSkillController : MonoBehaviour
 
     public void ReturnSword()
     {
+        //can't return sword while bouncing between enemies
+        if (bounceTargets.Count > 0)
+        {
+            return;
+        }
+
         //get rid of the impact of gravity when returning the sword
         //in order to make the sword directly fly back to the player when returning
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         //rb.isKinematic = false;
         transform.parent = null;
         isReturning = true;
+    }
+
+    private void DestroySwordIfTooFar(float _maxDistance)
+    {
+        if (Vector2.Distance(player.transform.position, transform.position) >= _maxDistance)
+        {
+            Destroy(gameObject);
+        }
     }
 }

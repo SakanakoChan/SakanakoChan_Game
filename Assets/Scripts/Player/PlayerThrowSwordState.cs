@@ -22,6 +22,8 @@ public class PlayerThrowSwordState : PlayerState
     {
         base.Update();
 
+        player.SetVelocity(0, rb.velocity.y);
+
         if (triggerCalled)
         {
             stateMachine.ChangeState(player.idleState);
