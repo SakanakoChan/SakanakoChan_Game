@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -24,6 +25,7 @@ public class Entity : MonoBehaviour
     protected bool facingRight = true;
 
     #region components
+    public SpriteRenderer sr {  get; private set; }
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
@@ -31,6 +33,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void Awake()
     {
+        sr = GetComponentInChildren<SpriteRenderer>();
         fx = GetComponent<EntityFX>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -50,7 +53,7 @@ public class Entity : MonoBehaviour
         fx.StartCoroutine("FlashFX");
         StartCoroutine(HitKnockback(_knocbackDirection));
 
-        Debug.Log($"{gameObject.name} is damaged");
+        //Debug.Log($"{gameObject.name} is damaged");
     }
 
     protected virtual IEnumerator HitKnockback(float _knockbackDirection)
@@ -128,4 +131,16 @@ public class Entity : MonoBehaviour
         }
     }
     #endregion
+
+    public void MakeEntityTransparent(bool _transparent)
+    {
+        if (_transparent)
+        {
+            sr.color = Color.clear;
+        }
+        else
+        {
+            sr.color = Color.white;
+        }
+    }
 }

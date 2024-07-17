@@ -32,6 +32,11 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.counterAttackState);
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            stateMachine.ChangeState(player.blackholeSkillState);
+        }
+
         //!player.sword   is same as   player.sword == null
         //HasNoSword() will return true if there's no sword in player
         //or return falase and return the sword if player has sword

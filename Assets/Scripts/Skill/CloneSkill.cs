@@ -12,9 +12,9 @@ public class CloneSkill : Skill
     [SerializeField] private bool canAttack;
 
 
-    public void CreateClone()
+    public void CreateClone(Vector3 _position)
     {
-        GameObject newClone = Instantiate(clonePrefab, PlayerManager.instance.player.transform.position, Quaternion.identity); ;
+        GameObject newClone = Instantiate(clonePrefab, _position, Quaternion.identity);
         CloneSkillController newCloneScript = newClone.GetComponent<CloneSkillController>();
 
         newCloneScript.SetupClone(cloneDuration, colorLosingSpeed, canAttack);
