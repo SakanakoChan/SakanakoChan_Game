@@ -50,8 +50,6 @@ public class BlackholeSkillController : MonoBehaviour
         }
         else if (QTEInputTimer < 0)  //if having not pressed all the QTE buttons before input window ends
         {
-            QTEInputTimer = Mathf.Infinity;
-
             //release clone attack on the QTEed enemies
             if (enemyTargets.Count > 0)
             {
@@ -119,6 +117,13 @@ public class BlackholeSkillController : MonoBehaviour
         cloneAttackAmount = _cloneAttackAmount;
         cloneAttackCooldown = _cloneAttackCooldown;
         QTEInputTimer = _QTEInputWindow;
+
+        //player won't be transparent
+        //if Replace Clone By Crystal is enabled in Clone Skill
+        if (SkillManager.instance.clone.replaceCloneByCrystal)
+        {
+            playerIsTransparent = true;
+        }
     }
 
     private void ReadyToReleaseBlackholeCloneAttack()
@@ -155,7 +160,20 @@ public class BlackholeSkillController : MonoBehaviour
                 offset = new Vector3(-1, 0);
             }
 
-            SkillManager.instance.clone.CreateClone(enemyTargets[randomIndex].position + offset);
+            //if Replace Clone By Crystal is enabled in Clone Skill
+            //Create Crystal instead of Clone
+            if (SkillManager.instance.clone.replaceCloneByCrystal)
+            {
+                SkillManager.instance.crystal.CreateCrystal();
+
+                //ranomly select enemy inside the blackhole range
+                SkillManager.instance.crystal.CurrentCrystalSpecifyEnemy(enemyTargets[randomIndex]);
+            }
+            else
+            {
+                SkillManager.instance.clone.CreateClone(enemyTargets[randomIndex].position + offset);
+            }
+
             cloneAttackAmount--;
 
             if (cloneAttackAmount <= 0)

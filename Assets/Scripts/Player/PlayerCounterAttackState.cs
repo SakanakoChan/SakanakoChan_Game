@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCounterAttackState : PlayerState
 {
+    private bool canCreateClone;
+
     public PlayerCounterAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -14,6 +16,10 @@ public class PlayerCounterAttackState : PlayerState
 
         stateTimer = player.counterAttackDuration;
         player.anim.SetBool("SuccessfulCounterAttack", false);
+
+        //to ensure every time entering counter attack state
+        //player is able to create clone
+        canCreateClone = true;
     }
 
     public override void Exit()
@@ -42,6 +48,13 @@ public class PlayerCounterAttackState : PlayerState
                     stateTimer = 10;
 
                     player.anim.SetBool("SuccessfulCounterAttack", true);
+
+                    //if availabe, will spawn clone behind enemy and attack enemy
+                    if (canCreateClone)
+                    {
+                        player.skill.clone.CreateCloneOnCounterAttack(new Vector3(enemy.transform.position.x - 1.5f * enemy.facingDirection, enemy.transform.position.y), 0.1f);
+                        canCreateClone = false;  //can only create 1 clone every time of counter attack
+                    }
                 }
             }
         }

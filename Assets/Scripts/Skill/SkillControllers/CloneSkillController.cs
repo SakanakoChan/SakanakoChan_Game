@@ -16,8 +16,12 @@ public class CloneSkillController : MonoBehaviour
     [SerializeField] private float attackCheckRadius;
     private Transform closestEnemy;
 
+    private bool canDuplicateClone;
+    private float duplicatePossibility;
+
     private bool cloneFacingRight = true;
     private float cloneFacingDirection = 1;
+
 
     private void Awake()
     {
@@ -41,7 +45,7 @@ public class CloneSkillController : MonoBehaviour
 
     }
 
-    public void SetupClone(float _cloneDuration, float _colorLosingSpeed, bool _canAttack)
+    public void SetupClone(float _cloneDuration, float _colorLosingSpeed, bool _canAttack, Transform _closestEnemy, bool _canDuplicateClone, float _duplicatePossibility)
     {
         if (_canAttack)
         {
@@ -53,7 +57,12 @@ public class CloneSkillController : MonoBehaviour
 
         cloneTimer = cloneDuration;
 
+        closestEnemy = _closestEnemy;
+
         FaceClosestTarget();
+
+        canDuplicateClone = _canDuplicateClone;
+        duplicatePossibility = _duplicatePossibility;
     }
 
     private void AnimationTrigger()
@@ -72,32 +81,22 @@ public class CloneSkillController : MonoBehaviour
                 Enemy enemy = hit.GetComponent<Enemy>();
 
                 enemy.Damage(cloneFacingDirection);
+
+                if (canDuplicateClone)
+                {
+                    //randomly create clone on sides of enemy
+                    if (Random.Range(0, 100) < duplicatePossibility  && SkillManager.instance.clone.currentDuplicateCloneAmount < SkillManager.instance.clone.maxDuplicateCloneAmount)
+                    {
+                        SkillManager.instance.clone.CreateDuplicateClone(new Vector3(hit.transform.position.x + 1f * cloneFacingDirection, hit.transform.position.y));
+                    }
+                }
+
             }
         }
     }
 
     private void FaceClosestTarget()
     {
-        //find all the enemies in radius 25
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 25);
-
-        float closestDistanceToEnemy = Mathf.Infinity;
-        
-        //find closest enemy
-        foreach(var hit in colliders)
-        {
-            if(hit.GetComponent<Enemy>() != null)
-            {
-                float currentDistanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);
-
-                if (currentDistanceToEnemy < closestDistanceToEnemy)
-                {
-                    closestDistanceToEnemy = currentDistanceToEnemy;
-                    closestEnemy = hit.transform;
-                }
-            }
-        }
-
         //if successfully found out the closest enemy
         if(closestEnemy != null)
         {
