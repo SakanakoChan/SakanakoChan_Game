@@ -80,7 +80,7 @@ public class CloneSkillController : MonoBehaviour
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
 
-                enemy.Damage(cloneFacingDirection);
+                enemy.DamageEffect(transform, enemy.transform);
 
                 if (canDuplicateClone)
                 {

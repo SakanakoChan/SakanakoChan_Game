@@ -127,10 +127,4 @@ public class Enemy : Entity
     }
     #endregion
 
-    //protected override IEnumerator HitKnockback()
-    //{
-    //    knockbackDirection = player.facingDirection;
-
-    //    return base.HitKnockback();
-    //}
 }

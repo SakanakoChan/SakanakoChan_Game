@@ -19,7 +19,6 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Vector2 knockbackMovement;
     [SerializeField] protected float knockbackDuration;
     [HideInInspector] public bool isKnockbacked;
-    [HideInInspector] public float knockbackDirection;  //knockbackDirection is set in PlayerAnimationTrigger and EnemyAnimationTrigger
 
     public int facingDirection { get; private set; } = 1;
     protected bool facingRight = true;
@@ -29,6 +28,7 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
+    public CharacterStats stats { get; private set; }
     #endregion
 
     protected virtual void Awake()
@@ -37,6 +37,7 @@ public class Entity : MonoBehaviour
         fx = GetComponent<EntityFX>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<CharacterStats>();
     }
 
     protected virtual void Start()
@@ -48,24 +49,41 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void Damage(float _knocbackDirection)
+    public virtual void DamageEffect(Transform _attacker, Transform _attackee)
     {
         fx.StartCoroutine("FlashFX");
-        StartCoroutine(HitKnockback(_knocbackDirection));
+
+        float _knockbackDirection = CalculateKnockbackDirection(_attacker, _attackee);
+
+        StartCoroutine(HitKnockback(_knockbackDirection));
 
         //Debug.Log($"{gameObject.name} is damaged");
     }
 
     protected virtual IEnumerator HitKnockback(float _knockbackDirection)
     {
-        //Enemy's knockbackDirection is set in PlayerAnimationTrigger
-        //Player's knockbackDirection is set in EnemyAnimationTrigger
         isKnockbacked = true;
         rb.velocity = new Vector2(knockbackMovement.x * _knockbackDirection, knockbackMovement.y);
 
         yield return new WaitForSeconds(knockbackDuration);
 
         isKnockbacked = false;
+    }
+
+    public virtual float CalculateKnockbackDirection(Transform _attacker, Transform _attackee)
+    {
+        float _knockbackDirection = 0;
+
+        if (_attacker.position.x < _attackee.position.x)
+        {
+            _knockbackDirection = 1;
+        }
+        else if (_attacker.position.x > _attackee.position.x)
+        {
+            _knockbackDirection = -1;
+        }
+
+        return _knockbackDirection;
     }
 
     #region Velocity

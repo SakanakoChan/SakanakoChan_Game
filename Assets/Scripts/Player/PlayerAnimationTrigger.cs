@@ -21,8 +21,10 @@ public class PlayerAnimationTrigger : MonoBehaviour
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
 
-                enemy.knockbackDirection = player.facingDirection;
-                enemy.Damage(enemy.knockbackDirection);
+                //enemy.Damage(player.transform, enemy.transform);
+
+                EnemyStats _target = hit.GetComponent<EnemyStats>();
+                player.stats.DoDamge(_target);
             }
         }
     }

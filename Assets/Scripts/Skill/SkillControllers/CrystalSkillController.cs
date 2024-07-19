@@ -91,24 +91,11 @@ public class CrystalSkillController : MonoBehaviour
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
 
-                ConfigureEnemyKnockbackDirection(enemy);
-
-                enemy.Damage(enemy.knockbackDirection);
+                enemy.DamageEffect(transform, enemy.transform);
             }
         }
     }
 
-    private void ConfigureEnemyKnockbackDirection(Enemy enemy)
-    {
-        if (transform.position.x > enemy.transform.position.x)
-        {
-            enemy.knockbackDirection = -1;
-        }
-        else if (transform.position.x < enemy.transform.position.x)
-        {
-            enemy.knockbackDirection = 1;
-        }
-    }
 
     public void SpecifyEnemyTarget(Transform _enemy)
     {

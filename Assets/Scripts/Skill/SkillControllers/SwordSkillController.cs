@@ -122,20 +122,8 @@ public class SwordSkillController : MonoBehaviour
 
     private void KnockbackAndFreezeEnemy(Collider2D collision, float _enemyFreezeDuration)
     {
-        float knockbackDirection = 0;     
-
-        //determine knocback direction
-        if (transform.position.x > collision.GetComponent<Enemy>()?.transform.position.x)
-        {
-            knockbackDirection = -1;
-        }
-        else if (transform.position.x < collision.GetComponent<Enemy>()?.transform.position.x)
-        {
-            knockbackDirection = 1;
-        }
-
         //knock back enemy
-        collision.GetComponent<Enemy>()?.Damage(knockbackDirection);
+        collision.GetComponent<Enemy>()?.DamageEffect(transform, collision.GetComponent<Enemy>()?.transform);
 
         //freeze enemy
         collision.GetComponent<Enemy>()?.StartCoroutine("FreezeEnemyForTime", _enemyFreezeDuration);
