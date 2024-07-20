@@ -40,6 +40,7 @@ public class Player : Entity
     public PlayerThrowSwordState throwSwordState { get; private set; }
     public PlayerCatchSwordState catchSwordState { get; private set; }
     public PlayerReleaseBlackholeSkillState blackholeSkillState { get; private set; }
+    public PlayerDeathState deathState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -61,6 +62,7 @@ public class Player : Entity
         throwSwordState = new PlayerThrowSwordState(this, stateMachine, "ThrowSword");
         catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
         blackholeSkillState = new PlayerReleaseBlackholeSkillState(this, stateMachine, "Jump");
+        deathState = new PlayerDeathState(this, stateMachine, "Death");
     }
 
     protected override void Start()
@@ -150,5 +152,12 @@ public class Player : Entity
         sword.GetComponent<SwordSkillController>().ReturnSword();
         return false;
     }
-    
+
+
+    public override void Die()
+    {
+        base.Die();
+
+        stateMachine.ChangeState(deathState);
+    }
 }

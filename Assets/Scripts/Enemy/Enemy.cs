@@ -35,6 +35,8 @@ public class Enemy : Entity
     public EnemyStateMachine stateMachine {  get; private set; }
     protected Player player { get; private set; }
 
+    public string lastAnimBoolName {  get; private set; }
+
 
     protected override void Awake()
     {
@@ -127,4 +129,9 @@ public class Enemy : Entity
     }
     #endregion
 
+
+    public virtual void AssignLastAnimBoolName(string _animBoolName)
+    {
+        lastAnimBoolName = _animBoolName;
+    }
 }

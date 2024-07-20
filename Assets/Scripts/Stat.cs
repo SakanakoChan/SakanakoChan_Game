@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -18,6 +19,11 @@ public class Stat
         }
 
         return finalValue;
+    }
+
+    public void SetDefaultValue(int _defaultValue)
+    {
+        baseValue = _defaultValue;
     }
 
     public void AddModifier(int _modifier)

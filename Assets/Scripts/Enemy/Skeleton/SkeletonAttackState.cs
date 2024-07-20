@@ -40,7 +40,7 @@ public class SkeletonAttackState : EnemyState
             }
 
             //enemy will move ahead a bit in the beginning of attack
-            enemy.SetVelocity(enemy.battleMoveSpeed * enemy.facingDirection, rb.velocity.y);
+            //enemy.SetVelocity(enemy.battleMoveSpeed * enemy.facingDirection, rb.velocity.y);
         }
         else
         {

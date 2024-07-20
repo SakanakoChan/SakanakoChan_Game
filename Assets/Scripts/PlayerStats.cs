@@ -16,4 +16,11 @@ public class PlayerStats : CharacterStats
     {
         base.TakeDamage(_damage, _attacker, _attackee);
     }
+
+    protected override void Die()
+    {
+        base.Die();
+
+        player.Die();
+    }
 }
