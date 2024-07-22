@@ -56,6 +56,13 @@ public class CharacterStats : MonoBehaviour
     //order: CharacterStats -> HPBar_UI
     //[HideInInspector] public bool HPBarCanBeInitialized;
 
+    protected EntityFX fx;
+
+    private void Awake()
+    {
+        fx = GetComponent<EntityFX>();
+    }
+
     protected virtual void Start()
     {
         currentHP = getMaxHP();
@@ -222,18 +229,27 @@ public class CharacterStats : MonoBehaviour
         {
             isIgnited = _ignite;
             ignitedAilmentTimer = 2;
+
+            //fx.EnableIgniteFXForTime(ignitedAilmentTimer);
+            StartCoroutine(fx.EnableIgniteFXForTime_Coroutine(ignitedAilmentTimer));
         }
 
         if (_chill)
         {
             isChilled = _chill;
             chilledAilmentTimer = 10;
+
+            //fx.EnableChillFXForTime(chilledAilmentTimer);
+            StartCoroutine(fx.EnableChillFXForTime_Coroutine(chilledAilmentTimer));
         }
 
         if (_shock)
         {
             isShocked = _shock;
             shockedAilmentTimer = 4;
+
+            //fx.EnableShockFXForTime(shockedAilmentTimer);
+            StartCoroutine(fx.EnableShockFXForTime_Coroutine(shockedAilmentTimer));
         }
 
         if (isIgnited)
