@@ -25,13 +25,15 @@ public class Entity : MonoBehaviour
     protected bool facingRight = true;
 
     #region components
-    public SpriteRenderer sr {  get; private set; }
+    public SpriteRenderer sr { get; private set; }
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
     public CharacterStats stats { get; private set; }
     public CapsuleCollider2D cd { get; private set; }
     #endregion
+
+    public System.Action onFlipped;
 
     protected virtual void Awake()
     {
@@ -138,6 +140,11 @@ public class Entity : MonoBehaviour
         facingDirection = -facingDirection;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
+
+        if (onFlipped != null)
+        {
+            onFlipped();
+        }
     }
 
     public virtual void FlipController(float _x)

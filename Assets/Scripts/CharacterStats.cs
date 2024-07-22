@@ -30,7 +30,7 @@ public class CharacterStats : MonoBehaviour
     public bool isShocked; //accuracy - 20% (enemy evasion + 20%)
 
     [Space]
-    [SerializeField] private int currentHP;
+    public int currentHP;
 
     //see ApplyAilment()
     private float ignitedAilmentTimer;
@@ -48,12 +48,20 @@ public class CharacterStats : MonoBehaviour
     //total_crit_power = critPower + strength;
     //total_magic_damage = (fireDamage + iceDamage + lightningDamage + intelligence) - (target.magicResistance + 3 * target.intelligence);
 
+    public System.Action onHealthChanged;
 
+    //To make entity HP bar correctly updated in start
+    //if not willing to use this bool variable
+    //can change script execution order in unity project settings
+    //order: CharacterStats -> HPBar_UI
+    //[HideInInspector] public bool HPBarCanBeInitialized;
 
     protected virtual void Start()
     {
-        currentHP = maxHP.GetValue();
+        currentHP = getMaxHP();
         critPower.SetDefaultValue(150);
+
+        //HPBarCanBeInitialized = true;
     }
 
     protected virtual void Update()
@@ -83,7 +91,7 @@ public class CharacterStats : MonoBehaviour
         if (ignitedDamageTimer < 0 && isIgnited)
         {
             Debug.Log($"Take burn damage {igniteDamage}");
-            currentHP -= igniteDamage;
+            DecreaseHPBy(igniteDamage);
 
             if (currentHP <= 0)
             {
@@ -250,7 +258,7 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
     {
-        currentHP -= _damage;
+        DecreaseHPBy(_damage);
 
         Debug.Log($"{gameObject.name} received {_damage} damage");
 
@@ -326,4 +334,19 @@ public class CharacterStats : MonoBehaviour
         return Mathf.RoundToInt(critDamage);
     }
     #endregion
+
+    public int getMaxHP()
+    {
+        return maxHP.GetValue() + vitaliy.GetValue() * 5;
+    }
+
+    protected virtual void DecreaseHPBy(int _takenDamage)
+    {
+        currentHP -= _takenDamage;
+
+        if(onHealthChanged != null)
+        {
+            onHealthChanged();
+        }
+    }
 }
