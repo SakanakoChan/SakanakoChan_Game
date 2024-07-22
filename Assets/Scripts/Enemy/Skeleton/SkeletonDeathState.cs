@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkeletonDeathState : EnemyState
 {
     private Enemy_Skeleton enemy;
+    private bool canBeFliedUP = true;
     public SkeletonDeathState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
@@ -31,9 +32,10 @@ public class SkeletonDeathState : EnemyState
         base.Update();
 
         //enemy is gonna fly up before he dies
-        if (stateTimer > 0)
+        if (stateTimer > 0 && canBeFliedUP)
         {
             enemy.SetVelocity(0, 10);
+            canBeFliedUP = false;
         }
     }
 }
