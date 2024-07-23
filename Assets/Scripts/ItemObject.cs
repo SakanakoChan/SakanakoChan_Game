@@ -23,6 +23,7 @@ public class ItemObject : MonoBehaviour
     {
         if(collision.GetComponent<Player>() != null)
         {
+            Inventory.instance.AddItem(itemData);
             Debug.Log($"Picked up item {itemData.itemName}");
             Destroy(gameObject);
         }
