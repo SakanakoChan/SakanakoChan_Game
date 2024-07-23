@@ -29,7 +29,7 @@ public class PlayerReleaseBlackholeSkillState : PlayerState
         base.Exit();
         //Debug.Log("Player has exited blackhole skill state");
         rb.gravityScale = originalGravity;
-        player.MakeEntityTransparent(false);
+        player.fx.MakeEntityTransparent(false);
     }
 
     public override void Update()

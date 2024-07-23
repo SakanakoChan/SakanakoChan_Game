@@ -32,10 +32,10 @@ public class Enemy : Entity
     protected bool canBeStunned;
     [SerializeField] protected GameObject counterPromptImage;
 
-    public EnemyStateMachine stateMachine {  get; private set; }
+    public EnemyStateMachine stateMachine { get; private set; }
     protected Player player { get; private set; }
 
-    public string lastAnimBoolName {  get; private set; }
+    public string lastAnimBoolName { get; private set; }
 
 
     protected override void Awake()
@@ -133,5 +133,22 @@ public class Enemy : Entity
     public virtual void AssignLastAnimBoolName(string _animBoolName)
     {
         lastAnimBoolName = _animBoolName;
+    }
+
+    public override void SlowSpeedBy(float _percentage, float _duration)
+    {
+        patrolMoveSpeed = patrolMoveSpeed * (1 - _percentage);
+        battleMoveSpeed = battleMoveSpeed * (1 - _percentage);
+        anim.speed = anim.speed * (1 - _percentage);
+
+        Invoke("ReturnDefaultSpeed", _duration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        patrolMoveSpeed = defaultPatrolMoveSpeed;
+        battleMoveSpeed = defaultBattleMoveSpeed;
     }
 }

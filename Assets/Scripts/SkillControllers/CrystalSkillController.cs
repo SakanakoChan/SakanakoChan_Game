@@ -91,7 +91,8 @@ public class CrystalSkillController : MonoBehaviour
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
 
-                enemy.DamageEffect(transform, enemy.transform);
+                //enemy.DamageEffect(transform, enemy.transform);
+                PlayerManager.instance.player.stats.DoMagicDamage(enemy.GetComponent<CharacterStats>());
             }
         }
     }

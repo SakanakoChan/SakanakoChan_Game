@@ -110,7 +110,7 @@ public class SwordSkillController : MonoBehaviour
         }
         else
         {
-            KnockbackAndFreezeEnemy(collision, enemyFreezeDuration);
+            DamageAndFreezeEnemy(collision, enemyFreezeDuration);
         }
 
 
@@ -120,13 +120,19 @@ public class SwordSkillController : MonoBehaviour
     }
 
 
-    private void KnockbackAndFreezeEnemy(Collider2D collision, float _enemyFreezeDuration)
+    private void DamageAndFreezeEnemy(Collider2D collision, float _enemyFreezeDuration)
     {
-        //knock back enemy
-        collision.GetComponent<Enemy>()?.DamageEffect(transform, collision.GetComponent<Enemy>()?.transform);
+        if (collision.GetComponent<Enemy>() != null)
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
 
-        //freeze enemy
-        collision.GetComponent<Enemy>()?.StartCoroutine("FreezeEnemyForTime", _enemyFreezeDuration);
+            //knock back enemy and do damage
+            player.stats.DoDamge(enemy.GetComponent<CharacterStats>());
+
+            //freeze enemy
+            enemy.StartCoroutine("FreezeEnemyForTime", _enemyFreezeDuration);
+        }
+
     }
 
     private void SwordStuckInto(Collider2D collision)
@@ -171,7 +177,7 @@ public class SwordSkillController : MonoBehaviour
 
             if (Vector2.Distance(transform.position, bounceTargets[bounceTargetIndex].position) < 0.15f)
             {
-                KnockbackAndFreezeEnemy(bounceTargets[bounceTargetIndex].GetComponent<Collider2D>(), enemyFreezeDuration);
+                DamageAndFreezeEnemy(bounceTargets[bounceTargetIndex].GetComponent<Collider2D>(), enemyFreezeDuration);
                 bounceTargetIndex++;
                 bounceAmount--;
 
@@ -188,7 +194,7 @@ public class SwordSkillController : MonoBehaviour
             }
         }
     }
-    
+
     private void SetupBounceSwordTargets(Collider2D collision)
     {
         //if the sword has hit the enemy
@@ -247,7 +253,7 @@ public class SwordSkillController : MonoBehaviour
                     {
                         if (hit.GetComponent<Enemy>() != null)
                         {
-                            KnockbackAndFreezeEnemy(hit, enemyFreezeDuration);
+                            DamageAndFreezeEnemy(hit, enemyFreezeDuration);
                         }
                     }
                 }

@@ -61,8 +61,6 @@ public class Entity : MonoBehaviour
         float _knockbackDirection = CalculateKnockbackDirection(_attacker, _attackee);
 
         StartCoroutine(HitKnockback(_knockbackDirection));
-
-        //Debug.Log($"{gameObject.name} is damaged");
     }
 
     protected virtual IEnumerator HitKnockback(float _knockbackDirection)
@@ -160,20 +158,20 @@ public class Entity : MonoBehaviour
     }
     #endregion
 
-    public void MakeEntityTransparent(bool _transparent)
-    {
-        if (_transparent)
-        {
-            sr.color = Color.clear;
-        }
-        else
-        {
-            sr.color = Color.white;
-        }
-    }
+
 
     public virtual void Die()
     {
 
+    }
+
+    public virtual void SlowSpeedBy(float _percentage, float _duration)
+    {
+
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
     }
 }

@@ -65,6 +65,18 @@ public class EntityFX : MonoBehaviour
         sr.color = Color.white;
     }
 
+    public void MakeEntityTransparent(bool _transparent)
+    {
+        if (_transparent)
+        {
+            sr.color = Color.clear;
+        }
+        else
+        {
+            sr.color = Color.white;
+        }
+    }
+
     #region Ailment Color FX
     public void EnableIgniteFXForTime(float _seconds)
     {
@@ -123,7 +135,7 @@ public class EntityFX : MonoBehaviour
         yield return new WaitUntil(() => canApplyAilmentColor == true);
         EnableIgniteFXForTime(_seconds);
 
-        Debug.Log("Ignite ColorFX called");
+        //Debug.Log("Ignite ColorFX called");
     }
 
     public IEnumerator EnableChillFXForTime_Coroutine(float _seconds)
@@ -131,7 +143,7 @@ public class EntityFX : MonoBehaviour
         yield return new WaitUntil(() => canApplyAilmentColor == true);
         EnableChillFXForTime(_seconds);
 
-        Debug.Log("Chill ColorFX called");
+        //Debug.Log("Chill ColorFX called");
     }
 
     public IEnumerator EnableShockFXForTime_Coroutine(float _seconds)
@@ -139,7 +151,7 @@ public class EntityFX : MonoBehaviour
         yield return new WaitUntil(() => canApplyAilmentColor == true);
         EnableShockFXForTime(_seconds);
 
-        Debug.Log("Shock ColorFX called");
+        //Debug.Log("Shock ColorFX called");
     }
     #endregion
 

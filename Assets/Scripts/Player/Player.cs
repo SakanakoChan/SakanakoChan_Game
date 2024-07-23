@@ -12,6 +12,8 @@ public class Player : Entity
     public float jumpForce;
     public float wallJumpXSpeed;
     public float wallJumpDuration;
+    private float defaultMoveSpeed;
+    private float defaultJumpForce;
 
     [Header("Attack Info")]
     public Vector2[] attackMovement;
@@ -21,6 +23,7 @@ public class Player : Entity
     public float dashSpeed;
     public float dashDuration;
     public float dashDirection { get; private set; }
+    private float defaultDashSpeed;
 
     public bool isBusy { get; private set; }
 
@@ -72,6 +75,10 @@ public class Player : Entity
         skill = SkillManager.instance;
 
         stateMachine.Initialize(idleState);
+
+        defaultMoveSpeed = moveSpeed;
+        defaultJumpForce = jumpForce;
+        defaultDashSpeed = dashSpeed;
     }
 
     protected override void Update()
@@ -159,5 +166,24 @@ public class Player : Entity
         base.Die();
 
         stateMachine.ChangeState(deathState);
+    }
+
+    public override void SlowSpeedBy(float _percentage, float _duration)
+    {
+        moveSpeed = moveSpeed * (1 - _percentage);
+        jumpForce = jumpForce * (1 - _percentage);
+        dashSpeed = dashSpeed * (1 - _percentage);
+        anim.speed = anim.speed * (1- _percentage);
+
+        Invoke("ReturnDefaultSpeed", _duration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
+        dashSpeed = defaultDashSpeed;
     }
 }

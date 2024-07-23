@@ -135,7 +135,7 @@ public class BlackholeSkillController : MonoBehaviour
         //make player transparent when releasing clone attack
         if (!playerIsTransparent)
         {
-            PlayerManager.instance.player.MakeEntityTransparent(true);
+            PlayerManager.instance.player.fx.MakeEntityTransparent(true);
             playerIsTransparent = true;
         }
         //player will become visible again when exiting blackhole skill state

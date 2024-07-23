@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
@@ -28,6 +30,12 @@ public class CharacterStats : MonoBehaviour
     public bool isIgnited; //does damage over time
     public bool isChilled; //armor - 20%
     public bool isShocked; //accuracy - 20% (enemy evasion + 20%)
+    public Stat igniteDuration;
+    public Stat chillDuration;
+    public Stat shockDuration;
+    [SerializeField] private GameObject thunderStrikePrefab;
+    private int thunderStrikeDamage;
+
 
     [Space]
     public int currentHP;
@@ -40,6 +48,8 @@ public class CharacterStats : MonoBehaviour
     private float ignitedDamageCooldown = 0.3f;
     private float ignitedDamageTimer;
     private int igniteDamage; //is set up in DoMagicDamage()
+
+    protected bool isDead;
 
     //Stats calculation:
     //total_evasion = evasion + agility + [attacker shock effect];
@@ -94,21 +104,14 @@ public class CharacterStats : MonoBehaviour
             isShocked = false;
         }
 
-
-        if (ignitedDamageTimer < 0 && isIgnited)
+        if (isIgnited)
         {
-            Debug.Log($"Take burn damage {igniteDamage}");
-            DecreaseHPBy(igniteDamage);
-
-            if (currentHP <= 0)
-            {
-                Die();
-            }
-
-            ignitedDamageTimer = ignitedDamageCooldown;
+            DealIgniteDamage();
         }
 
     }
+
+
 
     public virtual void DoDamge(CharacterStats _targetStats)
     {
@@ -126,11 +129,33 @@ public class CharacterStats : MonoBehaviour
         }
 
         _totalDamage = CheckTargetArmor(_targetStats, _totalDamage);
-        //_targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform);
+        _targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform);
 
-        DoMagicDamage(_targetStats);
+        //DoMagicDamage(_targetStats);
     }
 
+    public virtual void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
+    {
+        DecreaseHPBy(_damage);
+
+        Debug.Log($"{gameObject.name} received {_damage} damage");
+
+        _attackee.GetComponent<Entity>()?.DamageEffect(_attacker, _attackee);
+
+        if (currentHP <= 0 && !isDead)
+        {
+            Die();
+        }
+    }
+
+    protected virtual void Die()
+    {
+        isDead = true;
+        Debug.Log($"{gameObject.name} is Dead");
+    }
+
+
+    #region Magic Damage and Ailments
     public virtual void DoMagicDamage(CharacterStats _targetStats)
     {
         int _fireDamage = fireDamage.GetValue();
@@ -148,6 +173,11 @@ public class CharacterStats : MonoBehaviour
             return;
         }
 
+        AttemptToApplyAilments(_targetStats, _fireDamage, _iceDamage, _lightningDamage);
+    }
+
+    private void AttemptToApplyAilments(CharacterStats _targetStats, int _fireDamage, int _iceDamage, int _lightningDamage)
+    {
         //choose the highest magic damage to apply the related ailment
         bool canApplyIgnite = _fireDamage > _iceDamage && _fireDamage > _lightningDamage;
         bool canApplyChill = _iceDamage > _fireDamage && _iceDamage > _lightningDamage;
@@ -159,6 +189,12 @@ public class CharacterStats : MonoBehaviour
             if (Random.value < 0.3f && _fireDamage > 0)
             {
                 canApplyIgnite = true;
+
+                if (canApplyIgnite)
+                {
+                    _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * 0.2f));
+                }
+
                 _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
                 return;
             }
@@ -173,83 +209,78 @@ public class CharacterStats : MonoBehaviour
             if (Random.value < 0.5f && _lightningDamage > 0)
             {
                 canApplyShock = true;
+
+                if (canApplyShock)
+                {
+                    _targetStats.SetupThunderStrikeDamage(Mathf.RoundToInt(_lightningDamage * 0.2f));
+                }
+
                 _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
                 return;
             }
         }
 
+        //set up ignite damage
+        //ignite_damage = fire_damage * 0.2
         if (canApplyIgnite)
         {
             _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * 0.2f));
         }
 
+        if (canApplyShock)
+        {
+            _targetStats.SetupThunderStrikeDamage(Mathf.RoundToInt(_lightningDamage * 0.2f));
+        }
+
         _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
-
-        //if (_fireDamage == _iceDamage && _fireDamage == _lightningDamage && _iceDamage == _lightningDamage)
-        //{
-        //    canApplyIgnite = true;
-        //}
-        //else
-        //{
-        //    if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) == _fireDamage)
-        //    {
-        //        canApplyIgnite = true;
-        //    }
-
-        //    if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) == _iceDamage)
-        //    {
-        //        canApplyChill = true;
-        //    }
-
-        //    if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) == _lightningDamage)
-        //    {
-        //        canApplyShock = true;
-        //    }
-        //}
-
-
-    }
-
-    private static int CheckTargetMagicResistance(CharacterStats _targetStats, int _totalMagicDamage)
-    {
-        _totalMagicDamage -= _targetStats.magicResistance.GetValue() + (3 * _targetStats.intelligence.GetValue());
-
-        _totalMagicDamage = Mathf.Clamp(_totalMagicDamage, 0, int.MaxValue);
-        return _totalMagicDamage;
     }
 
     public void ApplyAilments(bool _ignite, bool _chill, bool _shock)
     {
-        if (isIgnited || isChilled || isShocked)
-        {
-            return;
-        }
+        bool canApplyIgnite = !isIgnited && !isChilled && !isShocked;
+        bool canApplyChill = !isIgnited && !isChilled && !isShocked;
+        bool canApplyShock = !isIgnited && !isChilled;
 
-        if (_ignite)
+        if (_ignite && canApplyIgnite)
         {
             isIgnited = _ignite;
-            ignitedAilmentTimer = 2;
+            ignitedAilmentTimer = igniteDuration.GetValue();
 
             //fx.EnableIgniteFXForTime(ignitedAilmentTimer);
             StartCoroutine(fx.EnableIgniteFXForTime_Coroutine(ignitedAilmentTimer));
         }
 
-        if (_chill)
+        if (_chill && canApplyChill)
         {
             isChilled = _chill;
-            chilledAilmentTimer = 10;
+            chilledAilmentTimer = chillDuration.GetValue();
 
             //fx.EnableChillFXForTime(chilledAilmentTimer);
             StartCoroutine(fx.EnableChillFXForTime_Coroutine(chilledAilmentTimer));
+
+            float _slowPercentage = 0.2f;
+            GetComponent<Entity>()?.SlowSpeedBy(_slowPercentage, chillDuration.GetValue());
         }
 
-        if (_shock)
+        if (_shock && canApplyShock)
         {
-            isShocked = _shock;
-            shockedAilmentTimer = 4;
+            if (!isShocked)
+            {
+                ApplyShockAilment(_shock);
+            }
+            else //when attacking on shocked enemies, thunder strike will be generated and hit enemies
+            {
+                //prevent cases where enemies' attacks on player
+                //can still generate thunder strike
+                //and hit enemeies themselves
+                if (GetComponent<Player>() != null)
+                {
+                    return;
+                }
 
-            //fx.EnableShockFXForTime(shockedAilmentTimer);
-            StartCoroutine(fx.EnableShockFXForTime_Coroutine(shockedAilmentTimer));
+                GenerateThunderStrikeAndHitClosestEnemy(7.5f);
+
+            }
         }
 
         if (isIgnited)
@@ -266,33 +297,94 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    public void ApplyShockAilment(bool _shock)
+    {
+        //can't apply shock ailment on enemy who's already shocked
+        if (isShocked)
+        {
+            return;
+        }
+
+        isShocked = _shock;
+        shockedAilmentTimer = shockDuration.GetValue();
+
+        //fx.EnableShockFXForTime(shockedAilmentTimer);
+        StartCoroutine(fx.EnableShockFXForTime_Coroutine(shockedAilmentTimer));
+    }
+
+    private void GenerateThunderStrikeAndHitClosestEnemy(float _targetScanRadius)
+    {
+        //find closest target
+        //instantiate thunder strike
+        //setup thunder strike
+        Transform closestEnemy = null;
+
+        //find all the enemies inside the search radius
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _targetScanRadius);
+
+        float closestDistanceToEnemy = Mathf.Infinity;
+
+        //find closest enemy
+        foreach (var hit in colliders)
+        {
+            if (hit.GetComponent<Enemy>() != null && Vector2.Distance(transform.position, hit.transform.position) > 1)
+            {
+                float currentDistanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);
+
+                if (currentDistanceToEnemy < closestDistanceToEnemy)
+                {
+                    closestDistanceToEnemy = currentDistanceToEnemy;
+                    closestEnemy = hit.transform;
+                }
+            }
+        }
+
+        //if can't find closestEnemy,
+        //the enemy himself is just the closest enemy
+        if (closestEnemy == null)
+        {
+            closestEnemy = transform;
+        }
+
+        //generate thunder strike and hit closest enemy
+        if (closestEnemy != null)
+        {
+            GameObject newThunderStrike = Instantiate(thunderStrikePrefab, transform.position, Quaternion.identity);
+
+            newThunderStrike.GetComponent<ThunderStrikeController>()?.Setup(thunderStrikeDamage, closestEnemy.GetComponent<CharacterStats>());
+        }
+    }
+
+
+    private void DealIgniteDamage()
+    {
+        if (ignitedDamageTimer < 0)
+        {
+            Debug.Log($"Take burn damage {igniteDamage}");
+            DecreaseHPBy(igniteDamage);
+
+            if (currentHP <= 0 && !isDead)
+            {
+                Die();
+            }
+
+            ignitedDamageTimer = ignitedDamageCooldown;
+        }
+    }
+
     public void SetupIgniteDamage(int _igniteDamage)
     {
         igniteDamage = _igniteDamage;
     }
 
-
-    public virtual void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
+    public void SetupThunderStrikeDamage(int _thunderStrikeDamage)
     {
-        DecreaseHPBy(_damage);
-
-        Debug.Log($"{gameObject.name} received {_damage} damage");
-
-        _attackee.GetComponent<Entity>()?.DamageEffect(_attacker, _attackee);
-
-        if (currentHP <= 0)
-        {
-            Die();
-        }
+        thunderStrikeDamage = _thunderStrikeDamage;
     }
-
-    protected virtual void Die()
-    {
-        Debug.Log($"{gameObject.name} is Dead");
-    }
+    #endregion
 
 
-    #region Damage Calculation - Armor and Crit
+    #region HP and Damage Calculation - Armor, Crit, Magic Resistance
     private int CheckTargetArmor(CharacterStats _targetStats, int _totalDamage)
     {
         //chill effect: reduce armor by 20%
@@ -309,6 +401,14 @@ public class CharacterStats : MonoBehaviour
         //make totalDamge >= 0
         _totalDamage = Mathf.Clamp(_totalDamage, 0, int.MaxValue);
         return _totalDamage;
+    }
+
+    private int CheckTargetMagicResistance(CharacterStats _targetStats, int _totalMagicDamage)
+    {
+        _totalMagicDamage -= _targetStats.magicResistance.GetValue() + (3 * _targetStats.intelligence.GetValue());
+
+        _totalMagicDamage = Mathf.Clamp(_totalMagicDamage, 0, int.MaxValue);
+        return _totalMagicDamage;
     }
 
     private bool TargetCanEvadeThisAttack(CharacterStats _targetStats)
@@ -349,8 +449,9 @@ public class CharacterStats : MonoBehaviour
 
         return Mathf.RoundToInt(critDamage);
     }
-    #endregion
 
+
+    #region HP
     public int getMaxHP()
     {
         return maxHP.GetValue() + vitaliy.GetValue() * 5;
@@ -360,9 +461,14 @@ public class CharacterStats : MonoBehaviour
     {
         currentHP -= _takenDamage;
 
-        if(onHealthChanged != null)
+        if (onHealthChanged != null)
         {
             onHealthChanged();
         }
     }
+    #endregion
+
+
+    #endregion
+
 }
