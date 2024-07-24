@@ -5,27 +5,22 @@ using UnityEngine.U2D;
 
 public class ItemObject : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    [SerializeField] private ItemData item;
 
-    [SerializeField] private ItemData itemData;
-
-    private void Awake()
+    private void OnValidate()
     {
-        sr = GetComponent<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
-        sr.sprite = itemData.icon;
+        GetComponent<SpriteRenderer>().sprite = item.icon;
+        gameObject.name = $"Item Object - {item.name}";
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.GetComponent<Player>() != null)
         {
-            Inventory.instance.AddItem(itemData);
-            Debug.Log($"Picked up item {itemData.itemName}");
+            Inventory.instance.AddItem(item);
+            Debug.Log($"Picked up item {item.itemName}");
             Destroy(gameObject);
         }
     }
+
 }

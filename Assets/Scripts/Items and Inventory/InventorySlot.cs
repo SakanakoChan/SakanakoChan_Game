@@ -2,12 +2,12 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ItemInInventorySlot
+public class InventorySlot
 {
     public ItemData item;
     public int stackSize;
 
-    public ItemInInventorySlot(ItemData _newItemData)
+    public InventorySlot(ItemData _newItemData)
     {
         item = _newItemData;
         AddStack();
