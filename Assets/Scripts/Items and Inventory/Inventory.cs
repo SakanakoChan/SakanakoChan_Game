@@ -7,9 +7,11 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
+    //inventory stores equipments
     public List<InventorySlot> inventorySlotList;
     public Dictionary<ItemData, InventorySlot> inventorySlotDictionary;
 
+    //stash stores materials
     public List<InventorySlot> stashSlotList;
     public Dictionary<ItemData, InventorySlot> stashSlotDictionary;
 
