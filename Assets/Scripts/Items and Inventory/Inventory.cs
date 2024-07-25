@@ -74,7 +74,8 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < equippedEquipmentSlotUI.Length; i++)
         {
             //if in the equipped equipment list there's an equipment
-            //whose type is same as this UI slot equipment type (e.g. the equipped equipment is a weapon, and this is a weapon slot UI)
+            //whose type is same as this UI slot equipment type
+            //(e.g. the equipped equipment is a weapon, and this is a weapon slot UI)
             //update this UI slot according to that equipment
             foreach (var search in equippedEquipmentSlotDictionary)
             {
