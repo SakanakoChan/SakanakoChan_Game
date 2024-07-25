@@ -68,9 +68,37 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void UpdateInventoryAndStashUI()
+    private void UpdateAllSlotUI()
     {
-        //show equipped equipments UI
+        //Clean up all the slot UIs before update
+        //to ensure no extra slot UI exists after update
+        for (int i = 0; i < inventorySlotUI.Length; i++)
+        {
+            inventorySlotUI[i].CleanUpInventorySlotUI();
+        }
+
+        for (int i = 0; i < stashSlotUI.Length; i++)
+        {
+            stashSlotUI[i].CleanUpInventorySlotUI();
+        }
+
+        for (int i = 0; i < equippedEquipmentSlotUI.Length; i++)
+        {
+            equippedEquipmentSlotUI[i].CleanUpInventorySlotUI();
+        }
+
+
+        for (int i = 0; i < inventorySlotList.Count; i++)
+        {
+            inventorySlotUI[i].UpdateInventorySlotUI(inventorySlotList[i]);
+        }
+
+        for (int i = 0; i < stashSlotList.Count; i++)
+        {
+            stashSlotUI[i].UpdateInventorySlotUI(stashSlotList[i]);
+        }
+
+        //update equipped equipments UI when equipping equipments
         for (int i = 0; i < equippedEquipmentSlotUI.Length; i++)
         {
             //if in the equipped equipment list there's an equipment
@@ -84,38 +112,17 @@ public class Inventory : MonoBehaviour
                     equippedEquipmentSlotUI[i].UpdateInventorySlotUI(search.Value);
                 }
             }
+
         }
 
-        //Clean up all the slot UIs before update
-        //to ensure no extra slot UI exists after update
-        for (int i = 0; i < inventorySlotUI.Length; i++)
-        {
-            inventorySlotUI[i].CleanUpInventorySlotUI();
-        }
-
-        for (int i = 0; i < stashSlotUI.Length; i++)
-        {
-            stashSlotUI[i].CleanUpInventorySlotUI();
-        }
-
-
-        for (int i = 0; i < inventorySlotList.Count; i++)
-        {
-            inventorySlotUI[i].UpdateInventorySlotUI(inventorySlotList[i]);
-        }
-
-        for (int i = 0; i < stashSlotList.Count; i++)
-        {
-            stashSlotUI[i].UpdateInventorySlotUI(stashSlotList[i]);
-        }
     }
 
     public void EquipItem(ItemData _item)
     {
         //convert ItemData type to ItemData_Equipment type (father class -> child class)
-        ItemData_Equipment _itemToEquip = _item as ItemData_Equipment;
+        ItemData_Equipment _newEquipmentToEquip = _item as ItemData_Equipment;
 
-        InventorySlot newEquipmentSlot = new InventorySlot(_itemToEquip);
+        InventorySlot newEquipmentSlot = new InventorySlot(_newEquipmentToEquip);
 
         //if this type of equipment is already equipped,
         //remove the equipped one to equip the new one
@@ -123,7 +130,7 @@ public class Inventory : MonoBehaviour
 
         foreach (var search in equippedEquipmentSlotDictionary)
         {
-            if (search.Key.equipmentType == _itemToEquip.equipmentType)
+            if (search.Key.equipmentType == _newEquipmentToEquip.equipmentType)
             {
                 _oldEquippedEquipment = search.Key;
             }
@@ -131,24 +138,28 @@ public class Inventory : MonoBehaviour
 
         if (_oldEquippedEquipment != null)
         {
-            UnequipSameTypeEquipment(_oldEquippedEquipment);
+            UnequipEquipment(_oldEquippedEquipment);
+
             //the unequipped old equipment will get back to inventory
             AddItem(_oldEquippedEquipment);
         }
 
         equippedEquipmentSlotList.Add(newEquipmentSlot);
-        equippedEquipmentSlotDictionary.Add(_itemToEquip, newEquipmentSlot);
+        equippedEquipmentSlotDictionary.Add(_newEquipmentToEquip, newEquipmentSlot);
+        _newEquipmentToEquip.AddModifiers();
+
         //equipped equipment will be removed from inventory
-        RemoveItem(_itemToEquip);
+        RemoveItem(_newEquipmentToEquip);
         //UpdateInventoryAndStashUI();
     }
 
-    private void UnequipSameTypeEquipment(ItemData_Equipment _equipmentToRemove)
+    public void UnequipEquipment(ItemData_Equipment _equipmentToRemove)
     {
         if (equippedEquipmentSlotDictionary.TryGetValue(_equipmentToRemove, out InventorySlot value))
         {
             equippedEquipmentSlotList.Remove(value);
             equippedEquipmentSlotDictionary.Remove(_equipmentToRemove);
+            _equipmentToRemove.RemoveModifiers();
         }
     }
 
@@ -163,10 +174,10 @@ public class Inventory : MonoBehaviour
             AddMaterialToStash(_item);
         }
 
-        UpdateInventoryAndStashUI();
+        UpdateAllSlotUI();
     }
 
-    public void AddMaterialToStash(ItemData _item)
+    private void AddMaterialToStash(ItemData _item)
     {
         if (stashSlotDictionary.TryGetValue(_item, out InventorySlot value))
         {
@@ -180,7 +191,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddEquipmentToInventory(ItemData _item)
+    private void AddEquipmentToInventory(ItemData _item)
     {
         //if this item is already in inventory, its stack size++
         if (inventorySlotDictionary.TryGetValue(_item, out InventorySlot value))
@@ -228,6 +239,6 @@ public class Inventory : MonoBehaviour
         }
 
 
-        UpdateInventoryAndStashUI();
+        UpdateAllSlotUI();
     }
 }

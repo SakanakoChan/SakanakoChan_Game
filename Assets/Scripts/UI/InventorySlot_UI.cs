@@ -41,8 +41,15 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler
         itemAmount_text.text = null;
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
+        //when clikcing the invisible slot UI,
+        //directly return to prevent bugs
+        if (inventorySlot == null)
+        {
+            return;
+        }
+
         if (inventorySlot.item.itemType == ItemType.Equipment)
         {
             Inventory.instance.EquipItem(inventorySlot.item);

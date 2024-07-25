@@ -10,9 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 259722201df052245834f12c28a2cce9, type: 3}
-  m_Name: Nice_Armor
+  m_Name: Plate_Armor
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Nice Armor
+  itemName: Plate Armor
   icon: {fileID: -1581127718, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   equipmentType: 1
+  strength: 0
+  agility: 0
+  intelligence: 0
+  vitaliy: 0
+  maxHP: 15
+  armor: 10
+  evasion: 0
+  magicResistance: 0
+  damage: 0
+  critChance: 0
+  critPower: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0

@@ -93,6 +93,7 @@ public class Player : Entity
         {
             skill.crystal.UseSkillIfAvailable();
         }
+
     }
 
     private void CheckForDashInput()
