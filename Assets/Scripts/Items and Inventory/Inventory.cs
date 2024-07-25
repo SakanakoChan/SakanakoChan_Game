@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,13 +16,19 @@ public class Inventory : MonoBehaviour
     public List<InventorySlot> stashSlotList;
     public Dictionary<ItemData, InventorySlot> stashSlotDictionary;
 
+    //equipped equipments
+    public List<InventorySlot> equippedEquipmentSlotList;
+    public Dictionary<ItemData_Equipment, InventorySlot> equippedEquipmentSlotDictionary;
+
 
     [Header("Inventory UI")]
     [SerializeField] private Transform referenceInventory;
     [SerializeField] private Transform referenceStash;
+    [SerializeField] private Transform referenceEquippedEquipments;
 
     private InventorySlot_UI[] inventorySlotUI;
     private InventorySlot_UI[] stashSlotUI;
+    private EquippedEquipmentSlot_UI[] equippedEquipmentSlotUI;
 
 
     private void Awake()
@@ -44,8 +51,12 @@ public class Inventory : MonoBehaviour
         stashSlotList = new List<InventorySlot>();
         stashSlotDictionary = new Dictionary<ItemData, InventorySlot>();
 
+        equippedEquipmentSlotList = new List<InventorySlot>();
+        equippedEquipmentSlotDictionary = new Dictionary<ItemData_Equipment, InventorySlot>();
+
         inventorySlotUI = referenceInventory.GetComponentsInChildren<InventorySlot_UI>();
         stashSlotUI = referenceStash.GetComponentsInChildren<InventorySlot_UI>();
+        equippedEquipmentSlotUI = referenceEquippedEquipments.GetComponentsInChildren<EquippedEquipmentSlot_UI>();
     }
 
     private void Update()
@@ -59,6 +70,34 @@ public class Inventory : MonoBehaviour
 
     private void UpdateInventoryAndStashUI()
     {
+        //show equipped equipments UI
+        for (int i = 0; i < equippedEquipmentSlotUI.Length; i++)
+        {
+            //if in the equipped equipment list there's an equipment
+            //whose type is same as this UI slot equipment type (e.g. the equipped equipment is a weapon, and this is a weapon slot UI)
+            //update this UI slot according to that equipment
+            foreach (var search in equippedEquipmentSlotDictionary)
+            {
+                if (search.Key.equipmentType == equippedEquipmentSlotUI[i].equipmentType)
+                {
+                    equippedEquipmentSlotUI[i].UpdateInventorySlotUI(search.Value);
+                }
+            }
+        }
+
+        //Clean up all the slot UIs before update
+        //to ensure no extra slot UI exists after update
+        for (int i = 0; i < inventorySlotUI.Length; i++)
+        {
+            inventorySlotUI[i].CleanUpInventorySlotUI();
+        }
+
+        for (int i = 0; i < stashSlotUI.Length; i++)
+        {
+            stashSlotUI[i].CleanUpInventorySlotUI();
+        }
+
+
         for (int i = 0; i < inventorySlotList.Count; i++)
         {
             inventorySlotUI[i].UpdateInventorySlotUI(inventorySlotList[i]);
@@ -67,6 +106,48 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < stashSlotList.Count; i++)
         {
             stashSlotUI[i].UpdateInventorySlotUI(stashSlotList[i]);
+        }
+    }
+
+    public void EquipItem(ItemData _item)
+    {
+        //convert ItemData type to ItemData_Equipment type (father class -> child class)
+        ItemData_Equipment _itemToEquip = _item as ItemData_Equipment;
+
+        InventorySlot newEquipmentSlot = new InventorySlot(_itemToEquip);
+
+        //if this type of equipment is already equipped,
+        //remove the equipped one to equip the new one
+        ItemData_Equipment _oldEquippedEquipment = null;
+
+        foreach (var search in equippedEquipmentSlotDictionary)
+        {
+            if (search.Key.equipmentType == _itemToEquip.equipmentType)
+            {
+                _oldEquippedEquipment = search.Key;
+            }
+        }
+
+        if (_oldEquippedEquipment != null)
+        {
+            UnequipSameTypeEquipment(_oldEquippedEquipment);
+            //the unequipped old equipment will get back to inventory
+            AddItem(_oldEquippedEquipment);
+        }
+
+        equippedEquipmentSlotList.Add(newEquipmentSlot);
+        equippedEquipmentSlotDictionary.Add(_itemToEquip, newEquipmentSlot);
+        //equipped equipment will be removed from inventory
+        RemoveItem(_itemToEquip);
+        //UpdateInventoryAndStashUI();
+    }
+
+    private void UnequipSameTypeEquipment(ItemData_Equipment _equipmentToRemove)
+    {
+        if (equippedEquipmentSlotDictionary.TryGetValue(_equipmentToRemove, out InventorySlot value))
+        {
+            equippedEquipmentSlotList.Remove(value);
+            equippedEquipmentSlotDictionary.Remove(_equipmentToRemove);
         }
     }
 

@@ -1,13 +1,14 @@
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class InventorySlot_UI : MonoBehaviour
+public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemAmount_text;
 
-    public InventorySlot inventorySlot;
+    public InventorySlot inventorySlot; //value is assigned in UpdateInventroySlotUI
 
     public void UpdateInventorySlotUI(InventorySlot _inventorySlot)
     {
@@ -27,6 +28,24 @@ public class InventorySlot_UI : MonoBehaviour
             {
                 itemAmount_text.text = "";
             }
+        }
+    }
+
+    public void CleanUpInventorySlotUI()
+    {
+        inventorySlot = null;
+
+        itemImage.sprite = null;
+        itemImage.color = Color.clear;
+
+        itemAmount_text.text = null;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (inventorySlot.item.itemType == ItemType.Equipment)
+        {
+            Inventory.instance.EquipItem(inventorySlot.item);
         }
     }
 }

@@ -7,9 +7,9 @@ public class InventorySlot
     public ItemData item;
     public int stackSize;
 
-    public InventorySlot(ItemData _newItemData)
+    public InventorySlot(ItemData _itemInThisSlot)
     {
-        item = _newItemData;
+        item = _itemInThisSlot;
         AddStack();
     }
 
