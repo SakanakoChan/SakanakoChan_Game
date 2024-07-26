@@ -8,7 +8,7 @@ public class ItemDrop : MonoBehaviour
     [SerializeField] private ItemData[] possibleDropItemList;  //the items that can be dropped by this enemy
     private List<ItemData> actualDropList = new List<ItemData>(); //the items that are actually dropped by this enemy
 
-    [SerializeField] private GameObject dropItemPrefab;  //just an empty prefab which can be setup to any itmes by SetupItemDrop() in ItemObject
+    [SerializeField] private GameObject dropItemPrefab;  //an empty prefab which can be setup to any itmes by SetupItemDrop() in ItemObject
 
 
     public void GenrateDrop()
