@@ -5,22 +5,32 @@ using UnityEngine.U2D;
 
 public class ItemObject : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private ItemData item;
 
-    private void OnValidate()
+    public void SetupItemDrop(ItemData _item, Vector2 _dropVelocity)
     {
+        item = _item;
+        rb.velocity = _dropVelocity;
+
+        SetupItemIconAndName();
+    }
+
+    //pickup item is called in ItemObject_Trigger
+    public void PickupItem()
+    {
+        Inventory.instance.AddItem(item);
+        //Debug.Log($"Picked up item {item.itemName}");
+        Destroy(gameObject);
+    }
+    private void SetupItemIconAndName()
+    {
+        if (item == null)
+        {
+            return;
+        }
+
         GetComponent<SpriteRenderer>().sprite = item.icon;
         gameObject.name = $"Item Object - {item.name}";
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.GetComponent<Player>() != null)
-        {
-            Inventory.instance.AddItem(item);
-            Debug.Log($"Picked up item {item.itemName}");
-            Destroy(gameObject);
-        }
-    }
-
 }
