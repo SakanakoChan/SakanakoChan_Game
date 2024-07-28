@@ -7752,7 +7752,8 @@ MonoBehaviour:
   maxItemDropAmount: 0
   possibleDropItemList: []
   dropItemPrefab: {fileID: 4638080574934848111, guid: b06e197012ccd2d47807612c4541912e, type: 3}
-  chanceToDropItems: 99
+  chanceToDropEquiment: 99
+  chanceToDropMaterials: 99
 --- !u!1 &1026204062
 GameObject:
   m_ObjectHideFlags: 0
