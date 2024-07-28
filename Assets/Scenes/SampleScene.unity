@@ -6373,7 +6373,7 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   damage:
-    baseValue: 10
+    baseValue: 50
     modifiers: 
   critChance:
     baseValue: 0
@@ -7522,6 +7522,7 @@ GameObject:
   - component: {fileID: 1025642807}
   - component: {fileID: 1025642811}
   - component: {fileID: 1025642812}
+  - component: {fileID: 1025642813}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -7693,7 +7694,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHP:
-    baseValue: 1000
+    baseValue: 10
     modifiers: 
   armor:
     baseValue: 0
@@ -7736,6 +7737,22 @@ MonoBehaviour:
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
+--- !u!114 &1025642813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025642806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17886a2db3b76479d362e2cd3427ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxItemDropAmount: 0
+  possibleDropItemList: []
+  dropItemPrefab: {fileID: 4638080574934848111, guid: b06e197012ccd2d47807612c4541912e, type: 3}
+  chanceToDropItems: 99
 --- !u!1 &1026204062
 GameObject:
   m_ObjectHideFlags: 0
@@ -8218,6 +8235,10 @@ MonoBehaviour:
   inventorySlotList: []
   stashSlotList: []
   equippedEquipmentSlotList: []
+  startItems:
+  - {fileID: 11400000, guid: 148229420c8846c4baf9576b4f920db5, type: 2}
+  - {fileID: 11400000, guid: c10d32b659a53f345b5aec5e281dfb29, type: 2}
+  - {fileID: 11400000, guid: 84aac932ec997c949a2b8a5c76b8eafc, type: 2}
   referenceInventory: {fileID: 212912485}
   referenceStash: {fileID: 1683877320}
   referenceEquippedEquipments: {fileID: 785476263}

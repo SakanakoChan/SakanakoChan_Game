@@ -21,6 +21,8 @@ public class Inventory : MonoBehaviour
     public Dictionary<ItemData_Equipment, InventorySlot> equippedEquipmentSlotDictionary;
 
 
+    public List<ItemData> startItems;
+
     [Header("Inventory UI")]
     [SerializeField] private Transform referenceInventory;
     [SerializeField] private Transform referenceStash;
@@ -57,6 +59,16 @@ public class Inventory : MonoBehaviour
         inventorySlotUI = referenceInventory.GetComponentsInChildren<InventorySlot_UI>();
         stashSlotUI = referenceStash.GetComponentsInChildren<InventorySlot_UI>();
         equippedEquipmentSlotUI = referenceEquippedEquipments.GetComponentsInChildren<EquippedEquipmentSlot_UI>();
+
+        AddStartItems();
+    }
+
+    private void AddStartItems()
+    {
+        for (int i = 0; i < startItems.Count; i++)
+        {
+            AddItem(startItems[i]);
+        }
     }
 
     private void Update()
@@ -138,7 +150,7 @@ public class Inventory : MonoBehaviour
 
         if (_oldEquippedEquipment != null)
         {
-            UnequipEquipment(_oldEquippedEquipment);
+            UnequipEquipmentWithoutAddingBackToInventory(_oldEquippedEquipment);
 
             //the unequipped old equipment will get back to inventory
             AddItem(_oldEquippedEquipment);
@@ -153,7 +165,8 @@ public class Inventory : MonoBehaviour
         //UpdateInventoryAndStashUI();
     }
 
-    public void UnequipEquipment(ItemData_Equipment _equipmentToRemove)
+    //Unequip here will not add the equipment back to inventory
+    public void UnequipEquipmentWithoutAddingBackToInventory(ItemData_Equipment _equipmentToRemove)
     {
         if (equippedEquipmentSlotDictionary.TryGetValue(_equipmentToRemove, out InventorySlot value))
         {
@@ -240,5 +253,15 @@ public class Inventory : MonoBehaviour
 
 
         UpdateAllSlotUI();
+    }
+
+    public List<InventorySlot> GetEquippedEquipmentList()
+    {
+        return equippedEquipmentSlotList;
+    }
+
+    public List<InventorySlot> GetStashList()
+    {
+        return stashSlotList;
     }
 }

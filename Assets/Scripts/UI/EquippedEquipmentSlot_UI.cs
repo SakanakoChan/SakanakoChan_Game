@@ -27,7 +27,7 @@ public class EquippedEquipmentSlot_UI : InventorySlot_UI
             return;
         }
 
-        Inventory.instance.UnequipEquipment(inventorySlot.item as ItemData_Equipment);
+        Inventory.instance.UnequipEquipmentWithoutAddingBackToInventory(inventorySlot.item as ItemData_Equipment);
         Inventory.instance.AddItem(inventorySlot.item as ItemData_Equipment);
         CleanUpInventorySlotUI();  //redundant cuz UpdateAllSlotUI() is already called in AddItem()
     }

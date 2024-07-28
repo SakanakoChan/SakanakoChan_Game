@@ -34,6 +34,7 @@ public class EnemyStats : CharacterStats
 
         enemy.Die();
 
+        //enemy will drop items when dying
         itemDropSystem.GenrateDrop();
     }
 

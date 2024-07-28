@@ -50,6 +50,13 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler
             return;
         }
 
+        //LCtrl + mouse_left to delete items from inventory
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            Inventory.instance.RemoveItem(inventorySlot.item);
+            return;
+        }
+
         if (inventorySlot.item.itemType == ItemType.Equipment)
         {
             Inventory.instance.EquipItem(inventorySlot.item);

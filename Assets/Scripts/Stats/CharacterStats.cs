@@ -49,7 +49,7 @@ public class CharacterStats : MonoBehaviour
     private float ignitedDamageTimer;
     private int igniteDamage; //is set up in DoMagicDamage()
 
-    protected bool isDead;
+    public bool isDead { get; private set; }
 
     //Stats calculation:
     //total_evasion = evasion + agility + [attacker shock effect];

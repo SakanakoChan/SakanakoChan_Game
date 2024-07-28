@@ -11,8 +11,9 @@ public class ItemDrop : MonoBehaviour
     [SerializeField] private GameObject dropItemPrefab;  //an empty prefab which can be setup to any itmes by SetupItemDrop() in ItemObject
 
 
-    public void GenrateDrop()
+    public virtual void GenrateDrop()
     {
+        //add items to actualDropList by their chances
         for (int i = 0; i < possibleDropItemList.Length; i++)
         {
             if (Random.Range(0, 100) <= possibleDropItemList[i].dropChance)
@@ -21,6 +22,7 @@ public class ItemDrop : MonoBehaviour
             }
         }
 
+        //drop items and delete them from actualDropList
         for (int i = 0; i < maxItemDropAmount && actualDropList.Count > 0; i++)
         {
             ItemData itemToDrop = actualDropList[Random.Range(0, actualDropList.Count - 1)];
@@ -33,7 +35,7 @@ public class ItemDrop : MonoBehaviour
 
 
     //DropItem is called when Enemy dies
-    public void DropItem(ItemData _itemToDrop)
+    protected void DropItem(ItemData _itemToDrop)
     {
         GameObject newDropItem = Instantiate(dropItemPrefab, transform.position, Quaternion.identity); ;
 
