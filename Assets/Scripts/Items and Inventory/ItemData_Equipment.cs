@@ -89,11 +89,19 @@ public class ItemData_Equipment : ItemData
     }
 
     //will be triggerd in scripts like animationTrigger when attacking enemies
-    public void ExecuteItemEffect(Transform _enemyTransform)
+    public void ExecuteItemAttackEffect_HitNeeded(Transform _spawnTransform)
     {
         foreach (var effect in itemEffects)
         {
-            effect.ExecuteEffect(_enemyTransform);
+            effect.ExecuteAttackEffect_HitNeeded(_spawnTransform);
+        }
+    }
+
+    public void ExecuteItemAttackEffect_NoHitNeeded()
+    {
+        foreach (var effect in itemEffects)
+        {
+            effect.ExecuteAttackEffect_NoHitNeeded();
         }
     }
 }

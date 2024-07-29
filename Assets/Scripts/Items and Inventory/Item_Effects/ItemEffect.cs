@@ -6,8 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Item Effect")]
 public class ItemEffect : ScriptableObject
 {
-    public virtual void ExecuteEffect(Transform _enemyTransform)
+    public virtual void ExecuteAttackEffect_HitNeeded(Transform _enemyTransform)
     {
-        Debug.Log("Effect Executed");
+        //Debug.Log("Effect Executed");
     }
+    
+    public virtual void ExecuteAttackEffect_NoHitNeeded()
+    {
+
+    }
+
 }

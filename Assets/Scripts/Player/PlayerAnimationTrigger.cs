@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimationTrigger : MonoBehaviour
@@ -13,6 +11,9 @@ public class PlayerAnimationTrigger : MonoBehaviour
 
     private void AttackTrigger()
     {
+        Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Weapon)?.ExecuteItemAttackEffect_NoHitNeeded();
+
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
 
         foreach (var hit in colliders)
@@ -22,7 +23,7 @@ public class PlayerAnimationTrigger : MonoBehaviour
                 EnemyStats _target = hit.GetComponent<EnemyStats>();
                 player.stats.DoDamge(_target);
 
-                Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Weapon)?.ExecuteItemEffect(_target.transform);
+                Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Weapon)?.ExecuteItemAttackEffect_HitNeeded(_target.transform);
             }
         }
     }

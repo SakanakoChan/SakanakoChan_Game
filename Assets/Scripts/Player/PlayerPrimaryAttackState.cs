@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerPrimaryAttackState : PlayerState
 {
-    int comboCounter;
+    public int comboCounter {  get; private set; }
 
     private float lastTimeAttacked; //record the last attack time in order to cooperate with comboWindow
     private float comboWindow = 0.4f; //the input window to release the next combo attack
