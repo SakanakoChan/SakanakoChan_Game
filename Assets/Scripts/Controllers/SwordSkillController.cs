@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class SwordSkillController : MonoBehaviour
 {
@@ -131,6 +129,14 @@ public class SwordSkillController : MonoBehaviour
 
             //freeze enemy
             enemy.StartCoroutine("FreezeEnemyForTime", _enemyFreezeDuration);
+
+            //summon charm effect
+            ItemData_Equipment equippedCharm = Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Charm);
+
+            if (equippedCharm != null)
+            {
+                equippedCharm.ExecuteItemAttackEffect_HitNeeded(enemy.transform);
+            }
         }
 
     }

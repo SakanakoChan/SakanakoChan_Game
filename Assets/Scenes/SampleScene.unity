@@ -8875,6 +8875,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7bae4c3e19587c04f87e399753c1293b, type: 2}
   - {fileID: 11400000, guid: 085ae9222b82a404a81fb409a4e04726, type: 2}
   - {fileID: 11400000, guid: b6b7326b43f9f9d4a928301c1025df85, type: 2}
+  - {fileID: 11400000, guid: ee55823008426de4bb86c21a0e775ab0, type: 2}
   referenceInventory: {fileID: 212912485}
   referenceStash: {fileID: 1683877320}
   referenceEquippedEquipments: {fileID: 785476263}
@@ -20985,7 +20986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0
-  swordType: 0
+  swordType: 2
   regularSwordGravity: 4
   bounceAmount: 4
   bounceSwordGravity: 4
