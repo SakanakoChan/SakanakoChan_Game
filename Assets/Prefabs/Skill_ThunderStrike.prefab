@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 2440873410325571412}
   - component: {fileID: 2339273339288949574}
   m_Layer: 0
-  m_Name: ThunderStrike
+  m_Name: Skill_ThunderStrike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

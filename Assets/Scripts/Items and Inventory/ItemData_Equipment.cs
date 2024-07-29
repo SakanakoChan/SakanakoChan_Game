@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public enum EquipmentType
 {
@@ -12,6 +14,8 @@ public enum EquipmentType
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
+
+    public ItemEffect[] itemEffects;
 
     [Header("Major Stats")]
     public int strength;  //damage + 1; crit_power + 1%
@@ -34,6 +38,9 @@ public class ItemData_Equipment : ItemData
     public int fireDamage;
     public int iceDamage;
     public int lightningDamage;
+
+    [Header("Craft Requirements")]
+    public List<InventorySlot> requiredCraftMaterials;
 
     public void AddModifiers()
     {
@@ -79,7 +86,14 @@ public class ItemData_Equipment : ItemData
         playerStats.fireDamage.RemoveModifier(fireDamage);
         playerStats.iceDamage.RemoveModifier(iceDamage);
         playerStats.lightningDamage.RemoveModifier(lightningDamage);
+    }
 
-
+    //will be triggerd in scripts like animationTrigger when attacking enemies
+    public void ExecuteItemEffect(Transform _enemyTransform)
+    {
+        foreach (var effect in itemEffects)
+        {
+            effect.ExecuteEffect(_enemyTransform);
+        }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThunderStrikeController : MonoBehaviour
+public class Skill_ThunderStrikeController : MonoBehaviour
 {
     [SerializeField] private CharacterStats targetStats;
     [SerializeField] private float thunderMoveSpeed;
@@ -44,6 +44,10 @@ public class ThunderStrikeController : MonoBehaviour
             anim.transform.localRotation = Quaternion.identity;
             transform.rotation = Quaternion.identity;
             transform.localScale = new Vector3(3, 3);
+
+            //thunder will move with enemies to prevent the case
+            //that thunder is too far away from the enemy
+            transform.parent = targetStats.transform;
 
             Invoke("DamageAndSelfDestroy", 0.25f);
             anim.SetTrigger("Hit");

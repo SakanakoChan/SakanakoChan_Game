@@ -140,6 +140,7 @@ public class Inventory : MonoBehaviour
         //remove the equipped one to equip the new one
         ItemData_Equipment _oldEquippedEquipment = null;
 
+        //var search here is same as KeyValuePair<ItemData_Equipment, InventorySlot>
         foreach (var search in equippedEquipmentSlotDictionary)
         {
             if (search.Key.equipmentType == _newEquipmentToEquip.equipmentType)
@@ -263,5 +264,63 @@ public class Inventory : MonoBehaviour
     public List<InventorySlot> GetStashList()
     {
         return stashSlotList;
+    }
+
+    public ItemData_Equipment GetEquippedEquipmentByType(EquipmentType _type)
+    {
+        ItemData_Equipment equippedEquipment = null;
+
+        foreach (KeyValuePair<ItemData_Equipment, InventorySlot> search in equippedEquipmentSlotDictionary)
+        {
+            if (search.Key.equipmentType == _type)
+            {
+                equippedEquipment = search.Key;
+            }
+        }
+
+        return equippedEquipment;
+    }
+
+    public bool CraftIfAvailable(ItemData_Equipment _equipmentToCraft, List<InventorySlot> _requiredMaterials)
+    {
+        List<InventorySlot> materialsToRemove = new List<InventorySlot>();
+
+        for (int i = 0; i < _requiredMaterials.Count; i++)
+        {
+            //if successfully find materials needed to craft
+            if (stashSlotDictionary.TryGetValue(_requiredMaterials[i].item, out InventorySlot stashValue))
+            {
+                //if the amount of the material in stash is not enough
+                if (stashValue.stackSize < _requiredMaterials[i].stackSize)
+                {
+                    Debug.Log("Not enough materials");
+                    return false;
+                }
+                else  //if the amount of the material is enough in stash
+                {
+                    //add the required materials to the remove list
+                    for (int k = 0; k < _requiredMaterials[i].stackSize; k++)
+                    {
+                        materialsToRemove.Add(stashValue);
+                    }
+                }
+
+            }
+            else
+            {
+                Debug.Log("Not enough materials");
+                return false;
+            }
+        }
+
+        for (int i = 0; i < materialsToRemove.Count; i++)
+        {
+            RemoveItem(materialsToRemove[i].item);
+        }
+
+        AddItem(_equipmentToCraft);
+        Debug.Log($"Crafted {_equipmentToCraft.itemName}");
+        Debug.Log($"Crafted {_equipmentToCraft.name}");
+        return true;
     }
 }
