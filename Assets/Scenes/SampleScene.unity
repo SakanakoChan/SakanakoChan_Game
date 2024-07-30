@@ -6727,7 +6727,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHP:
-    baseValue: 100
+    baseValue: 1000
     modifiers: 
   armor:
     baseValue: 5
@@ -7357,7 +7357,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHP:
-    baseValue: 100
+    baseValue: 1000
     modifiers: 
   armor:
     baseValue: 5
@@ -7400,7 +7400,7 @@ MonoBehaviour:
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
-  enemyLevel: 1
+  enemyLevel: 4
   percentageModifier: 0.4
 --- !u!114 &774241433
 MonoBehaviour:
@@ -9093,6 +9093,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5459b939c3665134580996873cf26c12, type: 2}
   - {fileID: 11400000, guid: 3cd68e2d20f041c4baa845d471169481, type: 2}
   - {fileID: 11400000, guid: 578fb7165e9d37549bc41ea2bf837786, type: 2}
+  - {fileID: 11400000, guid: e854e865c9eee4a49a8a58c19289e9c5, type: 2}
   referenceInventory: {fileID: 212912485}
   referenceStash: {fileID: 1683877320}
   referenceEquippedEquipments: {fileID: 785476263}
@@ -19366,7 +19367,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHP:
-    baseValue: 100
+    baseValue: 1000
     modifiers: 
   armor:
     baseValue: 5
@@ -19409,7 +19410,7 @@ MonoBehaviour:
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
-  enemyLevel: 1
+  enemyLevel: 3
   percentageModifier: 0.4
 --- !u!114 &1531230233
 MonoBehaviour:
@@ -20765,7 +20766,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHP:
-    baseValue: 100
+    baseValue: 1000
     modifiers: 
   armor:
     baseValue: 5
@@ -20808,7 +20809,7 @@ MonoBehaviour:
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
-  enemyLevel: 1
+  enemyLevel: 2
   percentageModifier: 0.4
 --- !u!114 &1996393367
 MonoBehaviour:

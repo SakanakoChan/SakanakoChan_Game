@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259722201df052245834f12c28a2cce9, type: 3}
   m_Name: Rogue's_Jacket
   m_EditorClassIdentifier: 
-  itemType: 0
-  itemName: 
-  icon: {fileID: 0}
+  itemType: 1
+  itemName: Rogue's Jacket
+  icon: {fileID: 957708663, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropChance: 0
-  equipmentType: 0
+  equipmentType: 1
   itemCooldown: 0
-  itemEffects: []
+  itemEffects:
+  - {fileID: 11400000, guid: 458cf8020f1442c4ea5ffa8e63dfaa72, type: 2}
   strength: 0
   agility: 0
   intelligence: 0
   vitaliy: 0
   maxHP: 0
   armor: 0
-  evasion: 0
+  evasion: 10
   magicResistance: 0
   damage: 0
   critChance: 0
