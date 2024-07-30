@@ -166,6 +166,8 @@ public class SwordSkillController : MonoBehaviour
         rb.isKinematic = true;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
+        //need to put this here to prevent bounce sword from falling down after finishing bouncing
+        //and bounce sword needs the 4 lines of code above to make it bounce between enemies
         //if there's no enemies to bounce between, sword will stuck into gournd
         if (isBouncingSword && bounceTargets.Count > 0)
         {
