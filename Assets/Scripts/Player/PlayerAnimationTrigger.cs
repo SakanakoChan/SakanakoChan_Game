@@ -11,7 +11,8 @@ public class PlayerAnimationTrigger : MonoBehaviour
 
     private void AttackTrigger()
     {
-        Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Weapon)?.ReleaseSwordArcane();
+        //Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Weapon)?.ReleaseSwordArcane();
+        Inventory.instance.ReleaseSwordArcane_ConsiderCooldown();
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
 
@@ -22,7 +23,8 @@ public class PlayerAnimationTrigger : MonoBehaviour
                 EnemyStats _target = hit.GetComponent<EnemyStats>();
                 player.stats.DoDamge(_target);
 
-                Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Weapon)?.ExecuteItemEffect(_target.transform);
+                //Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Weapon)?.ExecuteItemEffect(_target.transform);
+                Inventory.instance.UseSwordEffect_ConsiderCooldown(_target.transform);
             }
         }
     }

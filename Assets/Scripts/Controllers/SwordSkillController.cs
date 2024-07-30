@@ -128,15 +128,17 @@ public class SwordSkillController : MonoBehaviour
             player.stats.DoDamge(enemy.GetComponent<CharacterStats>());
 
             //freeze enemy
-            enemy.StartCoroutine("FreezeEnemyForTime", _enemyFreezeDuration);
+            //enemy.StartCoroutine("FreezeEnemyForTime", _enemyFreezeDuration);
+            enemy.FreezeEnemyForTime(_enemyFreezeDuration);
 
             //summon charm effect
-            ItemData_Equipment equippedCharm = Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Charm);
+            Inventory.instance.UseCharmEffect_ConsiderCooldown(enemy.transform);
+            //ItemData_Equipment equippedCharm = Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Charm);
 
-            if (equippedCharm != null)
-            {
-                equippedCharm.ExecuteItemEffect(enemy.transform);
-            }
+            //if (equippedCharm != null)
+            //{
+            //    equippedCharm.ExecuteItemEffect(enemy.transform);
+            //}
         }
 
     }

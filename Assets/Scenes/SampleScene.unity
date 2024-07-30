@@ -9092,6 +9092,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4048611697350a94baf66b2166a2c3e5, type: 2}
   - {fileID: 11400000, guid: 5459b939c3665134580996873cf26c12, type: 2}
   - {fileID: 11400000, guid: 3cd68e2d20f041c4baa845d471169481, type: 2}
+  - {fileID: 11400000, guid: 578fb7165e9d37549bc41ea2bf837786, type: 2}
   referenceInventory: {fileID: 212912485}
   referenceStash: {fileID: 1683877320}
   referenceEquippedEquipments: {fileID: 785476263}

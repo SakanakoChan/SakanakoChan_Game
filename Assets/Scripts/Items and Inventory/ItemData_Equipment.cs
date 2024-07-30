@@ -95,7 +95,7 @@ public class ItemData_Equipment : ItemData
     }
 
     //will be triggerd in scripts like animationTrigger when attacking enemies
-    public void ExecuteItemEffect(Transform _spawnTransform)
+    private void ExecuteItemEffect(Transform _spawnTransform)
     {
         foreach (var effect in itemEffects)
         {
@@ -111,7 +111,7 @@ public class ItemData_Equipment : ItemData
     //    }
     //}
 
-    public void ReleaseSwordArcane()
+    private void ReleaseSwordArcane()
     {
         foreach (var effect in itemEffects)
         {
@@ -125,20 +125,43 @@ public class ItemData_Equipment : ItemData
         itemLastUseTime = 0;
     }
 
-    public void UseItem()
+    public void ExecuteItemEffect_ConsiderCooldown(Transform _spawnTransform)
     {
+        // >= here to prevent the case
+        // where mutilple 0-cooldown effects need to get executed at the same time
+        // but all of the effects next to the first one will be in cooldown
+        bool canUseItem = Time.time >= itemLastUseTime + itemCooldown;
+
+        if (canUseItem || !itemUsed)
+        {
+            ExecuteItemEffect(_spawnTransform);
+            itemLastUseTime = Time.time;
+            itemUsed = true;
+            Debug.Log("Use Item Effect");
+        }
+        else
+        {
+            Debug.Log("Item Effect is in cooldown");
+        }
+    }
+
+    public void ReleaseSwordArcane_ConsiderCooldown()
+    {
+        // >= here to prevent the case
+        // where mutilple 0-cooldown effects need to get executed at the same time
+        // but all of the effects next to the first one will be in cooldown
         bool canUseItem = Time.time > itemLastUseTime + itemCooldown;
 
         if (canUseItem || !itemUsed)
         {
-            ExecuteItemEffect(null);
+            ReleaseSwordArcane();
             itemLastUseTime = Time.time;
             itemUsed = true;
-            Debug.Log("Use Item");
+            Debug.Log("Use Item Effect");
         }
         else
         {
-            Debug.Log("Item is in cooldown");
+            Debug.Log("Item Effect is in cooldown");
         }
     }
 

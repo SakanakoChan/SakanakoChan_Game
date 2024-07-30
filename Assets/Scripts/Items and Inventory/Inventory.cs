@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
         equippedEquipmentSlotUI = referenceEquippedEquipments.GetComponentsInChildren<EquippedEquipmentSlot_UI>();
 
         AddStartItems();
-        RefreshAllFlaskUseState();
+        RefreshEquipmentEffectUseState();
     }
 
     private void AddStartItems()
@@ -351,7 +351,7 @@ public class Inventory : MonoBehaviour
     //    }
     //}
 
-    public void UseFlask()
+    public void UseFlask_ConsiderCooldown(Transform _spawnTransform)
     {
         ItemData_Equipment flask = GetEquippedEquipmentByType(EquipmentType.Flask);
         if (flask == null)
@@ -359,18 +359,59 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        flask.UseItem();
+        flask.ExecuteItemEffect_ConsiderCooldown(_spawnTransform);
     }
 
-    private void RefreshAllFlaskUseState()
+    public void UseArmorEffect_ConsiderCooldown(Transform _spawnTransform)
+    {
+        ItemData_Equipment armor = GetEquippedEquipmentByType(EquipmentType.Armor);
+        if (armor == null)
+        {
+            return;
+        }
+
+        armor.ExecuteItemEffect_ConsiderCooldown(_spawnTransform);
+    }
+
+    public void UseSwordEffect_ConsiderCooldown(Transform _spawnTransform)
+    {
+        ItemData_Equipment sword = GetEquippedEquipmentByType(EquipmentType.Weapon);
+        if (sword == null)
+        {
+            return;
+        }
+
+        sword.ExecuteItemEffect_ConsiderCooldown(_spawnTransform);
+    }
+
+    public void ReleaseSwordArcane_ConsiderCooldown()
+    {
+        ItemData_Equipment sword = GetEquippedEquipmentByType(EquipmentType.Weapon);
+        if (sword == null)
+        {
+            return;
+        }
+
+        sword.ReleaseSwordArcane_ConsiderCooldown();
+    }
+
+    public void UseCharmEffect_ConsiderCooldown(Transform _spawnTransform)
+    {
+        ItemData_Equipment charm = GetEquippedEquipmentByType(EquipmentType.Charm);
+        if (charm == null)
+        {
+            return;
+        }
+
+        charm.ExecuteItemEffect_ConsiderCooldown(_spawnTransform);
+    }
+
+    private void RefreshEquipmentEffectUseState()
     {
         foreach (var search in inventorySlotDictionary)
         {
             var equipment = search.Key as ItemData_Equipment;
-            if (equipment.equipmentType == EquipmentType.Flask)
-            {
-                equipment.RefreshUseState();
-            }
+            equipment.RefreshUseState();
         }
     }
 }

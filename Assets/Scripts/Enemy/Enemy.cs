@@ -96,13 +96,19 @@ public class Enemy : Entity
         }
     }
 
-    protected virtual IEnumerator FreezeEnemyForTime(float _seconds)
+
+    protected virtual IEnumerator FreezeEnemyForTime_Coroutine(float _seconds)
     {
         FreezeEnemy(true);
 
         yield return new WaitForSeconds(_seconds);
 
         FreezeEnemy(false);
+    }
+
+    public virtual void FreezeEnemyForTime(float _seconds)
+    {
+        StartCoroutine(FreezeEnemyForTime_Coroutine(_seconds));
     }
 
     #region Counter Attack

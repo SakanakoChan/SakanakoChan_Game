@@ -96,7 +96,7 @@ public class Player : Entity
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Inventory.instance.UseFlask();
+            Inventory.instance.UseFlask_ConsiderCooldown(null);
         }
 
     }
