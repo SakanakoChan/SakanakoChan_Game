@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 259722201df052245834f12c28a2cce9, type: 3}
-  m_Name: Ice_And_Fire
+  m_Name: Heal&Armor_Flask
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Ice and Fire
-  icon: {fileID: 1398721256, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  dropChance: 6
-  equipmentType: 0
+  itemName: Heal&Armor Flask
+  icon: {fileID: -165920498, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 0
+  equipmentType: 3
+  itemCooldown: 15
   itemEffects:
-  - {fileID: 11400000, guid: bad5b3a4734c5214fbb2825a035231a7, type: 2}
+  - {fileID: 11400000, guid: ffe1b6374502be34fa99c6f981fe360b, type: 2}
+  - {fileID: 11400000, guid: c8c8bcf2c8b2fab46a1bef899d7fc214, type: 2}
   strength: 0
   agility: 0
   intelligence: 0
@@ -30,7 +32,7 @@ MonoBehaviour:
   damage: 0
   critChance: 0
   critPower: 0
-  fireDamage: 5
-  iceDamage: 5
+  fireDamage: 0
+  iceDamage: 0
   lightningDamage: 0
   requiredCraftMaterials: []

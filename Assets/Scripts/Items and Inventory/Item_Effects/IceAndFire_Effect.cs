@@ -27,7 +27,26 @@ public class IceAndFire_Effect : ItemEffect
     //}
 
     //summon ice and fire on third primary attack no matter third attack hits enemy or not
-    public override void ExecuteAttackEffect_NoHitNeeded()
+    //public override void ExecuteEffect_NoHitNeeded()
+    //{
+    //    Player player = PlayerManager.instance.player;
+
+    //    bool thirdAttack = player.primaryAttackState.comboCounter == 2;
+
+    //    if (thirdAttack)
+    //    {
+    //        GameObject newIceAndFire = Instantiate(iceAndFirePrefab, player.transform.position, player.transform.rotation);
+
+    //        newIceAndFire.GetComponent<Rigidbody2D>().velocity = new Vector2(xFlyVelocity * player.facingDirection, 0);
+
+    //        Destroy(newIceAndFire, 3);
+    //    }
+
+    //}
+
+
+    //summon ice and fire on third primary attack no matter third attack hits enemy or not
+    public override void ReleaseSwordArcane()
     {
         Player player = PlayerManager.instance.player;
 
@@ -41,6 +60,5 @@ public class IceAndFire_Effect : ItemEffect
 
             Destroy(newIceAndFire, 3);
         }
-
     }
 }

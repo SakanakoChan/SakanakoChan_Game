@@ -43,7 +43,7 @@ public class EnemyStats : CharacterStats
         ModifyStatAccordingToEnemyLevel(strength);
         ModifyStatAccordingToEnemyLevel(agility);
         ModifyStatAccordingToEnemyLevel(intelligence);
-        ModifyStatAccordingToEnemyLevel(vitaliy);
+        ModifyStatAccordingToEnemyLevel(vitality);
 
         ModifyStatAccordingToEnemyLevel(damage);
         ModifyStatAccordingToEnemyLevel(critChance);

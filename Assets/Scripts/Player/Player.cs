@@ -94,6 +94,11 @@ public class Player : Entity
             skill.crystal.UseSkillIfAvailable();
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Inventory.instance.UseFlask();
+        }
+
     }
 
     private void CheckForDashInput()

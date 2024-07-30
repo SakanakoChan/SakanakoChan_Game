@@ -1,3 +1,4 @@
+using System.Collections;
 using System.ComponentModel;
 using UnityEditor.Timeline;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class CharacterStats : MonoBehaviour
     public Stat strength;  //damage + 1; crit_power + 1%
     public Stat agility;  //evasion + 1%; crit_chance + 1%
     public Stat intelligence; //magic_damage + 1; magic_resistance + 3
-    public Stat vitaliy; //maxHP + 5
+    public Stat vitality; //maxHP + 5
 
     [Header("Defensive Stats")]
     public Stat maxHP;
@@ -131,7 +132,7 @@ public class CharacterStats : MonoBehaviour
         _totalDamage = CheckTargetArmor(_targetStats, _totalDamage);
         _targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform);
 
-        //DoMagicDamage(_targetStats);
+        DoMagicDamage(_targetStats);
     }
 
     public virtual void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
@@ -454,10 +455,10 @@ public class CharacterStats : MonoBehaviour
     #region HP
     public int getMaxHP()
     {
-        return maxHP.GetValue() + vitaliy.GetValue() * 5;
+        return maxHP.GetValue() + vitality.GetValue() * 5;
     }
 
-    protected virtual void DecreaseHPBy(int _takenDamage)
+    public virtual void DecreaseHPBy(int _takenDamage)
     {
         currentHP -= _takenDamage;
 
@@ -466,9 +467,38 @@ public class CharacterStats : MonoBehaviour
             onHealthChanged();
         }
     }
+
+    public virtual void IncreaseHPBy(int _HP)
+    {
+        currentHP += _HP;
+
+        if (currentHP > getMaxHP())
+        {
+            currentHP = getMaxHP();
+        }
+
+        if(onHealthChanged != null)
+        {
+            onHealthChanged();
+        }
+    }
     #endregion
 
 
     #endregion
+
+    public virtual void IncreaseStatByTime(Stat _statToModify, int _modifier, float _duration)
+    {
+        StartCoroutine(StatModify_Coroutine(_statToModify, _modifier, _duration));
+    }
+
+    private IEnumerator StatModify_Coroutine(Stat _statToModify, int _modifier, float _duration)
+    {
+        _statToModify.AddModifier(_modifier);
+
+        yield return new WaitForSeconds(_duration);
+
+        _statToModify.RemoveModifier(_modifier);
+    }
 
 }

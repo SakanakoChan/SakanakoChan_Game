@@ -97,7 +97,7 @@ public class CrystalSkillController : MonoBehaviour
 
                 if(equippedCharm != null)
                 {
-                    equippedCharm.ExecuteItemAttackEffect_HitNeeded(enemy.transform);
+                    equippedCharm.ExecuteItemEffect(enemy.transform);
                 }
             }
         }

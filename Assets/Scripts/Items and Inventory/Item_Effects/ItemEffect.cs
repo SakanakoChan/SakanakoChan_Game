@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Item Effect")]
 public class ItemEffect : ScriptableObject
 {
-    public virtual void ExecuteAttackEffect_HitNeeded(Transform _enemyTransform)
+    public virtual void ExecuteEffect(Transform _enemyTransform)
     {
         //Debug.Log("Effect Executed");
     }
     
-    public virtual void ExecuteAttackEffect_NoHitNeeded()
+    //public virtual void ExecuteEffect_NoHitNeeded()
+    //{
+
+    //}
+
+    public virtual void ReleaseSwordArcane()
     {
 
     }

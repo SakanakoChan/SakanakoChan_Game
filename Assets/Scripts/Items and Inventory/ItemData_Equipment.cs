@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -14,6 +16,10 @@ public enum EquipmentType
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
+
+    public float itemCooldown;
+    public bool itemUsed { get; set; }
+    public float itemLastUseTime { get; set; }
 
     public ItemEffect[] itemEffects;
 
@@ -49,7 +55,7 @@ public class ItemData_Equipment : ItemData
         playerStats.strength.AddModifier(strength);
         playerStats.agility.AddModifier(agility);
         playerStats.intelligence.AddModifier(intelligence);
-        playerStats.vitaliy.AddModifier(vitaliy);
+        playerStats.vitality.AddModifier(vitaliy);
 
         playerStats.maxHP.AddModifier(maxHP);
         playerStats.armor.AddModifier(armor);
@@ -72,7 +78,7 @@ public class ItemData_Equipment : ItemData
         playerStats.strength.RemoveModifier(strength);
         playerStats.agility.RemoveModifier(agility);
         playerStats.intelligence.RemoveModifier(intelligence);
-        playerStats.vitaliy.RemoveModifier(vitaliy);
+        playerStats.vitality.RemoveModifier(vitaliy);
 
         playerStats.maxHP.RemoveModifier(maxHP);
         playerStats.armor.RemoveModifier(armor);
@@ -89,19 +95,52 @@ public class ItemData_Equipment : ItemData
     }
 
     //will be triggerd in scripts like animationTrigger when attacking enemies
-    public void ExecuteItemAttackEffect_HitNeeded(Transform _spawnTransform)
+    public void ExecuteItemEffect(Transform _spawnTransform)
     {
         foreach (var effect in itemEffects)
         {
-            effect.ExecuteAttackEffect_HitNeeded(_spawnTransform);
+            effect.ExecuteEffect(_spawnTransform);
         }
     }
 
-    public void ExecuteItemAttackEffect_NoHitNeeded()
+    //public void ExecuteItemEffect_NoHitNeeded()
+    //{
+    //    foreach (var effect in itemEffects)
+    //    {
+    //        effect.ExecuteEffect_NoHitNeeded();
+    //    }
+    //}
+
+    public void ReleaseSwordArcane()
     {
         foreach (var effect in itemEffects)
         {
-            effect.ExecuteAttackEffect_NoHitNeeded();
+            effect.ReleaseSwordArcane();
         }
     }
+
+    public void RefreshUseState()
+    {
+        itemUsed = false;
+        itemLastUseTime = 0;
+    }
+
+    public void UseItem()
+    {
+        bool canUseItem = Time.time > itemLastUseTime + itemCooldown;
+
+        if (canUseItem || !itemUsed)
+        {
+            ExecuteItemEffect(null);
+            itemLastUseTime = Time.time;
+            itemUsed = true;
+            Debug.Log("Use Item");
+        }
+        else
+        {
+            Debug.Log("Item is in cooldown");
+        }
+    }
+
+
 }

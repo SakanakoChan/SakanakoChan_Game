@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -32,6 +33,9 @@ public class Inventory : MonoBehaviour
     private InventorySlot_UI[] stashSlotUI;
     private EquippedEquipmentSlot_UI[] equippedEquipmentSlotUI;
 
+    //private float flaskLastUseTime;
+    //private bool flaskUsed = false;
+
 
     private void Awake()
     {
@@ -61,6 +65,7 @@ public class Inventory : MonoBehaviour
         equippedEquipmentSlotUI = referenceEquippedEquipments.GetComponentsInChildren<EquippedEquipmentSlot_UI>();
 
         AddStartItems();
+        RefreshAllFlaskUseState();
     }
 
     private void AddStartItems()
@@ -306,7 +311,7 @@ public class Inventory : MonoBehaviour
                 }
 
             }
-            else
+            else  //if can't find required materials in stash
             {
                 Debug.Log("Not enough materials");
                 return false;
@@ -320,7 +325,52 @@ public class Inventory : MonoBehaviour
 
         AddItem(_equipmentToCraft);
         Debug.Log($"Crafted {_equipmentToCraft.itemName}");
-        Debug.Log($"Crafted {_equipmentToCraft.name}");
         return true;
+    }
+
+    //public void UseFlask()
+    //{
+    //    ItemData_Equipment flask = GetEquippedEquipmentByType(EquipmentType.Flask);
+    //    if (flask == null)
+    //    {
+    //        return;
+    //    }
+
+    //    bool canUseFlask = Time.time > flaskLastUseTime + flask.itemCooldown;
+
+    //    if (canUseFlask || !flaskUsed)
+    //    {
+    //        flask.ExecuteItemEffect(null);
+    //        flaskUsed = true;
+    //        flaskLastUseTime = Time.time;
+    //        Debug.Log("Use Flask");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Flask is in cooldown");
+    //    }
+    //}
+
+    public void UseFlask()
+    {
+        ItemData_Equipment flask = GetEquippedEquipmentByType(EquipmentType.Flask);
+        if (flask == null)
+        {
+            return;
+        }
+
+        flask.UseItem();
+    }
+
+    private void RefreshAllFlaskUseState()
+    {
+        foreach (var search in inventorySlotDictionary)
+        {
+            var equipment = search.Key as ItemData_Equipment;
+            if (equipment.equipmentType == EquipmentType.Flask)
+            {
+                equipment.RefreshUseState();
+            }
+        }
     }
 }
