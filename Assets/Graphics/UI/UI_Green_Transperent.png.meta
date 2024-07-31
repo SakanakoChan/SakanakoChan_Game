@@ -3,7 +3,7 @@ guid: 288775d1aa25875418a3f3fd7acb01f5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -111,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -400,27 +406,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      artdecoUI_PIPO_green_8: 1990043730
-      artdecoUI_PIPO_green_12: -2135679727
-      artdecoUI_PIPO_green_5: 841295948
-      artdecoUI_PIPO_green_13: 475709683
-      artdecoUI_PIPO_green_3: 251101110
-      artdecoUI_PIPO_green_7: 1548173783
-      artdecoUI_PIPO_green_6: -732160097
+      artdecoUI_PIPO_green_0: 2124243686
+      artdecoUI_PIPO_green_1: 2000374667
+      artdecoUI_PIPO_green_10: -497146452
       artdecoUI_PIPO_green_11: -879444615
-      artdecoUI_PIPO_green_17: 507719018
+      artdecoUI_PIPO_green_12: -2135679727
+      artdecoUI_PIPO_green_13: 475709683
       artdecoUI_PIPO_green_14: 318874076
       artdecoUI_PIPO_green_15: 1273952210
-      artdecoUI_PIPO_green_4: -1092069167
-      artdecoUI_PIPO_green_0: 2124243686
-      artdecoUI_PIPO_green_2: 1396786153
-      artdecoUI_PIPO_green_10: -497146452
-      artdecoUI_PIPO_green_1: 2000374667
-      artdecoUI_PIPO_green_9: 104943260
       artdecoUI_PIPO_green_16: 728533083
-  spritePackingTag: 
+      artdecoUI_PIPO_green_17: 507719018
+      artdecoUI_PIPO_green_2: 1396786153
+      artdecoUI_PIPO_green_3: 251101110
+      artdecoUI_PIPO_green_4: -1092069167
+      artdecoUI_PIPO_green_5: 841295948
+      artdecoUI_PIPO_green_6: -732160097
+      artdecoUI_PIPO_green_7: 1548173783
+      artdecoUI_PIPO_green_8: 1990043730
+      artdecoUI_PIPO_green_9: 104943260
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
