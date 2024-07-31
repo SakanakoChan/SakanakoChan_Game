@@ -191,9 +191,20 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public bool CanAddEquipmentToInventory()
+    {
+        if (inventorySlotList.Count >= inventorySlotUI.Length)
+        {
+            Debug.Log("No more space in inventory");
+            return false;
+        }
+        
+        return true;
+    }
+
     public void AddItem(ItemData _item)
     {
-        if (_item.itemType == ItemType.Equipment)
+        if (_item.itemType == ItemType.Equipment && CanAddEquipmentToInventory())
         {
             AddEquipmentToInventory(_item);
         }
