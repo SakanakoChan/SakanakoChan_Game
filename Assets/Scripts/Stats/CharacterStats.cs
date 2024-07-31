@@ -1,7 +1,23 @@
 using System.Collections;
-using System.ComponentModel;
-using UnityEditor.Timeline;
 using UnityEngine;
+
+public enum StatType
+{
+    strength,
+    agility,
+    intelligence,
+    vitality,
+    damage,
+    critChance,
+    critPower,
+    maxHP,
+    armor,
+    evasion,
+    magicResistance,
+    fireDamage,
+    iceDamage,
+    lightningDamage
+}
 
 public class CharacterStats : MonoBehaviour
 {
@@ -477,7 +493,7 @@ public class CharacterStats : MonoBehaviour
             currentHP = getMaxHP();
         }
 
-        if(onHealthChanged != null)
+        if (onHealthChanged != null)
         {
             onHealthChanged();
         }
@@ -499,6 +515,31 @@ public class CharacterStats : MonoBehaviour
         yield return new WaitForSeconds(_duration);
 
         _statToModify.RemoveModifier(_modifier);
+    }
+
+    public Stat GetStatByType(StatType _statType)
+    {
+        Stat stat = null;
+
+        switch (_statType)
+        {
+            case StatType.strength: stat = strength; break;
+            case StatType.agility: stat = agility; break;
+            case StatType.intelligence: stat = intelligence; break;
+            case StatType.vitality: stat = vitality; break;
+            case StatType.damage: stat = damage; break;
+            case StatType.critChance: stat = critChance; break;
+            case StatType.critPower: stat = critPower; break;
+            case StatType.maxHP: stat = maxHP; break;
+            case StatType.armor: stat = armor; break;
+            case StatType.evasion: stat = evasion; break;
+            case StatType.magicResistance: stat = magicResistance; break;
+            case StatType.fireDamage: stat = fireDamage; break;
+            case StatType.iceDamage: stat = iceDamage; break;
+            case StatType.lightningDamage: stat = lightningDamage; break;
+        }
+
+        return stat;
     }
 
 }

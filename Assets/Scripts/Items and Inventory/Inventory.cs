@@ -28,10 +28,12 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform referenceInventory;
     [SerializeField] private Transform referenceStash;
     [SerializeField] private Transform referenceEquippedEquipments;
+    [SerializeField] private Transform referenceStatPanel;
 
     private InventorySlot_UI[] inventorySlotUI;
     private InventorySlot_UI[] stashSlotUI;
     private EquippedEquipmentSlot_UI[] equippedEquipmentSlotUI;
+    private StatSlot_UI[] statSlotUI;
 
     //private float flaskLastUseTime;
     //private bool flaskUsed = false;
@@ -63,6 +65,7 @@ public class Inventory : MonoBehaviour
         inventorySlotUI = referenceInventory.GetComponentsInChildren<InventorySlot_UI>();
         stashSlotUI = referenceStash.GetComponentsInChildren<InventorySlot_UI>();
         equippedEquipmentSlotUI = referenceEquippedEquipments.GetComponentsInChildren<EquippedEquipmentSlot_UI>();
+        statSlotUI = referenceStatPanel.GetComponentsInChildren<StatSlot_UI>();
 
         AddStartItems();
         RefreshEquipmentEffectUseState();
@@ -130,6 +133,12 @@ public class Inventory : MonoBehaviour
                 }
             }
 
+        }
+
+        //update Stat Value in stat panel (character UI)
+        for (int i = 0; i < statSlotUI.Length; i++)
+        {
+            statSlotUI[i].UpdateStatValue_UI();
         }
 
     }

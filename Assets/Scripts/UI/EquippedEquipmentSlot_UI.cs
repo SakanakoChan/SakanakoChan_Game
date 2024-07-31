@@ -22,7 +22,7 @@ public class EquippedEquipmentSlot_UI : InventorySlot_UI
         //unity will still think the inventorySlot of the first equipped equipment
         //is not null
         //if this bug occurs, restart unity
-        if (inventorySlot == null)
+        if (inventorySlot == null || inventorySlot.item == null)
         {
             return;
         }

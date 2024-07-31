@@ -395,6 +395,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI_Green_Transperent_0
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 628
+        width: 174
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 16, y: 0, z: 16, w: 15}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdcfc306b869081449f8a168a07279ee
+      internalID: -2050088663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -406,6 +427,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      UI_Green_Transperent_0: -2050088663
       artdecoUI_PIPO_green_0: 2124243686
       artdecoUI_PIPO_green_1: 2000374667
       artdecoUI_PIPO_green_10: -497146452
