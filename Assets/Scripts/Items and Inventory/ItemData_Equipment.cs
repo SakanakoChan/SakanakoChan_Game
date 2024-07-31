@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -47,6 +48,9 @@ public class ItemData_Equipment : ItemData
 
     [Header("Craft Requirements")]
     public List<InventorySlot> requiredCraftMaterials;
+
+    private int statInfoLength;
+    private int minStatInfoLength = 5;
 
     public void AddModifiers()
     {
@@ -165,5 +169,64 @@ public class ItemData_Equipment : ItemData
         }
     }
 
+    public override string GetItemStatInfo()
+    {
+        sb.Length = 0;
+        statInfoLength = 0;
 
+        AddItemStatInfo(strength, "Strength");
+        AddItemStatInfo(agility, "Agility");
+        AddItemStatInfo(intelligence, "Intelligence");
+        AddItemStatInfo(vitaliy, "Vitality");
+
+        AddItemStatInfo(damage, "Damage");
+        AddItemStatInfo(critChance, "Crit Chance");
+        AddItemStatInfo(critPower, "Crit Power");
+
+        AddItemStatInfo(maxHP, "Max HP");
+        AddItemStatInfo(evasion, "Evasion");
+        AddItemStatInfo(armor, "Armor");
+        AddItemStatInfo(magicResistance, "Magic Resist");
+
+        AddItemStatInfo(fireDamage, "Fire Dmg");
+        AddItemStatInfo(iceDamage, "Ice Dmg");
+        AddItemStatInfo(lightningDamage, "Lightning Dmg");
+
+        if (statInfoLength < minStatInfoLength)
+        {
+            int _numberOfLinesToApped = minStatInfoLength - statInfoLength;
+            //StringBuilder.Append() will auto add a line
+            //if the String is empty
+            //so here make numberOfLinesToAppend-- to prevent adding an extra line
+            if (statInfoLength == 0)
+            {
+                _numberOfLinesToApped--;
+            }
+
+            for (int i = 0; i < _numberOfLinesToApped; i++)
+            {
+                sb.AppendLine();
+                sb.Append("");
+            }
+        }
+
+        return sb.ToString();
+    }
+
+    private void AddItemStatInfo(int _statValue, string _statName)
+    {
+        if (_statValue != 0)
+        {
+            if (sb.Length > 0)
+            {
+                sb.AppendLine();
+            }
+
+            if (_statValue > 0)
+            {
+                sb.Append($"+ {_statValue} {_statName}");
+                statInfoLength++;
+            }
+        }
+    }
 }

@@ -195,7 +195,7 @@ public class Inventory : MonoBehaviour
     {
         if (inventorySlotList.Count >= inventorySlotUI.Length)
         {
-            Debug.Log("No more space in inventory");
+            //Debug.Log("No more space in inventory");
             return false;
         }
         

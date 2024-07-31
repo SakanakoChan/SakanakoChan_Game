@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ItemToolTip_UI itemToolTip;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        //itemToolTip = GetComponentInChildren<ItemToolTip_UI>();
     }
 
     public void SwitchToMenu(GameObject _menu)

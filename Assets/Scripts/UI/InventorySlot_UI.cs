@@ -3,12 +3,19 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler
+public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemAmount_text;
 
     public InventorySlot inventorySlot; //value is assigned in UpdateInventroySlotUI
+
+    private UI ui;
+
+    private void Awake()
+    {
+        ui = GetComponentInParent<UI>();
+    }
 
     public void UpdateInventorySlotUI(InventorySlot _inventorySlot)
     {
@@ -61,5 +68,25 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler
         {
             Inventory.instance.EquipItem(inventorySlot.item);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (inventorySlot == null || inventorySlot.item == null)
+        {
+            return;
+        }
+
+        ui.itemToolTip.ShowToolTip(inventorySlot.item as ItemData_Equipment);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (inventorySlot == null || inventorySlot.item == null)
+        {
+            return;
+        }
+
+        ui.itemToolTip.HideToolTip();
     }
 }
