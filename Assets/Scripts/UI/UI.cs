@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
+    public static UI instance;
+
     public ItemToolTip_UI itemToolTip;
+    public StatToolTip_UI statToolTip;
 
     private void Awake()
     {
+        //if(instance != null)
+        //{
+        //    Destroy(instance);
+        //}
+        //else
+        //{
+        //    instance = this;
+        //}
+
         //itemToolTip = GetComponentInChildren<ItemToolTip_UI>();
     }
 

@@ -4540,6 +4540,8 @@ MonoBehaviour:
   statType: 9
   statValueText: {fileID: 89262870}
   statNameText: {fileID: 335519750}
+  statDescription: Increase the possibility that you won't take damage when enemy
+    hits you
 --- !u!114 &89262870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5688,6 +5690,7 @@ MonoBehaviour:
   statType: 11
   statValueText: {fileID: 238840310}
   statNameText: {fileID: 1505470617}
+  statDescription: Your Fire Magic Damage
 --- !u!114 &238840310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6015,6 +6018,9 @@ MonoBehaviour:
   statType: 7
   statValueText: {fileID: 270819981}
   statNameText: {fileID: 517998288}
+  statDescription: 'Your Max Health Point
+
+    You will die when HP is 0'
 --- !u!114 &270819981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6343,6 +6349,7 @@ MonoBehaviour:
   statType: 13
   statValueText: {fileID: 276472335}
   statNameText: {fileID: 1189165207}
+  statDescription: Your Lightning Magic Damage
 --- !u!114 &276472335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7267,6 +7274,7 @@ MonoBehaviour:
   statType: 8
   statValueText: {fileID: 383976760}
   statNameText: {fileID: 1112222789}
+  statDescription: Decrease your taken Physical Damage
 --- !u!114 &383976760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7815,6 +7823,7 @@ MonoBehaviour:
   statType: 2
   statValueText: {fileID: 473269746}
   statNameText: {fileID: 378299902}
+  statDescription: Increase Magic Damage and Magic Resistance
 --- !u!114 &473269746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8276,6 +8285,7 @@ MonoBehaviour:
   statType: 0
   statValueText: {fileID: 487337443}
   statNameText: {fileID: 757522264}
+  statDescription: Increase Damage and Crit Power
 --- !u!114 &487337443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11409,6 +11419,7 @@ MonoBehaviour:
   statType: 3
   statValueText: {fileID: 726958032}
   statNameText: {fileID: 258500722}
+  statDescription: Increase Max HP
 --- !u!114 &726958032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13100,6 +13111,8 @@ MonoBehaviour:
   statType: 5
   statValueText: {fileID: 912865645}
   statNameText: {fileID: 1135131600}
+  statDescription: The possibility that you do Critical Damage when you do Physical
+    attack
 --- !u!114 &912865645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13809,16 +13822,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   maxHP:
     baseValue: 1000
@@ -14472,6 +14485,7 @@ RectTransform:
   - {fileID: 785476263}
   - {fileID: 1733685469}
   - {fileID: 1914261864}
+  - {fileID: 2097983693}
   m_Father: {fileID: 1531164881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -14572,6 +14586,7 @@ MonoBehaviour:
   statType: 12
   statValueText: {fileID: 1103282780}
   statNameText: {fileID: 82668044}
+  statDescription: Your Ice Magic Damage
 --- !u!114 &1103282780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24626,6 +24641,140 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41cf0d71cf03e134bb4e8d566b2c5326, type: 3}
+--- !u!1 &1154033404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154033405}
+  - component: {fileID: 1154033407}
+  - component: {fileID: 1154033406}
+  m_Layer: 5
+  m_Name: StatDescription
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1154033405
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154033404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2097983693}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.1820068, y: -1.576004}
+  m_SizeDelta: {x: -18.119, y: -14.179}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1154033406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154033404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Stat Description
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
+  m_sharedMaterial: {fileID: -8065883861848785263, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4290886380
+  m_fontColor: {r: 0.9245283, g: 0.72828406, b: 0.7587345, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 28
+  m_fontSizeBase: 28
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -0.000122063764, y: 0, z: 0.00009150469, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1154033407
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154033404}
+  m_CullTransparentMesh: 1
 --- !u!1 &1157812835
 GameObject:
   m_ObjectHideFlags: 0
@@ -25177,6 +25326,7 @@ MonoBehaviour:
   statType: 6
   statValueText: {fileID: 1258800754}
   statNameText: {fileID: 790997432}
+  statDescription: The damage incease rate when you do Critical Damage
 --- !u!114 &1258800754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26309,6 +26459,7 @@ MonoBehaviour:
   statType: 1
   statValueText: {fileID: 1483797028}
   statNameText: {fileID: 1347573235}
+  statDescription: Increase Evasion and Crit Chance
 --- !u!114 &1483797028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26780,7 +26931,7 @@ GameObject:
   - component: {fileID: 1531164878}
   - component: {fileID: 1531164882}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26887,6 +27038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToolTip: {fileID: 1914261867}
+  statToolTip: {fileID: 2097983696}
 --- !u!1 &1531230230
 GameObject:
   m_ObjectHideFlags: 0
@@ -29644,7 +29796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.98039216}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -29969,6 +30121,7 @@ MonoBehaviour:
   statType: 10
   statValueText: {fileID: 1949057789}
   statNameText: {fileID: 1546331733}
+  statDescription: Decrease your taken Magical Damage
 --- !u!114 &1949057789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31083,6 +31236,7 @@ MonoBehaviour:
   statType: 4
   statValueText: {fileID: 1997610814}
   statNameText: {fileID: 139248947}
+  statDescription: Your Physical Damage
 --- !u!114 &1997610814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32431,6 +32585,96 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062739785}
   m_CullTransparentMesh: 1
+--- !u!1 &2097983692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2097983693}
+  - component: {fileID: 2097983695}
+  - component: {fileID: 2097983694}
+  - component: {fileID: 2097983696}
+  m_Layer: 5
+  m_Name: Stat_ToolTip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2097983693
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097983692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1154033405}
+  m_Father: {fileID: 1070278923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 248, y: -580}
+  m_SizeDelta: {x: 641.69, y: 150}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &2097983694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097983692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.98039216}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 176419801, guid: 05cde80bbd6c9484e9d631b053c1e502, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2097983695
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097983692}
+  m_CullTransparentMesh: 1
+--- !u!114 &2097983696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097983692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1d3e6bf18075b4f9a285deaf314da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statDescription: {fileID: 1154033406}
 --- !u!1 &2102127655
 GameObject:
   m_ObjectHideFlags: 0

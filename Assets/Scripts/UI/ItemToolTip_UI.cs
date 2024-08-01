@@ -37,6 +37,8 @@ public class ItemToolTip_UI : MonoBehaviour
         }
 
         gameObject.SetActive(true);
+
+        Debug.Log(itemNameText.text);
     }
 
     public void HideToolTip()

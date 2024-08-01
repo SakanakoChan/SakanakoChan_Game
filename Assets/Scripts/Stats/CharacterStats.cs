@@ -468,12 +468,7 @@ public class CharacterStats : MonoBehaviour
     }
 
 
-    #region HP
-    public int getMaxHP()
-    {
-        return maxHP.GetValue() + vitality.GetValue() * 5;
-    }
-
+    #region HP Calculation
     public virtual void DecreaseHPBy(int _takenDamage)
     {
         currentHP -= _takenDamage;
@@ -542,4 +537,36 @@ public class CharacterStats : MonoBehaviour
         return stat;
     }
 
+
+    #region Get Final Stat Value
+    public int getMaxHP()
+    {
+        return maxHP.GetValue() + vitality.GetValue() * 5;
+    }
+
+    public int GetDamage()
+    {
+        return damage.GetValue() + strength.GetValue();
+    }
+
+    public int GetCritPower()
+    {
+        return critPower.GetValue() + strength.GetValue();
+    }
+
+    public int GetCritChance()
+    {
+        return critChance.GetValue() + agility.GetValue();
+    }
+
+    public int GetEvasion()
+    {
+        return evasion.GetValue() + agility.GetValue();
+    }
+
+    public int GetMagicResistance()
+    {
+        return magicResistance.GetValue() + intelligence.GetValue() * 3;
+    }
+    #endregion
 }
