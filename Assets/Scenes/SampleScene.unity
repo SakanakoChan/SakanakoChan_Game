@@ -27037,6 +27037,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c291fb62b7abb2240a02e88ee0d46e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character_UI: {fileID: 1070278922}
+  skillTree_UI: {fileID: 758660506}
+  craft_UI: {fileID: 1969471670}
+  options_UI: {fileID: 1142629945}
   itemToolTip: {fileID: 1914261867}
   statToolTip: {fileID: 2097983696}
 --- !u!1 &1531230230
