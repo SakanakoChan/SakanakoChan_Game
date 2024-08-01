@@ -5,14 +5,14 @@ using UnityEngine.EventSystems;
 
 public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private Image itemImage;
-    [SerializeField] private TextMeshProUGUI itemAmount_text;
+    [SerializeField] protected Image itemImage;
+    [SerializeField] protected TextMeshProUGUI itemText;
 
     public InventorySlot inventorySlot; //value is assigned in UpdateInventroySlotUI
 
-    private UI ui;
+    protected UI ui;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         ui = GetComponentInParent<UI>();
     }
@@ -29,11 +29,11 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
 
             if (inventorySlot.stackSize > 1)
             {
-                itemAmount_text.text = inventorySlot.stackSize.ToString();
+                itemText.text = inventorySlot.stackSize.ToString();
             }
             else
             {
-                itemAmount_text.text = "";
+                itemText.text = "";
             }
         }
     }
@@ -45,7 +45,7 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
         itemImage.sprite = null;
         itemImage.color = Color.clear;
 
-        itemAmount_text.text = null;
+        itemText.text = null;
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
