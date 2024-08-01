@@ -9,11 +9,12 @@ public class ItemToolTip_UI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemTypeText;
     [SerializeField] private TextMeshProUGUI itemStatInfo;
 
-    private float originalNameFontSize;
+    [Range(1, 72)]
+    [SerializeField] private int originalItemNameFontSize;
 
     private void Start()
     {
-        originalNameFontSize = itemNameText.fontSize;
+        itemNameText.fontSize = originalItemNameFontSize;
     }
 
     public void ShowToolTip(ItemData_Equipment item)
@@ -33,7 +34,7 @@ public class ItemToolTip_UI : MonoBehaviour
         }
         else
         {
-            itemNameText.fontSize = originalNameFontSize;
+            itemNameText.fontSize = originalItemNameFontSize;
         }
 
         gameObject.SetActive(true);
@@ -43,7 +44,7 @@ public class ItemToolTip_UI : MonoBehaviour
 
     public void HideToolTip()
     {
-        itemNameText.fontSize = originalNameFontSize;
+        itemNameText.fontSize = originalItemNameFontSize;
         gameObject.SetActive(false);
     }
 }

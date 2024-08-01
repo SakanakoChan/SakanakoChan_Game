@@ -12758,7 +12758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -153.535}
+  m_AnchoredPosition: {x: 175, y: -154.745}
   m_SizeDelta: {x: 326, y: 145.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &847865517
@@ -24676,7 +24676,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 1.1820068, y: -1.576004}
-  m_SizeDelta: {x: -18.119, y: -14.179}
+  m_SizeDelta: {x: -18.119, y: -26.416}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1154033406
 MonoBehaviour:
@@ -27699,7 +27699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -63.935}
+  m_AnchoredPosition: {x: 175, y: -65.145004}
   m_SizeDelta: {x: 326, y: 33.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1609843760
@@ -29781,7 +29781,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 83, y: -345}
-  m_SizeDelta: {x: 350, y: 231.33}
+  m_SizeDelta: {x: 350, y: 232.54}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1914261865
 MonoBehaviour:
@@ -29836,6 +29836,7 @@ MonoBehaviour:
   itemNameText: {fileID: 2107579358}
   itemTypeText: {fileID: 1609843760}
   itemStatInfo: {fileID: 847865517}
+  originalItemNameFontSize: 30
 --- !u!114 &1914261868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33007,8 +33008,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -26.065}
-  m_SizeDelta: {x: 326, y: 42.13}
+  m_AnchoredPosition: {x: 175, y: -26.67}
+  m_SizeDelta: {x: 326, y: 43.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107579358
 MonoBehaviour:
@@ -33063,7 +33064,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -33093,7 +33094,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.000122063764, y: 0, z: 0.00009150469, w: 0}
+  m_margin: {x: -0.000122063764, y: 1.2101517, z: 0.00009150469, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
