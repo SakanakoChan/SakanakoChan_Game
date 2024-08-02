@@ -12,8 +12,10 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject craft_UI;
     [SerializeField] private GameObject options_UI;
 
+    public SkillToolTip_UI skillToolTip;
     public ItemToolTip_UI itemToolTip;
     public StatToolTip_UI statToolTip;
+    public CraftWindow_UI craftWindow;
 
     private GameObject currentUI;
 
@@ -37,6 +39,7 @@ public class UI : MonoBehaviour
         SwitchToMenu(null);
         itemToolTip.gameObject.SetActive(false);
         statToolTip.gameObject.SetActive(false);
+        skillToolTip.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -107,5 +110,35 @@ public class UI : MonoBehaviour
         {
             SwitchToMenu(_menu);
         }
+    }
+
+    public Vector2 SetupToolTipPositionOffsetAccordingToMousePosition()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+        float _xOffset = 0;
+        float _yOffset = 0;
+
+        //if mouse is on the right side of the screen
+        if (mousePosition.x > 600)
+        {
+            _xOffset = -150;
+        }
+        else //if mouse is on the left side of the screen
+        {
+            _xOffset = 150;
+        }
+
+        //if mouse is on the upper side of the screen
+        if (mousePosition.y > 350)
+        {
+            _yOffset = -125;
+        }
+        else //if mouse is on the lower side of the screen
+        {
+            _yOffset = 125;
+        }
+
+        Vector2 toolTipPositionOffset = new Vector2(_xOffset, _yOffset);
+        return toolTipPositionOffset;
     }
 }

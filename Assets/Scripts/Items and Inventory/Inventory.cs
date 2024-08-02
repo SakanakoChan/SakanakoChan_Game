@@ -75,7 +75,10 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < startItems.Count; i++)
         {
-            AddItem(startItems[i]);
+            if (startItems[i] != null)
+            {
+                AddItem(startItems[i]);
+            }
         }
     }
 
@@ -198,7 +201,7 @@ public class Inventory : MonoBehaviour
             //Debug.Log("No more space in inventory");
             return false;
         }
-        
+
         return true;
     }
 

@@ -68,6 +68,8 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
         {
             Inventory.instance.EquipItem(inventorySlot.item);
         }
+
+        ui.itemToolTip.HideToolTip();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -76,6 +78,9 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
         {
             return;
         }
+
+        //Vector2 mousePosition = Input.mousePosition;
+        //ui.itemToolTip.transform.position = new Vector2(mousePosition.x - 175, mousePosition.y + 175);
 
         ui.itemToolTip.ShowToolTip(inventorySlot.item as ItemData_Equipment);
     }
