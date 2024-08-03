@@ -35,6 +35,11 @@ public class ParrySkill : Skill
 
     private void UnlockParry()
     {
+        if (parryUnlocked)
+        {
+            return;
+        }
+
         if (parryUnlockButton.unlocked == true)
         {
             parryUnlocked = true;
@@ -43,6 +48,11 @@ public class ParrySkill : Skill
 
     private void UnlockParryRecover()
     {
+        if (parryRecoverUnlocked)
+        {
+            return;
+        }
+
         if (parryRecoverUnlockButton.unlocked == true)
         {
             parryRecoverUnlocked = true;
@@ -51,6 +61,11 @@ public class ParrySkill : Skill
 
     private void UnlockParryWithMirage()
     {
+        if (parryWithMirageUnlocked)
+        {
+            return;
+        }
+
         if (parryWithMirageUnlockButton.unlocked == true)
         {
             parryWithMirageUnlocked = true;

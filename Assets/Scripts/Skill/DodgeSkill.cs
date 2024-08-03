@@ -24,6 +24,11 @@ public class DodgeSkill : Skill
 
     private void UnlockDodge()
     {
+        if (dodgeUnlocked)
+        {
+            return;
+        }
+
         if (dodgeUnlockButton.unlocked)
         {
             dodgeUnlocked = true;
@@ -35,6 +40,11 @@ public class DodgeSkill : Skill
     
     private void UnlockMirageDodge()
     {
+        if (mirageDodgeUnlocked)
+        {
+            return;
+        }
+
         if (mirageDodgeUnlockButton.unlocked)
         {
             mirageDodgeUnlocked = true;

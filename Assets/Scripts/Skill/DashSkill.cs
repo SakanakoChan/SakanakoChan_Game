@@ -34,17 +34,24 @@ public class DashSkill : Skill
 
     private void UnlockDash()
     {
-        //Debug.Log("try unlocking dash");
+        if (dashUnlocked)
+        {
+            return;
+        }
 
         if (dashUnlockButton.unlocked)
         {
             dashUnlocked = true;
-            //Debug.Log("Successfully unlocked dash");
         }
     }
 
     private void UnlockCloneOnDashStart()
     {
+        if (cloneOnDashStartUnlocked)
+        {
+            return;
+        }
+
         if (cloneOnDashStartUnlockButton.unlocked)
         {
             cloneOnDashStartUnlocked = true;
@@ -52,6 +59,11 @@ public class DashSkill : Skill
     }
     private void UnlockCloneOnDashEnd()
     {
+        if (cloneOnDashEndUnlocked)
+        {
+            return;
+        }
+
         if (cloneOnDashEndUnlockButton.unlocked)
         {
             cloneOnDashEndUnlocked = true;

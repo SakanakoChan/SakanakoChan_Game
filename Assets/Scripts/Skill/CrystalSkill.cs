@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -190,6 +191,11 @@ public class CrystalSkill : Skill
     #region Unlock Crystal Skills
     private void UnlockCrystal()
     {
+        if (crystalUnlocked)
+        {
+            return;
+        }
+
         if (crystalUnlockButton.unlocked)
         {
             crystalUnlocked = true;
@@ -198,6 +204,11 @@ public class CrystalSkill : Skill
 
     private void UnlockCrystalMirage()
     {
+        if (crystalMirageUnlocked)
+        {
+            return;
+        }
+
         if (crystalMirageUnlockButton.unlocked)
         {
             crystalMirageUnlocked = true;
@@ -206,6 +217,11 @@ public class CrystalSkill : Skill
 
     private void UnlockExplosiveCrystal()
     {
+        if (explosiveCrystalUnlocked)
+        {
+            return;
+        }
+
         if (explosiveCrystalUnlockButton.unlocked)
         {
             explosiveCrystalUnlocked = true;
@@ -214,6 +230,11 @@ public class CrystalSkill : Skill
 
     private void UnlockMovingCrystal()
     {
+        if (movingCrystalUnlocked)
+        {
+            return;
+        }
+
         if (movingCrystalUnlockButton.unlocked)
         {
             movingCrystalUnlocked = true;
@@ -222,6 +243,11 @@ public class CrystalSkill : Skill
 
     private void UnlockCrystalGun()
     {
+        if(crystalGunUnlocked)
+        {
+            return;
+        }
+
         if (crystalGunUnlockButton.unlocked)
         {
             crystalGunUnlocked = true;
