@@ -18,11 +18,13 @@ public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
 
+    [Header("Unique Item Effect info")]
     public float itemCooldown;
     public bool itemUsed { get; set; }
     public float itemLastUseTime { get; set; }
-
     public ItemEffect[] itemEffects;
+    [TextArea]
+    public string itemEffectDescription;
 
     [Header("Major Stats")]
     public int strength;  //damage + 1; crit_power + 1%
@@ -169,7 +171,7 @@ public class ItemData_Equipment : ItemData
         }
     }
 
-    public override string GetItemStatInfo()
+    public override string GetItemStatInfoAndEffectDescription()
     {
         sb.Length = 0;
         statInfoLength = 0;
@@ -208,6 +210,12 @@ public class ItemData_Equipment : ItemData
                 sb.AppendLine();
                 sb.Append("");
             }
+        }
+
+        if (itemEffectDescription.Length > 0)
+        {
+            sb.AppendLine();
+            sb.Append(itemEffectDescription);
         }
 
         return sb.ToString();

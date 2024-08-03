@@ -20,6 +20,8 @@ MonoBehaviour:
   itemCooldown: 5
   itemEffects:
   - {fileID: 11400000, guid: 4a13b6ab06b248b4e8409edd72d26d3f, type: 2}
+  itemEffectDescription: '[unique] when HP is below 50%, freeze close enemies when
+    getting hit'
   strength: 0
   agility: 0
   intelligence: 0

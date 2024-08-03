@@ -21,6 +21,10 @@ MonoBehaviour:
   itemEffects:
   - {fileID: 11400000, guid: bad5b3a4734c5214fbb2825a035231a7, type: 2}
   - {fileID: 11400000, guid: 4721820f35762d4498106763b265100b, type: 2}
+  itemEffectDescription: '[unique] 3rd primary attack will release sword arcane
+
+    [unique]
+    when successfully hitting enemy, fire damage will have a temporary increasement'
   strength: 0
   agility: 0
   intelligence: 0

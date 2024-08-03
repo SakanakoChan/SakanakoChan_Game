@@ -112,30 +112,59 @@ public class UI : MonoBehaviour
         }
     }
 
-    public Vector2 SetupToolTipPositionOffsetAccordingToMousePosition()
+    public Vector2 SetupToolTipPositionOffsetAccordingToMousePosition(float _xOffsetRate_left, float _xOffsetRate_right, float _yOffsetRate_up, float _yOffsetRate_down)
     {
         Vector2 mousePosition = Input.mousePosition;
         float _xOffset = 0;
         float _yOffset = 0;
 
         //if mouse is on the right side of the screen
-        if (mousePosition.x > 600)
+        if (mousePosition.x >= Screen.width * 0.5)
         {
-            _xOffset = -150;
+            _xOffset = -Screen.width * _xOffsetRate_left;
         }
         else //if mouse is on the left side of the screen
         {
-            _xOffset = 150;
+            _xOffset = Screen.width * _xOffsetRate_right;
         }
 
         //if mouse is on the upper side of the screen
-        if (mousePosition.y > 350)
+        if (mousePosition.y >= Screen.height * 0.5)
         {
-            _yOffset = -125;
+            _yOffset = -Screen.height * _yOffsetRate_down;
         }
         else //if mouse is on the lower side of the screen
         {
-            _yOffset = 125;
+            _yOffset = Screen.height * _yOffsetRate_up;
+        }
+
+        Vector2 toolTipPositionOffset = new Vector2(_xOffset, _yOffset);
+        return toolTipPositionOffset;
+    }
+
+    public Vector2 SetupToolTipPositionOffsetAccordingToUISlotPosition(Transform _slotUITransform, float _xOffsetRate_left, float _xOffsetRate_right, float _yOffsetRate_up, float _yOffsetRate_down)
+    {
+        float _xOffset = 0;
+        float _yOffset = 0;
+
+        //if slotUI is on the right side of the screen
+        if (_slotUITransform.position.x >= Screen.width * 0.5)
+        {
+            _xOffset = -Screen.width * _xOffsetRate_left;
+        }
+        else //if slotUI is on the left side of the screen
+        {
+            _xOffset = Screen.width * _xOffsetRate_right;
+        }
+
+        //if slotUI is on the upper side of the screen
+        if (_slotUITransform.position.y >= Screen.height * 0.5)
+        {
+            _yOffset = -Screen.height * _yOffsetRate_down;
+        }
+        else //if slotUI is on the lower side of the screen
+        {
+            _yOffset = Screen.height * _yOffsetRate_up;
         }
 
         Vector2 toolTipPositionOffset = new Vector2(_xOffset, _yOffset);

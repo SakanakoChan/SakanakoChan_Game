@@ -19,7 +19,7 @@ public class ItemData : ScriptableObject
 
     protected StringBuilder sb = new StringBuilder();
 
-    public virtual string GetItemStatInfo()
+    public virtual string GetItemStatInfoAndEffectDescription()
     {
         return "";
     }

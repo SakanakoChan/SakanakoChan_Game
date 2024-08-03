@@ -26,7 +26,7 @@ public class ItemToolTip_UI : MonoBehaviour
 
         itemNameText.text = item.itemName;
         itemTypeText.text = item.equipmentType.ToString();
-        itemStatInfo.text = item.GetItemStatInfo();
+        itemStatInfo.text = item.GetItemStatInfoAndEffectDescription();
 
         if (itemNameText.text.Length > 12)
         {

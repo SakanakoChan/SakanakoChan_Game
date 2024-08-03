@@ -58,7 +58,7 @@ public class CraftWindow_UI : MonoBehaviour
         //setup the icon, name, stat info of the equipment to craft
         itemIcon.sprite = _itemToCraft.icon;
         itemName.text = _itemToCraft.itemName;
-        itemStatInfo.text = _itemToCraft.GetItemStatInfo();
+        itemStatInfo.text = _itemToCraft.GetItemStatInfoAndEffectDescription();
 
         craftButton.onClick.AddListener(() => Inventory.instance.CraftIfAvailable(_itemToCraft, _itemToCraft.requiredCraftMaterials));
     }

@@ -20,6 +20,8 @@ MonoBehaviour:
   itemCooldown: 0
   itemEffects:
   - {fileID: 11400000, guid: e2da899b2c80f974da158da48963798a, type: 2}
+  itemEffectDescription: '[unique] Magic attack and throwing sword will summon thunder
+    strike when hitting enemy'
   strength: 0
   agility: 0
   intelligence: 0

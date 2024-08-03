@@ -71,6 +71,8 @@ public class StatSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Vector2 offset = ui.SetupToolTipPositionOffsetAccordingToUISlotPosition(transform, 0.1f, 0.1f, 0.18f, 0.04f);
+        ui.statToolTip.transform.position = new Vector2(transform.position.x + offset.x, transform.position.y + offset.y);
         ui.statToolTip.ShowStatToolTip(statDescription);
     }
 

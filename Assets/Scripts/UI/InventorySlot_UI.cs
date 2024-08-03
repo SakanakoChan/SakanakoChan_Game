@@ -79,10 +79,32 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
             return;
         }
 
-        //Vector2 mousePosition = Input.mousePosition;
-        //ui.itemToolTip.transform.position = new Vector2(mousePosition.x - 175, mousePosition.y + 175);
+        float yOffset = 0;
+
+        ItemData_Equipment equipment = inventorySlot.item as ItemData_Equipment;
+
+        //if the item slot is on the lower side of the screen,
+        //item tooltip should be above the item
+        if (transform.position.y <= Screen.height * 0.5)
+        {
+            if (equipment.itemEffectDescription.Length >= 50)
+            {
+                yOffset = Screen.height * 0.35f;
+            }
+            else
+            {
+                yOffset = Screen.height * 0.2f;
+            }
+        }
+        else //if the item slot is on the upper side of the screen, item tooltip should be below the item
+        {
+            yOffset = Screen.height * 0.05f;
+        }
+
+        ui.itemToolTip.transform.position = new Vector2(transform.position.x - Screen.width * 0.13f, transform.position.y + yOffset);
 
         ui.itemToolTip.ShowToolTip(inventorySlot.item as ItemData_Equipment);
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
