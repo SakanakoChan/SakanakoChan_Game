@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrystalSkill : Skill
 {
@@ -9,24 +10,45 @@ public class CrystalSkill : Skill
     [SerializeField] private float crystalExistenceDuration;
     private GameObject currentCrystal;
 
-    [Header("Crystal Mirage")]  //spawn clone on original position when teleporting to crystal position
-    [SerializeField] public bool spawnClone;
+    [Header("Crystal Unlock Info")]
+    [SerializeField] private SkillTreeSlot_UI crystalUnlockButton;
+    public bool crystalUnlocked;
 
-    [Header("Explosive Crystal")]
-    [SerializeField] private bool canExplode;
+    [Header("Crystal Mirage Unlock Info")]  //spawn clone on original position when teleporting to crystal position
+    [SerializeField] private SkillTreeSlot_UI crystalMirageUnlockButton;
+    public bool crystalMirageUnlocked;
 
-    [Header("Moving Crystal")]
-    [SerializeField] private bool canMove;
+    [Header("Explosive Crystal Unlock Info")]
+    [SerializeField] private SkillTreeSlot_UI explosiveCrystalUnlockButton;
+    public bool explosiveCrystalUnlocked;
+
+    [Header("Moving Crystal Unlock Info")]
+    [SerializeField] private SkillTreeSlot_UI movingCrystalUnlockButton;
+    public bool movingCrystalUnlocked;
     [SerializeField] private float moveSpeed;
 
-    [Header("Crystal Gun")]
-    [SerializeField] private bool canUseCrystalGun;
+    [Header("Crystal Gun Unlock Info")]
+    [SerializeField] private SkillTreeSlot_UI crystalGunUnlockButton;
+    public bool crystalGunUnlocked;
     [SerializeField] private int magSize;
     [SerializeField] private float shootCooldown;
     [SerializeField] private float reloadTime;
     [SerializeField] private float shootWindow;
     private float shootWindowTimer;
     [SerializeField] private List<GameObject> crystalMag = new List<GameObject>();
+
+
+
+    protected override void Start()
+    {
+        base.Start();
+
+        crystalUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockCrystal);
+        crystalMirageUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockCrystalMirage);
+        explosiveCrystalUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockExplosiveCrystal);
+        movingCrystalUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockMovingCrystal);
+        crystalGunUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockCrystalGun);
+    }
 
     protected override void Update()
     {
@@ -62,7 +84,7 @@ public class CrystalSkill : Skill
         {
             //if crystal can move towards enemy,
             //teleport function will be disabled
-            if (canMove)
+            if (movingCrystalUnlocked)
             {
                 return;
             }
@@ -71,7 +93,7 @@ public class CrystalSkill : Skill
             //****************************************************************
             //***Cannot enable this when Replace Clone By Crystal is enable***
             //****************************************************************
-            if (spawnClone)
+            if (crystalMirageUnlocked)
             {
                 SkillManager.instance.clone.CreateClone(player.transform.position);
                 Destroy(currentCrystal);
@@ -92,7 +114,7 @@ public class CrystalSkill : Skill
         currentCrystal = Instantiate(crystalPrefab, player.transform.position, Quaternion.identity); ;
         CrystalSkillController currentCrystalScript = currentCrystal.GetComponent<CrystalSkillController>();
 
-        currentCrystalScript.SetupCrystal(crystalExistenceDuration, canExplode, canMove, moveSpeed, FindClosestEnemy(currentCrystal.transform));
+        currentCrystalScript.SetupCrystal(crystalExistenceDuration, explosiveCrystalUnlocked, movingCrystalUnlocked, moveSpeed, FindClosestEnemy(currentCrystal.transform));
     }
 
     private void ReloadCrystalMag()
@@ -107,7 +129,7 @@ public class CrystalSkill : Skill
 
     private bool ShootCrystalGunIfAvailable()
     {
-        if (canUseCrystalGun)
+        if (crystalGunUnlocked)
         {
             if(crystalMag.Count > 0)
             {
@@ -117,7 +139,7 @@ public class CrystalSkill : Skill
                 crystalMag.Remove(crystalToSpawn);
 
                 newCrystal.GetComponent<CrystalSkillController>()?.
-                    SetupCrystal(crystalExistenceDuration, canExplode, canMove, moveSpeed, FindClosestEnemy(newCrystal.transform));
+                    SetupCrystal(crystalExistenceDuration, explosiveCrystalUnlocked, movingCrystalUnlocked, moveSpeed, FindClosestEnemy(newCrystal.transform));
 
                 
                 shootWindowTimer = shootWindow;
@@ -164,4 +186,46 @@ public class CrystalSkill : Skill
     //        currentCrystal.GetComponent<CrystalSkillController>()?.CrystalChooseRandomEnemy(_searchRadius);
     //    }
     //}
+
+    #region Unlock Crystal Skills
+    private void UnlockCrystal()
+    {
+        if (crystalUnlockButton.unlocked)
+        {
+            crystalUnlocked = true;
+        }
+    }
+
+    private void UnlockCrystalMirage()
+    {
+        if (crystalMirageUnlockButton.unlocked)
+        {
+            crystalMirageUnlocked = true;
+        }
+    }
+
+    private void UnlockExplosiveCrystal()
+    {
+        if (explosiveCrystalUnlockButton.unlocked)
+        {
+            explosiveCrystalUnlocked = true;
+        }
+    }
+
+    private void UnlockMovingCrystal()
+    {
+        if (movingCrystalUnlockButton.unlocked)
+        {
+            movingCrystalUnlocked = true;
+        }
+    }
+
+    private void UnlockCrystalGun()
+    {
+        if (crystalGunUnlockButton.unlocked)
+        {
+            crystalGunUnlocked = true;
+        }
+    }
+    #endregion
 }

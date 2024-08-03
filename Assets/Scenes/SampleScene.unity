@@ -15771,7 +15771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Parry - Recover HP/FP
-  skillPrice: 0
+  skillPrice: 1000
   skillDescription: Successful parry will recover HP and FP
   lockedSkillColor: {r: 0.29411766, g: 0.23529412, b: 0.23137255, a: 1}
   unlocked: 0
@@ -21996,7 +21996,7 @@ GameObject:
   - component: {fileID: 1127775386}
   - component: {fileID: 1127775385}
   m_Layer: 5
-  m_Name: SkillTreeSlot_UI - Crystal Blink
+  m_Name: SkillTreeSlot_UI - Mirage Blink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22033,7 +22033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f29a18c6610caf48827a3341e124c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Crystal Blink
+  skillName: Mirage Blink
   skillPrice: 0
   skillDescription: 'When using crystal teleport, leave a mirage
 
@@ -33176,7 +33176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Parry - Mirage Attack
-  skillPrice: 0
+  skillPrice: 1500
   skillDescription: Successful parry will create a mirage
   lockedSkillColor: {r: 0.29411766, g: 0.23529412, b: 0.23137255, a: 1}
   unlocked: 0
@@ -36718,7 +36718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Parry
-  skillPrice: 0
+  skillPrice: 500
   skillDescription: Parry enemy's attack to stun enemy
   lockedSkillColor: {r: 0.29411766, g: 0.23529412, b: 0.23137255, a: 1}
   unlocked: 0
@@ -42210,6 +42210,7 @@ GameObject:
   - component: {fileID: 2037145671}
   - component: {fileID: 2037145672}
   - component: {fileID: 2037145673}
+  - component: {fileID: 2037145674}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -42281,9 +42282,6 @@ MonoBehaviour:
   cloneDuration: 1.5
   colorLosingSpeed: 5
   canAttack: 0
-  createCloneOnDashStart: 0
-  createCloneOnDashEnd: 0
-  createCloneOnCounterAttack: 0
   canDuplicateClone: 0
   duplicatePossibility: 30
   maxDuplicateCloneAmount: 5
@@ -42355,11 +42353,17 @@ MonoBehaviour:
   cooldown: 0
   crystalPrefab: {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
   crystalExistenceDuration: 2
-  spawnClone: 0
-  canExplode: 0
-  canMove: 0
+  crystalUnlockButton: {fileID: 1452084823}
+  crystalUnlocked: 0
+  crystalMirageUnlockButton: {fileID: 0}
+  crystalMirageUnlocked: 0
+  explosiveCrystalUnlockButton: {fileID: 0}
+  explosiveCrystalUnlocked: 0
+  movingCrystalUnlockButton: {fileID: 0}
+  movingCrystalUnlocked: 0
   moveSpeed: 10
-  canUseCrystalGun: 0
+  crystalGunUnlockButton: {fileID: 0}
+  crystalGunUnlocked: 0
   magSize: 3
   shootCooldown: 0
   reloadTime: 2
@@ -42368,6 +42372,26 @@ MonoBehaviour:
   - {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
   - {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
   - {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
+--- !u!114 &2037145674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037145666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49753c374015a47419cc2a84e3b683db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  parryUnlockButton: {fileID: 1600599718}
+  parryUnlocked: 0
+  parryRecoverUnlockButton: {fileID: 721780147}
+  parryRecoverUnlocked: 0
+  recoverPercentage: 0.2
+  parryWithMirageUnlockButton: {fileID: 1303493733}
+  parryWithMirageUnlocked: 0
 --- !u!1 &2037785544
 GameObject:
   m_ObjectHideFlags: 0

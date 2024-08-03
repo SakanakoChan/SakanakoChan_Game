@@ -39,7 +39,7 @@ public class DashSkill : Skill
         if (dashUnlockButton.unlocked)
         {
             dashUnlocked = true;
-            Debug.Log("Successfully unlocked dash");
+            //Debug.Log("Successfully unlocked dash");
         }
     }
 

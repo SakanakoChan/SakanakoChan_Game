@@ -58,6 +58,13 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
             }
         }
 
+        //cannot re-unlock unlocked skill
+        if (unlocked)
+        {
+            Debug.Log("You have already unlocked this skill!");
+            return;
+        }
+
         if (PlayerManager.instance.BuyIfAvailable(skillPrice) == false)
         {
             return;
@@ -65,6 +72,7 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
         unlocked = true;
         skillImage.color = Color.white;
+        Debug.Log($"Successfully unlocked {skillName}");
     }
 
     public void OnPointerEnter(PointerEventData eventData)

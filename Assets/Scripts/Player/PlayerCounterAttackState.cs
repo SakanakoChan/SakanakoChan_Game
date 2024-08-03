@@ -49,10 +49,14 @@ public class PlayerCounterAttackState : PlayerState
 
                     player.anim.SetBool("SuccessfulCounterAttack", true);
 
+                    //parry recover hp/fp
+                    player.skill.parry.RecoverHPFPInSuccessfulParry();
+
                     //if availabe, will spawn clone behind enemy and attack enemy
                     if (canCreateClone)
                     {
-                        player.skill.clone.CreateCloneOnCounterAttack(new Vector3(enemy.transform.position.x - 1.5f * enemy.facingDirection, enemy.transform.position.y), 0.1f);
+                        //player.skill.clone.CreateCloneWithDelay(new Vector3(enemy.transform.position.x - 1.5f * enemy.facingDirection, enemy.transform.position.y), 0.1f);
+                        player.skill.parry.MakeMirageInSuccessfulParry(new Vector3(enemy.transform.position.x - 1.5f * enemy.facingDirection, enemy.transform.position.y));
                         canCreateClone = false;  //can only create 1 clone every time of counter attack
                     }
                 }

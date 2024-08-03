@@ -14,8 +14,6 @@ public class CloneSkill : Skill
     [Space]
     [SerializeField] private bool canAttack;
     [Space]
-    [SerializeField] private bool createCloneOnCounterAttack;
-    [Space]
     [SerializeField] private bool canDuplicateClone;
     [SerializeField] private float duplicatePossibility;
     //prevent creating endless duplicate clones
@@ -37,9 +35,9 @@ public class CloneSkill : Skill
         //**************************************************************************
         if (replaceCloneByCrystal)
         {
-            if (SkillManager.instance.crystal.spawnClone)
+            if (SkillManager.instance.crystal.crystalMirageUnlocked)
             {
-                SkillManager.instance.crystal.spawnClone = false;
+                SkillManager.instance.crystal.crystalMirageUnlocked = false;
                 Debug.Log("Clone_Mirage in Crystal Skill is DISABLED" +
                     "\nBecase Replace_Clone_By_Crystal in Clone Skill is ENABLED");
             }
@@ -73,15 +71,12 @@ public class CloneSkill : Skill
     }
 
 
-    public void CreateCloneOnCounterAttack(Vector3 _position, float _delay)
+    public void CreateCloneWithDelay(Vector3 _position, float _delay)
     {
-        if (createCloneOnCounterAttack)
-        {
-            StartCoroutine(CreateCloneWithDelay(_position, _delay));
-        }
+        StartCoroutine(CreateCloneWithDelay_Coroutine(_position, _delay));
     }
 
-    private IEnumerator CreateCloneWithDelay(Vector3 _position, float _seconds)
+    private IEnumerator CreateCloneWithDelay_Coroutine(Vector3 _position, float _seconds)
     {
         yield return new WaitForSeconds(_seconds);
 
