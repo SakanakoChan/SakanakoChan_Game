@@ -12,24 +12,24 @@ public class CrystalSkill : Skill
 
     [Header("Crystal Unlock Info")]
     [SerializeField] private SkillTreeSlot_UI crystalUnlockButton;
-    public bool crystalUnlocked;
+    public bool crystalUnlocked { get; private set; }
 
     [Header("Crystal Mirage Unlock Info")]  //spawn clone on original position when teleporting to crystal position
     [SerializeField] private SkillTreeSlot_UI crystalMirageUnlockButton;
-    public bool crystalMirageUnlocked;
+    public bool crystalMirageUnlocked { get; set; }
 
     [Header("Explosive Crystal Unlock Info")]
     [SerializeField] private SkillTreeSlot_UI explosiveCrystalUnlockButton;
-    public bool explosiveCrystalUnlocked;
+    public bool explosiveCrystalUnlocked { get; private set; }
 
     [Header("Moving Crystal Unlock Info")]
     [SerializeField] private SkillTreeSlot_UI movingCrystalUnlockButton;
-    public bool movingCrystalUnlocked;
+    public bool movingCrystalUnlocked { get; private set; }
     [SerializeField] private float moveSpeed;
 
     [Header("Crystal Gun Unlock Info")]
     [SerializeField] private SkillTreeSlot_UI crystalGunUnlockButton;
-    public bool crystalGunUnlocked;
+    public bool crystalGunUnlocked { get; private set; }
     [SerializeField] private int magSize;
     [SerializeField] private float shootCooldown;
     [SerializeField] private float reloadTime;
@@ -131,7 +131,7 @@ public class CrystalSkill : Skill
     {
         if (crystalGunUnlocked)
         {
-            if(crystalMag.Count > 0)
+            if (crystalMag.Count > 0)
             {
                 GameObject crystalToSpawn = crystalMag[crystalMag.Count - 1];
                 GameObject newCrystal = Instantiate(crystalToSpawn, player.transform.position, Quaternion.identity); ;
@@ -141,7 +141,7 @@ public class CrystalSkill : Skill
                 newCrystal.GetComponent<CrystalSkillController>()?.
                     SetupCrystal(crystalExistenceDuration, explosiveCrystalUnlocked, movingCrystalUnlocked, moveSpeed, FindClosestEnemy(newCrystal.transform));
 
-                
+
                 shootWindowTimer = shootWindow;
 
 
@@ -154,7 +154,7 @@ public class CrystalSkill : Skill
             return true;
         }
 
-        return  false;
+        return false;
     }
 
     public void DestroyCurrentCrystal()

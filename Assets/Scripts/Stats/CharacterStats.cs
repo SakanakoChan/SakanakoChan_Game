@@ -401,7 +401,7 @@ public class CharacterStats : MonoBehaviour
     #endregion
 
 
-    #region HP and Damage Calculation - Armor, Crit, Magic Resistance
+    #region HP and Damage Calculation - Armor, Crit, Magic Resistance, Evasion
     private int CheckTargetArmor(CharacterStats _targetStats, int _totalDamage)
     {
         //chill effect: reduce armor by 20%
@@ -439,7 +439,8 @@ public class CharacterStats : MonoBehaviour
 
         if (Random.Range(0, 100) < _totalEvasion)
         {
-            Debug.Log("Attack Evaded");
+            //Debug.Log("Attack Evaded");
+            _targetStats.OnEvasion();
             return true;
         }
 
@@ -467,6 +468,10 @@ public class CharacterStats : MonoBehaviour
         return Mathf.RoundToInt(critDamage);
     }
 
+    public virtual void OnEvasion()
+    {
+
+    }
 
     #region HP Calculation
     public virtual void DecreaseHPBy(int _takenDamage)

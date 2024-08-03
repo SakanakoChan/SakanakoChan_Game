@@ -42211,6 +42211,7 @@ GameObject:
   - component: {fileID: 2037145672}
   - component: {fileID: 2037145673}
   - component: {fileID: 2037145674}
+  - component: {fileID: 2037145675}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -42354,16 +42355,11 @@ MonoBehaviour:
   crystalPrefab: {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
   crystalExistenceDuration: 2
   crystalUnlockButton: {fileID: 1452084823}
-  crystalUnlocked: 0
-  crystalMirageUnlockButton: {fileID: 0}
-  crystalMirageUnlocked: 0
-  explosiveCrystalUnlockButton: {fileID: 0}
-  explosiveCrystalUnlocked: 0
-  movingCrystalUnlockButton: {fileID: 0}
-  movingCrystalUnlocked: 0
+  crystalMirageUnlockButton: {fileID: 1127775385}
+  explosiveCrystalUnlockButton: {fileID: 346706898}
+  movingCrystalUnlockButton: {fileID: 372118661}
   moveSpeed: 10
-  crystalGunUnlockButton: {fileID: 0}
-  crystalGunUnlocked: 0
+  crystalGunUnlockButton: {fileID: 1641835351}
   magSize: 3
   shootCooldown: 0
   reloadTime: 2
@@ -42392,6 +42388,24 @@ MonoBehaviour:
   recoverPercentage: 0.2
   parryWithMirageUnlockButton: {fileID: 1303493733}
   parryWithMirageUnlocked: 0
+--- !u!114 &2037145675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037145666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78989f1d077aef64bb744f5d9974b4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  dodgeUnlockButton: {fileID: 564560077}
+  evasionIncreasement: 10
+  dodgeUnlocked: 0
+  mirageDodgeUnlockButton: {fileID: 1630825004}
+  mirageDodgeUnlocked: 0
 --- !u!1 &2037785544
 GameObject:
   m_ObjectHideFlags: 0

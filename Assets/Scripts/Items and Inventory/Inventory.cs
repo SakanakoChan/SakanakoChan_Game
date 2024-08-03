@@ -139,11 +139,16 @@ public class Inventory : MonoBehaviour
         }
 
         //update Stat Value in stat panel (character UI)
+        UpdateStatUI();
+
+    }
+
+    public void UpdateStatUI()
+    {
         for (int i = 0; i < statSlotUI.Length; i++)
         {
             statSlotUI[i].UpdateStatValue_UI();
         }
-
     }
 
     public void EquipItem(ItemData _item)

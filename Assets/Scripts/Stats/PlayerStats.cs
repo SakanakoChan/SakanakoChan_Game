@@ -39,4 +39,10 @@ public class PlayerStats : CharacterStats
             Inventory.instance.UseArmorEffect_ConsiderCooldown(player.transform);
         }
     }
+
+    public override void OnEvasion()
+    {
+        Debug.Log("Player evaded attack and created clone!");
+        player.skill.dodge.CreateMirageOnDodge();
+    }
 }
