@@ -103,11 +103,15 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-        if (IsWallDetected())
+        if (skill.dash.dashUnlocked == false)
         {
             return;
         }
 
+        if (IsWallDetected())
+        {
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.UseSkillIfAvailable())
         {

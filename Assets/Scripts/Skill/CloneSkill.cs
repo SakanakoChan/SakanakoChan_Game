@@ -14,8 +14,6 @@ public class CloneSkill : Skill
     [Space]
     [SerializeField] private bool canAttack;
     [Space]
-    [SerializeField] private bool createCloneOnDashStart;
-    [SerializeField] private bool createCloneOnDashEnd;
     [SerializeField] private bool createCloneOnCounterAttack;
     [Space]
     [SerializeField] private bool canDuplicateClone;
@@ -74,21 +72,6 @@ public class CloneSkill : Skill
         currentDuplicateCloneAmount++;
     }
 
-    public void CreateCloneOnDashStart(Vector3 _position)
-    {
-        if (createCloneOnDashStart)
-        {
-            CreateClone(_position);
-        }
-    }
-
-    public void CreateCloneOnDashEnd(Vector3 _position)
-    {
-        if (createCloneOnDashEnd)
-        {
-            CreateClone(_position);
-        }
-    }
 
     public void CreateCloneOnCounterAttack(Vector3 _position, float _delay)
     {

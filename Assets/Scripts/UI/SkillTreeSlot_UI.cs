@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private string skillName;
+    [SerializeField] private int skillPrice;
     [TextArea]
     [SerializeField] private string skillDescription;
     [Space]
@@ -29,13 +30,12 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         skillImage = GetComponent<Image>();
         ui = GetComponentInParent<UI>();
+        GetComponent<Button>().onClick.AddListener(() => UnlockSkill());
     }
 
     private void Start()
     {
         skillImage.color = lockedSkillColor;
-
-        GetComponent<Button>().onClick.AddListener(() => UnlockSkill());
     }
 
     public void UnlockSkill()
@@ -56,6 +56,11 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
                 Debug.Log("Alternative Skill has been unlocked so this skill can't be unlocked");
                 return;
             }
+        }
+
+        if (PlayerManager.instance.BuyIfAvailable(skillPrice) == false)
+        {
+            return;
         }
 
         unlocked = true;
