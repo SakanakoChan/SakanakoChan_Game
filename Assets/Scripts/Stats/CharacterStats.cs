@@ -66,6 +66,8 @@ public class CharacterStats : MonoBehaviour
     private float ignitedDamageTimer;
     private int igniteDamage; //is set up in DoMagicDamage()
 
+    //vulnerable state will take 10% more damage
+    public bool isVulnerable { get; private set; }
     public bool isDead { get; private set; }
 
     //Stats calculation:
@@ -155,7 +157,7 @@ public class CharacterStats : MonoBehaviour
     {
         DecreaseHPBy(_damage);
 
-        Debug.Log($"{gameObject.name} received {_damage} damage");
+        //Debug.Log($"{gameObject.name} received {_damage} damage");
 
         _attackee.GetComponent<Entity>()?.DamageEffect(_attacker, _attackee);
 
@@ -171,8 +173,7 @@ public class CharacterStats : MonoBehaviour
         Debug.Log($"{gameObject.name} is Dead");
     }
 
-
-    #region Magic Damage and Ailments
+    #region Magic and Ailments
     public virtual void DoMagicDamage(CharacterStats _targetStats)
     {
         int _fireDamage = fireDamage.GetValue();
@@ -372,7 +373,6 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-
     private void DealIgniteDamage()
     {
         if (ignitedDamageTimer < 0)
@@ -399,7 +399,6 @@ public class CharacterStats : MonoBehaviour
         thunderStrikeDamage = _thunderStrikeDamage;
     }
     #endregion
-
 
     #region HP and Damage Calculation - Armor, Crit, Magic Resistance, Evasion
     private int CheckTargetArmor(CharacterStats _targetStats, int _totalDamage)
@@ -473,10 +472,18 @@ public class CharacterStats : MonoBehaviour
 
     }
 
-    #region HP Calculation
+
+    #region HP
     public virtual void DecreaseHPBy(int _takenDamage)
     {
+        if (isVulnerable)
+        {
+            _takenDamage = Mathf.RoundToInt(_takenDamage * 1.1f);
+        }
+
         currentHP -= _takenDamage;
+
+        Debug.Log($"{gameObject.name} takes {_takenDamage} damage");
 
         if (onHealthChanged != null)
         {
@@ -500,8 +507,21 @@ public class CharacterStats : MonoBehaviour
     }
     #endregion
 
-
     #endregion
+
+    public void BecomeVulnerableForTime(float _seconds)
+    {
+        StartCoroutine(BecomeVulnerableForTime_Coroutine(_seconds));
+    }
+
+    private IEnumerator BecomeVulnerableForTime_Coroutine(float _duration)
+    {
+        isVulnerable = true;
+        //Debug.Log("Vulnerable!");
+        yield return new WaitForSeconds(_duration);
+        isVulnerable = false;
+        //Debug.Log("Exit Vulnerable!");
+    }
 
     public virtual void IncreaseStatByTime(Stat _statToModify, int _modifier, float _duration)
     {

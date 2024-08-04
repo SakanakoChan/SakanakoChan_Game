@@ -22,6 +22,11 @@ public class PlayerThrowSwordState : PlayerState
     {
         base.Update();
 
+        if (stateMachine.currentState != player.throwSwordState)
+        {
+            return;
+        }
+
         player.SetVelocity(0, rb.velocity.y);
 
         if (triggerCalled)

@@ -23,6 +23,11 @@ public class PlayerAirState : PlayerState
     {
         base.Update();
 
+        if (stateMachine.currentState != player.airState)
+        {
+            return;
+        }
+
         if (xInput != 0)
         {
             player.SetVelocity(player.moveSpeed * 0.8f * xInput, rb.velocity.y);
@@ -35,7 +40,18 @@ public class PlayerAirState : PlayerState
 
         if (player.IsGroundDetected())
         {
-            stateMachine.ChangeState(player.idleState);
+            //fix the bug where player will get a bit stuttered when falling onto ground
+            //even keeping pressing moving button
+            xInput = Input.GetAxisRaw("Horizontal");
+
+            if (xInput != 0)
+            {
+                stateMachine.ChangeState(player.moveState);
+            }
+            else
+            {
+                stateMachine.ChangeState(player.idleState);
+            }
         }
     }
 }

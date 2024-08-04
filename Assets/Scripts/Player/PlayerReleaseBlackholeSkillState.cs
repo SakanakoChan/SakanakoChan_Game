@@ -36,6 +36,11 @@ public class PlayerReleaseBlackholeSkillState : PlayerState
     {
         base.Update();
 
+        if (stateMachine.currentState != player.blackholeSkillState)
+        {
+            return;
+        }
+
         if (Camera.main.orthographicSize <= 10)
         {
             Camera.main.orthographicSize += 0.1f;

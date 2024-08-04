@@ -22,6 +22,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             stateMachine.ChangeState(player.primaryAttackState);
@@ -40,7 +41,7 @@ public class PlayerGroundedState : PlayerState
         //!player.sword   is same as   player.sword == null
         //HasNoSword() will return true if there's no sword in player
         //or return falase and return the sword if player has sword
-        if (Input.GetKeyDown(KeyCode.Mouse1) && player.HasNoSword())
+        if (Input.GetKeyDown(KeyCode.Mouse1) && player.HasNoSword() && player.skill.sword.throwSwordSkillUnlocked)
         {
             stateMachine.ChangeState(player.aimSwordState);
         }

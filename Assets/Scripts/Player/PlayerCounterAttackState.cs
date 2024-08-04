@@ -31,6 +31,11 @@ public class PlayerCounterAttackState : PlayerState
     {
         base.Update();
 
+        if (stateMachine.currentState != player.catchSwordState)
+        {
+            return;
+        }
+
         player.SetZeroVelocity();
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);

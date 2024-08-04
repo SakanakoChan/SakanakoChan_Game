@@ -22,6 +22,11 @@ public class PlayerWallSlideState : PlayerState
     {
         base.Update();
 
+        if (stateMachine.currentState != player.wallSlideState)
+        {
+            return;
+        }
+
         //if pressing down while in wallslide, speeding up the slide speed
         if (yInput < 0)
         {

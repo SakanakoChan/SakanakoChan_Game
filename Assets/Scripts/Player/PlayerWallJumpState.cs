@@ -25,6 +25,11 @@ public class PlayerWallJumpState : PlayerState
     {
         base.Update();
 
+        if (stateMachine.currentState != player.wallJumpState)
+        {
+            return;
+        }
+
         if (stateTimer < 0)
         {
             stateMachine.ChangeState(player.airState);

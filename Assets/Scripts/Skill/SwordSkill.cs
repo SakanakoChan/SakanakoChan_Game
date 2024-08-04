@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public enum SwordType
 {
@@ -16,30 +13,47 @@ public class SwordSkill : Skill
 {
     public SwordType swordType = SwordType.Regular;
 
+    [Header("Skill Info")]
+    [SerializeField] private SkillTreeSlot_UI throwSwordSkillUnlockButton;
+    public bool throwSwordSkillUnlocked { get; private set; }
+    [SerializeField] private GameObject swordPrefab;
+    [SerializeField] private Vector2 launchSpeed;
+    [SerializeField] private float swordReturnSpeed;
+    private float swordGravity;
+
     [Header("Regular Sword Info")]
     [SerializeField] private float regularSwordGravity;
 
     [Header("Bounce Sword Info")]
+    [SerializeField] private SkillTreeSlot_UI bounceSwordUnlockButton;
+    public bool bounceSwordUnlocked { get; private set; }
     [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceSwordGravity;
     [SerializeField] private float bounceSpeed;
 
     [Header("Pierce Sword Info")]
+    [SerializeField] private SkillTreeSlot_UI pierceSwordUnlockButton;
+    public bool pierceSwordUnlocked { get; private set; }
     [SerializeField] private int pierceAmount;
     [SerializeField] private float pierceSwordGravity;
 
     [Header("Spin Sword Info")]
+    [SerializeField] private SkillTreeSlot_UI spinSwordUnlockButton;
+    public bool spinSwordUnlocked { get; private set; }
     [SerializeField] private float maxTravelDistance;
     [SerializeField] private float spinDuration;
     [SerializeField] private float spinHitCooldown;
     [SerializeField] private float spinSwordGravity;
 
-    [Header("Skill Info")]
-    [SerializeField] private GameObject swordPrefab;
-    [SerializeField] private Vector2 launchSpeed;
-    [SerializeField] private float swordReturnSpeed;
+
+
+    [Header("Passive Skill Info")]
+    [SerializeField] private SkillTreeSlot_UI timeStopUnlockButton;
     [SerializeField] private float enemyFreezeDuration;
-    private float swordGravity;
+    public bool timeStopUnlocked { get; private set; }
+    [SerializeField] private SkillTreeSlot_UI vulnerabilityUnlockButton;
+    [SerializeField] private float enemyVulnerableDuration;
+    public bool vulnerabilityUnlocked { get; private set; }
 
     private Vector2 finalDirection;
 
@@ -56,6 +70,13 @@ public class SwordSkill : Skill
         base.Start();
 
         GenerateDots();
+
+        throwSwordSkillUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockThrowSwordSkill);
+        bounceSwordUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockBounceSword);
+        pierceSwordUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockPierceSword);
+        spinSwordUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockSpinSword);
+        timeStopUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockTimeStop);
+        vulnerabilityUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockVulnerability);
     }
 
     protected override void Update()
@@ -96,12 +117,12 @@ public class SwordSkill : Skill
         {
             newSwordScript.SetupPierceSword(true, pierceAmount);
         }
-        else if(swordType == SwordType.Spin)
+        else if (swordType == SwordType.Spin)
         {
             newSwordScript.SetupSpinSword(true, maxTravelDistance, spinDuration, spinHitCooldown);
         }
 
-        newSwordScript.SetupSword(finalDirection, swordGravity, swordReturnSpeed, enemyFreezeDuration);
+        newSwordScript.SetupSword(finalDirection, swordGravity, swordReturnSpeed, enemyFreezeDuration, enemyVulnerableDuration);
 
         player.AssignNewSword(newSword);
 
@@ -170,5 +191,91 @@ public class SwordSkill : Skill
 
         return position;
     }
+    #endregion
+
+    #region Unlock Skill
+    private void UnlockThrowSwordSkill()
+    {
+        if (throwSwordSkillUnlocked)
+        {
+            return;
+        }
+
+        if (throwSwordSkillUnlockButton.unlocked)
+        {
+            throwSwordSkillUnlocked = true;
+            //sword type is regular by default
+            swordType = SwordType.Regular;
+        }
+    }
+
+    private void UnlockBounceSword()
+    {
+        if (bounceSwordUnlocked)
+        {
+            return;
+        }
+
+        if (bounceSwordUnlockButton.unlocked)
+        {
+            bounceSwordUnlocked = true;
+            swordType = SwordType.Bounce;
+        }
+    }
+
+    private void UnlockPierceSword()
+    {
+        if (pierceSwordUnlocked)
+        {
+            return;
+        }
+
+        if (pierceSwordUnlockButton.unlocked)
+        {
+            pierceSwordUnlocked = true;
+            swordType = SwordType.Pierce;
+        }
+    }
+
+    private void UnlockSpinSword()
+    {
+        if (spinSwordUnlocked)
+        {
+            return;
+        }
+
+        if (spinSwordUnlockButton.unlocked)
+        {
+            spinSwordUnlocked = true;
+            swordType = SwordType.Spin;
+        }
+    }
+
+    private void UnlockTimeStop()
+    {
+        if (timeStopUnlocked)
+        {
+            return;
+        }
+
+        if (timeStopUnlockButton.unlocked)
+        {
+            timeStopUnlocked = true;
+        }
+    }
+
+    private void UnlockVulnerability()
+    {
+        if (vulnerabilityUnlocked)
+        {
+            return;
+        }
+
+        if (vulnerabilityUnlockButton.unlocked)
+        {
+            vulnerabilityUnlocked = true;
+        }
+    }
+
     #endregion
 }

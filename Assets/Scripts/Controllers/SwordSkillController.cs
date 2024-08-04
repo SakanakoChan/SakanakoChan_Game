@@ -13,6 +13,7 @@ public class SwordSkillController : MonoBehaviour
     private float swordReturnSpeed;
 
     private float enemyFreezeDuration;
+    private float enemyVulnerableDuration;
 
     [Header("Bounce Sword Info")]
     private bool isBouncingSword;
@@ -108,7 +109,7 @@ public class SwordSkillController : MonoBehaviour
         }
         else
         {
-            DamageAndFreezeEnemy(collision, enemyFreezeDuration);
+            DamageAndFreezeAndVulnerateEnemy(collision);
         }
 
 
@@ -118,7 +119,7 @@ public class SwordSkillController : MonoBehaviour
     }
 
 
-    private void DamageAndFreezeEnemy(Collider2D collision, float _enemyFreezeDuration)
+    private void DamageAndFreezeAndVulnerateEnemy(Collider2D collision)
     {
         if (collision.GetComponent<Enemy>() != null)
         {
@@ -127,9 +128,18 @@ public class SwordSkillController : MonoBehaviour
             //knock back enemy and do damage
             player.stats.DoDamge(enemy.GetComponent<CharacterStats>());
 
-            //freeze enemy
-            //enemy.StartCoroutine("FreezeEnemyForTime", _enemyFreezeDuration);
-            enemy.FreezeEnemyForTime(_enemyFreezeDuration);
+            //if timestop is unlocked, freeze enemy for a while
+            if (SkillManager.instance.sword.timeStopUnlocked)
+            {
+                enemy.FreezeEnemyForTime(enemyFreezeDuration);
+
+            }
+
+            if (SkillManager.instance.sword.vulnerabilityUnlocked)
+            {
+                //Debug.Log($"Enemy {enemy.gameObject.name} is vulnerable");
+                enemy.stats.BecomeVulnerableForTime(enemyVulnerableDuration);
+            }
 
             //summon charm effect
             Inventory.instance.UseCharmEffect_ConsiderCooldown(enemy.transform);
@@ -187,7 +197,7 @@ public class SwordSkillController : MonoBehaviour
 
             if (Vector2.Distance(transform.position, bounceTargets[bounceTargetIndex].position) < 0.15f)
             {
-                DamageAndFreezeEnemy(bounceTargets[bounceTargetIndex].GetComponent<Collider2D>(), enemyFreezeDuration);
+                DamageAndFreezeAndVulnerateEnemy(bounceTargets[bounceTargetIndex].GetComponent<Collider2D>());
                 bounceTargetIndex++;
                 bounceAmount--;
 
@@ -263,7 +273,7 @@ public class SwordSkillController : MonoBehaviour
                     {
                         if (hit.GetComponent<Enemy>() != null)
                         {
-                            DamageAndFreezeEnemy(hit, enemyFreezeDuration);
+                            DamageAndFreezeAndVulnerateEnemy(hit);
                         }
                     }
                 }
@@ -271,12 +281,13 @@ public class SwordSkillController : MonoBehaviour
         }
     }
 
-    public void SetupSword(Vector2 _launchSpeed, float _swordGravity, float _swordReturnSpeed, float _enemyFreezeDuration)
+    public void SetupSword(Vector2 _launchSpeed, float _swordGravity, float _swordReturnSpeed, float _enemyFreezeDuration, float _enemyVulnerableDuration)
     {
         rb.velocity = _launchSpeed;
         rb.gravityScale = _swordGravity;
         swordReturnSpeed = _swordReturnSpeed;
         enemyFreezeDuration = _enemyFreezeDuration;
+        enemyVulnerableDuration = _enemyVulnerableDuration;
 
         if (!isPierceSword)
         {

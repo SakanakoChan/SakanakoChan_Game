@@ -15545,7 +15545,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 703937494}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &703937494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42301,20 +42313,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   swordType: 0
+  throwSwordSkillUnlockButton: {fileID: 703937496}
+  swordPrefab: {fileID: 6890596882183202840, guid: c51fba828345694459c3b78391fecf59, type: 3}
+  launchSpeed: {x: 30, y: 25}
+  swordReturnSpeed: 25
   regularSwordGravity: 4
+  bounceSwordUnlockButton: {fileID: 521029364}
   bounceAmount: 4
   bounceSwordGravity: 4
   bounceSpeed: 25
+  pierceSwordUnlockButton: {fileID: 416450324}
   pierceAmount: 1
   pierceSwordGravity: 0.5
+  spinSwordUnlockButton: {fileID: 2105235852}
   maxTravelDistance: 10
   spinDuration: 3
   spinHitCooldown: 0.2
   spinSwordGravity: 0.5
-  swordPrefab: {fileID: 6890596882183202840, guid: c51fba828345694459c3b78391fecf59, type: 3}
-  launchSpeed: {x: 30, y: 25}
-  swordReturnSpeed: 25
+  timeStopUnlockButton: {fileID: 630401686}
   enemyFreezeDuration: 1
+  vulnerabilityUnlockButton: {fileID: 42200108}
+  enemyVulnerableDuration: 5
   dotNumber: 20
   spaceBetweenDots: 0.07
   dotPrefab: {fileID: 8851052543190774116, guid: 85ff809178b36d3418edcf1cc4a91a83, type: 3}

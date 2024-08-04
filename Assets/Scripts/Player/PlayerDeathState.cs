@@ -22,6 +22,11 @@ public class PlayerDeathState : PlayerState
     {
         base.Update();
 
+        if (stateMachine.currentState != player.deathState)
+        {
+            return;
+        }
+
         player.SetZeroVelocity();
     }
 }
