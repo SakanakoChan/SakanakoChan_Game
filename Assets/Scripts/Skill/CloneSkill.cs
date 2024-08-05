@@ -72,15 +72,15 @@ public class CloneSkill : Skill
         //**************************************************************************
         if (crystalMirageUnlocked)
         {
-            if (SkillManager.instance.crystal.crystalMirageUnlocked)
-            {
-                SkillManager.instance.crystal.crystalMirageUnlocked = false;
-                Debug.Log("Clone_Mirage in Crystal Skill is DISABLED" +
-                    "\nBecase Replace_Clone_By_Crystal in Clone Skill is ENABLED");
-            }
+            //if (SkillManager.instance.crystal.crystalMirageUnlocked)
+            //{
+            //    SkillManager.instance.crystal.crystalMirageUnlocked = false;
+            //    Debug.Log("Clone_Mirage in Crystal Skill is DISABLED" +
+            //        "\nBecase Replace_Clone_By_Crystal in Clone Skill is ENABLED");
+            //}
 
             //prevent creating multiple crystals
-            SkillManager.instance.crystal.DestroyCurrentCrystal();
+            SkillManager.instance.crystal.DestroyCurrentCrystal_InCrystalMirageOnly();
 
             SkillManager.instance.crystal.CreateCrystal();
             return;

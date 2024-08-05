@@ -65,6 +65,7 @@ public class SwordSkill : Skill
 
     private GameObject[] dots;
 
+
     protected override void Start()
     {
         base.Start();

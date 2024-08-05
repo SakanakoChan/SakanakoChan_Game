@@ -6,8 +6,9 @@ public class Skill : MonoBehaviour
 {
     protected Player player;
 
-    [SerializeField] protected float cooldown;
+    public float cooldown;
     protected float cooldownTimer;
+    public float skillLastUseTime { get; protected set; } = 0;
 
     protected virtual void Start()
     {
@@ -17,6 +18,18 @@ public class Skill : MonoBehaviour
     protected virtual void Update()
     {
         cooldownTimer -= Time.deltaTime;
+    }
+
+    public virtual bool SkillIsReadyToUse()
+    {
+        if (cooldownTimer < 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public virtual bool UseSkillIfAvailable()

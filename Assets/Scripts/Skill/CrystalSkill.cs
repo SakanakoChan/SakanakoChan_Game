@@ -15,9 +15,9 @@ public class CrystalSkill : Skill
     [SerializeField] private SkillTreeSlot_UI crystalUnlockButton;
     public bool crystalUnlocked { get; private set; }
 
-    [Header("Crystal Mirage Unlock Info")]  //spawn clone on original position when teleporting to crystal position
-    [SerializeField] private SkillTreeSlot_UI crystalMirageUnlockButton;
-    public bool crystalMirageUnlocked { get; set; }
+    [Header("Mirage Blink Unlock Info")]  //spawn clone on original position when teleporting to crystal position
+    [SerializeField] private SkillTreeSlot_UI mirageBlinkUnlockButton;
+    public bool mirageBlinkUnlocked { get; private set; }
 
     [Header("Explosive Crystal Unlock Info")]
     [SerializeField] private SkillTreeSlot_UI explosiveCrystalUnlockButton;
@@ -32,12 +32,12 @@ public class CrystalSkill : Skill
     [SerializeField] private SkillTreeSlot_UI crystalGunUnlockButton;
     public bool crystalGunUnlocked { get; private set; }
     [SerializeField] private int magSize;
-    [SerializeField] private float shootCooldown;
+    [SerializeField] private float shootCooldown;  //represents crystal gun's fire rate
     [SerializeField] private float reloadTime;
     [SerializeField] private float shootWindow;
     private float shootWindowTimer;
     [SerializeField] private List<GameObject> crystalMag = new List<GameObject>();
-
+    private bool reloading = false;
 
 
     protected override void Start()
@@ -45,7 +45,7 @@ public class CrystalSkill : Skill
         base.Start();
 
         crystalUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockCrystal);
-        crystalMirageUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockCrystalMirage);
+        mirageBlinkUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockCrystalMirage);
         explosiveCrystalUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockExplosiveCrystal);
         movingCrystalUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockMovingCrystal);
         crystalGunUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockCrystalGun);
@@ -60,9 +60,31 @@ public class CrystalSkill : Skill
         //if haven't shoot all the ammo in the mag for a while
         //auto reload the mag
         //shootWindowTimer = shootWindow; in ShootCrystalGunIfAvailable()
-        if (shootWindowTimer < 0 && crystalMag.Count > 0)
+        //add !reloading to prevent calling coroutine multiple times
+        //when using invoke in the past, the invoke is gonna get called lots of times
+        //because there's gonna be much time in the shootWindowTimer <= 0 && 0 < ammo < magsize state
+        if (shootWindowTimer <= 0 && crystalMag.Count > 0 && crystalMag.Count < magSize && !reloading)
         {
             ReloadCrystalMag();
+        }
+    }
+
+    public override bool UseSkillIfAvailable()
+    {
+        if (crystalGunUnlocked)
+        {
+            UseSkill();
+            return true;
+        }
+        else
+        {
+            if (cooldownTimer < 0)
+            {
+                UseSkill();
+                return true;
+            }
+
+            return false;
         }
     }
 
@@ -71,8 +93,14 @@ public class CrystalSkill : Skill
         base.UseSkill();
 
         //if in crystal gun mode, disabling all single crystal functions
-        if (ShootCrystalGunIfAvailable())
+        if (crystalGunUnlocked)
         {
+            if (ShootCrystalGunIfAvailable())
+            {
+                //update the crystal skill UI Icon in skill panel
+                EnterCooldown();
+                return;
+            }
             return;
         }
 
@@ -91,13 +119,14 @@ public class CrystalSkill : Skill
             }
 
             //spawn clone then teleport
-            //****************************************************************
-            //***Cannot enable this when Replace Clone By Crystal is enable***
-            //****************************************************************
-            if (crystalMirageUnlocked)
+            //*****************************************************************
+            //***Cannot enable this when Replace Clone By Crystal is enabled***
+            //*****************************************************************
+            if (mirageBlinkUnlocked)
             {
                 SkillManager.instance.clone.CreateClone(player.transform.position);
-                Destroy(currentCrystal);
+                //Destroy(currentCrystal);
+                currentCrystal.GetComponent<CrystalSkillController>()?.crystalSelfDestroy();
             }
 
             //player teleport to the crystal's position
@@ -106,6 +135,8 @@ public class CrystalSkill : Skill
             currentCrystal.transform.position = playerPosition;
 
             currentCrystal.GetComponent<CrystalSkillController>()?.EndCrystal_ExplodeIfAvailable();
+
+            EnterCooldown();
         }
     }
 
@@ -120,6 +151,32 @@ public class CrystalSkill : Skill
 
     private void ReloadCrystalMag()
     {
+        if (reloading)
+        {
+            return;
+        }
+
+        StartCoroutine(ReloadCrystalMag_Coroutine());
+    }
+
+    private IEnumerator ReloadCrystalMag_Coroutine()
+    {
+        reloading = true;
+        EnterCooldown();
+
+        yield return new WaitForSeconds(reloadTime);
+
+        Reload();
+        reloading = false;
+    }
+
+    private void Reload()
+    {
+        if (!reloading)
+        {
+            return;
+        }
+
         int ammoToAdd = magSize - crystalMag.Count;
 
         for (int i = 0; i < ammoToAdd; i++)
@@ -130,7 +187,7 @@ public class CrystalSkill : Skill
 
     private bool ShootCrystalGunIfAvailable()
     {
-        if (crystalGunUnlocked)
+        if (crystalGunUnlocked && !reloading)
         {
             if (crystalMag.Count > 0)
             {
@@ -145,10 +202,9 @@ public class CrystalSkill : Skill
 
                 shootWindowTimer = shootWindow;
 
-
                 if (crystalMag.Count <= 0)
                 {
-                    Invoke("ReloadCrystalMag", reloadTime);
+                    ReloadCrystalMag();
                 }
             }
 
@@ -158,7 +214,7 @@ public class CrystalSkill : Skill
         return false;
     }
 
-    public void DestroyCurrentCrystal()
+    public void DestroyCurrentCrystal_InCrystalMirageOnly()
     {
         if (currentCrystal != null)
         {
@@ -172,6 +228,46 @@ public class CrystalSkill : Skill
         {
             currentCrystal.GetComponent<CrystalSkillController>()?.SpecifyEnemyTarget(_enemy);
         }
+    }
+
+    public void EnterCooldown()
+    {
+        if (cooldownTimer < 0 && !crystalGunUnlocked)
+        {
+            InGame_UI.instance.SetCrystalCooldownImage();
+            cooldownTimer = cooldown;
+        }
+        else if (cooldownTimer < 0 && crystalGunUnlocked)
+        {
+            InGame_UI.instance.SetCrystalCooldownImage();
+            cooldownTimer = GetCrystalCooldown();
+        }
+
+        skillLastUseTime = Time.time;
+    }
+
+    public float GetCrystalCooldown()
+    {
+        //if crystal gun is not unlocked, cooldown should be the default cooldown
+        float crystalCooldown = cooldown;
+
+        //if crystal gun is unlocked
+        if (crystalGunUnlocked)
+        {
+            if (shootWindowTimer > 0)
+            {
+                //when shootable, cooldown should be the fire interval
+                crystalCooldown = shootCooldown;
+            }
+
+            if (reloading)
+            {
+                //when reloading, cooldown should be the crystal gun reload time
+                crystalCooldown = reloadTime;
+            }
+        }
+
+        return crystalCooldown;
     }
 
     //public Transform GetCurrentCrystalTransform()
@@ -204,14 +300,14 @@ public class CrystalSkill : Skill
 
     private void UnlockCrystalMirage()
     {
-        if (crystalMirageUnlocked)
+        if (mirageBlinkUnlocked)
         {
             return;
         }
 
-        if (crystalMirageUnlockButton.unlocked)
+        if (mirageBlinkUnlockButton.unlocked)
         {
-            crystalMirageUnlocked = true;
+            mirageBlinkUnlocked = true;
         }
     }
 
@@ -243,7 +339,7 @@ public class CrystalSkill : Skill
 
     private void UnlockCrystalGun()
     {
-        if(crystalGunUnlocked)
+        if (crystalGunUnlocked)
         {
             return;
         }

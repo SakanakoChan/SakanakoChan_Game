@@ -29,12 +29,13 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.primaryAttackState);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && player.skill.parry.parryUnlocked)
+        if (Input.GetKeyDown(KeyCode.Q) && player.skill.parry.parryUnlocked && player.skill.parry.SkillIsReadyToUse())
         {
-            stateMachine.ChangeState(player.counterAttackState);
+            //stateMachine.ChangeState(player.counterAttackState);
+            SkillManager.instance.parry.UseSkillIfAvailable();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && player.skill.blackholeSkill.blackholeUnlocked)
+        if (Input.GetKeyDown(KeyCode.R) && player.skill.blackholeSkill.blackholeUnlocked && player.skill.blackholeSkill.SkillIsReadyToUse())
         {
             stateMachine.ChangeState(player.blackholeSkillState);
         }

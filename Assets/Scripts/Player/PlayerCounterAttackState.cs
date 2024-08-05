@@ -31,7 +31,7 @@ public class PlayerCounterAttackState : PlayerState
     {
         base.Update();
 
-        if (stateMachine.currentState != player.catchSwordState)
+        if (stateMachine.currentState != this)
         {
             return;
         }

@@ -18,6 +18,13 @@ public class CrystalSkillController : MonoBehaviour
 
     private Transform targetEnemy;
 
+    private CrystalSkill crystalSkill;
+
+    private void Start()
+    {
+        crystalSkill = SkillManager.instance.crystal;
+    }
+
     private void Update()
     {
         crystalExistenceTimer -= Time.deltaTime;
@@ -69,6 +76,11 @@ public class CrystalSkillController : MonoBehaviour
         {
             canGrow = true;
             anim.SetTrigger("Explosion");
+
+            if (!crystalSkill.crystalGunUnlocked)
+            {
+                crystalSkill.EnterCooldown();
+            }
         }
         else
         {
@@ -79,6 +91,11 @@ public class CrystalSkillController : MonoBehaviour
     public void crystalSelfDestroy()
     {
         Destroy(gameObject);
+
+        if (!crystalSkill.crystalGunUnlocked)
+        {
+            crystalSkill.EnterCooldown();
+        }
     }
 
     private void Explosion()

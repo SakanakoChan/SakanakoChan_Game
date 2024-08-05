@@ -186,6 +186,11 @@ public class Inventory : MonoBehaviour
         //equipped equipment will be removed from inventory
         RemoveItem(_newEquipmentToEquip);
         //UpdateInventoryAndStashUI();
+
+        if (_newEquipmentToEquip.equipmentType == EquipmentType.Flask)
+        {
+            Flask_UI.instance.SetFlaskImage(_newEquipmentToEquip);
+        }
     }
 
     //Unequip here will not add the equipment back to inventory

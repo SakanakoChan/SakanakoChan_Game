@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject skillTree_UI;
     [SerializeField] private GameObject craft_UI;
     [SerializeField] private GameObject options_UI;
+    [SerializeField] private GameObject ingame_UI;
 
     public SkillToolTip_UI skillToolTip;
     public ItemToolTip_UI itemToolTip;
@@ -22,27 +24,27 @@ public class UI : MonoBehaviour
 
     private void Awake()
     {
-        //need this 
+        //need this
         //or put UnlockSkill() in IPointerDownHandler in SkllTreeSlot_UI
         //to make sure the event listener order in skill tree ui is in correct order
         //skillTree_UI.SetActive(true);
 
-    //if(instance != null)
-    //{
-    //    Destroy(instance);
-    //}
-    //else
-    //{
-    //    instance = this;
-    //}
+        //if (instance != null)
+        //{
+        //    Destroy(instance);
+        //}
+        //else
+        //{
+        //    instance = this;
+        //}
 
-    //itemToolTip = GetComponentInChildren<ItemToolTip_UI>();
+        //itemToolTip = GetComponentInChildren<ItemToolTip_UI>();
     }
 
     private void Start()
     {
-        //No menu is open in the beginning of game
-        SwitchToMenu(null);
+        //No menu except ingame_UI is open in the beginning of game
+        SwitchToMenu(ingame_UI);
         itemToolTip.gameObject.SetActive(false);
         statToolTip.gameObject.SetActive(false);
         skillToolTip.gameObject.SetActive(false);
@@ -68,14 +70,14 @@ public class UI : MonoBehaviour
             OpenMenuByKeyBoard(skillTree_UI);
         }
 
-        //If there's already a UI open currently
-        //Esc will close the UI
+        //If there's already a non-ingameUI open currently
+        //Esc will close the UI and open ingame UI
         //else, Esc will open Options UI
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(currentUI != null)
+            if (currentUI != ingame_UI)
             {
-                SwitchToMenu(null);
+                SwitchToMenu(ingame_UI);
             }
             else
             {
@@ -99,18 +101,18 @@ public class UI : MonoBehaviour
             _menu.SetActive(true);
             currentUI = _menu;
         }
-
     }
 
     public void OpenMenuByKeyBoard(GameObject _menu)
     {
         //same as if(_menu != null && _menu.active == true)
         //activeSelf returns the active state of gameobject
-        //Here means if re-entering (double press the same UI key) the same menu which is already open, then close the menu UI
+        //Here means if re-entering (double press the same UI key) the same menu which is already open, then close the menu UI and open ingame UI
         if (_menu != null && _menu.activeSelf)
         {
-            _menu.SetActive(false);
-            currentUI = null;
+            //_menu.SetActive(false);
+            //currentUI = null;
+            SwitchToMenu(ingame_UI);
         }
         else if (_menu != null && !_menu.activeSelf)  //if the menu to switch is not open, then switch to that menu
         {

@@ -7,17 +7,17 @@ public class ParrySkill : Skill
 {
     [Header("Parry Unlock Info")]
     [SerializeField] private SkillTreeSlot_UI parryUnlockButton;
-    public bool parryUnlocked;
+    public bool parryUnlocked {  get; private set; }
 
     [Header("Parry Recover HP/FP Unlock Info")]
     [SerializeField] private SkillTreeSlot_UI parryRecoverUnlockButton;
-    public bool parryRecoverUnlocked;
+    public bool parryRecoverUnlocked { get; private set; }
     [Range(0f, 1f)]
     [SerializeField] private float recoverPercentage;
 
     [Header("Parry With Mirage Unlock Info")]
     [SerializeField] private SkillTreeSlot_UI parryWithMirageUnlockButton;
-    public bool parryWithMirageUnlocked;
+    public bool parryWithMirageUnlocked { get; private set; }
 
     protected override void Start()
     {
@@ -26,6 +26,11 @@ public class ParrySkill : Skill
         parryUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockParry);
         parryRecoverUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockParryRecover);
         parryWithMirageUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockParryWithMirage);
+    }
+
+    public override void UseSkill()
+    {
+        player.stateMachine.ChangeState(player.counterAttackState);
     }
 
     public override bool UseSkillIfAvailable()
