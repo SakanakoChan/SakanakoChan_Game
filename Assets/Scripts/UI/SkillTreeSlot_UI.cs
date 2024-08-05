@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     [SerializeField] private string skillName;
     [SerializeField] private int skillPrice;
@@ -30,7 +30,7 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         skillImage = GetComponent<Image>();
         ui = GetComponentInParent<UI>();
-        GetComponent<Button>().onClick.AddListener(() => UnlockSkill());
+        //GetComponent<Button>().onClick.AddListener(() => UnlockSkill());
     }
 
     private void Start()
@@ -86,5 +86,10 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerExit(PointerEventData eventData)
     {
         ui.skillToolTip.HideToolTip();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        UnlockSkill();
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class PlayerStats : CharacterStats
@@ -33,7 +34,7 @@ public class PlayerStats : CharacterStats
 
         ItemData_Equipment currentArmor = Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Armor);
 
-        if(currentArmor != null)
+        if (currentArmor != null)
         {
             //currentArmor.ExecuteItemEffect(player.transform);
             Inventory.instance.UseArmorEffect_ConsiderCooldown(player.transform);
@@ -44,5 +45,30 @@ public class PlayerStats : CharacterStats
     {
         Debug.Log("Player evaded attack and created clone!");
         player.skill.dodge.CreateMirageOnDodge();
+    }
+
+    public void CloneDoDamage(CharacterStats _targetStats, float _cloneAttackDamageMultipler)
+    {
+        if (TargetCanEvadeThisAttack(_targetStats))
+        {
+            return;
+        }
+
+        int _totalDamage = damage.GetValue() + strength.GetValue();
+
+        if (CanCrit())
+        {
+            Debug.Log("Critical Attack!");
+            _totalDamage = CalculatCritDamage(_totalDamage);
+        }
+
+        //clone attack damage should be less than player's damage
+        if (_cloneAttackDamageMultipler > 0)
+        {
+            _totalDamage = Mathf.RoundToInt(_totalDamage * _cloneAttackDamageMultipler);
+        }
+
+        _totalDamage = CheckTargetArmor(_targetStats, _totalDamage);
+        _targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform);
     }
 }

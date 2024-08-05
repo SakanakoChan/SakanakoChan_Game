@@ -22,6 +22,7 @@ public class CloneSkillController : MonoBehaviour
     private bool cloneFacingRight = true;
     private float cloneFacingDirection = 1;
 
+    private float cloneAttackDamageMultiplier;
 
     private void Awake()
     {
@@ -45,7 +46,7 @@ public class CloneSkillController : MonoBehaviour
 
     }
 
-    public void SetupClone(float _cloneDuration, float _colorLosingSpeed, bool _canAttack, Transform _closestEnemy, bool _canDuplicateClone, float _duplicatePossibility)
+    public void SetupClone(float _cloneDuration, float _colorLosingSpeed, bool _canAttack, Transform _closestEnemy, bool _canDuplicateClone, float _duplicatePossibility, float _cloneAttackDamageMultiplier)
     {
         if (_canAttack)
         {
@@ -63,6 +64,8 @@ public class CloneSkillController : MonoBehaviour
 
         canDuplicateClone = _canDuplicateClone;
         duplicatePossibility = _duplicatePossibility;
+
+        cloneAttackDamageMultiplier = _cloneAttackDamageMultiplier;
     }
 
     private void AnimationTrigger()
@@ -72,6 +75,12 @@ public class CloneSkillController : MonoBehaviour
 
     private void AttackTrigger()
     {
+        //if aggressive mirage is learned, clone attack will also apply on-hit effect
+        if (SkillManager.instance.clone.aggressiveCloneCanApplyOnHitEffect)
+        {
+            Inventory.instance.ReleaseSwordArcane_ConsiderCooldown();
+        }
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(attackCheck.position, attackCheckRadius);
 
         foreach (var hit in colliders)
@@ -82,7 +91,20 @@ public class CloneSkillController : MonoBehaviour
 
                 //enemy.DamageEffect(transform, enemy.transform);
 
-                PlayerManager.instance.player.stats.DoDamge(enemy.GetComponent<CharacterStats>());
+                //PlayerManager.instance.player.stats.DoDamge(enemy.GetComponent<CharacterStats>());
+                PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+
+                //clone damage should be less than player damage
+                if(playerStats != null)
+                {
+                    playerStats.CloneDoDamage(enemy.GetComponent<CharacterStats>(), cloneAttackDamageMultiplier);
+                }
+
+                //if aggressive mirage is learned, clone attack will also apply on-hit effect
+                if (SkillManager.instance.clone.aggressiveCloneCanApplyOnHitEffect)
+                {
+                    Inventory.instance.UseSwordEffect_ConsiderCooldown(enemy.transform); ;
+                }
 
                 if (canDuplicateClone)
                 {

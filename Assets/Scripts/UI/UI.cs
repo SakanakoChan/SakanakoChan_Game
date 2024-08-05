@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class UI : MonoBehaviour
@@ -21,16 +22,21 @@ public class UI : MonoBehaviour
 
     private void Awake()
     {
-        //if(instance != null)
-        //{
-        //    Destroy(instance);
-        //}
-        //else
-        //{
-        //    instance = this;
-        //}
+        //need this 
+        //or put UnlockSkill() in IPointerDownHandler in SkllTreeSlot_UI
+        //to make sure the event listener order in skill tree ui is in correct order
+        //skillTree_UI.SetActive(true);
 
-        //itemToolTip = GetComponentInChildren<ItemToolTip_UI>();
+    //if(instance != null)
+    //{
+    //    Destroy(instance);
+    //}
+    //else
+    //{
+    //    instance = this;
+    //}
+
+    //itemToolTip = GetComponentInChildren<ItemToolTip_UI>();
     }
 
     private void Start()

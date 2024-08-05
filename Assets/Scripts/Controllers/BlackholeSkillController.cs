@@ -120,7 +120,7 @@ public class BlackholeSkillController : MonoBehaviour
 
         //player won't be transparent
         //if Replace Clone By Crystal is enabled in Clone Skill
-        if (SkillManager.instance.clone.replaceCloneByCrystal)
+        if (SkillManager.instance.clone.crystalMirageUnlocked)
         {
             playerIsTransparent = true;
         }
@@ -162,7 +162,7 @@ public class BlackholeSkillController : MonoBehaviour
 
             //if Replace Clone By Crystal is enabled in Clone Skill
             //Create Crystal instead of Clone
-            if (SkillManager.instance.clone.replaceCloneByCrystal)
+            if (SkillManager.instance.clone.crystalMirageUnlocked)
             {
                 SkillManager.instance.crystal.CreateCrystal();
 

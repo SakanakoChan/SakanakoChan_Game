@@ -401,7 +401,7 @@ public class CharacterStats : MonoBehaviour
     #endregion
 
     #region HP and Damage Calculation - Armor, Crit, Magic Resistance, Evasion
-    private int CheckTargetArmor(CharacterStats _targetStats, int _totalDamage)
+    protected int CheckTargetArmor(CharacterStats _targetStats, int _totalDamage)
     {
         //chill effect: reduce armor by 20%
         if (_targetStats.isChilled)
@@ -427,7 +427,7 @@ public class CharacterStats : MonoBehaviour
         return _totalMagicDamage;
     }
 
-    private bool TargetCanEvadeThisAttack(CharacterStats _targetStats)
+    protected bool TargetCanEvadeThisAttack(CharacterStats _targetStats)
     {
         int _totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
 
@@ -446,7 +446,7 @@ public class CharacterStats : MonoBehaviour
         return false;
     }
 
-    private bool CanCrit()
+    protected bool CanCrit()
     {
         int _totalCritChance = critChance.GetValue() + agility.GetValue();
 
@@ -458,7 +458,7 @@ public class CharacterStats : MonoBehaviour
         return false;
     }
 
-    private int CalculatCritDamage(int _damage)
+    protected int CalculatCritDamage(int _damage)
     {
         float _totalCritPower = (critPower.GetValue() + strength.GetValue()) * 0.01f;
 
