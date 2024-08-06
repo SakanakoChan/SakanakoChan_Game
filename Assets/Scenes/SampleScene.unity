@@ -35461,6 +35461,7 @@ GameObject:
   - component: {fileID: 1206005502}
   - component: {fileID: 1206005504}
   - component: {fileID: 1206005505}
+  - component: {fileID: 1206005506}
   m_Layer: 5
   m_Name: SkillToolTip
   m_TagString: Untagged
@@ -35567,6 +35568,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: {fileID: 488432355}
   skillDescription: {fileID: 1824181614}
+--- !u!225 &1206005506
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206005500}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1212526457
 GameObject:
   m_ObjectHideFlags: 0
@@ -44735,6 +44748,7 @@ GameObject:
   - component: {fileID: 1914261869}
   - component: {fileID: 1914261868}
   - component: {fileID: 1914261867}
+  - component: {fileID: 1914261870}
   m_Layer: 5
   m_Name: Item_ToolTip
   m_TagString: Untagged
@@ -44858,6 +44872,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &1914261870
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914261863}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1915728304
 GameObject:
   m_ObjectHideFlags: 0
@@ -48083,6 +48109,7 @@ GameObject:
   - component: {fileID: 2097983695}
   - component: {fileID: 2097983694}
   - component: {fileID: 2097983696}
+  - component: {fileID: 2097983697}
   m_Layer: 5
   m_Name: Stat_ToolTip
   m_TagString: Untagged
@@ -48161,6 +48188,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statDescription: {fileID: 1154033406}
+--- !u!225 &2097983697
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097983692}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2102127655
 GameObject:
   m_ObjectHideFlags: 0
