@@ -80,7 +80,7 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
         Vector2 offset = ui.SetupToolTipPositionOffsetAccordingToUISlotPosition(transform, 0.15f, 0.15f, 0.15f, 0.15f);
 
         ui.skillToolTip.transform.position = new Vector2(transform.position.x + offset.x, transform.position.y + offset.y);
-        ui.skillToolTip.ShowToolTip(skillName, skillDescription);
+        ui.skillToolTip.ShowToolTip(skillName, skillDescription, skillPrice.ToString());
     }
 
     public void OnPointerExit(PointerEventData eventData)
