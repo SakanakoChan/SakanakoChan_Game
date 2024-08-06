@@ -56,7 +56,14 @@ public class InGame_UI : MonoBehaviour
 
     private void Update()
     {
-        currentCurrency.text = PlayerManager.instance.GetCurrentCurrency().ToString("#,#");
+        if (PlayerManager.instance.GetCurrentCurrency() == 0)
+        {
+            currentCurrency.text = PlayerManager.instance.GetCurrentCurrency().ToString();
+        }
+        else
+        {
+            currentCurrency.text = PlayerManager.instance.GetCurrentCurrency().ToString("#,#");
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && skill.dash.dashUnlocked)
         {
