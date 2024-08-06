@@ -270,6 +270,26 @@ public class CrystalSkill : Skill
         return crystalCooldown;
     }
 
+    public override bool SkillIsReadyToUse()
+    {
+        if (crystalGunUnlocked)
+        {
+            if (!reloading)
+            {
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+            if (cooldownTimer < 0)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+
     //public Transform GetCurrentCrystalTransform()
     //{
     //    return currentCrystal?.transform;

@@ -80,9 +80,12 @@ public class CloneSkill : Skill
             //}
 
             //prevent creating multiple crystals
-            SkillManager.instance.crystal.DestroyCurrentCrystal_InCrystalMirageOnly();
+            //SkillManager.instance.crystal.DestroyCurrentCrystal_InCrystalMirageOnly();
 
-            SkillManager.instance.crystal.CreateCrystal();
+            if (SkillManager.instance.crystal.SkillIsReadyToUse())
+            {
+                SkillManager.instance.crystal.UseSkillIfAvailable();
+            }
             return;
         }
 
@@ -119,6 +122,7 @@ public class CloneSkill : Skill
 
         CreateClone(_position);
     }
+
 
     #region Unlock Skill
     private void UnlockMirageAttack()
