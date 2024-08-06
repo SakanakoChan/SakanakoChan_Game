@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259722201df052245834f12c28a2cce9, type: 3}
+  m_Name: Sword_with_super_long_name
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Sword with super long name
+  icon: {fileID: 1071341138, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 0
+  equipmentType: 0
+  itemCooldown: 0
+  itemEffects: []
+  itemEffectDescription: Dont' you feel this sword has a super long name? Also is
+    this description?
+  strength: 5
+  agility: 5
+  intelligence: 5
+  vitaliy: 5
+  maxHP: 5
+  armor: 5
+  evasion: 5
+  magicResistance: 5
+  damage: 5
+  critChance: 5
+  critPower: 5
+  fireDamage: 5
+  iceDamage: 5
+  lightningDamage: 5
+  requiredCraftMaterials: []
