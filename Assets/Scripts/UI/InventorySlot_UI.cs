@@ -87,9 +87,9 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
         //item tooltip should be above the item
         if (transform.position.y <= Screen.height * 0.5)
         {
-            if (equipment.itemEffectDescription.Length >= 50)
+            if (equipment.GetItemStatInfoAndEffectDescription().Length >= 50)
             {
-                yOffset = Screen.height * 0.35f;
+                yOffset = Screen.height * 0.35f + (equipment.GetItemStatInfoAndEffectDescription().Length - 50) * Screen.height * 0.001f;
             }
             else
             {
@@ -100,6 +100,7 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
         {
             yOffset = Screen.height * 0.05f;
         }
+
 
         ui.itemToolTip.transform.position = new Vector2(transform.position.x - Screen.width * 0.13f, transform.position.y + yOffset);
 
