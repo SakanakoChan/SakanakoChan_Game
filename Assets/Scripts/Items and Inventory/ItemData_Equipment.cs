@@ -23,8 +23,6 @@ public class ItemData_Equipment : ItemData
     public bool itemUsed { get; set; }
     public float itemLastUseTime { get; set; }
     public ItemEffect[] itemEffects;
-    [TextArea]
-    public string itemEffectDescription;
 
     [Header("Major Stats")]
     public int strength;  //damage + 1; crit_power + 1%
@@ -194,6 +192,26 @@ public class ItemData_Equipment : ItemData
         AddItemStatInfo(iceDamage, "Ice Dmg");
         AddItemStatInfo(lightningDamage, "Lightning Dmg");
 
+        if (itemEffects.Length > 0 && statInfoLength > 0)
+        {
+            if (itemEffects[0].effectDescription.Length > 0)
+            {
+                //add space between stat info and effect description;
+                sb.AppendLine();
+            }
+        }
+
+        for (int i = 0; i < itemEffects.Length; i++)
+        {
+            if (itemEffects[i].effectDescription.Length > 0)
+            {
+                sb.AppendLine();
+                sb.Append($"[unique effect]\n{itemEffects[i].effectDescription}\n");
+                statInfoLength++;
+            }
+        }
+
+
         if (statInfoLength < minStatInfoLength)
         {
             int _numberOfLinesToApped = minStatInfoLength - statInfoLength;
@@ -210,12 +228,6 @@ public class ItemData_Equipment : ItemData
                 sb.AppendLine();
                 sb.Append("");
             }
-        }
-
-        if (itemEffectDescription.Length > 0)
-        {
-            sb.AppendLine();
-            sb.Append(itemEffectDescription);
         }
 
         return sb.ToString();

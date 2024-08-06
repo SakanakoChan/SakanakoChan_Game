@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921af68b9c189fb4c82feb062c38e617, type: 3}
   m_Name: Ice_and_Fire_Effect
   m_EditorClassIdentifier: 
+  effectDescription: Generate sword arcane which will fly ahead when releasing 3rd
+    primary attack
   iceAndFirePrefab: {fileID: 7368648869767965227, guid: 00874dd3e79d6834c9255057260b8b34, type: 3}
   xFlyVelocity: 15

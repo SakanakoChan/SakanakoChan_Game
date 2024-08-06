@@ -12,6 +12,9 @@ public class ItemEffect : ScriptableObject
     //4. when player uses items (e.g. flask) - in Player.Update()
     //5. when player's magic hits enemies (e.g. Charm of God will add effects to crystal) - in CrystalSkillController.Explosion()
 
+    [TextArea]
+    public string effectDescription;
+
     public virtual void ExecuteEffect(Transform _spawnTransform)
     {
         //Debug.Log("Effect Executed");

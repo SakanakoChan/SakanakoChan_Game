@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557cf0b1e9bd51d4295e53082d3c6527, type: 3}
   m_Name: Sword_ThunderStrike
   m_EditorClassIdentifier: 
+  effectDescription: Generate thunder strike on enemy when hitting enemy
   thunderStrikePrefab: {fileID: 5754322213184844534, guid: c918aad9738ee0844991a57108974ae8, type: 3}
