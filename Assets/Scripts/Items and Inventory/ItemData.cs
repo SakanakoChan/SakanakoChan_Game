@@ -1,4 +1,5 @@
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 public enum ItemType
@@ -13,11 +14,20 @@ public class ItemData : ScriptableObject
     public ItemType itemType;
     public string itemName;
     public Sprite icon;
+    public string itemID;
 
     [Range(0, 100)]
     public float dropChance;
 
     protected StringBuilder sb = new StringBuilder();
+
+    private void OnValidate()
+    {
+        #if UNITY_EDITOR  //meaning the code inside this # (macro) will only be executed in unity editor, and won't be compiled when building the game
+        string path = AssetDatabase.GetAssetPath(this);
+        itemID = AssetDatabase.AssetPathToGUID(path);  //GUID means global unique identifier for the asset
+        #endif
+    }
 
     public virtual string GetItemStatInfoAndEffectDescription()
     {

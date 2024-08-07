@@ -24,7 +24,7 @@ public class FileDataHandler
         {
             //create file directory to store the save file
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
-            //parse the savedata to json
+            //parse the savedata to json, true means the json file will be formatted and easier to read
             string dataToStore = JsonUtility.ToJson(_data, true);
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
@@ -60,6 +60,7 @@ public class FileDataHandler
                     }
                 }
 
+                //read json from the save file to gamedata
                 loadData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
             catch(Exception e)

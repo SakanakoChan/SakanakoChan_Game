@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ExceptionServices;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, ISaveManager
 {
     public static Inventory instance;
 
@@ -38,6 +39,9 @@ public class Inventory : MonoBehaviour
     //private float flaskLastUseTime;
     //private bool flaskUsed = false;
 
+
+    [Header("Item Data Base")]
+    public List<InventorySlot> loadedInventorySlots;
 
     private void Awake()
     {
@@ -73,6 +77,19 @@ public class Inventory : MonoBehaviour
 
     private void AddStartItems()
     {
+        if (loadedInventorySlots.Count > 0)
+        {
+            foreach (var slot in loadedInventorySlots)
+            {
+                for (int i = 0; i < slot.stackSize; i++)
+                {
+                    AddItem(slot.item);
+                }
+            }
+
+            return;
+        }
+
         for (int i = 0; i < startItems.Count; i++)
         {
             if (startItems[i] != null)
@@ -208,7 +225,7 @@ public class Inventory : MonoBehaviour
     {
         if (inventorySlotList.Count >= inventorySlotUI.Length)
         {
-            //Debug.Log("No more space in inventory");
+            Debug.Log("No more space in inventory");
             return false;
         }
 
@@ -446,5 +463,58 @@ public class Inventory : MonoBehaviour
             var equipment = search.Key as ItemData_Equipment;
             equipment.RefreshUseState();
         }
+    }
+
+    public void LoadData(GameData _data)
+    {
+        //inventory<itemID, stackSize>
+        foreach (var pair in _data.inventory)
+        {
+            //ItemData item
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && item.itemID == pair.Key)
+                {
+                    InventorySlot slotToLoad = new InventorySlot(item);
+                    slotToLoad.stackSize = pair.Value;
+
+                    loadedInventorySlots.Add(slotToLoad);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.inventory.Clear();
+
+        foreach (KeyValuePair<ItemData, InventorySlot> search in inventorySlotDictionary)
+        {
+            _data.inventory.Add(search.Key.itemID, search.Value.stackSize);
+        }
+    }
+
+    private List<ItemData> GetItemDataBase()
+    {
+        List<ItemData> itemDataBase = new List<ItemData>();
+
+        //find all the asset names in the specified path
+        //here, new string[] {...} is same as new[] {...}, 
+        //the latter is the Inplicit (unvisiable) type convert,
+        //will judge the array type according to its content
+        string[] assetNames = AssetDatabase.FindAssets("", new string[] { "Assets/ItemData/Equipment" });
+
+        //SO means scriptable object
+        foreach (string SOName in assetNames)
+        {
+            //get path to the item
+            var SOPath = AssetDatabase.GUIDToAssetPath(SOName);
+            //load the item in this path
+            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOPath);
+            //add this item to itemDataBase
+            itemDataBase.Add(itemData);
+        }
+
+        return itemDataBase;
     }
 }

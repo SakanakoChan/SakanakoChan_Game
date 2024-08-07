@@ -84,3 +84,4 @@ public class SaveManager : MonoBehaviour
         return new List<ISaveManager>(saveManagers); 
     }
 }
+
