@@ -211,24 +211,31 @@ public class ItemData_Equipment : ItemData
             }
         }
 
+        sb.Remove(sb.Length - 1, 1);
 
-        if (statInfoLength < minStatInfoLength)
-        {
-            int _numberOfLinesToApped = minStatInfoLength - statInfoLength;
-            //StringBuilder.Append() will auto add a line
-            //if the String is empty
-            //so here make numberOfLinesToAppend-- to prevent adding an extra line
-            if (statInfoLength == 0)
-            {
-                _numberOfLinesToApped--;
-            }
 
-            for (int i = 0; i < _numberOfLinesToApped; i++)
-            {
-                sb.AppendLine();
-                sb.Append("");
-            }
-        }
+        //if (statInfoLength < minStatInfoLength)
+        //{
+        //    int _numberOfLinesToApped = minStatInfoLength - statInfoLength;
+        //    //StringBuilder.Append() will auto add a line
+        //    //if the String is empty
+        //    //so here make numberOfLinesToAppend-- to prevent adding an extra line
+        //    if (statInfoLength == 0)
+        //    {
+        //        _numberOfLinesToApped--;
+        //    }
+
+        //    for (int i = 0; i < _numberOfLinesToApped; i++)
+        //    {
+        //        sb.AppendLine();
+        //        sb.Append("");
+        //    }
+        //}
+
+        sb.AppendLine();
+        sb.Append("");
+        sb.AppendLine();
+        sb.Append("");
 
         return sb.ToString();
     }
