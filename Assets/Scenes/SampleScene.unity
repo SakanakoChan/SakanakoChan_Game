@@ -5906,6 +5906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: save.savedata
+  encryptData: 1
 --- !u!4 &101488831
 Transform:
   m_ObjectHideFlags: 0
@@ -24974,6 +24975,7 @@ MonoBehaviour:
   referenceEquippedEquipments: {fileID: 785476263}
   referenceStatPanel: {fileID: 1733685469}
   loadedInventorySlots: []
+  loadedEquippedEquipment: []
 --- !u!4 &1115119093
 Transform:
   m_ObjectHideFlags: 0
