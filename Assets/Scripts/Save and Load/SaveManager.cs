@@ -83,5 +83,12 @@ public class SaveManager : MonoBehaviour
         //new List<ISaveManager>() here is just a constructor
         return new List<ISaveManager>(saveManagers); 
     }
+
+    [ContextMenu("Delete save file")]
+    private void DeleteSavedData()
+    {
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        dataHandler.DeleteSave();
+    }
 }
 
