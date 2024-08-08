@@ -194,6 +194,17 @@ public class SwordSkill : Skill
     }
     #endregion
 
+
+    protected override void CheckUnlockFromSave()
+    {
+        UnlockThrowSwordSkill();
+        UnlockTimeStop();
+        UnlockVulnerability();
+        UnlockBounceSword();
+        UnlockPierceSword();
+        UnlockSpinSword();
+    }
+
     #region Unlock Skill
     private void UnlockThrowSwordSkill()
     {

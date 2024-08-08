@@ -68,6 +68,12 @@ public class BlackholeSkill : Skill
         return false;
     }
 
+    protected override void CheckUnlockFromSave()
+    {
+        UnlockBlackhole();
+    }
+
+    #region Unlock Skill
     private void UnlockBlackhole()
     {
         if (blackholeUnlocked)
@@ -80,5 +86,6 @@ public class BlackholeSkill : Skill
             blackholeUnlocked = true;
         }
     }
+    #endregion
 
 }

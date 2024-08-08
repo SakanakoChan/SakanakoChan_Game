@@ -13,11 +13,18 @@ public class Skill : MonoBehaviour
     protected virtual void Start()
     {
         player = PlayerManager.instance.player;
+
+        CheckUnlockFromSave();
     }
 
     protected virtual void Update()
     {
         cooldownTimer -= Time.deltaTime;
+    }
+
+    protected virtual void CheckUnlockFromSave()
+    {
+
     }
 
     public virtual bool SkillIsReadyToUse()

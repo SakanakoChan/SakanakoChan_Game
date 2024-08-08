@@ -124,6 +124,14 @@ public class CloneSkill : Skill
     }
 
 
+    protected override void CheckUnlockFromSave()
+    {
+        UnlockMirageAttack();
+        UnlockAggressiveMirage();
+        UnlockCrystalMirage();
+        UnlockMultipleMirage();
+    }
+
     #region Unlock Skill
     private void UnlockMirageAttack()
     {

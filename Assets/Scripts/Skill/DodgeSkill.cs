@@ -22,6 +22,22 @@ public class DodgeSkill : Skill
         mirageDodgeUnlockButton.GetComponent<Button>()?.onClick.AddListener(UnlockMirageDodge);
     }
 
+
+    public void CreateMirageOnDodge()
+    {
+        if (mirageDodgeUnlocked)
+        {
+            SkillManager.instance.clone.CreateClone(new Vector3(player.transform.position.x + 2 * player.facingDirection, player.transform.position.y));
+        }
+    }
+
+    protected override void CheckUnlockFromSave()
+    {
+        UnlockDodge();
+        UnlockMirageDodge();
+    }
+
+    #region Unlock Skill
     private void UnlockDodge()
     {
         if (dodgeUnlocked)
@@ -50,12 +66,5 @@ public class DodgeSkill : Skill
             mirageDodgeUnlocked = true;
         }
     }
-
-    public void CreateMirageOnDodge()
-    {
-        if (mirageDodgeUnlocked)
-        {
-            SkillManager.instance.clone.CreateClone(new Vector3(player.transform.position.x + 2 * player.facingDirection, player.transform.position.y));
-        }
-    }
+    #endregion
 }

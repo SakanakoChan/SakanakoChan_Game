@@ -38,6 +38,32 @@ public class ParrySkill : Skill
         return base.UseSkillIfAvailable();
     }
 
+    public void RecoverHPFPInSuccessfulParry()
+    {
+        //only did HP cuz FP is not implemented yet
+        if (parryRecoverUnlocked == true)
+        {
+            int recoverAmount = Mathf.RoundToInt(player.stats.getMaxHP() * recoverPercentage);
+            player.stats.IncreaseHPBy(recoverAmount);
+        }
+    }
+
+    public void MakeMirageInSuccessfulParry(Vector3 _cloneSpawnPosition)
+    {
+        if (parryWithMirageUnlocked == true)
+        {
+            SkillManager.instance.clone.CreateCloneWithDelay(_cloneSpawnPosition, 0.1f);
+        }
+    }
+
+    protected override void CheckUnlockFromSave()
+    {
+        UnlockParry();
+        UnlockParryRecover();
+        UnlockParryWithMirage();
+    }
+
+    #region Unlock Skill
     private void UnlockParry()
     {
         if (parryUnlocked)
@@ -76,22 +102,5 @@ public class ParrySkill : Skill
             parryWithMirageUnlocked = true;
         }
     }
-
-    public void RecoverHPFPInSuccessfulParry()
-    {
-        //only did HP cuz FP is not implemented yet
-        if (parryRecoverUnlocked == true)
-        {
-            int recoverAmount = Mathf.RoundToInt(player.stats.getMaxHP() * recoverPercentage);
-            player.stats.IncreaseHPBy(recoverAmount);
-        }
-    }
-
-    public void MakeMirageInSuccessfulParry(Vector3 _cloneSpawnPosition)
-    {
-        if (parryWithMirageUnlocked == true)
-        {
-            SkillManager.instance.clone.CreateCloneWithDelay(_cloneSpawnPosition, 0.1f);
-        }
-    }
+    #endregion
 }

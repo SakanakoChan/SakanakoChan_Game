@@ -32,6 +32,30 @@ public class DashSkill : Skill
         base.UseSkill();
     }
 
+    public void CloneOnDashStart(Vector3 _position)
+    {
+        if (cloneOnDashStartUnlocked)
+        {
+            SkillManager.instance.clone.CreateClone(_position);
+        }
+    }
+
+    public void CloneOnDashEnd(Vector3 _position)
+    {
+        if (cloneOnDashEndUnlocked)
+        {
+            SkillManager.instance.clone.CreateClone(_position);
+        }
+    }
+
+    protected override void CheckUnlockFromSave()
+    {
+        UnlockDash();
+        UnlockCloneOnDashStart();
+        UnlockCloneOnDashEnd();
+    }
+
+    #region Unlock Skill
     private void UnlockDash()
     {
         if (dashUnlocked)
@@ -69,20 +93,5 @@ public class DashSkill : Skill
             cloneOnDashEndUnlocked = true;
         }
     }
-
-    public void CloneOnDashStart(Vector3 _position)
-    {
-        if (cloneOnDashStartUnlocked)
-        {
-            SkillManager.instance.clone.CreateClone(_position);
-        }
-    }
-
-    public void CloneOnDashEnd(Vector3 _position)
-    {
-        if (cloneOnDashEndUnlocked)
-        {
-            SkillManager.instance.clone.CreateClone(_position);
-        }
-    }
+    #endregion
 }

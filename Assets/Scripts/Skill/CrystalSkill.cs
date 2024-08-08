@@ -69,6 +69,15 @@ public class CrystalSkill : Skill
         }
     }
 
+    protected override void CheckUnlockFromSave()
+    {
+        UnlockCrystal();
+        UnlockCrystalGun();
+        UnlockCrystalMirage();
+        UnlockExplosiveCrystal();
+        UnlockMovingCrystal();
+    }
+
     public override bool UseSkillIfAvailable()
     {
         if (crystalGunUnlocked)

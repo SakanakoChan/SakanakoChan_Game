@@ -27,7 +27,8 @@ public class UI : MonoBehaviour
         //need this
         //or put UnlockSkill() in IPointerDownHandler in SkllTreeSlot_UI
         //to make sure the event listener order in skill tree ui is in correct order
-        //skillTree_UI.SetActive(true);
+        //and skill tree save system works properly
+        skillTree_UI.SetActive(true);
 
         //if (instance != null)
         //{
