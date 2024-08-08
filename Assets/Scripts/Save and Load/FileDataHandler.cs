@@ -5,6 +5,9 @@ using System.IO;
 using TMPro.EditorUtilities;
 using System;
 
+//Save location:
+//C:\Users\megum\AppData\LocalLow\DefaultCompany\BrandNewRPGGame_2nd
+
 public class FileDataHandler
 {
     private string dataDirPath = "";

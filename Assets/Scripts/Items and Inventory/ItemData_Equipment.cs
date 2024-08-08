@@ -50,7 +50,7 @@ public class ItemData_Equipment : ItemData
     public List<InventorySlot> requiredCraftMaterials;
 
     private int statInfoLength;
-    private int minStatInfoLength = 5;
+    //private int minStatInfoLength = 5;
 
     public void AddModifiers()
     {

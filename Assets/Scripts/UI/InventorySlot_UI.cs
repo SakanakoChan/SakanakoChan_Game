@@ -79,6 +79,11 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
             return;
         }
 
+        if (inventorySlot.item.itemType == ItemType.Material)
+        {
+            return;
+        }
+
         float yOffset = 0;
 
         ItemData_Equipment equipment = inventorySlot.item as ItemData_Equipment;
@@ -89,16 +94,16 @@ public class InventorySlot_UI : MonoBehaviour, IPointerDownHandler, IPointerEnte
         {
             if (equipment.GetItemStatInfoAndEffectDescription().Length >= 50)
             {
-                yOffset = Screen.height * 0.35f + (equipment.GetItemStatInfoAndEffectDescription().Length - 50) * Screen.height * 0.001f;
+                yOffset = Screen.height * 0.01f + (equipment.GetItemStatInfoAndEffectDescription().Length - 50) * Screen.height * 0.001f;
             }
             else
             {
-                yOffset = Screen.height * 0.2f;
+                yOffset = Screen.height * 0.01f;
             }
         }
         else //if the item slot is on the upper side of the screen, item tooltip should be below the item
         {
-            yOffset = Screen.height * 0.05f;
+            yOffset = -Screen.height * 0.05f;
         }
 
 

@@ -42,6 +42,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     [Header("Item Data Base")]
     public List<InventorySlot> loadedInventorySlots;
+    public List<ItemData_Equipment> loadedEquippedEquipment;
 
     private void Awake()
     {
@@ -77,6 +78,11 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     private void AddStartItems()
     {
+        foreach (var equipment in loadedEquippedEquipment)
+        {
+            EquipItem(equipment);
+        }
+
         if (loadedInventorySlots.Count > 0)
         {
             foreach (var slot in loadedInventorySlots)
@@ -482,15 +488,38 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
             }
         }
+
+        foreach (var equipmentID in _data.equippedEquipmentIDs)
+        {
+            foreach (var equipment in GetItemDataBase())
+            {
+                if (equipment != null && equipment.itemID == equipmentID)
+                {
+                    loadedEquippedEquipment.Add(equipment as ItemData_Equipment);
+                }
+            }
+        }
     }
 
     public void SaveData(ref GameData _data)
     {
+        //prevent from having more and more items every time starting the game
         _data.inventory.Clear();
+        _data.equippedEquipmentIDs.Clear();
 
         foreach (KeyValuePair<ItemData, InventorySlot> search in inventorySlotDictionary)
         {
             _data.inventory.Add(search.Key.itemID, search.Value.stackSize);
+        }
+
+        foreach (var search in stashSlotDictionary)
+        {
+            _data.inventory.Add(search.Key.itemID, search.Value.stackSize);
+        }
+
+        foreach (var search in equippedEquipmentSlotDictionary)
+        {
+            _data.equippedEquipmentIDs.Add(search.Key.itemID);
         }
     }
 
@@ -502,7 +531,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         //here, new string[] {...} is same as new[] {...}, 
         //the latter is the Inplicit (unvisiable) type convert,
         //will judge the array type according to its content
-        string[] assetNames = AssetDatabase.FindAssets("", new string[] { "Assets/ItemData/Equipment" });
+        string[] assetNames = AssetDatabase.FindAssets("", new string[] { "Assets/ItemData/Items" });
 
         //SO means scriptable object
         foreach (string SOName in assetNames)
