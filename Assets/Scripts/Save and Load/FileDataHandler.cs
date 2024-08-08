@@ -13,10 +13,14 @@ public class FileDataHandler
     private string dataDirPath = "";
     private string dataFileName = "";
 
-    public FileDataHandler(string _dataDirPath, string _dataFileName)
+    private bool encryptData = false;
+    private string codeWord = "Zakozako~";
+
+    public FileDataHandler(string _dataDirPath, string _dataFileName, bool _encryptData)
     {
         dataDirPath = _dataDirPath;
         dataFileName = _dataFileName;
+        encryptData = _encryptData;
     }
 
     public void Save(GameData _data)
@@ -29,6 +33,11 @@ public class FileDataHandler
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
             //parse the savedata to json, true means the json file will be formatted and easier to read
             string dataToStore = JsonUtility.ToJson(_data, true);
+
+            if (encryptData)
+            {
+                dataToStore = EncryptAndDecrypt(dataToStore);
+            }
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
@@ -63,6 +72,11 @@ public class FileDataHandler
                     }
                 }
 
+                if (encryptData)
+                {
+                    dataToLoad = EncryptAndDecrypt(dataToLoad);
+                }
+
                 //read json from the save file to gamedata
                 loadData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
@@ -83,6 +97,19 @@ public class FileDataHandler
         {
             File.Delete(fullPath);
         }
+    }
+
+    private string EncryptAndDecrypt(string _data)
+    {
+        string result = "";
+
+        for (int i = 0; i < _data.Length; i++)
+        {
+            // ^ means XOR, Òì»ò
+            result += (char)(_data[i] ^ codeWord[i % codeWord.Length]);
+        }
+
+        return result;
     }
 
 }
