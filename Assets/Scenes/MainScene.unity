@@ -47473,226 +47473,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032745298}
   m_CullTransparentMesh: 1
---- !u!1 &2037145666
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2037145669}
-  - component: {fileID: 2037145668}
-  - component: {fileID: 2037145667}
-  - component: {fileID: 2037145670}
-  - component: {fileID: 2037145671}
-  - component: {fileID: 2037145672}
-  - component: {fileID: 2037145673}
-  - component: {fileID: 2037145674}
-  - component: {fileID: 2037145675}
-  m_Layer: 0
-  m_Name: SkillManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2037145667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2816f2cc8a213d439a98098b52a0337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0.4
-  dashUnlocked: 0
-  dashUnlockButton: {fileID: 287889769}
-  cloneOnDashStartUnlocked: 0
-  cloneOnDashStartUnlockButton: {fileID: 34547133}
-  cloneOnDashEndUnlocked: 0
-  cloneOnDashEndUnlockButton: {fileID: 436582229}
---- !u!114 &2037145668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a281e109ee7d6a24e935ea2265c9d471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2037145669
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5553937, y: 2.2127905, z: -0.03540447}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2037145670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4cddd973826e1c428d629f345213c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  clonePrefab: {fileID: 959560472463918804, guid: 99daa118d0dbd8246ad5797092bb6806, type: 3}
-  cloneDuration: 1.5
-  colorLosingSpeed: 5
-  mirageAttackUnlockButton: {fileID: 1610482030}
-  cloneAttackDamageMultiplier: 0.3
-  aggressiveMirageUnlockButton: {fileID: 1564170176}
-  aggressiveCloneAttackDamageMultiplier: 0.8
-  multipleMirageUnlockButton: {fileID: 634712705}
-  duplicateCloneAttackDamageMultiplier: 0.3
-  duplicatePossibility: 30
-  maxDuplicateCloneAmount: 5
-  currentDuplicateCloneAmount: 0
-  crystalMirageUnlockButton: {fileID: 1671827912}
---- !u!114 &2037145671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87dca92fc0d8aff4c921ac8b3a1e36ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  swordType: 0
-  throwSwordSkillUnlockButton: {fileID: 703937496}
-  swordPrefab: {fileID: 6890596882183202840, guid: c51fba828345694459c3b78391fecf59, type: 3}
-  launchSpeed: {x: 30, y: 25}
-  swordReturnSpeed: 25
-  regularSwordGravity: 4
-  bounceSwordUnlockButton: {fileID: 521029364}
-  bounceAmount: 4
-  bounceSwordGravity: 4
-  bounceSpeed: 25
-  pierceSwordUnlockButton: {fileID: 416450324}
-  pierceAmount: 1
-  pierceSwordGravity: 0.5
-  spinSwordUnlockButton: {fileID: 2105235852}
-  maxTravelDistance: 10
-  spinDuration: 3
-  spinHitCooldown: 0.2
-  spinSwordGravity: 0.5
-  timeStopUnlockButton: {fileID: 630401686}
-  enemyFreezeDuration: 1
-  vulnerabilityUnlockButton: {fileID: 42200108}
-  enemyVulnerableDuration: 5
-  dotNumber: 20
-  spaceBetweenDots: 0.07
-  dotPrefab: {fileID: 8851052543190774116, guid: 85ff809178b36d3418edcf1cc4a91a83, type: 3}
-  dotsParent: {fileID: 2102127656}
---- !u!114 &2037145672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae4f7076c4d8614db5e51571fb3bc6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 60
-  blackholeUnlockButton: {fileID: 1567048771}
-  blackholePrefab: {fileID: 6383548825874780067, guid: 03bb4a867059c6146b18af2a242a5be5, type: 3}
-  maxSize: 15
-  growSpeed: 3
-  shrinkSpeed: 3
-  cloneAttackAmount: 4
-  cloneAttackCooldown: 0.3
-  QTEInputWindow: 2
---- !u!114 &2037145673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344de575915300b4c80b315eec82f627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 5
-  crystalPrefab: {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
-  crystalExistenceDuration: 2
-  crystalUnlockButton: {fileID: 1452084823}
-  mirageBlinkUnlockButton: {fileID: 1127775385}
-  explosiveCrystalUnlockButton: {fileID: 346706898}
-  movingCrystalUnlockButton: {fileID: 372118661}
-  moveSpeed: 10
-  crystalGunUnlockButton: {fileID: 1641835351}
-  magSize: 3
-  shootCooldown: 0.1
-  reloadTime: 2
-  shootWindow: 4
-  crystalMag:
-  - {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
-  - {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
-  - {fileID: 6193554969105213797, guid: 1584cbd08e646bc49bee9c47f484f1f0, type: 3}
---- !u!114 &2037145674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49753c374015a47419cc2a84e3b683db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 1
-  parryUnlockButton: {fileID: 1600599718}
-  parryRecoverUnlockButton: {fileID: 721780147}
-  recoverPercentage: 0.2
-  parryWithMirageUnlockButton: {fileID: 1303493733}
---- !u!114 &2037145675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037145666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78989f1d077aef64bb744f5d9974b4db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  dodgeUnlockButton: {fileID: 564560077}
-  evasionIncreasement: 10
-  dodgeUnlocked: 0
-  mirageDodgeUnlockButton: {fileID: 1630825004}
-  mirageDodgeUnlocked: 0
 --- !u!1 &2037785544
 GameObject:
   m_ObjectHideFlags: 0
@@ -50137,6 +49917,163 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &8403654941123141202
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 145441439660134022, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_Name
+      value: SkillManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 218265499021383973, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: crystalUnlockButton
+      value: 
+      objectReference: {fileID: 1452084823}
+    - target: {fileID: 218265499021383973, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: crystalGunUnlockButton
+      value: 
+      objectReference: {fileID: 1641835351}
+    - target: {fileID: 218265499021383973, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: mirageBlinkUnlockButton
+      value: 
+      objectReference: {fileID: 1127775385}
+    - target: {fileID: 218265499021383973, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: movingCrystalUnlockButton
+      value: 
+      objectReference: {fileID: 372118661}
+    - target: {fileID: 218265499021383973, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: explosiveCrystalUnlockButton
+      value: 
+      objectReference: {fileID: 346706898}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5553937
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2127905
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.03540447
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 628264894321475484, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673550729090725619, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: blackholeUnlockButton
+      value: 
+      objectReference: {fileID: 1567048771}
+    - target: {fileID: 5472240498261870679, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: dodgeUnlockButton
+      value: 
+      objectReference: {fileID: 564560077}
+    - target: {fileID: 5472240498261870679, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: mirageDodgeUnlockButton
+      value: 
+      objectReference: {fileID: 1630825004}
+    - target: {fileID: 5628002940094736796, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: dotsParent
+      value: 
+      objectReference: {fileID: 2102127656}
+    - target: {fileID: 5628002940094736796, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: timeStopUnlockButton
+      value: 
+      objectReference: {fileID: 630401686}
+    - target: {fileID: 5628002940094736796, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: spinSwordUnlockButton
+      value: 
+      objectReference: {fileID: 2105235852}
+    - target: {fileID: 5628002940094736796, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: bounceSwordUnlockButton
+      value: 
+      objectReference: {fileID: 521029364}
+    - target: {fileID: 5628002940094736796, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: pierceSwordUnlockButton
+      value: 
+      objectReference: {fileID: 416450324}
+    - target: {fileID: 5628002940094736796, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: vulnerabilityUnlockButton
+      value: 
+      objectReference: {fileID: 42200108}
+    - target: {fileID: 5628002940094736796, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: throwSwordSkillUnlockButton
+      value: 
+      objectReference: {fileID: 703937496}
+    - target: {fileID: 6141562295925731002, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: dashUnlockButton
+      value: 
+      objectReference: {fileID: 287889769}
+    - target: {fileID: 6141562295925731002, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: cloneOnDashEndUnlockButton
+      value: 
+      objectReference: {fileID: 436582229}
+    - target: {fileID: 6141562295925731002, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: cloneOnDashStartUnlockButton
+      value: 
+      objectReference: {fileID: 34547133}
+    - target: {fileID: 7257786635132074256, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: mirageAttackUnlockButton
+      value: 
+      objectReference: {fileID: 1610482030}
+    - target: {fileID: 7257786635132074256, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: crystalMirageUnlockButton
+      value: 
+      objectReference: {fileID: 1671827912}
+    - target: {fileID: 7257786635132074256, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: multipleMirageUnlockButton
+      value: 
+      objectReference: {fileID: 634712705}
+    - target: {fileID: 7257786635132074256, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: aggressiveMirageUnlockButton
+      value: 
+      objectReference: {fileID: 1564170176}
+    - target: {fileID: 7559544265009054068, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: parryUnlockButton
+      value: 
+      objectReference: {fileID: 1600599718}
+    - target: {fileID: 7559544265009054068, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: parryRecoverUnlockButton
+      value: 
+      objectReference: {fileID: 721780147}
+    - target: {fileID: 7559544265009054068, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
+      propertyPath: parryWithMirageUnlockButton
+      value: 
+      objectReference: {fileID: 1303493733}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c157521723d0b4a46bae5a21197b9687, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -50150,7 +50087,7 @@ SceneRoots:
   - {fileID: 774241437}
   - {fileID: 621841210}
   - {fileID: 860187131}
-  - {fileID: 2037145669}
+  - {fileID: 8403654941123141202}
   - {fileID: 101488831}
   - {fileID: 1050764345}
   - {fileID: 1115119093}

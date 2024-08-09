@@ -25,15 +25,16 @@ public class SaveManager : MonoBehaviour
         {
             instance = this;
         }
-    }
 
-    private void Start()
-    {
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
 
         saveManagers = FindAllSaveManagers();
 
         LoadGame();
+    }
+
+    private void Start()
+    {
     }
 
     private void OnApplicationQuit()
