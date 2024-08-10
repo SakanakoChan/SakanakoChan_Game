@@ -87,6 +87,11 @@ public class Player : Entity
 
         stateMachine.currentState.Update();
 
+        if (stats.isDead)
+        {
+            return;
+        }
+
         CheckForDashInput();
 
         if (Input.GetKeyDown(KeyCode.F) && skill.crystal.crystalUnlocked)

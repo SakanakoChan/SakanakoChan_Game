@@ -43,7 +43,7 @@ public class PlayerStats : CharacterStats
 
     public override void OnEvasion()
     {
-        Debug.Log("Player evaded attack and created clone!");
+        Debug.Log("Player evaded attack!");
         player.skill.dodge.CreateMirageOnDodge();
     }
 

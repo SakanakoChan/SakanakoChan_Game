@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    //public static UI instance;
+    public static UI instance;
 
     [SerializeField] private GameObject character_UI;
     [SerializeField] private GameObject skillTree_UI;
@@ -20,24 +21,32 @@ public class UI : MonoBehaviour
     public StatToolTip_UI statToolTip;
     public CraftWindow_UI craftWindow;
 
+    [Space]
+    [Header("End Screen")]
+    public FadeScreen_UI fadeScreen; //when player is dead, play the fadeout animation
+    [SerializeField] private GameObject endText;
+    [SerializeField] private GameObject tryAgainButton;
+
+
     private GameObject currentUI;
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(instance);
+        }
+        else
+        {
+            instance = this;
+        }
+
         //need this
         //or put UnlockSkill() in IPointerDownHandler in SkllTreeSlot_UI
         //to make sure the event listener order in skill tree ui is in correct order
         //and skill tree save system works properly
         skillTree_UI.SetActive(true);
 
-        //if (instance != null)
-        //{
-        //    Destroy(instance);
-        //}
-        //else
-        //{
-        //    instance = this;
-        //}
 
         //itemToolTip = GetComponentInChildren<ItemToolTip_UI>();
     }
@@ -89,11 +98,18 @@ public class UI : MonoBehaviour
 
     public void SwitchToMenu(GameObject _menu)
     {
+
         //close all the UIs
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
-            currentUI = null;
+            //keep black screen active
+            bool isFadeScreen = (transform.GetChild(i).GetComponent<FadeScreen_UI>() != null);
+
+            if (!isFadeScreen)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+                currentUI = null;
+            }
         }
 
         //set the target UI active
@@ -178,5 +194,25 @@ public class UI : MonoBehaviour
 
         Vector2 toolTipPositionOffset = new Vector2(_xOffset, _yOffset);
         return toolTipPositionOffset;
+    }
+
+    public void SwitchToEndScreen()
+    {
+        //SwitchToMenu(null);
+        fadeScreen.FadeOut();
+        StartCoroutine(EndScreenCoroutine());
+    }
+
+    private IEnumerator EndScreenCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        endText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        tryAgainButton.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        GameManager.instance.RestartScene();
     }
 }
