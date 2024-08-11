@@ -28,7 +28,7 @@ public class Checkpoint : MonoBehaviour
     {
         anim.SetBool("Active", true);
         activated = true;
-        SaveManager.instance.SaveGame();
+        //SaveManager.instance.SaveGame();
     }
 
     [ContextMenu("Generate checkpoint ID")]
