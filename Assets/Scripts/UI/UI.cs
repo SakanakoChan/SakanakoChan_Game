@@ -199,6 +199,7 @@ public class UI : MonoBehaviour
     public void SwitchToEndScreen()
     {
         //SwitchToMenu(null);
+        //fadeScreen.gameObject.SetActive(true);
         fadeScreen.FadeOut();
         StartCoroutine(EndScreenCoroutine());
     }
@@ -213,6 +214,7 @@ public class UI : MonoBehaviour
 
     public void RestartGame()
     {
+        SaveManager.instance.SaveGame();
         GameManager.instance.RestartScene();
     }
 }

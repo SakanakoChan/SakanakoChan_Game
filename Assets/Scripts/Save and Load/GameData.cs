@@ -12,6 +12,9 @@ public class GameData
     public SerializableDictionary<string, int> inventory;
     public List<string> equippedEquipmentIDs;
 
+    public SerializableDictionary<string, bool> checkpointsDictionary;
+    public string closestActivatedCheckpointID;
+
     public GameData()
     {
         this.currecny = 0;
@@ -20,6 +23,12 @@ public class GameData
         skillTree = new SerializableDictionary<string, bool>();
         //inventory<itemID, stackSize>
         inventory = new SerializableDictionary<string, int>();
+
         equippedEquipmentIDs = new List<string>();
+
+        //checkpoints<checkpointID, activated>
+        checkpointsDictionary = new SerializableDictionary<string, bool>();
+
+        closestActivatedCheckpointID = string.Empty;
     }
 }
