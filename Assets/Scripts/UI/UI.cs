@@ -100,7 +100,6 @@ public class UI : MonoBehaviour
 
     public void SwitchToMenu(GameObject _menu)
     {
-
         //close all the UIs
         for (int i = 0; i < transform.childCount; i++)
         {

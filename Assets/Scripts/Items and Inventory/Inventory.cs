@@ -469,6 +469,12 @@ public class Inventory : MonoBehaviour, ISaveManager
             var equipment = search.Key as ItemData_Equipment;
             equipment.RefreshUseState();
         }
+
+        foreach (var search in equippedEquipmentSlotDictionary)
+        {
+            var equipment = search.Key as ItemData_Equipment;
+            equipment.RefreshUseState();
+        }
     }
 
     public void LoadData(GameData _data)

@@ -5,6 +5,8 @@ public class EnemyStats : CharacterStats
     private Enemy enemy;
     private ItemDrop itemDropSystem;
 
+    public Stat currencyDropAmount;
+
     [Header("Enemy Level Info")]
     [SerializeField] private int enemyLevel = 1;
 
@@ -13,6 +15,8 @@ public class EnemyStats : CharacterStats
 
     protected override void Start()
     {
+        currencyDropAmount.SetDefaultValue(100);
+
         ModifyAllStatsAccordingToEnemyLevel();
 
         base.Start();
@@ -36,6 +40,9 @@ public class EnemyStats : CharacterStats
 
         //enemy will drop items when dying
         itemDropSystem.GenrateDrop();
+
+        //player will get currency when killing enemy
+        PlayerManager.instance.currency += currencyDropAmount.GetValue();
     }
 
     private void ModifyAllStatsAccordingToEnemyLevel()
@@ -57,6 +64,8 @@ public class EnemyStats : CharacterStats
         ModifyStatAccordingToEnemyLevel(fireDamage);
         ModifyStatAccordingToEnemyLevel(iceDamage);
         ModifyStatAccordingToEnemyLevel(lightningDamage);
+
+        ModifyStatAccordingToEnemyLevel(currencyDropAmount);
     }
 
     private void ModifyStatAccordingToEnemyLevel(Stat _stat)

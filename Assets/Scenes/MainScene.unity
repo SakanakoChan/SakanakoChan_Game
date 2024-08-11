@@ -37904,6 +37904,8 @@ MonoBehaviour:
   throwSwordImage: {fileID: 838075107}
   blackholeImage: {fileID: 67360}
   currentCurrency: {fileID: 349867760}
+  currencyAmount: 0
+  increaseRate: 5000
 --- !u!1 &1389274699
 GameObject:
   m_ObjectHideFlags: 0

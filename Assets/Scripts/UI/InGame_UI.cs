@@ -25,7 +25,10 @@ public class InGame_UI : MonoBehaviour
 
     //[SerializeField] private Image flaskImage;
 
+    [Header("Souls Info")]
     [SerializeField] private TextMeshProUGUI currentCurrency;
+    [SerializeField] private float currencyAmount;
+    [SerializeField] private float increaseRate = 100;
 
     private SkillManager skill;
     private Player player;
@@ -56,14 +59,8 @@ public class InGame_UI : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerManager.instance.GetCurrentCurrency() == 0)
-        {
-            currentCurrency.text = PlayerManager.instance.GetCurrentCurrency().ToString();
-        }
-        else
-        {
-            currentCurrency.text = PlayerManager.instance.GetCurrentCurrency().ToString("#,#");
-        }
+        //for number increasing animations when loading or getting currency
+        UpdateCurrencyUI();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && skill.dash.dashUnlocked)
         {
@@ -102,6 +99,28 @@ public class InGame_UI : MonoBehaviour
         FillSkillCooldownImage(throwSwordImage, skill.sword.cooldown);
         FillSkillCooldownImage(blackholeImage, skill.blackholeSkill.cooldown);
         FillFlaskCooldownImage();
+    }
+
+    private void UpdateCurrencyUI()
+    {
+        if (currencyAmount < PlayerManager.instance.GetCurrentCurrency())
+        {
+            currencyAmount += Time.deltaTime * increaseRate;
+        }
+        else
+        {
+            currencyAmount = PlayerManager.instance.GetCurrentCurrency();
+        }
+
+
+        if (currencyAmount == 0)
+        {
+            currentCurrency.text = currencyAmount.ToString();
+        }
+        else
+        {
+            currentCurrency.text = currencyAmount.ToString("#,#");
+        }
     }
 
     private void UpdateHPUI()
