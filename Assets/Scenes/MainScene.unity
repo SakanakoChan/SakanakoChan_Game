@@ -23296,7 +23296,7 @@ MonoBehaviour:
     baseValue: 5
     modifiers: 
   maxHP:
-    baseValue: 1000
+    baseValue: 1
     modifiers: 
   armor:
     baseValue: 0
@@ -39101,6 +39101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoints: []
+  deathBodyPrefab: {fileID: 4561557917010275480, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+  droppedCurrencyAmount: 0
+  deathPosition: {x: 0, y: 0}
 --- !u!4 &1478829054
 Transform:
   m_ObjectHideFlags: 0
@@ -50268,6 +50271,10 @@ PrefabInstance:
     - target: {fileID: 4561557917010275480, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
       propertyPath: m_Name
       value: DroppedCurrency
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561557917010275480, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
       propertyPath: m_LocalPosition.x
