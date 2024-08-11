@@ -17242,6 +17242,9 @@ MonoBehaviour:
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
+  currencyDropAmount:
+    baseValue: 0
+    modifiers: 
   enemyLevel: 1
   percentageModifier: 0.4
 --- !u!114 &666281805
@@ -19186,6 +19189,9 @@ MonoBehaviour:
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
+  currencyDropAmount:
+    baseValue: 0
+    modifiers: 
   enemyLevel: 4
   percentageModifier: 0.4
 --- !u!114 &774241433
@@ -37905,7 +37911,7 @@ MonoBehaviour:
   blackholeImage: {fileID: 67360}
   currentCurrency: {fileID: 349867760}
   currencyAmount: 0
-  increaseRate: 5000
+  increaseRate: 50000
 --- !u!1 &1389274699
 GameObject:
   m_ObjectHideFlags: 0
@@ -40251,6 +40257,9 @@ MonoBehaviour:
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
+  currencyDropAmount:
+    baseValue: 0
+    modifiers: 
   enemyLevel: 3
   percentageModifier: 0.4
 --- !u!114 &1531230233
@@ -47238,6 +47247,9 @@ MonoBehaviour:
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
+  currencyDropAmount:
+    baseValue: 0
+    modifiers: 
   enemyLevel: 2
   percentageModifier: 0.4
 --- !u!114 &1996393367
@@ -50245,6 +50257,63 @@ MonoBehaviour:
   cloneOnDashStartUnlockButton: {fileID: 34547133}
   cloneOnDashEndUnlocked: 0
   cloneOnDashEndUnlockButton: {fileID: 436582229}
+--- !u!1001 &3827337260554678312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4561557917010275480, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_Name
+      value: DroppedCurrency
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571185040372944997, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80a0f558594fa2246be8d6fa2d990abf, type: 3}
 --- !u!1001 &3941548927062017654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50887,3 +50956,4 @@ SceneRoots:
   - {fileID: 1478829054}
   - {fileID: 8327955279807644699}
   - {fileID: 1333573929}
+  - {fileID: 3827337260554678312}

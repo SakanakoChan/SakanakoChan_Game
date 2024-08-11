@@ -15,9 +15,16 @@ public class GameData
     public SerializableDictionary<string, bool> checkpointsDictionary;
     public string closestActivatedCheckpointID;
 
+
+    [Header("Dropped Currency")]
+    public int droppedCurrencyAmount;
+    public Vector2 deathPosition;
+
     public GameData()
     {
         this.currecny = 0;
+        this.droppedCurrencyAmount = 0;
+        this.deathPosition = Vector2.zero;
 
         //skillTree<skillName, unlocked>
         skillTree = new SerializableDictionary<string, bool>();
