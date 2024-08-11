@@ -21,6 +21,7 @@ public class Checkpoint : MonoBehaviour
         if (collision.GetComponent<Player>() != null)
         {
             ActivateCheckpoint();
+            SaveManager.instance.SaveGame();
         }
     }
 
@@ -28,7 +29,6 @@ public class Checkpoint : MonoBehaviour
     {
         anim.SetBool("Active", true);
         activated = true;
-        //SaveManager.instance.SaveGame();
     }
 
     [ContextMenu("Generate checkpoint ID")]
