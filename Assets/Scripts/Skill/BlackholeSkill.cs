@@ -45,6 +45,9 @@ public class BlackholeSkill : Skill
         currentBlackholeScript = currentBlackhole.GetComponent<BlackholeSkillController>();
 
         currentBlackholeScript.SetupBlackholeSkill(maxSize, growSpeed, shrinkSpeed, cloneAttackAmount, cloneAttackCooldown, QTEInputWindow);
+
+        AudioManager.instance.PlaySFX(3, player.transform);
+        AudioManager.instance.PlaySFX(6, player.transform);
     }
 
     public override bool UseSkillIfAvailable()

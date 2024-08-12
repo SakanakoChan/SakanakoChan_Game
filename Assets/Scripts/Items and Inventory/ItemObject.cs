@@ -27,6 +27,7 @@ public class ItemObject : MonoBehaviour
         }
 
         Inventory.instance.AddItem(item);
+        AudioManager.instance.PlaySFX(18, transform);
         Debug.Log($"Picked up item {item.itemName}");
         Destroy(gameObject);
     }

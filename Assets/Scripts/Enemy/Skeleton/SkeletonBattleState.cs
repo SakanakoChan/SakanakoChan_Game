@@ -18,6 +18,8 @@ public class SkeletonBattleState : EnemyState
     {
         base.Enter();
 
+
+
         //entering battleState will set the default enemy aggressiveTime
         //To prevent the case where if player approaching enemy from behind
         //enemy will get stuck in switching between idleState and battleState
@@ -29,13 +31,22 @@ public class SkeletonBattleState : EnemyState
     public override void Exit()
     {
         base.Exit();
+
+        AudioManager.instance.StopSFX(24);
     }
 
     public override void Update()
     {
         base.Update();
 
-        AudioManager.instance.PlaySFX(14, enemy.transform);
+        if (enemy.stateMachine.currentState != this)
+        {
+            return;
+        }
+
+        AudioManager.instance.PlaySFX(24, enemy.transform);
+
+        //AudioManager.instance.PlaySFX(14, enemy.transform);
 
         if (enemy.IsPlayerDetected())
         {

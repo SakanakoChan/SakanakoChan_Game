@@ -13,6 +13,8 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.instance.StopSFX(14);
     }
 
     public override void Exit()
