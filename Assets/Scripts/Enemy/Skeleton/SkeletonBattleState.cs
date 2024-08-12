@@ -35,6 +35,8 @@ public class SkeletonBattleState : EnemyState
     {
         base.Update();
 
+        AudioManager.instance.PlaySFX(14, enemy.transform);
+
         if (enemy.IsPlayerDetected())
         {
             //If enemy can see player, then it's always in aggreesive mode

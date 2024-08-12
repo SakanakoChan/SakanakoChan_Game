@@ -11,6 +11,8 @@ public class PlayerAnimationTrigger : MonoBehaviour
 
     private void AttackTrigger()
     {
+        //AudioManager.instance.PlaySFX(2);
+
         //Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Weapon)?.ReleaseSwordArcane();
         Inventory.instance.ReleaseSwordArcane_ConsiderCooldown();
 

@@ -12,12 +12,15 @@ public class SkeletonIdleState : SkeletonGroundedState
     {
         base.Enter();
 
+        AudioManager.instance.StopSFX(14);
         stateTimer = enemy.patrolStayTime;
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        //AudioManager.instance.PlaySFX(14, enemy.transform);
     }
 
     public override void Update()

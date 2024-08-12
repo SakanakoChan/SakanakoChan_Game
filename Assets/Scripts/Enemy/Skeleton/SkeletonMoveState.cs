@@ -22,6 +22,8 @@ public class SkeletonMoveState : SkeletonGroundedState
     {
         base.Update();
 
+        AudioManager.instance.PlaySFX(14, enemy.transform);
+
         if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
         {
             stateMachine.ChangeState(enemy.idleState);

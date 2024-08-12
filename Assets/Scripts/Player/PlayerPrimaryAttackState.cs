@@ -17,6 +17,8 @@ public class PlayerPrimaryAttackState : PlayerState
     {
         base.Enter();
 
+        AudioManager.instance.PlaySFX(2, player.transform);
+
         if (stateMachine.currentState != player.primaryAttackState)
         {
             return;
