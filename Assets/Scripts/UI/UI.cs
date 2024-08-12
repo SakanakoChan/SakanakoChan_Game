@@ -6,7 +6,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class UI : MonoBehaviour, ISaveManager
 {
     public static UI instance;
 
@@ -27,6 +27,8 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject endText;
     [SerializeField] private GameObject tryAgainButton;
 
+    [Header("Audio Settings")]
+    [SerializeField] private VolumeSlider_UI[] volumeSettings;
 
     private GameObject currentUI;
 
@@ -216,5 +218,30 @@ public class UI : MonoBehaviour
     {
         SaveManager.instance.SaveGame();
         GameManager.instance.RestartScene();
+    }
+
+    public void LoadData(GameData _data)
+    {
+        //volumeSettingsDictionary<exposedParameter, value>
+        foreach (var search in _data.volumeSettingsDictionary)
+        {
+            foreach (var volume in volumeSettings)
+            {
+                if (volume.parameter == search.Key)
+                {
+                    volume.LoadVolumeSlider(search.Value);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.volumeSettingsDictionary.Clear();
+
+        foreach (var volume in volumeSettings)
+        {
+            _data.volumeSettingsDictionary.Add(volume.parameter, volume.slider.value);
+        }
     }
 }

@@ -20,6 +20,9 @@ public class GameData
     public int droppedCurrencyAmount;
     public Vector2 deathPosition;
 
+    [Header("Audio settings")]
+    public SerializableDictionary<string, float> volumeSettingsDictionary;
+
     public GameData()
     {
         this.currecny = 0;
@@ -37,5 +40,8 @@ public class GameData
         checkpointsDictionary = new SerializableDictionary<string, bool>();
 
         closestActivatedCheckpointID = string.Empty;
+
+        //volumeSettingsDictionary<exposedParameter, value>
+        volumeSettingsDictionary = new SerializableDictionary<string, float>();
     }
 }
