@@ -64,6 +64,18 @@ public class StatSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 case StatType.magicResistance:
                     statValueText.text = playerStats.GetMagicResistance().ToString();
                     break;
+
+                case StatType.fireDamage:
+                    statValueText.text = playerStats.GetFireDamage().ToString();
+                    break;
+
+                case StatType.iceDamage:
+                    statValueText.text = playerStats.GetIceDamage().ToString();
+                    break;
+
+                case StatType.lightningDamage:
+                    statValueText.text = playerStats.GetLightningDamage().ToString();
+                    break;
             }
 
         }

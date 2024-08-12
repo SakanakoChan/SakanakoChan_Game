@@ -19,9 +19,9 @@ public class ItemData_Equipment : ItemData
     public EquipmentType equipmentType;
 
     [Header("Unique Item Effect info")]
-    public float itemCooldown;
-    public bool itemUsed { get; set; }
-    public float itemLastUseTime { get; set; }
+    //public float itemCooldown;
+    //public bool itemUsed { get; set; }
+    //public float itemLastUseTime { get; set; }
     public ItemEffect[] itemEffects;
 
     [Header("Major Stats")]
@@ -99,13 +99,13 @@ public class ItemData_Equipment : ItemData
     }
 
     //will be triggerd in scripts like animationTrigger when attacking enemies
-    private void ExecuteItemEffect(Transform _spawnTransform)
-    {
-        foreach (var effect in itemEffects)
-        {
-            effect.ExecuteEffect(_spawnTransform);
-        }
-    }
+    //private void ExecuteItemEffect(Transform _spawnTransform)
+    //{
+    //    foreach (var effect in itemEffects)
+    //    {
+    //        effect.ExecuteEffect(_spawnTransform);
+    //    }
+    //}
 
     //public void ExecuteItemEffect_NoHitNeeded()
     //{
@@ -115,18 +115,24 @@ public class ItemData_Equipment : ItemData
     //    }
     //}
 
-    private void ReleaseSwordArcane()
-    {
-        foreach (var effect in itemEffects)
-        {
-            effect.ReleaseSwordArcane();
-        }
-    }
+    //private void ReleaseSwordArcane()
+    //{
+    //    foreach (var effect in itemEffects)
+    //    {
+    //        effect.ReleaseSwordArcane();
+    //    }
+    //}
 
     public void RefreshUseState()
     {
-        itemUsed = false;
-        itemLastUseTime = 0;
+        //itemUsed = false;
+        //itemLastUseTime = 0;
+
+        foreach (var effect in itemEffects)
+        {
+            effect.effectUsed = false;
+            effect.effectLastUseTime = 0;
+        }
     }
 
     public void ExecuteItemEffect_ConsiderCooldown(Transform _spawnTransform)
@@ -134,18 +140,24 @@ public class ItemData_Equipment : ItemData
         // >= here to prevent the case
         // where mutilple 0-cooldown effects need to get executed at the same time
         // but all of the effects next to the first one will be in cooldown
-        bool canUseItem = Time.time >= itemLastUseTime + itemCooldown;
 
-        if (canUseItem || !itemUsed)
+        foreach (var effect in itemEffects)
         {
-            ExecuteItemEffect(_spawnTransform);
-            itemLastUseTime = Time.time;
-            itemUsed = true;
-            Debug.Log("Use Item Effect");
-        }
-        else
-        {
-            Debug.Log("Item Effect is in cooldown");
+            bool canUseEffect = Time.time >= effect.effectLastUseTime + effect.effectCooldown;
+
+            if (canUseEffect || !effect.effectUsed)
+            {
+                //ExecuteItemEffect(_spawnTransform);
+                effect.ExecuteEffect(_spawnTransform);
+                effect.effectLastUseTime = Time.time;
+                effect.effectUsed = true;
+                Inventory.instance.UpdateStatUI();
+                Debug.Log($"Use Item Effect: {effect.name}");
+            }
+            else
+            {
+                Debug.Log("Item Effect is in cooldown");
+            }
         }
     }
 
@@ -154,18 +166,23 @@ public class ItemData_Equipment : ItemData
         // >= here to prevent the case
         // where mutilple 0-cooldown effects need to get executed at the same time
         // but all of the effects next to the first one will be in cooldown
-        bool canUseItem = Time.time > itemLastUseTime + itemCooldown;
 
-        if (canUseItem || !itemUsed)
+        foreach (var effect in itemEffects)
         {
-            ReleaseSwordArcane();
-            itemLastUseTime = Time.time;
-            itemUsed = true;
-            Debug.Log("Use Item Effect");
-        }
-        else
-        {
-            Debug.Log("Item Effect is in cooldown");
+            bool canUseEffect = Time.time >= effect.effectLastUseTime + effect.effectCooldown;
+
+            if (canUseEffect || !effect.effectUsed)
+            {
+                effect.ReleaseSwordArcane();
+                effect.effectLastUseTime = Time.time;
+                effect.effectUsed = true;
+                Inventory.instance.UpdateStatUI();
+                Debug.Log($"Use Sword Arcane: {effect.name}");
+            }
+            else
+            {
+                Debug.Log("Item Effect is in cooldown");
+            }
         }
     }
 

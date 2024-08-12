@@ -177,7 +177,7 @@ public class InGame_UI : MonoBehaviour
             return;
         }
 
-        if (!flask.itemUsed)
+        if (!flask.itemEffects[0].effectUsed)
         {
             _flaskImage.fillAmount = 0;
             return;
@@ -185,8 +185,8 @@ public class InGame_UI : MonoBehaviour
 
         if (_flaskImage.fillAmount >= 0)
         {
-            float timer = Time.time - flask.itemLastUseTime;
-            _flaskImage.fillAmount = 1 - ((1 / flask.itemCooldown) * timer);
+            float timer = Time.time - flask.itemEffects[0].effectLastUseTime;
+            _flaskImage.fillAmount = 1 - ((1 / flask.itemEffects[0].effectCooldown) * timer);
         }
     }
 }

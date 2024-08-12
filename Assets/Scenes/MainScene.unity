@@ -23296,7 +23296,7 @@ MonoBehaviour:
     baseValue: 5
     modifiers: 
   maxHP:
-    baseValue: 1
+    baseValue: 1000
     modifiers: 
   armor:
     baseValue: 0

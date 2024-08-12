@@ -531,10 +531,12 @@ public class CharacterStats : MonoBehaviour
     private IEnumerator StatModify_Coroutine(Stat _statToModify, int _modifier, float _duration)
     {
         _statToModify.AddModifier(_modifier);
+        Inventory.instance.UpdateStatUI();
 
         yield return new WaitForSeconds(_duration);
 
         _statToModify.RemoveModifier(_modifier);
+        Inventory.instance.UpdateStatUI();
     }
 
     public Stat GetStatByType(StatType _statType)
@@ -592,6 +594,21 @@ public class CharacterStats : MonoBehaviour
     public int GetMagicResistance()
     {
         return magicResistance.GetValue() + intelligence.GetValue() * 3;
+    }
+
+    public int GetFireDamage()
+    {
+        return fireDamage.GetValue() + intelligence.GetValue();
+    }
+
+    public int GetIceDamage()
+    {
+        return iceDamage.GetValue() + intelligence.GetValue();
+    }
+
+    public int GetLightningDamage()
+    {
+        return lightningDamage.GetValue() + intelligence.GetValue();
     }
     #endregion
 }

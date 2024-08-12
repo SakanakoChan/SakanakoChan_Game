@@ -12,9 +12,9 @@ public class ItemEffect : ScriptableObject
     //4. when player uses items (e.g. flask) - in Player.Update()
     //5. when player's magic hits enemies (e.g. Charm of God will add effects to crystal) - in CrystalSkillController.Explosion()
 
-    //public bool effectUsed {  get; set; }
-    //public float effectLastUseTime { get; set; }
-    //public float effectCooldown;
+    public bool effectUsed { get; set; }
+    public float effectLastUseTime { get; set; }
+    public float effectCooldown;
 
     [TextArea]
     public string effectDescription;
