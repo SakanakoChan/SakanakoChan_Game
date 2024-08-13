@@ -120,6 +120,7 @@ public class UI : MonoBehaviour, ISaveManager
         {
             _menu.SetActive(true);
             currentUI = _menu;
+            AudioManager.instance.PlaySFX(7, null);
         }
     }
 

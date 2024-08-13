@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
     public bool playingBGM;
     private int bgmIndex;
 
-
+    private bool canPlaySFX = false;
 
     private void Awake()
     {
@@ -27,6 +27,8 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+
+        Invoke("AllowPlayingSFX", 1f);
     }
 
     private void Update()
@@ -46,6 +48,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(int _sfxIndex, Transform _sfxSourceTransform)
     {
+        if (!canPlaySFX)
+        {
+            return;
+        }
+
         //prevent from re-playing the same sfx
         if (sfx[_sfxIndex].isPlaying == true)
         {
@@ -103,5 +110,10 @@ public class AudioManager : MonoBehaviour
         {
             bgm[i].Stop();
         }
+    }
+
+    public void AllowPlayingSFX()
+    {
+        canPlaySFX = true;
     }
 }
