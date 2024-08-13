@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    [SerializeField] private AudioSource[] sfx;
+    public AudioSource[] sfx;
     [SerializeField] private AudioSource[] bgm;
     [Space]
     [SerializeField] private float sfxMinHearableDistance;
@@ -54,10 +54,10 @@ public class AudioManager : MonoBehaviour
         }
 
         //prevent from re-playing the same sfx
-        if (sfx[_sfxIndex].isPlaying == true)
-        {
-            return;
-        }
+        //if (sfx[_sfxIndex].isPlaying == true)
+        //{
+        //    return;
+        //}
 
         //if the sfx source is too far from player, player won't hear it
         if (_sfxSourceTransform != null && Vector2.Distance(PlayerManager.instance.player.transform.position, _sfxSourceTransform.position) > sfxMinHearableDistance)
@@ -79,6 +79,38 @@ public class AudioManager : MonoBehaviour
         {
             sfx[_sfxIndex].Stop();
         }
+    }
+
+    //public void StopSFXGradually(int _sfxIndex)
+    //{
+    //    if (sfx[_sfxIndex].isPlaying == false)
+    //    {
+    //        return;
+    //    }
+
+    //    StartCoroutine(DecreaseVolumeGradually(sfx[_sfxIndex]));
+    //}
+
+    public IEnumerator DecreaseVolumeGradually(AudioSource _audio)
+    {
+        float defaultVolume = _audio.volume;
+
+        while (_audio.volume > 0.1f)
+        {
+            //decrease volume by 20% every 0.25 second
+            _audio.volume -= _audio.volume * 0.2f;
+
+            yield return new WaitForSeconds(0.25f);
+
+            if (_audio.volume <= 0.1f)
+            {
+                _audio.Stop();
+                _audio.volume = defaultVolume;
+                break;
+            }
+
+        }
+
     }
 
     public void PlayBGM(int _bgmIndex)
