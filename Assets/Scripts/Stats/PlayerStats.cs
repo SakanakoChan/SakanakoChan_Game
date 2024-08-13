@@ -50,7 +50,7 @@ public class PlayerStats : CharacterStats
         player.skill.dodge.CreateMirageOnDodge();
     }
 
-    public void CloneDoDamage(CharacterStats _targetStats, float _cloneAttackDamageMultipler)
+    public void CloneDoDamage(CharacterStats _targetStats, float _cloneAttackDamageMultipler, Transform _cloneTransform)
     {
         if (TargetCanEvadeThisAttack(_targetStats))
         {
@@ -72,6 +72,6 @@ public class PlayerStats : CharacterStats
         }
 
         _totalDamage = CheckTargetArmor(_targetStats, _totalDamage);
-        _targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform);
+        _targetStats.TakeDamage(_totalDamage, _cloneTransform, _targetStats.transform);
     }
 }

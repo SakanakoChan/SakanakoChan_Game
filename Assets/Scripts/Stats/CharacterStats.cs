@@ -174,7 +174,7 @@ public class CharacterStats : MonoBehaviour
     }
 
     #region Magic and Ailments
-    public virtual void DoMagicDamage(CharacterStats _targetStats)
+    public virtual void DoMagicDamage(CharacterStats _targetStats, Transform _attacker)
     {
         int _fireDamage = fireDamage.GetValue();
         int _iceDamage = iceDamage.GetValue();
@@ -183,7 +183,7 @@ public class CharacterStats : MonoBehaviour
         int _totalMagicDamage = _fireDamage + _iceDamage + _lightningDamage + intelligence.GetValue();
         _totalMagicDamage = CheckTargetMagicResistance(_targetStats, _totalMagicDamage);
 
-        _targetStats.TakeDamage(_totalMagicDamage, transform, _targetStats.transform); ;
+        _targetStats.TakeDamage(_totalMagicDamage, _attacker, _targetStats.transform); ;
 
         //only if at least 1 of the magic damage is > 0, ailment can be applied
         if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) <= 0)

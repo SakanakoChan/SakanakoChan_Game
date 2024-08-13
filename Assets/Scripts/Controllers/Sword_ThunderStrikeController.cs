@@ -11,7 +11,7 @@ public class Sword_ThunderStrikeController : MonoBehaviour
             PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
 
-            playerStats.DoMagicDamage(enemyStats);
+            playerStats.DoMagicDamage(enemyStats, transform);
         }
     }
 

@@ -97,7 +97,7 @@ public class CloneSkillController : MonoBehaviour
                 //clone damage should be less than player damage
                 if(playerStats != null)
                 {
-                    playerStats.CloneDoDamage(enemy.GetComponent<CharacterStats>(), cloneAttackDamageMultiplier);
+                    playerStats.CloneDoDamage(enemy.GetComponent<CharacterStats>(), cloneAttackDamageMultiplier, transform);
                 }
 
                 //if aggressive mirage is learned, clone attack will also apply on-hit effect

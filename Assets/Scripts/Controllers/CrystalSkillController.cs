@@ -108,7 +108,7 @@ public class CrystalSkillController : MonoBehaviour
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
 
-                PlayerManager.instance.player.stats.DoMagicDamage(enemy.GetComponent<CharacterStats>());
+                PlayerManager.instance.player.stats.DoMagicDamage(enemy.GetComponent<CharacterStats>(), transform);
 
                 Inventory.instance.UseCharmEffect_ConsiderCooldown(enemy.transform);
                 //ItemData_Equipment equippedCharm = Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Charm);
