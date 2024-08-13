@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
 
-        Invoke("AllowPlayingSFX", 1f);
+        Invoke("AllowPlayingSFX", 0.2f);
     }
 
     private void Update()
@@ -53,11 +53,12 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        //prevent from re-playing the same sfx
-        //if (sfx[_sfxIndex].isPlaying == true)
-        //{
-        //    return;
-        //}
+        //prevent from re-playing the same sfx,
+        //need this to keep footstep audio playing correctly
+        if (sfx[_sfxIndex].isPlaying == true)
+        {
+            return;
+        }
 
         //if the sfx source is too far from player, player won't hear it
         if (_sfxSourceTransform != null && Vector2.Distance(PlayerManager.instance.player.transform.position, _sfxSourceTransform.position) > sfxMinHearableDistance)

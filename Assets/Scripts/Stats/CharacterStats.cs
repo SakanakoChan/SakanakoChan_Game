@@ -159,7 +159,8 @@ public class CharacterStats : MonoBehaviour
 
         //Debug.Log($"{gameObject.name} received {_damage} damage");
 
-        _attackee.GetComponent<Entity>()?.DamageEffect(_attacker, _attackee);
+        _attackee.GetComponent<Entity>()?.DamageFlashEffect();
+        _attackee.GetComponent<Entity>()?.DamageKnockbackEffect(_attacker, _attackee);
 
         if (currentHP <= 0 && !isDead)
         {
@@ -474,7 +475,7 @@ public class CharacterStats : MonoBehaviour
 
 
     #region HP
-    public virtual void DecreaseHPBy(int _takenDamage)
+    public virtual int DecreaseHPBy(int _takenDamage)
     {
         if (isVulnerable)
         {
@@ -489,6 +490,8 @@ public class CharacterStats : MonoBehaviour
         {
             onHealthChanged();
         }
+
+        return _takenDamage;
     }
 
     public virtual void IncreaseHPBy(int _HP)

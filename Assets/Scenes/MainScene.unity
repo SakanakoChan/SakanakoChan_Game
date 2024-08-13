@@ -26150,7 +26150,7 @@ MonoBehaviour:
     m_Bits: 8
   attackCheck: {fileID: 201456435}
   attackCheckRadius: 0.84
-  knockbackMovement: {x: 5, y: 4}
+  knockbackMovement: {x: 10, y: 4}
   knockbackDuration: 0.07
   isKnockbacked: 0
   moveSpeed: 8

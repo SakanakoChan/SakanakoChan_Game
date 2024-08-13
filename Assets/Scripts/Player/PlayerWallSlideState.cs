@@ -27,6 +27,11 @@ public class PlayerWallSlideState : PlayerState
             return;
         }
 
+        if (!player.IsWallDetected())
+        {
+            stateMachine.ChangeState(player.airState);
+        }
+
         //if pressing down while in wallslide, speeding up the slide speed
         if (yInput < 0)
         {

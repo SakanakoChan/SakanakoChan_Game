@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -54,14 +55,19 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void DamageEffect(Transform _attacker, Transform _attackee)
+    public virtual void DamageFlashEffect()
     {
         fx.StartCoroutine("FlashFX");
 
+    }
+
+    public virtual void DamageKnockbackEffect(Transform _attacker, Transform _attackee)
+    {
         float _knockbackDirection = CalculateKnockbackDirection(_attacker, _attackee);
 
         StartCoroutine(HitKnockback(_knockbackDirection));
     }
+
 
     protected virtual IEnumerator HitKnockback(float _knockbackDirection)
     {
@@ -87,6 +93,16 @@ public class Entity : MonoBehaviour
         }
 
         return _knockbackDirection;
+    }
+
+    public virtual void SetupKnockbackMovement(Vector2 _knockbackMovement)
+    {
+        knockbackMovement = _knockbackMovement;
+    }
+
+    public virtual void SetupZeroKnockbackMovement()
+    {
+
     }
 
     #region Velocity
@@ -174,4 +190,5 @@ public class Entity : MonoBehaviour
     {
         anim.speed = 1;
     }
+
 }

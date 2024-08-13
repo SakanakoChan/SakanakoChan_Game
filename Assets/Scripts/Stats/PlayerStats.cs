@@ -16,7 +16,22 @@ public class PlayerStats : CharacterStats
 
     public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
     {
-        base.TakeDamage(_damage, _attacker, _attackee);
+        int takenDamage = DecreaseHPBy(_damage);
+
+        //Debug.Log($"{gameObject.name} received {_damage} damage");
+
+        _attackee.GetComponent<Entity>()?.DamageFlashEffect();
+
+        //player will get knockbacked when the taken damage is bigger than 30% of maxHP
+        if (takenDamage >= player.stats.getMaxHP() * 0.3f)
+        {
+            _attackee.GetComponent<Entity>()?.DamageKnockbackEffect(_attacker, _attackee);
+        }
+
+        if (currentHP <= 0 && !isDead)
+        {
+            Die();
+        }
     }
 
     protected override void Die()
@@ -31,9 +46,12 @@ public class PlayerStats : CharacterStats
         GetComponent<PlayerItemDrop>()?.GenrateDrop();
     }
 
-    public override void DecreaseHPBy(int _takenDamage)
+    public override int DecreaseHPBy(int _takenDamage)
     {
         base.DecreaseHPBy(_takenDamage);
+
+        int randomIndex = Random.Range(34, 36);
+        AudioManager.instance.PlaySFX(randomIndex, player.transform);
 
         ItemData_Equipment currentArmor = Inventory.instance.GetEquippedEquipmentByType(EquipmentType.Armor);
 
@@ -42,6 +60,8 @@ public class PlayerStats : CharacterStats
             //currentArmor.ExecuteItemEffect(player.transform);
             Inventory.instance.UseArmorEffect_ConsiderCooldown(player.transform);
         }
+
+        return _takenDamage;
     }
 
     public override void OnEvasion()
