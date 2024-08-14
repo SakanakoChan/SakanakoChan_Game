@@ -73,8 +73,8 @@ public class Entity : MonoBehaviour
     {
         isKnockbacked = true;
         rb.velocity = new Vector2(knockbackMovement.x * _knockbackDirection, knockbackMovement.y);
-        yield return new WaitForSeconds(0.1f);
-        rb.velocity = Vector2.zero;
+        //yield return new WaitForSeconds(0.1f);
+        //rb.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(knockbackDuration);
 
