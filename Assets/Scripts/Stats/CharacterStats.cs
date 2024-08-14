@@ -54,6 +54,8 @@ public class CharacterStats : MonoBehaviour
     private int thunderStrikeDamage;
 
 
+    public bool isInvincible {  get; private set; }
+
     [Space]
     public int currentHP;
 
@@ -155,6 +157,12 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
     {
+        //if entity is invincible, it won't take damage
+        if (isInvincible)
+        {
+            return;
+        }
+
         DecreaseHPBy(_damage);
 
         //Debug.Log($"{gameObject.name} received {_damage} damage");
@@ -194,6 +202,11 @@ public class CharacterStats : MonoBehaviour
         }
 
         Die();
+    }
+
+    public void BecomeInvincible(bool _invincible)
+    {
+        isInvincible = _invincible;
     }
 
     #region Magic and Ailments
