@@ -152,7 +152,7 @@ public class CharacterStats : MonoBehaviour
         _totalDamage = CheckTargetArmor(_targetStats, _totalDamage);
         _targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform);
 
-        //DoMagicDamage(_targetStats);
+        //DoMagicDamage(_targetStats, transform);
     }
 
     public virtual void TakeDamage(int _damage, Transform _attacker, Transform _attackee)

@@ -160,4 +160,9 @@ public class Enemy : Entity
         battleMoveSpeed = defaultBattleMoveSpeed;
     }
 
+    public virtual void GetIntoBattleState()
+    {
+
+    }
+
 }

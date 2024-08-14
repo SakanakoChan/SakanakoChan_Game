@@ -25,6 +25,10 @@ public class SkeletonBattleState : EnemyState
 
         player = PlayerManager.instance.player.transform;
 
+        //if player is attacking enemy from behin,
+        //enemy will turn to player's side immediately
+        FacePlayer();
+
         if (player.GetComponent<PlayerStats>().isDead)
         {
             stateMachine.ChangeState(enemy.moveState);
@@ -123,5 +127,24 @@ public class SkeletonBattleState : EnemyState
     {
         anim.SetBool("Idle", false);
         anim.SetBool("Move", true);
+    }
+
+    private void FacePlayer()
+    {
+        if (player.transform.position.x < enemy.transform.position.x)
+        {
+            if (enemy.facingDirection != -1)
+            {
+                enemy.Flip();
+            }
+        }
+
+        if (player.transform.position.x > enemy.transform.position.x)
+        {
+            if (enemy.facingDirection != 1)
+            {
+                enemy.Flip();
+            }
+        }
     }
 }

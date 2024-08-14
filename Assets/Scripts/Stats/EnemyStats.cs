@@ -30,6 +30,8 @@ public class EnemyStats : CharacterStats
     public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
     {
         base.TakeDamage(_damage, _attacker, _attackee);
+
+        enemy.GetIntoBattleState();
     }
 
     protected override void Die()

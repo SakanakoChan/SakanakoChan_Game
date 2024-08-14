@@ -20,6 +20,11 @@ public class EntityFX : MonoBehaviour
 
     private bool canApplyAilmentColor;
 
+    [Header("Ailment Particles")]
+    [SerializeField] private ParticleSystem igniteFX;
+    [SerializeField] private ParticleSystem chillFX;
+    [SerializeField] private ParticleSystem shockFX;
+
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
@@ -63,6 +68,10 @@ public class EntityFX : MonoBehaviour
         CancelInvoke();
 
         sr.color = Color.white;
+
+        igniteFX.Stop();
+        chillFX.Stop();
+        shockFX.Stop();
     }
 
     public void MakeEntityTransparent(bool _transparent)
@@ -77,9 +86,10 @@ public class EntityFX : MonoBehaviour
         }
     }
 
-    #region Ailment Color FX
+    #region Ailment FX
     public void EnableIgniteFXForTime(float _seconds)
     {
+        igniteFX.Play();
         InvokeRepeating("IgniteColorFX", 0, 0.3f);
         Invoke("CancelColorChange", _seconds);
     }
@@ -98,6 +108,7 @@ public class EntityFX : MonoBehaviour
 
     public void EnableChillFXForTime(float _seconds)
     {
+        chillFX.Play();
         ChillColorFX();
         Invoke("CancelColorChange", _seconds);
     }
@@ -112,6 +123,7 @@ public class EntityFX : MonoBehaviour
 
     public void EnableShockFXForTime(float _seconds)
     {
+        shockFX.Play();
         InvokeRepeating("ShockColorFX", 0, 0.3f);
         Invoke("CancelColorChange", _seconds);
     }

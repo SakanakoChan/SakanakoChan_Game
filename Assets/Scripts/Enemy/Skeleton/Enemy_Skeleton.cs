@@ -59,4 +59,12 @@ public class Enemy_Skeleton : Enemy
 
         stateMachine.ChangeState(deathState);
     }
+
+    public override void GetIntoBattleState()
+    {
+        if (stateMachine.currentState != battleState)
+        {
+            stateMachine.ChangeState(battleState);
+        }
+    }
 }
