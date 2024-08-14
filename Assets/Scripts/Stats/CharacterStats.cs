@@ -170,8 +170,30 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         isDead = true;
         Debug.Log($"{gameObject.name} is Dead");
+    }
+
+    public virtual void DieFromFalling()
+    {
+        if (isDead)
+        {
+            return;
+        }
+
+        currentHP = 0;
+
+        if (onHealthChanged != null)
+        {
+            onHealthChanged();
+        }
+
+        Die();
     }
 
     #region Magic and Ailments

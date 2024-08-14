@@ -43,6 +43,8 @@ public class EnemyStats : CharacterStats
 
         //player will get currency when killing enemy
         PlayerManager.instance.currency += currencyDropAmount.GetValue();
+
+        Destroy(gameObject, 3f);
     }
 
     private void ModifyAllStatsAccordingToEnemyLevel()
