@@ -55,6 +55,10 @@ public class SkeletonBattleState : EnemyState
 
         //AudioManager.instance.PlaySFX(14, enemy.transform);
 
+        //enemy always faces player in battle state
+        //to prevent enemy from getting stuck in edge of ground
+        FacePlayer();
+
         if (enemy.IsPlayerDetected())
         {
             //If enemy can see player, then it's always in aggreesive mode
@@ -98,6 +102,13 @@ public class SkeletonBattleState : EnemyState
         else if (player.position.x < enemy.transform.position.x)
         {
             moveDirection = -1;
+        }
+
+        if(!enemy.IsGroundDetected())
+        {
+            enemy.SetZeroVelocity();
+            ChangeToIdleAnimation();
+            return;
         }
 
         enemy.SetVelocity(enemy.battleMoveSpeed * moveDirection, rb.velocity.y);
