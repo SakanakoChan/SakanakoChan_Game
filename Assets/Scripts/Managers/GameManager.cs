@@ -39,6 +39,18 @@ public class GameManager : MonoBehaviour, ISaveManager
         SceneManager.LoadScene(scene.name);
     }
 
+    public void PauseGame(bool _pause)
+    {
+        if (_pause)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
+
     private Checkpoint FindClosestActivatedCheckpoint()
     {
         float closestDistance = Mathf.Infinity;

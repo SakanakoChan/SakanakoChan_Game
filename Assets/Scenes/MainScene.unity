@@ -7666,6 +7666,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1287978548128580952, guid: 0e1a0a8746a3c504881628627d9e09e5, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9070920747796892974, guid: 0e1a0a8746a3c504881628627d9e09e5, type: 3}
       propertyPath: m_Name
       value: BlackScreen

@@ -122,6 +122,15 @@ public class UI : MonoBehaviour, ISaveManager
             currentUI = _menu;
             AudioManager.instance.PlaySFX(7, null);
         }
+
+        if (_menu == ingame_UI)
+        {
+            GameManager.instance?.PauseGame(false);
+        }
+        else
+        {
+            GameManager.instance?.PauseGame(true);
+        }
     }
 
     public void OpenMenuByKeyBoard(GameObject _menu)

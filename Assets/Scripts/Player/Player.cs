@@ -84,6 +84,12 @@ public class Player : Entity
 
     protected override void Update()
     {
+        //if game is paused player will be freezed
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         base.Update();
 
         stateMachine.currentState.Update();
