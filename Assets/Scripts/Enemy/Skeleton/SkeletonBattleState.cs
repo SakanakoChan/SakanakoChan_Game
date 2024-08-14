@@ -18,14 +18,17 @@ public class SkeletonBattleState : EnemyState
     {
         base.Enter();
 
-
-
         //entering battleState will set the default enemy aggressiveTime
         //To prevent the case where if player approaching enemy from behind
         //enemy will get stuck in switching between idleState and battleState
         stateTimer = enemy.aggressiveTime;
 
         player = PlayerManager.instance.player.transform;
+
+        if (player.GetComponent<PlayerStats>().isDead)
+        {
+            stateMachine.ChangeState(enemy.moveState);
+        }
     }
 
     public override void Exit()
@@ -58,6 +61,8 @@ public class SkeletonBattleState : EnemyState
 
                 if (CanAttack())
                 {
+                    anim.SetBool("Idle", false);
+                    anim.SetBool("Move", false);
                     stateMachine.ChangeState(enemy.attackState);
                     return;
                 }
@@ -73,28 +78,50 @@ public class SkeletonBattleState : EnemyState
             }
         }
 
-        if (Vector2.Distance(player.transform.position, enemy.transform.position) > enemy.attackDistance)
+        //this will make enemy move towards player only when player is far from enemy's attack distance
+        //or player is behind enemy
+        //when enemy is close to player it'll be stopped
+        if (enemy.IsPlayerDetected() && Vector2.Distance(enemy.transform.position, player.transform.position) < enemy.attackDistance)
         {
-            if (player.position.x > enemy.transform.position.x)
-            {
-                moveDirection = 1;
-            }
-            else if (player.position.x < enemy.transform.position.x)
-            {
-                moveDirection = -1;
-            }
-
-            enemy.SetVelocity(enemy.battleMoveSpeed * moveDirection, rb.velocity.y);
+            ChangeToIdleAnimation();
+            return;
         }
+
+        if (player.position.x > enemy.transform.position.x)
+        {
+            moveDirection = 1;
+        }
+        else if (player.position.x < enemy.transform.position.x)
+        {
+            moveDirection = -1;
+        }
+
+        enemy.SetVelocity(enemy.battleMoveSpeed * moveDirection, rb.velocity.y);
+        ChangeToMoveAnimation();
+
     }
 
     private bool CanAttack()
     {
-        if (Time.time - enemy.lastTimeAttacked >= enemy.attackCooldown)
+        if (Time.time - enemy.lastTimeAttacked >= enemy.attackCooldown && !enemy.isKnockbacked)
         {
+            //enemy's attack frequency will be random
+            enemy.attackCooldown = Random.Range(enemy.minAttackCooldown, enemy.maxAttackCooldown);
             return true;
         }
 
         return false;
+    }
+
+    private void ChangeToIdleAnimation()
+    {
+        anim.SetBool("Move", false);
+        anim.SetBool("Idle", true);
+    }
+
+    private void ChangeToMoveAnimation()
+    {
+        anim.SetBool("Idle", false);
+        anim.SetBool("Move", true);
     }
 }

@@ -24,6 +24,8 @@ public class Enemy : Entity
     [Header("Attack Info")]
     public float attackDistance;
     public float attackCooldown;
+    public float minAttackCooldown;
+    public float maxAttackCooldown;
     [HideInInspector] public float lastTimeAttacked;
 
     [Header("Stunned Info")]
@@ -157,4 +159,5 @@ public class Enemy : Entity
         patrolMoveSpeed = defaultPatrolMoveSpeed;
         battleMoveSpeed = defaultBattleMoveSpeed;
     }
+
 }

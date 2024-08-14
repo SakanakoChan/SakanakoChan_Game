@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour
     [Header("Knockback Info")]
     [SerializeField] protected Vector2 knockbackMovement;
     [SerializeField] protected float knockbackDuration;
-    [HideInInspector] public bool isKnockbacked;
+    public bool isKnockbacked {  get; private set; }
 
     public int facingDirection { get; private set; } = 1;
     protected bool facingRight = true;
@@ -73,6 +73,8 @@ public class Entity : MonoBehaviour
     {
         isKnockbacked = true;
         rb.velocity = new Vector2(knockbackMovement.x * _knockbackDirection, knockbackMovement.y);
+        yield return new WaitForSeconds(0.1f);
+        rb.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(knockbackDuration);
 

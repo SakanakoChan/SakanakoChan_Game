@@ -34,7 +34,7 @@ public class SkeletonGroundedState : EnemyState
         //but he's too close to the enemy
         //enemy will hear the player's footsteps
         //and also enter battleState
-        if (enemy.IsPlayerDetected() || Vector2.Distance(player.position, enemy.transform.position) < enemy.playerHearDistance)
+        if ((enemy.IsPlayerDetected() || Vector2.Distance(player.position, enemy.transform.position) < enemy.playerHearDistance) && !player.GetComponent<PlayerStats>().isDead)
         {
             stateMachine.ChangeState(enemy.battleState);
             return;
