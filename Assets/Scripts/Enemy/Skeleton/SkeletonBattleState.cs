@@ -106,7 +106,7 @@ public class SkeletonBattleState : EnemyState
 
         if(!enemy.IsGroundDetected())
         {
-            enemy.SetZeroVelocity();
+            enemy.SetVelocity(0, rb.velocity.y);
             ChangeToIdleAnimation();
             return;
         }
