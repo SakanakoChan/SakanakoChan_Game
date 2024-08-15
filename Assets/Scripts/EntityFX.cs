@@ -25,6 +25,10 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private ParticleSystem chillFX;
     [SerializeField] private ParticleSystem shockFX;
 
+    [Header("Hit FX")]
+    [SerializeField] private GameObject hitFXPrefab;
+    [SerializeField] private GameObject critHitFXPrefab;
+
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
@@ -53,7 +57,7 @@ public class EntityFX : MonoBehaviour
 
     private void RedColorBlink()
     {
-        if(sr.color != Color.white)
+        if (sr.color != Color.white)
         {
             sr.color = Color.white;
         }
@@ -168,4 +172,39 @@ public class EntityFX : MonoBehaviour
     #endregion
 
     #endregion
+
+    public void CreateHitFX(Transform _targetTransform, bool _canCrit)
+    {
+        float zRotation = Random.Range(-90, 90);
+        //randomly give some position offset to hit fx every time
+        float xOffset = Random.Range(-0.5f, 0.5f);
+        float yOffset = Random.Range(-0.5f, 0.5f);
+
+        Vector3 generationPosition = new Vector3(_targetTransform.position.x + xOffset, _targetTransform.position.y + yOffset);
+        Vector3 generationRotation = new Vector3(0, 0, zRotation);
+
+        GameObject prefab = hitFXPrefab;
+
+        if (_canCrit)
+        {
+            prefab = critHitFXPrefab;
+
+            zRotation = Random.Range(-30, 30);
+
+            //yRotation controls the crit hit fx direction according to entity facing direction
+            float yRotation = 0;
+            if (GetComponent<Entity>().facingDirection == -1)
+            {
+                yRotation = 180;
+            }
+
+            generationRotation = new Vector3(0, yRotation, zRotation);
+        }
+
+        GameObject newHitFX = Instantiate(prefab, generationPosition, Quaternion.identity);
+
+        newHitFX.transform.Rotate(generationRotation);
+
+        Destroy(newHitFX, 0.5f);
+    }
 }

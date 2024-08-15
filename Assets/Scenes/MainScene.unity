@@ -6431,7 +6431,7 @@ GameObject:
   - component: {fileID: 105677542}
   - component: {fileID: 105677541}
   m_Layer: 0
-  m_Name: Fireflies_FX
+  m_Name: Dust_FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7847,7 +7847,7 @@ ParticleSystem:
   UVModule:
     serializedVersion: 2
     enabled: 0
-    mode: 0
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -32749,6 +32749,7 @@ MonoBehaviour:
   igniteFX: {fileID: 1088552669}
   chillFX: {fileID: 402801980}
   shockFX: {fileID: 796056742}
+  hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
 --- !u!114 &666281804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44683,6 +44684,7 @@ MonoBehaviour:
   igniteFX: {fileID: 1387675554}
   chillFX: {fileID: 2011071210}
   shockFX: {fileID: 1049437782}
+  hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
 --- !u!114 &1025642812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100048,6 +100050,7 @@ MonoBehaviour:
   igniteFX: {fileID: 1486896547}
   chillFX: {fileID: 1320632397}
   shockFX: {fileID: 1271999517}
+  hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
 --- !u!114 &1719100887
 MonoBehaviour:
   m_ObjectHideFlags: 0

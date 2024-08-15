@@ -62,6 +62,11 @@ public class Enemy_Skeleton : Enemy
 
     public override void GetIntoBattleState()
     {
+        //if (stateMachine.currentState == battleState || stateMachine.currentState == attackState)
+        //{
+        //    return;
+        //}
+
         if (stateMachine.currentState != battleState)
         {
             stateMachine.ChangeState(battleState);

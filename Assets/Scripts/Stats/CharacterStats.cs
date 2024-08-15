@@ -143,11 +143,15 @@ public class CharacterStats : MonoBehaviour
 
         int _totalDamage = damage.GetValue() + strength.GetValue();
 
-        if (CanCrit())
+        bool crit = CanCrit();
+
+        if (crit)
         {
             Debug.Log("Critical Attack!");
             _totalDamage = CalculatCritDamage(_totalDamage);
         }
+
+        fx.CreateHitFX(_targetStats.transform, crit);
 
         _totalDamage = CheckTargetArmor(_targetStats, _totalDamage);
         _targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform);

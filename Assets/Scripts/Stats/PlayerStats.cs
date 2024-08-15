@@ -16,6 +16,11 @@ public class PlayerStats : CharacterStats
 
     public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
     {
+        if (isInvincible)
+        {
+            return;
+        }
+
         int takenDamage = DecreaseHPBy(_damage);
 
         //Debug.Log($"{gameObject.name} received {_damage} damage");
@@ -79,11 +84,15 @@ public class PlayerStats : CharacterStats
 
         int _totalDamage = damage.GetValue() + strength.GetValue();
 
-        if (CanCrit())
+        bool crit = CanCrit();
+
+        if (crit)
         {
             Debug.Log("Critical Attack!");
             _totalDamage = CalculatCritDamage(_totalDamage);
         }
+
+        fx.CreateHitFX(_targetStats.transform, crit);
 
         //clone attack damage should be less than player's damage
         if (_cloneAttackDamageMultipler > 0)

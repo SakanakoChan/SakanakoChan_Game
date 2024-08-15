@@ -31,6 +31,10 @@ public class EnemyStats : CharacterStats
     {
         base.TakeDamage(_damage, _attacker, _attackee);
 
+        //this will interupt skeleton's action even if enemy is attacking player!
+        //because in skeleton.GetintoBattleState() it doesn't check if current state is attack state
+        //the original purpose of this is to make enemy enter battle state immediately
+        //if player is attacking enemy from behind
         enemy.GetIntoBattleState();
     }
 
