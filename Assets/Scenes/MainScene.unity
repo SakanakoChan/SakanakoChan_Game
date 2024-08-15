@@ -32750,6 +32750,7 @@ MonoBehaviour:
   chillFX: {fileID: 402801980}
   shockFX: {fileID: 796056742}
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
+  critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
 --- !u!114 &666281804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44685,6 +44686,7 @@ MonoBehaviour:
   chillFX: {fileID: 2011071210}
   shockFX: {fileID: 1049437782}
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
+  critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
 --- !u!114 &1025642812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100051,6 +100053,7 @@ MonoBehaviour:
   chillFX: {fileID: 1320632397}
   shockFX: {fileID: 1271999517}
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
+  critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
 --- !u!114 &1719100887
 MonoBehaviour:
   m_ObjectHideFlags: 0
