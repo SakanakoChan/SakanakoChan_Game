@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwordSkillController : MonoBehaviour
@@ -11,6 +12,7 @@ public class SwordSkillController : MonoBehaviour
     private bool canRotate = true;
     private bool isReturning;
     private float swordReturnSpeed;
+    private Vector2 launchSpeed; //to set dust fx direction
 
     private float enemyFreezeDuration;
     private float enemyVulnerableDuration;
@@ -186,6 +188,19 @@ public class SwordSkillController : MonoBehaviour
 
         anim.SetBool("Rotation", false);
         transform.parent = collision.transform;
+
+        //play dust fx
+        ParticleSystem dustFX = GetComponentInChildren<ParticleSystem>();
+        if (dustFX != null)
+        {
+            //if sword is flying to the left, flip the dust fx
+            if (launchSpeed.x < 0)
+            {
+                dustFX.transform.localScale = new Vector3(-1, 1, 1);
+            }
+
+            dustFX.Play();
+        }
     }
 
     private void BounceSwordLogic()
@@ -288,6 +303,8 @@ public class SwordSkillController : MonoBehaviour
         swordReturnSpeed = _swordReturnSpeed;
         enemyFreezeDuration = _enemyFreezeDuration;
         enemyVulnerableDuration = _enemyVulnerableDuration;
+
+        launchSpeed = _launchSpeed;
 
         if (!isPierceSword)
         {

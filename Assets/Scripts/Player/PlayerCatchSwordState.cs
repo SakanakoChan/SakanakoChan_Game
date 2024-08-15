@@ -15,6 +15,8 @@ public class PlayerCatchSwordState : PlayerState
 
         sword = player.sword.transform;
 
+        player.fx.PlayDustFX();
+
         //flip player according to mouse position
         if (sword.position.x < player.transform.position.x && player.facingDirection == 1)
         {

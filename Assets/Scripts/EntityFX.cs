@@ -29,6 +29,9 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private GameObject hitFXPrefab;
     [SerializeField] private GameObject critHitFXPrefab;
 
+    [Space]
+    [SerializeField] private ParticleSystem dustFX;
+
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
@@ -206,5 +209,13 @@ public class EntityFX : MonoBehaviour
         newHitFX.transform.Rotate(generationRotation);
 
         Destroy(newHitFX, 0.5f);
+    }
+
+    public void PlayDustFX()
+    {
+        if (dustFX != null)
+        {
+            dustFX.Play();
+        }
     }
 }
