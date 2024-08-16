@@ -1,13 +1,18 @@
+using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class EntityFX : MonoBehaviour
 {
     private SpriteRenderer sr;
+    private Player player;
+
+    [Header("Screen Shake FX")]
+    private CinemachineImpulseSource screenShake;
+    [SerializeField] private float shakeMultiplier;
+    public Vector3 shakeDirection_light;
+    public Vector3 shakeDirection_medium;
+    public Vector3 shakeDirection_heavy;
 
     [Header("Flash FX")]
     [SerializeField] private float flashDuration;
@@ -42,11 +47,13 @@ public class EntityFX : MonoBehaviour
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
+        screenShake = GetComponent<CinemachineImpulseSource>();
     }
 
     private void Start()
     {
         originalMaterial = sr.material;
+        player = PlayerManager.instance.player;
 
         afterimageCooldownTimer = 0;
     }
@@ -54,6 +61,12 @@ public class EntityFX : MonoBehaviour
     private void Update()
     {
         afterimageCooldownTimer -= Time.deltaTime;
+    }
+
+    public void ScreenShake(Vector3 _shakeDirection)
+    {
+        screenShake.m_DefaultVelocity = new Vector3(_shakeDirection.x * player.facingDirection, _shakeDirection.y) * shakeMultiplier;
+        screenShake.GenerateImpulse();
     }
 
     private IEnumerator FlashFX()

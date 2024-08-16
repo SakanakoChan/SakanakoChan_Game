@@ -14,6 +14,34 @@ public class PlayerStats : CharacterStats
         player = GetComponent<Player>();
     }
 
+    public override void DoDamge(CharacterStats _targetStats)
+    {
+        base.DoDamge(_targetStats);
+
+        if (_targetStats.GetComponent<Enemy>() != null)
+        {
+            Player player = PlayerManager.instance.player;
+            int playerComboCounter = player.primaryAttackState.comboCounter;
+
+            if (player.stateMachine.currentState == player.primaryAttackState)
+            {
+                if (playerComboCounter <= 1)
+                {
+                    fx.ScreenShake(fx.shakeDirection_light);
+                }
+                else
+                {
+                    fx.ScreenShake(fx.shakeDirection_medium);
+                }
+            }
+            else //for throw sword
+            {
+                fx.ScreenShake(fx.shakeDirection_medium);
+            }
+
+        }
+    }
+
     public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
     {
         if (isInvincible)
@@ -31,6 +59,7 @@ public class PlayerStats : CharacterStats
         if (takenDamage >= player.stats.getMaxHP() * 0.3f)
         {
             _attackee.GetComponent<Entity>()?.DamageKnockbackEffect(_attacker, _attackee);
+            player.fx.ScreenShake(player.fx.shakeDirection_heavy);
         }
 
         if (currentHP <= 0 && !isDead)

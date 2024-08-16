@@ -53,6 +53,7 @@ public class PlayerCounterAttackState : PlayerState
                     stateTimer = 10;
 
                     player.anim.SetBool("SuccessfulCounterAttack", true);
+                    player.fx.ScreenShake(player.fx.shakeDirection_medium);
 
                     //parry recover hp/fp
                     player.skill.parry.RecoverHPFPInSuccessfulParry();
