@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -32,6 +33,12 @@ public class EntityFX : MonoBehaviour
     [Space]
     [SerializeField] private ParticleSystem dustFX;
 
+    [Header("Afterimage FX")]
+    [SerializeField] private GameObject afterimagePrefab;
+    [SerializeField] private float afterimageColorLosingSpeed;
+    [SerializeField] private float afterimageCooldown;
+    private float afterimageCooldownTimer;
+
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
@@ -40,6 +47,13 @@ public class EntityFX : MonoBehaviour
     private void Start()
     {
         originalMaterial = sr.material;
+
+        afterimageCooldownTimer = 0;
+    }
+
+    private void Update()
+    {
+        afterimageCooldownTimer -= Time.deltaTime;
     }
 
     private IEnumerator FlashFX()
@@ -47,12 +61,17 @@ public class EntityFX : MonoBehaviour
         canApplyAilmentColor = false;
 
         sr.material = hitMaterial;
-        Color originalColor = sr.color;
-        sr.color = Color.white;
+
+        //to fix the bug where enemy's color can still be ailment color when attacking enemy
+        //when its ailment state is almost over,
+        //the flash effect remembers the original color as the ailment state color
+        //so enemy's color will be incorrect
+        //Color originalColor = sr.color;
+        //sr.color = Color.white;
 
         yield return new WaitForSeconds(flashDuration);
 
-        sr.color = originalColor;
+        //sr.color = Color.white;
         sr.material = originalMaterial;
 
         canApplyAilmentColor = true;
@@ -75,6 +94,7 @@ public class EntityFX : MonoBehaviour
         CancelInvoke();
 
         sr.color = Color.white;
+        Debug.Log("Set to color white");
 
         igniteFX.Stop();
         chillFX.Stop();
@@ -99,6 +119,7 @@ public class EntityFX : MonoBehaviour
         igniteFX.Play();
         InvokeRepeating("IgniteColorFX", 0, 0.3f);
         Invoke("CancelColorChange", _seconds);
+        //Invoke("CancelColorChange", _seconds + 0.1f);
     }
 
     private void IgniteColorFX()
@@ -106,10 +127,12 @@ public class EntityFX : MonoBehaviour
         if (sr.color != igniteColor[0])
         {
             sr.color = igniteColor[0];
+            Debug.Log("Set to ignite color 0");
         }
         else
         {
             sr.color = igniteColor[1];
+            Debug.Log("Set to ignite color 1");
         }
     }
 
@@ -216,6 +239,18 @@ public class EntityFX : MonoBehaviour
         if (dustFX != null)
         {
             dustFX.Play();
+        }
+    }
+
+    public void CreateAfterimage()
+    {
+        if (afterimageCooldownTimer < 0)
+        {
+            //need to pass transform.rotation here to make afterimage flip together with player when dashing to the left
+            GameObject newAfterimage = Instantiate(afterimagePrefab, transform.position, transform.rotation);
+            newAfterimage.GetComponent<AfterimageFX>()?.SetupAfterImage(sr.sprite, afterimageColorLosingSpeed);
+
+            afterimageCooldownTimer = afterimageCooldown;
         }
     }
 }

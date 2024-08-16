@@ -49,6 +49,8 @@ public class PlayerDashState : PlayerState
 
         player.SetVelocity(player.dashSpeed * player.dashDirection, 0);
 
+        player.fx.CreateAfterimage();
+
         if (stateTimer < 0)
         {
             stateMachine.ChangeState(player.idleState);

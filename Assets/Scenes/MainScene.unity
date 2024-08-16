@@ -27922,6 +27922,9 @@ MonoBehaviour:
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
   critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
   dustFX: {fileID: 0}
+  afterimagePrefab: {fileID: 0}
+  afterimageColorLosingSpeed: 0
+  afterimageCooldown: 0
 --- !u!114 &666281804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39860,6 +39863,9 @@ MonoBehaviour:
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
   critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
   dustFX: {fileID: 326420609}
+  afterimagePrefab: {fileID: 2473532790529764100, guid: 6c059c4438a8c0d4088868c39e3e0762, type: 3}
+  afterimageColorLosingSpeed: 5
+  afterimageCooldown: 0.05
 --- !u!114 &1025642812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90403,6 +90409,9 @@ MonoBehaviour:
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
   critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
   dustFX: {fileID: 0}
+  afterimagePrefab: {fileID: 0}
+  afterimageColorLosingSpeed: 0
+  afterimageCooldown: 0
 --- !u!114 &1719100887
 MonoBehaviour:
   m_ObjectHideFlags: 0

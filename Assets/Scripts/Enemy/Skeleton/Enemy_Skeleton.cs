@@ -36,6 +36,12 @@ public class Enemy_Skeleton : Enemy
     {
         base.Update();
 
+        //to prevent counter image from always showing when skeleton's attack got interrupted
+        if (stateMachine.currentState != attackState)
+        {
+            CloseCounterAttackWindow();
+        }
+
         if (Input.GetKeyDown(KeyCode.U))
         {
             stateMachine.ChangeState(stunnedState);
@@ -67,7 +73,7 @@ public class Enemy_Skeleton : Enemy
         //    return;
         //}
 
-        if (stateMachine.currentState != battleState)
+        if (stateMachine.currentState != battleState && stateMachine.currentState != stunnedState && stateMachine.currentState != deathState)
         {
             stateMachine.ChangeState(battleState);
         }
