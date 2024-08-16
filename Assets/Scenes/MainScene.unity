@@ -49732,8 +49732,8 @@ MonoBehaviour:
   wallJumpXSpeed: 5
   wallJumpDuration: 0.2
   attackMovement:
-  - {x: 3, y: 1}
-  - {x: 3, y: 2}
+  - {x: 4, y: 1}
+  - {x: 4, y: 2}
   - {x: 6, y: 2}
   counterAttackDuration: 0.2
   dashSpeed: 25
