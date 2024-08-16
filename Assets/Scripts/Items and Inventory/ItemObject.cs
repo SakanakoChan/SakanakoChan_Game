@@ -23,6 +23,7 @@ public class ItemObject : MonoBehaviour
         if (!Inventory.instance.CanAddEquipmentToInventory() && item.itemType == ItemType.Equipment)
         {
             rb.velocity = new Vector2(0, 5);
+            PlayerManager.instance.player.fx.CreatePopUpText("No more space in inventory!");
             return;
         }
 

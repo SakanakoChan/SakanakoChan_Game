@@ -63,7 +63,7 @@ public class Skill_ThunderStrikeController : MonoBehaviour
     private void DamageAndSelfDestroy()
     {
         targetStats.ApplyShockAilment(true);
-        targetStats.TakeDamage(damage, transform, targetStats.transform);
+        targetStats.TakeDamage(damage, transform, targetStats.transform, false);
         Destroy(gameObject, 0.4f);
 
     }

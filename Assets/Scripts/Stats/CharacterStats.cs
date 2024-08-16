@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public enum StatType
@@ -54,7 +55,7 @@ public class CharacterStats : MonoBehaviour
     private int thunderStrikeDamage;
 
 
-    public bool isInvincible {  get; private set; }
+    public bool isInvincible { get; private set; }
 
     [Space]
     public int currentHP;
@@ -154,12 +155,17 @@ public class CharacterStats : MonoBehaviour
         fx.CreateHitFX(_targetStats.transform, crit);
 
         _totalDamage = CheckTargetArmor(_targetStats, _totalDamage);
-        _targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform);
+
+        _totalDamage = CheckTargetVulnerability(_targetStats, _totalDamage);
+
+        _targetStats.TakeDamage(_totalDamage, transform, _targetStats.transform, crit);
 
         //DoMagicDamage(_targetStats, transform);
     }
 
-    public virtual void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
+
+
+    public virtual void TakeDamage(int _damage, Transform _attacker, Transform _attackee, bool _isCrit)
     {
         //if entity is invincible, it won't take damage
         if (isInvincible)
@@ -167,7 +173,7 @@ public class CharacterStats : MonoBehaviour
             return;
         }
 
-        DecreaseHPBy(_damage);
+        DecreaseHPBy(_damage, _isCrit);
 
         //Debug.Log($"{gameObject.name} received {_damage} damage");
 
@@ -213,6 +219,9 @@ public class CharacterStats : MonoBehaviour
         isInvincible = _invincible;
     }
 
+
+
+
     #region Magic and Ailments
     public virtual void DoMagicDamage(CharacterStats _targetStats, Transform _attacker)
     {
@@ -223,7 +232,7 @@ public class CharacterStats : MonoBehaviour
         int _totalMagicDamage = _fireDamage + _iceDamage + _lightningDamage + intelligence.GetValue();
         _totalMagicDamage = CheckTargetMagicResistance(_targetStats, _totalMagicDamage);
 
-        _targetStats.TakeDamage(_totalMagicDamage, _attacker, _targetStats.transform); ;
+        _targetStats.TakeDamage(_totalMagicDamage, _attacker, _targetStats.transform, false);
 
         //only if at least 1 of the magic damage is > 0, ailment can be applied
         if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) <= 0)
@@ -418,7 +427,7 @@ public class CharacterStats : MonoBehaviour
         if (ignitedDamageTimer < 0)
         {
             Debug.Log($"Take burn damage {igniteDamage}");
-            DecreaseHPBy(igniteDamage);
+            DecreaseHPBy(igniteDamage, false);
 
             if (currentHP <= 0 && !isDead)
             {
@@ -440,7 +449,9 @@ public class CharacterStats : MonoBehaviour
     }
     #endregion
 
-    #region HP and Damage Calculation - Armor, Crit, Magic Resistance, Evasion
+
+
+    #region HP and Damage Calculation - Armor, Crit, Magic Resistance, Vulnerability, Evasion
     protected int CheckTargetArmor(CharacterStats _targetStats, int _totalDamage)
     {
         //chill effect: reduce armor by 20%
@@ -507,6 +518,16 @@ public class CharacterStats : MonoBehaviour
         return Mathf.RoundToInt(critDamage);
     }
 
+    public int CheckTargetVulnerability(CharacterStats _targetStats, int _totalDamage)
+    {
+        if (_targetStats.isVulnerable)
+        {
+            _totalDamage = Mathf.RoundToInt(_totalDamage * 1.1f);
+        }
+
+        return _totalDamage;
+    }
+
     public virtual void OnEvasion()
     {
 
@@ -514,14 +535,20 @@ public class CharacterStats : MonoBehaviour
 
 
     #region HP
-    public virtual int DecreaseHPBy(int _takenDamage)
+    public virtual int DecreaseHPBy(int _takenDamage, bool _isCrit)
     {
-        if (isVulnerable)
-        {
-            _takenDamage = Mathf.RoundToInt(_takenDamage * 1.1f);
-        }
-
         currentHP -= _takenDamage;
+
+        if (_takenDamage > 0)
+        {
+            GameObject popUpText = fx.CreatePopUpText(_takenDamage.ToString());
+
+            if (_isCrit)
+            {
+                popUpText.GetComponent<TextMeshPro>().color = Color.yellow;
+                popUpText.GetComponent<TextMeshPro>().fontSize = 12;
+            }
+        }
 
         Debug.Log($"{gameObject.name} takes {_takenDamage} damage");
 

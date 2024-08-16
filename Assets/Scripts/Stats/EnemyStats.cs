@@ -27,9 +27,9 @@ public class EnemyStats : CharacterStats
     }
 
 
-    public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
+    public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee, bool _isCrit)
     {
-        base.TakeDamage(_damage, _attacker, _attackee);
+        base.TakeDamage(_damage, _attacker, _attackee, _isCrit);
 
         //this will interupt skeleton's action even if enemy is attacking player!
         //because in skeleton.GetintoBattleState() it doesn't check if current state is attack state

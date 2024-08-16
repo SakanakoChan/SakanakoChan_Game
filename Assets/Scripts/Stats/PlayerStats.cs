@@ -34,22 +34,22 @@ public class PlayerStats : CharacterStats
                     fx.ScreenShake(fx.shakeDirection_medium);
                 }
             }
-            else //for throw sword
-            {
-                fx.ScreenShake(fx.shakeDirection_medium);
-            }
+            //else //for throw sword
+            //{
+            //    fx.ScreenShake(fx.shakeDirection_medium);
+            //}
 
         }
     }
 
-    public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee)
+    public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee, bool _isCrit)
     {
         if (isInvincible)
         {
             return;
         }
 
-        int takenDamage = DecreaseHPBy(_damage);
+        int takenDamage = DecreaseHPBy(_damage, _isCrit);
 
         //Debug.Log($"{gameObject.name} received {_damage} damage");
 
@@ -80,9 +80,9 @@ public class PlayerStats : CharacterStats
         GetComponent<PlayerItemDrop>()?.GenrateDrop();
     }
 
-    public override int DecreaseHPBy(int _takenDamage)
+    public override int DecreaseHPBy(int _takenDamage, bool _isCrit)
     {
-        base.DecreaseHPBy(_takenDamage);
+        base.DecreaseHPBy(_takenDamage, _isCrit);
 
         int randomIndex = Random.Range(34, 36);
         AudioManager.instance.PlaySFX(randomIndex, player.transform);
@@ -130,6 +130,8 @@ public class PlayerStats : CharacterStats
         }
 
         _totalDamage = CheckTargetArmor(_targetStats, _totalDamage);
-        _targetStats.TakeDamage(_totalDamage, _cloneTransform, _targetStats.transform);
+        _totalDamage = CheckTargetVulnerability(_targetStats, _totalDamage);
+
+        _targetStats.TakeDamage(_totalDamage, _cloneTransform, _targetStats.transform, crit);
     }
 }

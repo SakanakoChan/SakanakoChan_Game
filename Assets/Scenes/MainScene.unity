@@ -33065,6 +33065,7 @@ MonoBehaviour:
   shakeDirection_light: {x: 0, y: 0, z: 0}
   shakeDirection_medium: {x: 0, y: 0, z: 0}
   shakeDirection_heavy: {x: 0, y: 0, z: 0}
+  popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
   flashDuration: 0.2
   hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
   igniteColor:
@@ -49841,6 +49842,7 @@ MonoBehaviour:
   shakeDirection_light: {x: 0.2, y: 0.03, z: 0}
   shakeDirection_medium: {x: 0.5, y: 0.1, z: 0}
   shakeDirection_heavy: {x: 1.5, y: 1, z: 0}
+  popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
   flashDuration: 0.15
   hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
   igniteColor:
@@ -105561,6 +105563,7 @@ MonoBehaviour:
   shakeDirection_light: {x: 0, y: 0, z: 0}
   shakeDirection_medium: {x: 0, y: 0, z: 0}
   shakeDirection_heavy: {x: 0, y: 0, z: 0}
+  popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
   flashDuration: 0.2
   hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
   igniteColor:
@@ -115844,6 +115847,7 @@ MonoBehaviour:
   shakeDirection_light: {x: 0, y: 0, z: 0}
   shakeDirection_medium: {x: 0, y: 0, z: 0}
   shakeDirection_heavy: {x: 0, y: 0, z: 0}
+  popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
   flashDuration: 0.2
   hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
   igniteColor:

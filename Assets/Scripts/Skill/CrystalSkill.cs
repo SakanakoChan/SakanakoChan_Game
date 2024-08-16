@@ -93,6 +93,7 @@ public class CrystalSkill : Skill
                 return true;
             }
 
+            player.fx.CreatePopUpText("Skill is in cooldown");
             return false;
         }
     }
@@ -110,6 +111,7 @@ public class CrystalSkill : Skill
                 EnterCooldown();
                 return;
             }
+            player.fx.CreatePopUpText("Skill is in cooldown");
             return;
         }
 

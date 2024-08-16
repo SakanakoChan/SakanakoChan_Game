@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class EntityFX : MonoBehaviour
@@ -13,6 +14,9 @@ public class EntityFX : MonoBehaviour
     public Vector3 shakeDirection_light;
     public Vector3 shakeDirection_medium;
     public Vector3 shakeDirection_heavy;
+
+    [Header("Pop Up Text")]
+    [SerializeField] private GameObject popUpTextPrefab;
 
     [Header("Flash FX")]
     [SerializeField] private float flashDuration;
@@ -67,6 +71,19 @@ public class EntityFX : MonoBehaviour
     {
         screenShake.m_DefaultVelocity = new Vector3(_shakeDirection.x * player.facingDirection, _shakeDirection.y) * shakeMultiplier;
         screenShake.GenerateImpulse();
+    }
+
+    public GameObject CreatePopUpText(string _text)
+    {
+        float xOffset = Random.Range(-1, 1);
+        float yOffset = Random.Range(1.5f, 3);
+
+        Vector3 postionOffset = new Vector3(xOffset, yOffset, 0);
+
+        GameObject newText = Instantiate(popUpTextPrefab, transform.position + postionOffset, Quaternion.identity);
+        newText.GetComponent<TextMeshPro>().text = _text;
+
+        return newText;
     }
 
     private IEnumerator FlashFX()
