@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Data;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class Player : Entity
 {
     public SkillManager skill { get; private set; }
-    public GameObject sword {  get; private set; }
+    public GameObject sword { get; private set; }
 
     [Header("Move Info")]
     public float moveSpeed;
@@ -199,7 +196,7 @@ public class Player : Entity
         moveSpeed = moveSpeed * (1 - _percentage);
         jumpForce = jumpForce * (1 - _percentage);
         dashSpeed = dashSpeed * (1 - _percentage);
-        anim.speed = anim.speed * (1- _percentage);
+        anim.speed = anim.speed * (1 - _percentage);
 
         Invoke("ReturnDefaultSpeed", _duration);
     }
