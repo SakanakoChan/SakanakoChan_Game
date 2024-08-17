@@ -1,6 +1,10 @@
 using System.Text;
-using UnityEditor;
 using UnityEngine;
+
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public enum ItemType
 {
@@ -23,10 +27,10 @@ public class ItemData : ScriptableObject
 
     private void OnValidate()
     {
-        #if UNITY_EDITOR  //meaning the code inside this # (macro) will only be executed in unity editor, and won't be compiled when building the game
+#if UNITY_EDITOR  //meaning the code inside this # (macro) will only be executed in unity editor, and won't be compiled when building the game
         string path = AssetDatabase.GetAssetPath(this);
         itemID = AssetDatabase.AssetPathToGUID(path);  //GUID means global unique identifier for the asset
-        #endif
+#endif
     }
 
     public virtual string GetItemStatInfoAndEffectDescription()

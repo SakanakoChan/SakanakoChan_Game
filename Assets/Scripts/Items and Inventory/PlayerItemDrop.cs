@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public class PlayerItemDrop : ItemDrop
@@ -17,13 +15,13 @@ public class PlayerItemDrop : ItemDrop
         Inventory inventory = Inventory.instance;
         List<InventorySlot> currentEquippedEquipment = inventory.GetEquippedEquipmentList();
         List<InventorySlot> EquipmentToLose = new List<InventorySlot>();
-        
+
         List<InventorySlot> currentStash = inventory.GetStashList();
         List<InventorySlot> materialsToLose = new List<InventorySlot>();
 
         for (int i = 0; i < currentEquippedEquipment.Count; i++)
         {
-            if(Random.Range(0, 100) <= chanceToDropEquiment)
+            if (Random.Range(0, 100) <= chanceToDropEquiment)
             {
                 EquipmentToLose.Add(currentEquippedEquipment[i]);
             }

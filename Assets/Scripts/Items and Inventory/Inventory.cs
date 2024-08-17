@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -41,6 +37,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
 
     [Header("Item Data Base")]
+    public List<ItemData> itemDataBase;
     public List<InventorySlot> loadedInventorySlots;
     public List<ItemData_Equipment> loadedEquippedEquipment;
 
@@ -483,7 +480,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         foreach (var pair in _data.inventory)
         {
             //ItemData item
-            foreach (var item in GetItemDataBase())
+            foreach (var item in itemDataBase)
             {
                 if (item != null && item.itemID == pair.Key)
                 {
@@ -497,7 +494,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         foreach (var equipmentID in _data.equippedEquipmentIDs)
         {
-            foreach (var equipment in GetItemDataBase())
+            foreach (var equipment in itemDataBase)
             {
                 if (equipment != null && equipment.itemID == equipmentID)
                 {
@@ -529,6 +526,13 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
     }
 
+#if UNITY_EDITOR
+    [ContextMenu("Fill up item data base")]
+    private void FillUpItemDataBase()
+    {
+        itemDataBase = GetItemDataBase();
+    }
+
     private List<ItemData> GetItemDataBase()
     {
         List<ItemData> itemDataBase = new List<ItemData>();
@@ -552,4 +556,6 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         return itemDataBase;
     }
+#endif
+
 }

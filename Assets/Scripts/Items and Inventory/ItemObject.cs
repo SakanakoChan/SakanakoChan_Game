@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
-using UnityEngine.XR;
 
+
+//Remember to use Fill up item data base function in inventorymanager script in unity editor every time making a new item!
 public class ItemObject : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
