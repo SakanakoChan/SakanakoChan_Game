@@ -10,3 +10,14 @@
 
 <p>Anyway, this time I am fucking CLEAVER, I backed up my project in github from the beginning of my rework.</p>
 <h1>I AM NOT AFRAID OF YOUR UPDATE ANYMORE, UNITY HUB. I AM NOT. COME AND FIGHT MEEEEEEEE!</h1>
+
+
+<h2>To Do list:</h2>
+<o>Add Save & Exit function to Options UI</o>
+<o>Add more sound effects</o>
+<o>Add sample levels, maybe a training level and level 1</o>
+<o>Add air launch attack, which will launch enemies skyward</o>
+<o>Add falling attack which will throw enemy and player onto ground</o>
+<o>Add downable ground and related mechanics which allows player to jump off certain platforms</o>
+<o>Add more enemy types</o>
+<o>Add text language settings which allows switching language between chinese and english</o>
