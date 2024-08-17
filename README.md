@@ -13,11 +13,13 @@
 
 
 <h2>To Do list:</h2>
-<o>Add Save & Exit function to Options UI</o>
-<o>Add more sound effects</o>
-<o>Add sample levels, maybe a training level and level 1</o>
-<o>Add air launch attack, which will launch enemies skyward</o>
-<o>Add falling attack which will throw enemy and player onto ground</o>
-<o>Add downable ground and related mechanics which allows player to jump off certain platforms</o>
-<o>Add more enemy types</o>
-<o>Add text language settings which allows switching language between chinese and english</o>
+<ol>
+<li>Add Save & Exit function to Options UI</li>
+<li>Add more sound effects</li>
+<li>Add sample levels, maybe a training level and level 1</li>
+<li>Add air launch attack, which will launch enemies skyward</li>
+<li>Add falling attack which will throw enemy and player onto ground</li>
+<li>Add downable ground and related mechanics which allows player to jump off certain platforms</li>
+<li>Add more enemy types</li>
+<li>Add text language settings which allows switching language between chinese and english</li>
+</ol>
