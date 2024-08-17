@@ -1,8 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -20,7 +16,7 @@ public class Entity : MonoBehaviour
     [Header("Knockback Info")]
     [SerializeField] protected Vector2 knockbackMovement;
     [SerializeField] protected float knockbackDuration;
-    public bool isKnockbacked {  get; private set; }
+    public bool isKnockbacked { get; private set; }
 
     public int facingDirection { get; private set; } = 1;
     protected bool facingRight = true;
@@ -29,7 +25,7 @@ public class Entity : MonoBehaviour
     public SpriteRenderer sr { get; private set; }
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
-    public EntityFX fx { get; private set; }
+    //public EntityFX fx { get; private set; }
     public CharacterStats stats { get; private set; }
     public CapsuleCollider2D cd { get; private set; }
     #endregion
@@ -39,7 +35,7 @@ public class Entity : MonoBehaviour
     protected virtual void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
-        fx = GetComponent<EntityFX>();
+        //fx = GetComponent<EntityFX>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         stats = GetComponent<CharacterStats>();
@@ -57,7 +53,7 @@ public class Entity : MonoBehaviour
 
     public virtual void DamageFlashEffect()
     {
-        fx.StartCoroutine("FlashFX");
+        //fx.StartCoroutine("FlashFX");
 
     }
 

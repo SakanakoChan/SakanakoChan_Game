@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
-using TMPro.EditorUtilities;
 using System;
+using System.IO;
+using UnityEngine;
 
 //Save location:
 //C:\Users\megum\AppData\LocalLow\DefaultCompany\BrandNewRPGGame_2nd
@@ -41,7 +38,7 @@ public class FileDataHandler
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
-                using(StreamWriter writer = new StreamWriter(stream))
+                using (StreamWriter writer = new StreamWriter(stream))
                 {
                     writer.Write(dataToStore);
                 }
@@ -80,7 +77,7 @@ public class FileDataHandler
                 //read json from the save file to gamedata
                 loadData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.Log($"Failed to load game data from:\n{fullPath}\n{e.Message}");
             }

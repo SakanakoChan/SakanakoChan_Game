@@ -36,6 +36,7 @@ public class Enemy : Entity
 
     public EnemyStateMachine stateMachine { get; private set; }
     protected Player player { get; private set; }
+    public EntityFX fx { get; private set; }
 
     public string lastAnimBoolName { get; private set; }
 
@@ -45,6 +46,7 @@ public class Enemy : Entity
         base.Awake();
 
         stateMachine = new EnemyStateMachine();
+        fx = GetComponent<EntityFX>();
 
         defaultBattleMoveSpeed = battleMoveSpeed;
         defaultPatrolMoveSpeed = patrolMoveSpeed;
@@ -163,6 +165,11 @@ public class Enemy : Entity
     public virtual void GetIntoBattleState()
     {
 
+    }
+
+    public override void DamageFlashEffect()
+    {
+        fx.StartCoroutine("FlashFX");
     }
 
 }

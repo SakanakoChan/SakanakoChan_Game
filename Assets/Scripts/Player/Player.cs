@@ -29,7 +29,7 @@ public class Player : Entity
 
     public bool isBusy { get; private set; }
 
-    public new PlayerFX fx { get; private set; }
+    public PlayerFX fx { get; private set; }
 
     #region States and Statemachine
     public PlayerStateMachine stateMachine { get; private set; }
@@ -213,4 +213,9 @@ public class Player : Entity
         dashSpeed = defaultDashSpeed;
     }
 
+
+    public override void DamageFlashEffect()
+    {
+        fx.StartCoroutine("FlashFX");
+    }
 }

@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public enum EquipmentType
 {
