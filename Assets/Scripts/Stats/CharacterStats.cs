@@ -90,7 +90,7 @@ public class CharacterStats : MonoBehaviour
 
     protected EntityFX fx;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         fx = GetComponent<EntityFX>();
     }

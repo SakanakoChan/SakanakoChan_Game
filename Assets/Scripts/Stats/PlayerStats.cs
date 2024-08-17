@@ -6,6 +6,13 @@ using UnityEngine;
 public class PlayerStats : CharacterStats
 {
     private Player player;
+    private PlayerFX playerFX;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        playerFX = GetComponent<PlayerFX>();
+    }
 
     protected override void Start()
     {
@@ -27,11 +34,11 @@ public class PlayerStats : CharacterStats
             {
                 if (playerComboCounter <= 1)
                 {
-                    fx.ScreenShake(fx.shakeDirection_light);
+                    playerFX.ScreenShake(playerFX.shakeDirection_light);
                 }
                 else
                 {
-                    fx.ScreenShake(fx.shakeDirection_medium);
+                    playerFX.ScreenShake(playerFX.shakeDirection_medium);
                 }
             }
             //else //for throw sword

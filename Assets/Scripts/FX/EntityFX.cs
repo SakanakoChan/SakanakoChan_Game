@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class EntityFX : MonoBehaviour
 {
-    private SpriteRenderer sr;
-    private Player player;
+    protected SpriteRenderer sr;
+    protected Player player;
 
-    [Header("Screen Shake FX")]
-    private CinemachineImpulseSource screenShake;
-    [SerializeField] private float shakeMultiplier;
-    public Vector3 shakeDirection_light;
-    public Vector3 shakeDirection_medium;
-    public Vector3 shakeDirection_heavy;
 
     [Header("Pop Up Text")]
     [SerializeField] private GameObject popUpTextPrefab;
@@ -39,39 +33,24 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private GameObject hitFXPrefab;
     [SerializeField] private GameObject critHitFXPrefab;
 
-    [Space]
-    [SerializeField] private ParticleSystem dustFX;
 
-    [Header("Afterimage FX")]
-    [SerializeField] private GameObject afterimagePrefab;
-    [SerializeField] private float afterimageColorLosingSpeed;
-    [SerializeField] private float afterimageCooldown;
-    private float afterimageCooldownTimer;
-
-    private void Awake()
+    protected virtual void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
-        screenShake = GetComponent<CinemachineImpulseSource>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         originalMaterial = sr.material;
         player = PlayerManager.instance.player;
-
-        afterimageCooldownTimer = 0;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        afterimageCooldownTimer -= Time.deltaTime;
+
     }
 
-    public void ScreenShake(Vector3 _shakeDirection)
-    {
-        screenShake.m_DefaultVelocity = new Vector3(_shakeDirection.x * player.facingDirection, _shakeDirection.y) * shakeMultiplier;
-        screenShake.GenerateImpulse();
-    }
+
 
     public GameObject CreatePopUpText(string _text)
     {
@@ -264,23 +243,7 @@ public class EntityFX : MonoBehaviour
         Destroy(newHitFX, 0.5f);
     }
 
-    public void PlayDustFX()
-    {
-        if (dustFX != null)
-        {
-            dustFX.Play();
-        }
-    }
 
-    public void CreateAfterimage()
-    {
-        if (afterimageCooldownTimer < 0)
-        {
-            //need to pass transform.rotation here to make afterimage flip together with player when dashing to the left
-            GameObject newAfterimage = Instantiate(afterimagePrefab, transform.position, transform.rotation);
-            newAfterimage.GetComponent<AfterimageFX>()?.SetupAfterImage(sr.sprite, afterimageColorLosingSpeed);
 
-            afterimageCooldownTimer = afterimageCooldown;
-        }
-    }
+
 }

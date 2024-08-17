@@ -33061,10 +33061,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21df11421b8cfc948960f7dbd066c872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeMultiplier: 0
-  shakeDirection_light: {x: 0, y: 0, z: 0}
-  shakeDirection_medium: {x: 0, y: 0, z: 0}
-  shakeDirection_heavy: {x: 0, y: 0, z: 0}
   popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
   flashDuration: 0.2
   hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
@@ -33080,10 +33076,6 @@ MonoBehaviour:
   shockFX: {fileID: 796056742}
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
   critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
-  dustFX: {fileID: 0}
-  afterimagePrefab: {fileID: 0}
-  afterimageColorLosingSpeed: 0
-  afterimageCooldown: 0
 --- !u!114 &666281804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49694,7 +49686,7 @@ GameObject:
   - component: {fileID: 1025642810}
   - component: {fileID: 1025642809}
   - component: {fileID: 1025642807}
-  - component: {fileID: 1025642811}
+  - component: {fileID: 1025642815}
   - component: {fileID: 1025642812}
   - component: {fileID: 1025642813}
   - component: {fileID: 1025642814}
@@ -49826,41 +49818,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1025642811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025642806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21df11421b8cfc948960f7dbd066c872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shakeMultiplier: 0.2
-  shakeDirection_light: {x: 0.2, y: 0.03, z: 0}
-  shakeDirection_medium: {x: 0.5, y: 0.1, z: 0}
-  shakeDirection_heavy: {x: 1.5, y: 1, z: 0}
-  popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
-  flashDuration: 0.15
-  hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
-  igniteColor:
-  - {r: 0.9245283, g: 0.22301145, b: 0.082858644, a: 1}
-  - {r: 0.9254902, g: 0.45292556, b: 0.27843133, a: 1}
-  chillColor: {r: 0.1544589, g: 0.5557688, b: 0.8396226, a: 1}
-  shockColor:
-  - {r: 0.990566, g: 0.92772925, b: 0.07943219, a: 1}
-  - {r: 0.9660957, g: 0.98039216, b: 0.22745097, a: 1}
-  igniteFX: {fileID: 1387675554}
-  chillFX: {fileID: 2011071210}
-  shockFX: {fileID: 1049437782}
-  hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
-  critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
-  dustFX: {fileID: 326420609}
-  afterimagePrefab: {fileID: 2473532790529764100, guid: 6c059c4438a8c0d4088868c39e3e0762, type: 3}
-  afterimageColorLosingSpeed: 5
-  afterimageCooldown: 0.05
 --- !u!114 &1025642812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49999,6 +49956,41 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &1025642815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025642806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da6644353358bd48b3a594de1dbaa16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
+  flashDuration: 0.15
+  hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
+  igniteColor:
+  - {r: 0.9254902, g: 0.22352941, b: 0.08235294, a: 1}
+  - {r: 0.9254902, g: 0.4509804, b: 0.2784314, a: 1}
+  chillColor: {r: 0.15294118, g: 0.5568628, b: 0.8392157, a: 1}
+  shockColor:
+  - {r: 0.99215686, g: 0.92941177, b: 0.078431375, a: 1}
+  - {r: 0.9647059, g: 0.98039216, b: 0.22745098, a: 1}
+  igniteFX: {fileID: 1387675554}
+  chillFX: {fileID: 2011071210}
+  shockFX: {fileID: 1049437782}
+  hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
+  critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
+  shakeMultiplier: 0.2
+  shakeDirection_light: {x: 0.2, y: 0.03, z: 0}
+  shakeDirection_medium: {x: 0.5, y: 0.1, z: 0}
+  shakeDirection_heavy: {x: 1.5, y: 1, z: 0}
+  afterimagePrefab: {fileID: 2473532790529764100, guid: 6c059c4438a8c0d4088868c39e3e0762, type: 3}
+  afterimageColorLosingSpeed: 5
+  afterimageCooldown: 0.05
+  dustFX: {fileID: 0}
 --- !u!1 &1026204062
 GameObject:
   m_ObjectHideFlags: 0
@@ -105559,10 +105551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21df11421b8cfc948960f7dbd066c872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeMultiplier: 0
-  shakeDirection_light: {x: 0, y: 0, z: 0}
-  shakeDirection_medium: {x: 0, y: 0, z: 0}
-  shakeDirection_heavy: {x: 0, y: 0, z: 0}
   popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
   flashDuration: 0.2
   hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
@@ -105578,10 +105566,6 @@ MonoBehaviour:
   shockFX: {fileID: 1271999517}
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
   critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
-  dustFX: {fileID: 0}
-  afterimagePrefab: {fileID: 0}
-  afterimageColorLosingSpeed: 0
-  afterimageCooldown: 0
 --- !u!114 &1719100887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115843,10 +115827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21df11421b8cfc948960f7dbd066c872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeMultiplier: 0
-  shakeDirection_light: {x: 0, y: 0, z: 0}
-  shakeDirection_medium: {x: 0, y: 0, z: 0}
-  shakeDirection_heavy: {x: 0, y: 0, z: 0}
   popUpTextPrefab: {fileID: 5849550380518602416, guid: 9080e79e58d47934fb56e6c5c7a56693, type: 3}
   flashDuration: 0.2
   hitMaterial: {fileID: 2100000, guid: ab7808d2cbabdf945b8921c400263fd6, type: 2}
@@ -115862,10 +115842,6 @@ MonoBehaviour:
   shockFX: {fileID: 881714558}
   hitFXPrefab: {fileID: 4416177843659901332, guid: eea9624a4418df744bc8a8ba5b999f88, type: 3}
   critHitFXPrefab: {fileID: 1602059988073344251, guid: 5a2ee54997f76b24cbd869ad40e502ab, type: 3}
-  dustFX: {fileID: 0}
-  afterimagePrefab: {fileID: 0}
-  afterimageColorLosingSpeed: 0
-  afterimageCooldown: 0
 --- !u!114 &2040884665
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,6 +29,8 @@ public class Player : Entity
 
     public bool isBusy { get; private set; }
 
+    public new PlayerFX fx { get; private set; }
+
     #region States and Statemachine
     public PlayerStateMachine stateMachine { get; private set; }
 
@@ -53,6 +55,7 @@ public class Player : Entity
         base.Awake();
 
         stateMachine = new PlayerStateMachine();
+        fx = GetComponent<PlayerFX>();
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
