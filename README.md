@@ -8,6 +8,7 @@
 <li>Add downable ground and related mechanics which allows player to jump off certain platforms</li>
 <li>Add more enemy types</li>
 <li>Add text language settings which allows switching language between chinese and english</li>
+<li>***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai</li>
 </ol>
 
 <br>
