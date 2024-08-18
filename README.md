@@ -1,6 +1,6 @@
 <h2>To Do list:</h2>
 <ol>
-<li>Add Save & Exit function to Options UI</li>
+<s><li>Add Save & Exit function to Options UI</li></s>
 <li>Add more sound effects</li>
 <li>Add sample levels, maybe a training level and level 1</li>
 <li>Add air launch attack, which will launch enemies skyward</li>
