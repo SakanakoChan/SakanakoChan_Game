@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 [System.Serializable]
 public class GameData
@@ -23,6 +21,9 @@ public class GameData
     [Header("Audio settings")]
     public SerializableDictionary<string, float> volumeSettingsDictionary;
 
+    [Header("Keybind Settings")]
+    public SerializableDictionary<string, KeyCode> keybindsDictionary;
+
     public GameData()
     {
         this.currecny = 0;
@@ -43,5 +44,19 @@ public class GameData
 
         //volumeSettingsDictionary<exposedParameter, value>
         volumeSettingsDictionary = new SerializableDictionary<string, float>();
+
+        keybindsDictionary = new SerializableDictionary<string, KeyCode>();
+        SetupDefaultKeybinds();
+    }
+
+    private void SetupDefaultKeybinds()
+    {
+        keybindsDictionary.Add("Attack", KeyCode.Mouse0);
+        keybindsDictionary.Add("Aim", KeyCode.Mouse1);
+        keybindsDictionary.Add("Flask", KeyCode.Alpha1);
+        keybindsDictionary.Add("Dash", KeyCode.LeftShift);
+        keybindsDictionary.Add("Parry", KeyCode.Q);
+        keybindsDictionary.Add("Crystal", KeyCode.F);
+        keybindsDictionary.Add("Blackhole", KeyCode.R);
     }
 }
