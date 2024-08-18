@@ -17,8 +17,6 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
         {
             Destroy(gameObject);
         }
-
-        GetAllKeyBinds();
     }
 
     private void Start()
@@ -41,29 +39,27 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
         }
     }
 
-    public string GetKeyCodeByBehaveName(string _behaveName)
-    {
-        if (keybindsDictionary.TryGetValue(_behaveName, out KeyCode key))
-        {
-            return $"The keybind for this behave is: {key.ToString()}";
-        }
-        return "Didn't find keybind for this behave";
-    }
+    //public string GetKeyCodeByBehaveName(string _behaveName)
+    //{
+    //    if (keybindsDictionary.TryGetValue(_behaveName, out KeyCode key))
+    //    {
+    //        return $"The keybind for this behave is: {key.ToString()}";
+    //    }
+    //    return "Didn't find keybind for this behave";
+    //}
 
-    public void GetAllKeyBinds()
-    {
+    //public void GetAllKeyBinds()
+    //{
+    //    for (int i = 0; i < transform.childCount; i++)
+    //    {
+    //        KeyBind keybind = transform.GetChild(i).GetComponent<KeyBind>();
 
-
-        //for (int i = 0; i < transform.childCount; i++)
-        //{
-        //    KeyBind keybind = transform.GetChild(i).GetComponent<KeyBind>();
-
-        //    if (keybind != null)
-        //    {
-        //        keyBindDictionary.Add(keybind.behaveName, keybind.behaveKeyBind);
-        //    }
-        //}
-    }
+    //        if (keybind != null)
+    //        {
+    //            keyBindDictionary.Add(keybind.behaveName, keybind.behaveKeyBind);
+    //        }
+    //    }
+    //}
 
     public void LoadData(GameData _data)
     {
