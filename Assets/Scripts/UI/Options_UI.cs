@@ -1,18 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Options_UI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private FadeScreen_UI fadeScreen;
+    public void SaveAndReturnToTitle()
     {
-        
+        StartCoroutine(SaveAndReturnToTitle_Coroutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator SaveAndReturnToTitle_Coroutine()
     {
-        
+        SaveManager.instance.SaveGame();
+        GameManager.instance.PauseGame(false);
+        fadeScreen.FadeOut();
+
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene("MainMenu");
     }
 }
