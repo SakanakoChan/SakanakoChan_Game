@@ -16,13 +16,13 @@ public class GameManager : MonoBehaviour, ISaveManager
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
-            Destroy(instance);
+            instance = this;
         }
         else
         {
-            instance = this;
+            Destroy(gameObject);
         }
 
         checkpoints = FindObjectsOfType<Checkpoint>();

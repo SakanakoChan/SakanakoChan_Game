@@ -17,13 +17,13 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
-            Destroy(instance);
+            instance = this;
         }
         else
         {
-            instance = this;
+            Destroy(gameObject);
         }
     }
 

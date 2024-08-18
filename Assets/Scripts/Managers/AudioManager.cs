@@ -17,13 +17,13 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
-            Destroy(instance);
+            instance = this;
         }
         else
         {
-            instance = this;
+            Destroy(gameObject);
         }
 
         Invoke("AllowPlayingSFX", 0.2f);
