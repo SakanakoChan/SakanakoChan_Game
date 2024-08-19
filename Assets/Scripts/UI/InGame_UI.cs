@@ -62,12 +62,12 @@ public class InGame_UI : MonoBehaviour
         //for number increasing animations when loading or getting currency
         UpdateCurrencyUI();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && skill.dash.dashUnlocked)
+        if (Input.GetKeyDown(/*KeyCode.LeftShift*/ KeyBindManager.instance.keybindsDictionary["Dash"]) && skill.dash.dashUnlocked)
         {
             SetSkillCooldownImage(dashImage);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && skill.parry.parryUnlocked)
+        if (Input.GetKeyDown(/*KeyCode.Q*/ KeyBindManager.instance.keybindsDictionary["Parry"]) && skill.parry.parryUnlocked)
         {
             SetSkillCooldownImage(parryImage);
         }
@@ -79,12 +79,12 @@ public class InGame_UI : MonoBehaviour
         //    SetSkillCooldownImage(crystalImage);
         //}
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && skill.sword.throwSwordSkillUnlocked)
+        if (Input.GetKeyDown(/*KeyCode.Mouse1*/ KeyBindManager.instance.keybindsDictionary["Aim"]) && skill.sword.throwSwordSkillUnlocked)
         {
             SetSkillCooldownImage(throwSwordImage);
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && skill.blackholeSkill.blackholeUnlocked)
+        if (Input.GetKeyDown(/*KeyCode.R*/ KeyBindManager.instance.keybindsDictionary["Blackhole"]) && skill.blackholeSkill.blackholeUnlocked)
         {
             SetSkillCooldownImage(blackholeImage);
         }

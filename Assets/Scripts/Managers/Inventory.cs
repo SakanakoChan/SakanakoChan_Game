@@ -104,11 +104,11 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ItemData _itemToRemove = inventorySlotList[inventorySlotList.Count - 1].item;
-            RemoveItem(_itemToRemove);
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    ItemData _itemToRemove = inventorySlotList[inventorySlotList.Count - 1].item;
+        //    RemoveItem(_itemToRemove);
+        //}
     }
 
     private void UpdateAllSlotUI()

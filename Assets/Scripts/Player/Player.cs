@@ -102,12 +102,12 @@ public class Player : Entity
 
         CheckForDashInput();
 
-        if (Input.GetKeyDown(KeyCode.F) && skill.crystal.crystalUnlocked)
+        if (Input.GetKeyDown(/*KeyCode.F*/ KeyBindManager.instance.keybindsDictionary["Crystal"]) && skill.crystal.crystalUnlocked)
         {
             skill.crystal.UseSkillIfAvailable();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(/*KeyCode.Alpha1*/ KeyBindManager.instance.keybindsDictionary["Flask"]))
         {
             Inventory.instance.UseFlask_ConsiderCooldown(null);
         }
@@ -126,7 +126,7 @@ public class Player : Entity
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.UseSkillIfAvailable())
+        if (Input.GetKeyDown(/*KeyCode.LeftShift*/ KeyBindManager.instance.keybindsDictionary["Dash"]) && SkillManager.instance.dash.UseSkillIfAvailable())
         {
             //if current state is AimSwordState or ThrowSwordState, hide the aim dots first
             if (stateMachine.currentState == aimSwordState || stateMachine.currentState == throwSwordState)

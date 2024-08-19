@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyBindManager : MonoBehaviour, ISaveManager
 {
     public static KeyBindManager instance;
 
-    public SerializableDictionary<string, KeyCode> keybindsDictionary;
+    public Dictionary<string, KeyCode> keybindsDictionary;
 
     private void Awake()
     {
@@ -17,6 +18,8 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
         {
             Destroy(gameObject);
         }
+
+        keybindsDictionary = new Dictionary<string, KeyCode>();
     }
 
     private void Start()
@@ -26,6 +29,7 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
 
     private void Update()
     {
+
     }
 
     public void TestInputEnter()
@@ -63,11 +67,19 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
 
     public void LoadData(GameData _data)
     {
-        keybindsDictionary = _data.keybindsDictionary;
+        foreach (var search in _data.keybindsDictionary)
+        {
+            keybindsDictionary.Add(search.Key, search.Value);
+        }
     }
 
     public void SaveData(ref GameData _data)
     {
-        
+        _data.keybindsDictionary.Clear();
+
+        foreach (var search in keybindsDictionary)
+        {
+            _data.keybindsDictionary.Add(search.Key, search.Value);
+        }
     }
 }

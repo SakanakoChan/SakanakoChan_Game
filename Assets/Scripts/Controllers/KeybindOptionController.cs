@@ -19,6 +19,14 @@ public class KeybindOptionController : MonoBehaviour
 
     public void SetupKeybindOption(string _behaveName, string _behaveKeybind)
     {
+        _behaveKeybind = UniformKeybindName(_behaveKeybind);
+
+        behaveName.text = _behaveName;
+        behaveKeybind.text = _behaveKeybind;
+    }
+
+    private string UniformKeybindName(string _behaveKeybind)
+    {
         if (_behaveKeybind.StartsWith("Alpha"))
         {
             _behaveKeybind = _behaveKeybind.Remove(0, 5);
@@ -39,8 +47,7 @@ public class KeybindOptionController : MonoBehaviour
             _behaveKeybind = _behaveKeybind.Insert(4, " ");
         }
 
-        behaveName.text = _behaveName;
-        behaveKeybind.text = _behaveKeybind;
+        return _behaveKeybind;
     }
 
     public void ChangeKeybind()
@@ -65,6 +72,7 @@ public class KeybindOptionController : MonoBehaviour
         yield return new WaitUntil(CheckInput);
 
         keybindButton.onClick.RemoveAllListeners();
+        SkillPanel_InGame_UI.instance.UpdateAllSkillIconTexts();
 
         yield return new WaitWhile(HasAnyKey);
 
@@ -80,16 +88,16 @@ public class KeybindOptionController : MonoBehaviour
         {
             if (Input.GetKeyDown(keycode))
             {
-                behaveKeybind.text = keycode.ToString();
+                behaveKeybind.text = UniformKeybindName(keycode.ToString());
                 Debug.Log($"{behaveName.text} keybind has changed to {keycode.ToString()}");
 
-                //KeyBindManager.instance.keybindsDictionary[behaveName.text] = keycode;
+                KeyBindManager.instance.keybindsDictionary[behaveName.text] = keycode;
                 return true;
             }
 
         }
 
-        Debug.Log("keybind change failed");
+        //Debug.Log("keybind change failed");
         return false;
     }
 

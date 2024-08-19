@@ -83,13 +83,13 @@ public class SwordSkill : Skill
     protected override void Update()
     {
         //calculate sword throw trajectory
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(/*KeyCode.Mouse0*/ KeyBindManager.instance.keybindsDictionary["Attack"]))
         {
             finalDirection = new Vector2(AimDirection().normalized.x * launchSpeed.x, AimDirection().normalized.y * launchSpeed.y);
         }
 
         //adjust dots position according to player's aim position
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(/*KeyCode.Mouse1*/ KeyBindManager.instance.keybindsDictionary["Aim"]))
         {
             SetupSwordGravity();
             //dots position will not get adjusted anymore when pressing mouse left

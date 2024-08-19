@@ -21,10 +21,10 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            Cheat_Get500Currency();
-        }
+        //if (Input.GetKeyDown(KeyCode.F1))
+        //{
+        //    Cheat_Get500Currency();
+        //}
 
     }
 

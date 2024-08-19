@@ -62,19 +62,19 @@ public class UI : MonoBehaviour, ISaveManager
     private void Update()
     {
         //C for Character UI
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(/*KeyCode.C*/ KeyBindManager.instance.keybindsDictionary["Character"]))
         {
             OpenMenuByKeyBoard(character_UI);
         }
 
         //B for Craft UI
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(/*KeyCode.B*/ KeyBindManager.instance.keybindsDictionary["Craft"]))
         {
             OpenMenuByKeyBoard(craft_UI);
         }
 
         //K for Skill Tree UI
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(/*KeyCode.K*/ KeyBindManager.instance.keybindsDictionary["Skill"]))
         {
             OpenMenuByKeyBoard(skillTree_UI);
         }

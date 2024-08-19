@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//Save location:
+//C:\Users\megum\AppData\LocalLow\DefaultCompany\BrandNewRPGGame_2nd
+
+
+//***************************************************************************************
+//Important: ****************************************************************************
+//The save managers in both game scene and main menu should have the same encrypt option!
+//***************************************************************************************
+
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;

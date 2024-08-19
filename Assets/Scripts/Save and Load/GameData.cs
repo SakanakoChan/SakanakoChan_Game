@@ -58,5 +58,8 @@ public class GameData
         keybindsDictionary.Add("Parry", KeyCode.Q);
         keybindsDictionary.Add("Crystal", KeyCode.F);
         keybindsDictionary.Add("Blackhole", KeyCode.R);
+        keybindsDictionary.Add("Character", KeyCode.C);
+        keybindsDictionary.Add("Craft", KeyCode.B);
+        keybindsDictionary.Add("Skill", KeyCode.K);
     }
 }

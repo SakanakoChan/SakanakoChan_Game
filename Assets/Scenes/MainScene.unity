@@ -9670,7 +9670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Dash
-  skillPrice: 500
+  skillPrice: 0
   skillDescription: 'Can dash to evade attacks
 
     You are invincible when dashing'
@@ -15166,6 +15166,7 @@ GameObject:
   - component: {fileID: 321954872}
   - component: {fileID: 321954874}
   - component: {fileID: 321954873}
+  - component: {fileID: 321954875}
   m_Layer: 5
   m_Name: Input Key
   m_TagString: Untagged
@@ -15289,6 +15290,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321954871}
   m_CullTransparentMesh: 1
+--- !u!114 &321954875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321954871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7391b7a2f0b5e1248a85391d08ff5e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Dash
 --- !u!1 &322270820
 GameObject:
   m_ObjectHideFlags: 0
@@ -15333,9 +15347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875e5ffe2f3ba6d4385e694d8b03db3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keybindsDictionary:
-    keys: []
-    values: 
 --- !u!1 &326420606
 GameObject:
   m_ObjectHideFlags: 0
@@ -27748,6 +27759,7 @@ GameObject:
   - component: {fileID: 467207764}
   - component: {fileID: 467207766}
   - component: {fileID: 467207765}
+  - component: {fileID: 467207767}
   m_Layer: 5
   m_Name: Input Key
   m_TagString: Untagged
@@ -27871,6 +27883,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467207763}
   m_CullTransparentMesh: 1
+--- !u!114 &467207767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467207763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7391b7a2f0b5e1248a85391d08ff5e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Crystal
 --- !u!1 &467857858
 GameObject:
   m_ObjectHideFlags: 0
@@ -31210,6 +31235,7 @@ GameObject:
   - component: {fileID: 568999074}
   - component: {fileID: 568999076}
   - component: {fileID: 568999075}
+  - component: {fileID: 568999077}
   m_Layer: 5
   m_Name: Input Key
   m_TagString: Untagged
@@ -31333,6 +31359,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568999073}
   m_CullTransparentMesh: 1
+--- !u!114 &568999077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568999073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7391b7a2f0b5e1248a85391d08ff5e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Parry
 --- !u!224 &578274022 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1617992023272518260, guid: 41cf0d71cf03e134bb4e8d566b2c5326, type: 3}
@@ -41474,6 +41513,7 @@ GameObject:
   - component: {fileID: 796280097}
   - component: {fileID: 796280099}
   - component: {fileID: 796280098}
+  - component: {fileID: 796280100}
   m_Layer: 5
   m_Name: Input Key
   m_TagString: Untagged
@@ -41597,6 +41637,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796280096}
   m_CullTransparentMesh: 1
+--- !u!114 &796280100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796280096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7391b7a2f0b5e1248a85391d08ff5e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Aim
 --- !u!1 &799933090
 GameObject:
   m_ObjectHideFlags: 0
@@ -49625,6 +49678,7 @@ GameObject:
   - component: {fileID: 949724548}
   - component: {fileID: 949724550}
   - component: {fileID: 949724549}
+  - component: {fileID: 949724551}
   m_Layer: 5
   m_Name: Input Key
   m_TagString: Untagged
@@ -49748,6 +49802,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949724547}
   m_CullTransparentMesh: 1
+--- !u!114 &949724551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949724547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7391b7a2f0b5e1248a85391d08ff5e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Flask
 --- !u!1001 &968210332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97805,6 +97872,7 @@ GameObject:
   - component: {fileID: 1428212533}
   - component: {fileID: 1428212535}
   - component: {fileID: 1428212534}
+  - component: {fileID: 1428212536}
   m_Layer: 5
   m_Name: SkillPanel_UI
   m_TagString: Untagged
@@ -97875,6 +97943,18 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!114 &1428212536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428212532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd01061076b1ea40b722c794451c1ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1431868242
 GameObject:
   m_ObjectHideFlags: 0
@@ -119624,6 +119704,7 @@ GameObject:
   - component: {fileID: 2064891600}
   - component: {fileID: 2064891602}
   - component: {fileID: 2064891601}
+  - component: {fileID: 2064891603}
   m_Layer: 5
   m_Name: Input Key
   m_TagString: Untagged
@@ -119747,6 +119828,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064891599}
   m_CullTransparentMesh: 1
+--- !u!114 &2064891603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064891599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7391b7a2f0b5e1248a85391d08ff5e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Blackhole
 --- !u!1 &2066746303
 GameObject:
   m_ObjectHideFlags: 0
@@ -121987,6 +122081,10 @@ PrefabInstance:
     - target: {fileID: 25448514562638122, guid: d052c974ece2f904694aaefc08177808, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2949275423089623401, guid: d052c974ece2f904694aaefc08177808, type: 3}
+      propertyPath: encryptData
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5457428000378712458, guid: d052c974ece2f904694aaefc08177808, type: 3}
       propertyPath: m_Name

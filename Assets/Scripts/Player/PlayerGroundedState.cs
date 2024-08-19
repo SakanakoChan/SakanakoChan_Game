@@ -24,18 +24,18 @@ public class PlayerGroundedState : PlayerState
         base.Update();
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(/*KeyCode.Mouse0*/ KeyBindManager.instance.keybindsDictionary["Attack"]))
         {
             stateMachine.ChangeState(player.primaryAttackState);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && player.skill.parry.parryUnlocked && player.skill.parry.SkillIsReadyToUse())
+        if (Input.GetKeyDown(/*KeyCode.Q*/ KeyBindManager.instance.keybindsDictionary["Parry"]) && player.skill.parry.parryUnlocked && player.skill.parry.SkillIsReadyToUse())
         {
             //stateMachine.ChangeState(player.counterAttackState);
             SkillManager.instance.parry.UseSkillIfAvailable();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && player.skill.blackholeSkill.blackholeUnlocked && player.skill.blackholeSkill.SkillIsReadyToUse())
+        if (Input.GetKeyDown(/*KeyCode.R*/ KeyBindManager.instance.keybindsDictionary["Blackhole"]) && player.skill.blackholeSkill.blackholeUnlocked && player.skill.blackholeSkill.SkillIsReadyToUse())
         {
             stateMachine.ChangeState(player.blackholeSkillState);
         }
@@ -43,7 +43,7 @@ public class PlayerGroundedState : PlayerState
         //!player.sword   is same as   player.sword == null
         //HasNoSword() will return true if there's no sword in player
         //or return falase and return the sword if player has sword
-        if (Input.GetKeyDown(KeyCode.Mouse1) && player.HasNoSword() && player.skill.sword.throwSwordSkillUnlocked)
+        if (Input.GetKeyDown(/*KeyCode.Mouse1*/ KeyBindManager.instance.keybindsDictionary["Aim"]) && player.HasNoSword() && player.skill.sword.throwSwordSkillUnlocked)
         {
             stateMachine.ChangeState(player.aimSwordState);
         }

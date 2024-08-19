@@ -58,14 +58,14 @@ public class PlayerAimSwordState : PlayerState
         }
 
 
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(/*KeyCode.Mouse1*/ KeyBindManager.instance.keybindsDictionary["Aim"]))
         {
             //Not showing dots after exiting AimSwordState
             player.skill.sword.ShowDots(false);
             stateMachine.ChangeState(player.idleState);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(/*KeyCode.Mouse0*/ KeyBindManager.instance.keybindsDictionary["Attack"]))
         {
             //in ThrowSword animation will call ThrowSword()
             //which will call CreateSword()
