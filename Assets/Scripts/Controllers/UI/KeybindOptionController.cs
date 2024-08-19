@@ -3,7 +3,6 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class KeybindOptionController : MonoBehaviour
@@ -11,6 +10,8 @@ public class KeybindOptionController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI behaveName;
     [SerializeField] protected TextMeshProUGUI behaveKeybind;
     [SerializeField] private Button keybindButton;
+    [Space]
+    [SerializeField] private GameObject keybindConflictPromptWindowPrefab;
 
     private void Start()
     {
@@ -92,6 +93,17 @@ public class KeybindOptionController : MonoBehaviour
                 Debug.Log($"{behaveName.text} keybind has changed to {keycode.ToString()}");
 
                 KeyBindManager.instance.keybindsDictionary[behaveName.text] = keycode;
+
+                if (HasKeybindConflict(keycode))
+                {
+                    //parent is Keybind_Options
+                    //instantiate keybind conflict prompt window
+                    GameObject newKeybindConflictPromptWindow = Instantiate(keybindConflictPromptWindowPrefab, transform.parent.parent.parent.parent);
+
+                    //setup keybind conflict prompt window
+                    newKeybindConflictPromptWindow.GetComponent<KeybindConflictPromptWindowController>()?.SetupKeybindConflictPromptWindow(keycode);
+                }
+
                 return true;
             }
 
@@ -107,6 +119,25 @@ public class KeybindOptionController : MonoBehaviour
         if (Input.anyKey || Input.anyKeyDown)
         {
             return true;
+        }
+
+        return false;
+    }
+
+    private bool HasKeybindConflict(KeyCode _keycode)
+    {
+        foreach (var search in KeyBindManager.instance.keybindsDictionary)
+        {
+            //will not conflict with itself
+            if (search.Key == behaveName.text)
+            {
+                continue;
+            }
+
+            if (search.Value == _keycode)
+            {
+                return true;
+            }
         }
 
         return false;
