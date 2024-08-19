@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behaveName: {fileID: 2986551918110402086}
   behaveKeybind: {fileID: 240127036552452096}
+  keybindButton: {fileID: 3667772110306227803}
 --- !u!1 &3432429798948953478
 GameObject:
   m_ObjectHideFlags: 0

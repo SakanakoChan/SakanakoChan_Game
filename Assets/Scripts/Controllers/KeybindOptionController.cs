@@ -1,10 +1,21 @@
+using System;
+using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class KeybindOptionController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI behaveName;
     [SerializeField] protected TextMeshProUGUI behaveKeybind;
+    [SerializeField] private Button keybindButton;
+
+    private void Start()
+    {
+        keybindButton.onClick.AddListener(ChangeKeybind);
+    }
 
     public void SetupKeybindOption(string _behaveName, string _behaveKeybind)
     {
@@ -31,4 +42,66 @@ public class KeybindOptionController : MonoBehaviour
         behaveName.text = _behaveName;
         behaveKeybind.text = _behaveKeybind;
     }
+
+    public void ChangeKeybind()
+    {
+        StartCoroutine(ChangeKeybindInput());
+
+        //show awaiting input prompt window UI
+        //Debug.Log($"awaiting input for {behaveName.text}");
+        //behaveKeybind.text = "Awaiting input: ";
+
+        //get user keycode input and change the keybind text in UI
+        //StartCoroutine(CheckInput_Coroutine());
+
+        //update the keybind dictionary
+    }
+
+    private IEnumerator ChangeKeybindInput()
+    {
+        //show awaiting input prompt window UI
+        behaveKeybind.text = "Awaiting input";
+
+        yield return new WaitUntil(CheckInput);
+
+        keybindButton.onClick.RemoveAllListeners();
+
+        yield return new WaitWhile(HasAnyKey);
+
+        keybindButton.interactable = true;
+        keybindButton.onClick.AddListener(ChangeKeybind);
+    }
+
+    private bool CheckInput()
+    {
+        keybindButton.interactable = false;
+
+        foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKeyDown(keycode))
+            {
+                behaveKeybind.text = keycode.ToString();
+                Debug.Log($"{behaveName.text} keybind has changed to {keycode.ToString()}");
+
+                //KeyBindManager.instance.keybindsDictionary[behaveName.text] = keycode;
+                return true;
+            }
+
+        }
+
+        Debug.Log("keybind change failed");
+        return false;
+    }
+
+
+    private bool HasAnyKey()
+    {
+        if (Input.anyKey || Input.anyKeyDown)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
 }
