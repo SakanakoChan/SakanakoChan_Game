@@ -39,7 +39,7 @@ public class SkeletonStunnedState : EnemyState
 
         if (moveTimer < 0)
         {
-            enemy.SetZeroVelocity();
+            enemy.SetVelocity(0, rb.velocity.y);
         }
 
 

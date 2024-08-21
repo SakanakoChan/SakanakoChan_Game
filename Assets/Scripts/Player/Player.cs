@@ -39,6 +39,7 @@ public class Player : Entity
     public PlayerWallSlideState wallSlideState { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerPrimaryAttackState primaryAttackState { get; private set; }
+    public PlayerAirLaunchAttackState airLaunchAttackState { get; private set; }
     public PlayerCounterAttackState counterAttackState { get; private set; }
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerThrowSwordState throwSwordState { get; private set; }
@@ -62,6 +63,7 @@ public class Player : Entity
         wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
+        airLaunchAttackState = new PlayerAirLaunchAttackState(this, stateMachine, "AirLaunchAttack");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         throwSwordState = new PlayerThrowSwordState(this, stateMachine, "ThrowSword");
@@ -148,6 +150,11 @@ public class Player : Entity
     public void AnimationTrigger()
     {
         stateMachine.currentState.AnimationFinishTrigger();
+    }
+
+    public void AirLaunchJumpTrigger()
+    {
+        airLaunchAttackState.SetAirLaunchJumpTrigger();
     }
 
     public IEnumerator BusyFor(float _seconds)

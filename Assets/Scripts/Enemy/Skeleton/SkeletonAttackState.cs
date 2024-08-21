@@ -44,7 +44,7 @@ public class SkeletonAttackState : EnemyState
         }
         else
         {
-            enemy.SetZeroVelocity();
+            enemy.SetVelocity(0, rb.velocity.y);
         }
 
         if (triggerCalled)

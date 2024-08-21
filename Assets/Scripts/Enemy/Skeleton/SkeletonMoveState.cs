@@ -39,7 +39,7 @@ public class SkeletonMoveState : SkeletonGroundedState
             return;
         }
 
-        enemy.SetVelocity(enemy.patrolMoveSpeed * enemy.facingDirection, 0);
+        enemy.SetVelocity(enemy.patrolMoveSpeed * enemy.facingDirection, rb.velocity.y);
     }
 
 

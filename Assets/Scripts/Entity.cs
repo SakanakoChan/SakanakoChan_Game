@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour
     public float attackCheckRadius;
 
     [Header("Knockback Info")]
-    [SerializeField] protected Vector2 knockbackMovement;
+    public Vector2 knockbackMovement;
     [SerializeField] protected float knockbackDuration;
     public bool isKnockbacked { get; private set; }
 

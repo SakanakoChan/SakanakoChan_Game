@@ -29,6 +29,11 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.primaryAttackState);
         }
 
+        if (Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyBindManager.instance.keybindsDictionary["Attack"]))
+        {
+            stateMachine.ChangeState(player.airLaunchAttackState);
+        }
+
         if (Input.GetKeyDown(/*KeyCode.Q*/ KeyBindManager.instance.keybindsDictionary["Parry"]) && player.skill.parry.parryUnlocked && player.skill.parry.SkillIsReadyToUse())
         {
             //stateMachine.ChangeState(player.counterAttackState);
