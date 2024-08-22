@@ -4,7 +4,7 @@
 <li>Add more sound effects</li>
 <li>Add sample levels, maybe a training level and level 1</li>
 <s><li>Add air launch attack, which will launch enemies skyward</li></s>
-<li>Add falling attack which will throw enemy and player onto ground</li>
+<s><li>Add falling attack which will throw enemy and player onto ground</li></s>
 <li>Add downable ground and related mechanics which allows player to jump off certain platforms</li>
 <li>Add more enemy types</li>
 <li>Add text language settings which allows switching language between chinese and english</li>
