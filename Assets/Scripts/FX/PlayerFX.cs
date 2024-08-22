@@ -20,6 +20,7 @@ public class PlayerFX : EntityFX
 
     [Space]
     [SerializeField] private ParticleSystem dustFX;
+    [SerializeField] private ParticleSystem downStrikeDustFX;
 
     protected override void Awake()
     {
@@ -65,6 +66,14 @@ public class PlayerFX : EntityFX
         if (dustFX != null)
         {
             dustFX.Play();
+        }
+    }
+
+    public void PlayDownStrikeDustFX()
+    {
+        if (downStrikeDustFX != null)
+        {
+            downStrikeDustFX.Play();
         }
     }
 }

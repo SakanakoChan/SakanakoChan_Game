@@ -38,6 +38,11 @@ public class PlayerAirState : PlayerState
             stateMachine.ChangeState(player.wallSlideState);
         }
 
+        if (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyBindManager.instance.keybindsDictionary["Attack"]))
+        {
+            stateMachine.ChangeState(player.downStrikeState);
+        }
+
         if (player.IsGroundDetected())
         {
             //fix the bug where player will get a bit stuttered when falling onto ground

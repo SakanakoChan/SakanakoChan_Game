@@ -1,8 +1,12 @@
+using System.Net.NetworkInformation;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAnimationTrigger : MonoBehaviour
 {
     private Player player => GetComponentInParent<Player>();
+
+    [SerializeField] private CircleCollider2D downStrikeCollider;
 
     private void AnimationTrigger()
     {
@@ -54,9 +58,29 @@ public class PlayerAnimationTrigger : MonoBehaviour
         }
     }
 
+    private void DownStrikeColliderOpenTrigger()
+    {
+        downStrikeCollider.gameObject.SetActive(true);
+    }
+
+    private void DownStrikeColliderCloseTrigger()
+    {
+        downStrikeCollider.gameObject.SetActive(false);
+    }
+
     private void AirLaunchJumpTrigger()
     {
         player.AirLaunchJumpTrigger();
+    }
+
+    private void DownStrikeTrigger()
+    {
+        player.DownStrikeTrigger();
+    }
+
+    private void DownStrikeAnimStopTrigger()
+    {
+        player.DownStrikeAnimStopTrigger();
     }
 
     private void ThrowSword()

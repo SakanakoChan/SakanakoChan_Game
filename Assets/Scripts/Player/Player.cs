@@ -40,6 +40,7 @@ public class Player : Entity
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerPrimaryAttackState primaryAttackState { get; private set; }
     public PlayerAirLaunchAttackState airLaunchAttackState { get; private set; }
+    public PlayerDownStrikeState downStrikeState { get; private set; }
     public PlayerCounterAttackState counterAttackState { get; private set; }
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerThrowSwordState throwSwordState { get; private set; }
@@ -64,6 +65,7 @@ public class Player : Entity
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         airLaunchAttackState = new PlayerAirLaunchAttackState(this, stateMachine, "AirLaunchAttack");
+        downStrikeState = new PlayerDownStrikeState(this, stateMachine, "DownStrike");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         throwSwordState = new PlayerThrowSwordState(this, stateMachine, "ThrowSword");
@@ -96,6 +98,7 @@ public class Player : Entity
         base.Update();
 
         stateMachine.currentState.Update();
+        Debug.Log(stateMachine.currentState);
 
         if (stats.isDead)
         {
@@ -155,6 +158,16 @@ public class Player : Entity
     public void AirLaunchJumpTrigger()
     {
         airLaunchAttackState.SetAirLaunchJumpTrigger();
+    }
+
+    public void DownStrikeTrigger()
+    {
+        downStrikeState.SetFallingStrikeTrigger();
+    }
+
+    public void DownStrikeAnimStopTrigger()
+    {
+        downStrikeState.SetAnimStopTrigger();
     }
 
     public IEnumerator BusyFor(float _seconds)
