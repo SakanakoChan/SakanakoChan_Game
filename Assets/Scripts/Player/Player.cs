@@ -243,7 +243,8 @@ public class Player : Entity
         if(collision.gameObject.GetComponent<DownablePlatform>() != null)
         {
             lastPlatform = collision.gameObject.GetComponent<DownablePlatform>();
-            isOnPlatform = collision.gameObject.GetComponent<DownablePlatform>().playerIsOnPlatform;
+            //isOnPlatform = collision.gameObject.GetComponent<DownablePlatform>().playerIsOnPlatform;
+            isOnPlatform = true;
         }
     }
 
@@ -252,7 +253,8 @@ public class Player : Entity
         if (collision.gameObject.GetComponent<DownablePlatform>() != null)
         {
             lastPlatform = collision.gameObject.GetComponent<DownablePlatform>();
-            isOnPlatform = collision.gameObject.GetComponent<DownablePlatform>().playerIsOnPlatform;
+            //isOnPlatform = collision.gameObject.GetComponent<DownablePlatform>().playerIsOnPlatform;
+            isOnPlatform = false;
         }
     }
 
