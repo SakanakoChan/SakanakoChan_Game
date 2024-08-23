@@ -33,7 +33,7 @@ public class PlayerAirState : PlayerState
             player.SetVelocity(player.moveSpeed * 0.8f * xInput, rb.velocity.y);
         }
 
-        if (player.IsWallDetected())
+        if (player.IsWallDetected() && !player.isOnPlatform)
         {
             stateMachine.ChangeState(player.wallSlideState);
         }
