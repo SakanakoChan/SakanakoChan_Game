@@ -26,6 +26,9 @@ public class Player : Entity
 
     public bool isBusy { get; private set; }
 
+    private DownablePlatform lastPlatform;
+    public bool isOnPlatform { get; private set; } = false;
+
     public PlayerFX fx { get; private set; }
 
     #region States and Statemachine
@@ -98,7 +101,8 @@ public class Player : Entity
         base.Update();
 
         stateMachine.currentState.Update();
-        Debug.Log(stateMachine.currentState);
+
+        Debug.Log(isOnPlatform);
 
         if (stats.isDead)
         {
@@ -234,5 +238,31 @@ public class Player : Entity
     public override void DamageFlashEffect()
     {
         fx.StartCoroutine("FlashFX");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.GetComponent<DownablePlatform>() != null)
+        {
+            lastPlatform = collision.gameObject.GetComponent<DownablePlatform>();
+            isOnPlatform = collision.gameObject.GetComponent<DownablePlatform>().playerIsOnPlatform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<DownablePlatform>() != null)
+        {
+            lastPlatform = collision.gameObject.GetComponent<DownablePlatform>();
+            isOnPlatform = collision.gameObject.GetComponent<DownablePlatform>().playerIsOnPlatform;
+        }
+    }
+
+    public void JumpOffPlatform()
+    {
+        if(isOnPlatform)
+        {
+            lastPlatform.TurnOffPlatformColliderForTime(0.5f);
+        }
     }
 }

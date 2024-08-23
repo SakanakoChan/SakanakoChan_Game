@@ -58,6 +58,15 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.airState);
         }
 
+        if (player.IsGroundDetected() && player.isOnPlatform)
+        {
+            if (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space))
+            {
+                player.JumpOffPlatform();
+                return;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.jumpState);
