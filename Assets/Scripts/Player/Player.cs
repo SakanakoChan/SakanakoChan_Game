@@ -102,8 +102,6 @@ public class Player : Entity
 
         stateMachine.currentState.Update();
 
-        Debug.Log(isOnPlatform);
-
         if (stats.isDead)
         {
             return;
