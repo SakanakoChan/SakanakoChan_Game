@@ -6,6 +6,7 @@ public class Options_SubUI : MonoBehaviour
     [SerializeField] private GameObject GameplayOptions;
     [SerializeField] private GameObject KeybindOptions;
     [SerializeField] private GameObject SoundOptions;
+    [SerializeField] private GameObject LanguageOptions;
 
 
     private void Start()

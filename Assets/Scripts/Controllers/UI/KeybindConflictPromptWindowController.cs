@@ -30,7 +30,7 @@ public class KeybindConflictPromptWindowController : MonoBehaviour
             {
                 keybindConflicts[i].GetComponent<KeybindConflictController>()?.SetupKeybindConflict(_behaveNames[k], _keyCode.ToString());
                 k++;
-                Debug.Log("Keybind conflict unit has been set up");
+                //Debug.Log("Keybind conflict unit has been set up");
 
                 if (k == 2)
                 {

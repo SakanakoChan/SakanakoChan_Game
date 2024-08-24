@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,7 +91,7 @@ public class KeybindOptionController : MonoBehaviour
         {
             if (Input.GetKeyDown(keycode))
             {
-                if(keycode == KeyCode.Escape)
+                if (keycode == KeyCode.Escape)
                 {
                     behaveKeybind.text = UniformKeybindName(KeyBindManager.instance.keybindsDictionary[behaveName.text].ToString());
                     Debug.Log("Keybind change cancelled");
