@@ -1,7 +1,7 @@
 <h2>To Do list:</h2>
 <ol>
 <s><li>Add Save & Exit function to Options UI</li></s>
-<li>Add Master Volume Option to sound settings, store all the options including "showing HP Bar above player" into save files</li>
+<s><li>Add Master Volume Option to sound settings, store all the options including "showing HP Bar above player" into save files</li></s>
 <li>Add more sound effects</li>
 <li>Add sample levels, maybe a training level and level 1</li>
 <s><li>Add air launch attack, which will launch enemies skyward</li></s>
