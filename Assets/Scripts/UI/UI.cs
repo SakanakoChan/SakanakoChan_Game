@@ -28,6 +28,8 @@ public class UI : MonoBehaviour, ISaveManager
     [Header("Gameplay Settings")]
     [SerializeField] private GameplayOptionToggle_UI[] gameplayToggleSettings;
 
+    private bool UIKeyFunctioning = true;
+
     private GameObject currentUI;
 
     private void Awake()
@@ -60,24 +62,26 @@ public class UI : MonoBehaviour, ISaveManager
         skillToolTip.gameObject.SetActive(false);
 
         fadeScreen.gameObject.SetActive(true);
+
+        UIKeyFunctioning = true;
     }
 
     private void Update()
     {
         //C for Character UI
-        if (Input.GetKeyDown(/*KeyCode.C*/ KeyBindManager.instance.keybindsDictionary["Character"]))
+        if (UIKeyFunctioning && Input.GetKeyDown(/*KeyCode.C*/ KeyBindManager.instance.keybindsDictionary["Character"]))
         {
             OpenMenuByKeyBoard(character_UI);
         }
 
         //B for Craft UI
-        if (Input.GetKeyDown(/*KeyCode.B*/ KeyBindManager.instance.keybindsDictionary["Craft"]))
+        if (UIKeyFunctioning && Input.GetKeyDown(/*KeyCode.B*/ KeyBindManager.instance.keybindsDictionary["Craft"]))
         {
             OpenMenuByKeyBoard(craft_UI);
         }
 
         //K for Skill Tree UI
-        if (Input.GetKeyDown(/*KeyCode.K*/ KeyBindManager.instance.keybindsDictionary["Skill"]))
+        if (UIKeyFunctioning && Input.GetKeyDown(/*KeyCode.K*/ KeyBindManager.instance.keybindsDictionary["Skill"]))
         {
             OpenMenuByKeyBoard(skillTree_UI);
         }
@@ -85,7 +89,7 @@ public class UI : MonoBehaviour, ISaveManager
         //If there's already a non-ingameUI open currently
         //Esc will close the UI and open ingame UI
         //else, Esc will open Options UI
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (UIKeyFunctioning && Input.GetKeyDown(KeyCode.Escape))
         {
             if (currentUI != ingame_UI)
             {
@@ -226,6 +230,11 @@ public class UI : MonoBehaviour, ISaveManager
     {
         SaveManager.instance.SaveGame();
         GameManager.instance.RestartScene();
+    }
+
+    public void EnableUIKeyInput(bool _value)
+    {
+        UIKeyFunctioning = _value;
     }
 
     public void LoadData(GameData _data)

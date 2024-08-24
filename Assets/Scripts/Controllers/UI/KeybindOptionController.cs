@@ -69,6 +69,7 @@ public class KeybindOptionController : MonoBehaviour
     {
         //show awaiting input prompt window UI
         behaveKeybind.text = "Awaiting input";
+        UI.instance.EnableUIKeyInput(false);
 
         yield return new WaitUntil(CheckInput);
 
@@ -79,6 +80,8 @@ public class KeybindOptionController : MonoBehaviour
 
         keybindButton.interactable = true;
         keybindButton.onClick.AddListener(ChangeKeybind);
+
+        UI.instance.EnableUIKeyInput(true);
     }
 
     private bool CheckInput()
@@ -89,6 +92,13 @@ public class KeybindOptionController : MonoBehaviour
         {
             if (Input.GetKeyDown(keycode))
             {
+                if(keycode == KeyCode.Escape)
+                {
+                    behaveKeybind.text = UniformKeybindName(KeyBindManager.instance.keybindsDictionary[behaveName.text].ToString());
+                    Debug.Log("Keybind change cancelled");
+                    return true;
+                }
+
                 behaveKeybind.text = UniformKeybindName(keycode.ToString());
                 Debug.Log($"{behaveName.text} keybind has changed to {keycode.ToString()}");
 
