@@ -24,6 +24,9 @@ public class GameData
     [Header("Keybind Settings")]
     public SerializableDictionary<string, KeyCode> keybindsDictionary;
 
+    [Header("Gameplay Settings")]
+    public SerializableDictionary<string, bool> gameplayToggleSettingsDictionary;
+
     public GameData()
     {
         this.currecny = 0;
@@ -47,6 +50,8 @@ public class GameData
 
         keybindsDictionary = new SerializableDictionary<string, KeyCode>();
         SetupDefaultKeybinds();
+
+        gameplayToggleSettingsDictionary = new SerializableDictionary<string, bool>();
     }
 
     private void SetupDefaultKeybinds()

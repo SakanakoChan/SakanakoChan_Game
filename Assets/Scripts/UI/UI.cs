@@ -25,6 +25,9 @@ public class UI : MonoBehaviour, ISaveManager
     [Header("Audio Settings")]
     [SerializeField] private VolumeSlider_UI[] volumeSettings;
 
+    [Header("Gameplay Settings")]
+    [SerializeField] private GameplayOptionToggle_UI[] gameplayToggleSettings;
+
     private GameObject currentUI;
 
     private void Awake()
@@ -227,6 +230,7 @@ public class UI : MonoBehaviour, ISaveManager
 
     public void LoadData(GameData _data)
     {
+        //audio settings load
         //volumeSettingsDictionary<exposedParameter, value>
         foreach (var search in _data.volumeSettingsDictionary)
         {
@@ -238,15 +242,36 @@ public class UI : MonoBehaviour, ISaveManager
                 }
             }
         }
+
+        //gameplay toggle settings load
+        foreach (var search in _data.gameplayToggleSettingsDictionary)
+        {
+            foreach (var toggle in gameplayToggleSettings)
+            {
+                if (toggle.optionName == search.Key)
+                {
+                    toggle.SetToggleValue(search.Value);
+                }
+            }
+        }
     }
 
     public void SaveData(ref GameData _data)
     {
+        //Audio setttings save
         _data.volumeSettingsDictionary.Clear();
 
         foreach (var volume in volumeSettings)
         {
             _data.volumeSettingsDictionary.Add(volume.parameter, volume.slider.value);
+        }
+
+        //gameplay toggle settings save
+        _data.gameplayToggleSettingsDictionary.Clear();
+
+        foreach (var toggle in gameplayToggleSettings)
+        {
+            _data.gameplayToggleSettingsDictionary.Add(toggle.optionName, toggle.GetToggleValue());
         }
     }
 }

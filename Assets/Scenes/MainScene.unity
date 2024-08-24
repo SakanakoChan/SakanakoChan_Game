@@ -7598,6 +7598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 188237903}
+  - component: {fileID: 188237904}
   m_Layer: 5
   m_Name: HP Bar Option
   m_TagString: Untagged
@@ -7626,6 +7627,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 149}
   m_SizeDelta: {x: 900, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &188237904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188237902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d2ed0058f321d4faedcf267993877d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionName: HPBar
+  optionToggle: {fileID: 246264327}
 --- !u!1 &196594263
 GameObject:
   m_ObjectHideFlags: 0
@@ -106072,6 +106087,8 @@ MonoBehaviour:
   - {fileID: 438966288}
   - {fileID: 1011865370}
   - {fileID: 1939175271}
+  gameplayToggleSettings:
+  - {fileID: 188237904}
 --- !u!224 &1540159160 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1617992023272518260, guid: 41cf0d71cf03e134bb4e8d566b2c5326, type: 3}
