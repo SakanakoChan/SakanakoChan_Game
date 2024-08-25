@@ -14,6 +14,7 @@ public class KeybindConflictPromptWindowController : MonoBehaviour
         {
             if (search.Value == _keyCode)
             {
+                //behaveName here is always english
                 _behaveNames.Add(search.Key);
             }
         }

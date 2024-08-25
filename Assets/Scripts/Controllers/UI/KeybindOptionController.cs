@@ -27,23 +27,27 @@ public class KeybindOptionController : MonoBehaviour
         behaveName = _behaveName;
         behaveKeybind = _behaveKeybind;
 
-        _behaveKeybind = UniformKeybindName(_behaveKeybind);
-
-        behaveName_InUI.text = behaveName;
-        TranslateBehaveName();
+        behaveName_InUI.text = _behaveName;
         behaveKeybind_InUI.text = _behaveKeybind;
+
+        TranslateBehaveNameAndUniformBehaveKeybindName();
     }
 
-    public void TranslateBehaveName()
+    public void TranslateBehaveNameAndUniformBehaveKeybindName()
     {
+        //chinese
         if (LanguageManager.instance.localeID == 1)
         {
             behaveName_InUI.text = LanguageManager.instance.EnglishToChineseKeybindsDictionary[behaveName];
         }
+        //english
         else if (LanguageManager.instance.localeID == 0)
         {
             behaveName_InUI.text = behaveName;
         }
+
+        //UniformKeybindName will auto detect language and translate
+        behaveKeybind_InUI.text = UniformKeybindName(behaveKeybind);
     }
 
     private string UniformKeybindName(string _behaveKeybind_InUI)
@@ -151,6 +155,7 @@ public class KeybindOptionController : MonoBehaviour
                 }
 
                 behaveKeybind_InUI.text = UniformKeybindName(keycode.ToString());
+                behaveKeybind = keycode.ToString();
                 Debug.Log($"{behaveName_InUI.text} keybind has changed to {keycode.ToString()}");
 
                 KeyBindManager.instance.keybindsDictionary[behaveName] = keycode;

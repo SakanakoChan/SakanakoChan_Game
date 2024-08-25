@@ -937,8 +937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7bfea660b2edf479a5288c90887739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaveName: {fileID: 6610604350303708768}
-  behaveKeybind: {fileID: 5640288200956259530}
+  behaveName_InUI: {fileID: 6610604350303708768}
+  behaveKeybind_InUI: {fileID: 5640288200956259530}
 --- !u!1 &5990607318609772974
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,8 +989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7bfea660b2edf479a5288c90887739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaveName: {fileID: 1491564980685936236}
-  behaveKeybind: {fileID: 6326087021642844641}
+  behaveName_InUI: {fileID: 1491564980685936236}
+  behaveKeybind_InUI: {fileID: 6326087021642844641}
 --- !u!1 &6266884592054518258
 GameObject:
   m_ObjectHideFlags: 0

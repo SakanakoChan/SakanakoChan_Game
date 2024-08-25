@@ -35,7 +35,7 @@ public class KeybindList_UI : MonoBehaviour
 
         for (int i = 0; i < keybindOptionList.Count; i++)
         {
-            keybindOptionList[i].GetComponent<KeybindOptionController>()?.TranslateBehaveName();
+            keybindOptionList[i].GetComponent<KeybindOptionController>()?.TranslateBehaveNameAndUniformBehaveKeybindName();
         }
     }
 }
