@@ -15,12 +15,12 @@ public class LanguageOptionDropdown_UI : MonoBehaviour
     [SerializeField] private TMP_FontAsset englishFont;
 
     private TextMeshProUGUI[] texts;
-    private int localeID = 0;
 
-    //private void Start()
-    //{
-    //    texts = FindObjectsOfType<TextMeshProUGUI>();
-    //}
+    private void Start()
+    {
+        //texts = FindObjectsOfType<TextMeshProUGUI>();
+        optionDropdown.value = LanguageManager.instance.localeID;
+    }
 
     public void SetTextLanguage()
     {
@@ -32,15 +32,15 @@ public class LanguageOptionDropdown_UI : MonoBehaviour
     {
         yield return LocalizationSettings.InitializationOperation;
 
-        localeID = _localeID;
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeID];
+        LanguageManager.instance.localeID = _localeID;
+        LanguageManager.instance.SetTextLanguageByLocaleID(_localeID);
 
         //yield return new WaitUntil(SetTextFont);
     }
 
     private bool SetTextFont()
     {
-        if (localeID == 1)
+        if (LanguageManager.instance.localeID == 1)
         {
             foreach (var text in texts)
             {
@@ -49,7 +49,7 @@ public class LanguageOptionDropdown_UI : MonoBehaviour
 
             return true;
         }
-        else if (localeID == 0)
+        else if (LanguageManager.instance.localeID == 0)
         {
             foreach (var text in texts)
             {

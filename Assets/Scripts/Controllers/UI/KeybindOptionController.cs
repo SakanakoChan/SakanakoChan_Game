@@ -25,6 +25,13 @@ public class KeybindOptionController : MonoBehaviour
         behaveKeybind.text = _behaveKeybind;
     }
 
+    private string UniformBehaveName(string _behaveName)
+    {
+        string result = string.Empty;
+
+        return result;
+    }
+
     private string UniformKeybindName(string _behaveKeybind)
     {
         if (_behaveKeybind.StartsWith("Alpha"))
@@ -32,19 +39,42 @@ public class KeybindOptionController : MonoBehaviour
             _behaveKeybind = _behaveKeybind.Remove(0, 5);
         }
 
-        if (_behaveKeybind.Equals("Mouse0"))
+        //english
+        if (LanguageManager.instance.localeID == 0)
         {
-            _behaveKeybind = "Mouse Left";
-        }
+            if (_behaveKeybind.Equals("Mouse0"))
+            {
+                _behaveKeybind = "Mouse Left";
+            }
 
-        if (_behaveKeybind.Equals("Mouse1"))
-        {
-            _behaveKeybind = "Mouse Right";
-        }
+            if (_behaveKeybind.Equals("Mouse1"))
+            {
+                _behaveKeybind = "Mouse Right";
+            }
 
-        if (_behaveKeybind.StartsWith("Left"))
+            if (_behaveKeybind.StartsWith("Left"))
+            {
+                _behaveKeybind = _behaveKeybind.Insert(4, " ");
+            }
+        }
+        //chinese
+        else if (LanguageManager.instance.localeID == 1)
         {
-            _behaveKeybind = _behaveKeybind.Insert(4, " ");
+            if (_behaveKeybind.Equals("Mouse0"))
+            {
+                _behaveKeybind = "Êó±ê×ó¼ü";
+            }
+
+            if (_behaveKeybind.Equals("Mouse1"))
+            {
+                _behaveKeybind = "Êó±êÓÒ¼ü";
+            }
+
+            if (_behaveKeybind.StartsWith("Left"))
+            {
+                _behaveKeybind = _behaveKeybind.Remove(0, 4);
+                _behaveKeybind = _behaveKeybind.Insert(0, "×ó");
+            }
         }
 
         return _behaveKeybind;

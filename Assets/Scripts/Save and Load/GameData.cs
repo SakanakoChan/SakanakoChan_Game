@@ -23,15 +23,22 @@ public class GameData
 
     [Header("Keybind Settings")]
     public SerializableDictionary<string, KeyCode> keybindsDictionary;
+    public SerializableDictionary<string, KeyCode> keybindsDictionary_Chinese; 
 
     [Header("Gameplay Settings")]
     public SerializableDictionary<string, bool> gameplayToggleSettingsDictionary;
+
+    [Header("Language Settings")]
+    public int localeID; //0 for english, 1 for chinese
 
     public GameData()
     {
         this.currecny = 0;
         this.droppedCurrencyAmount = 0;
         this.deathPosition = Vector2.zero;
+
+        //default language is english
+        localeID = 0;
 
         //skillTree<skillName, unlocked>
         skillTree = new SerializableDictionary<string, bool>();
@@ -51,6 +58,10 @@ public class GameData
         keybindsDictionary = new SerializableDictionary<string, KeyCode>();
         SetupDefaultKeybinds();
 
+        keybindsDictionary_Chinese = new SerializableDictionary<string, KeyCode>();
+        SetupDefaultKeybinds_Chinese();
+
+        //gameplay toggle settings
         gameplayToggleSettingsDictionary = new SerializableDictionary<string, bool>();
     }
 
@@ -66,5 +77,19 @@ public class GameData
         keybindsDictionary.Add("Character", KeyCode.C);
         keybindsDictionary.Add("Craft", KeyCode.B);
         keybindsDictionary.Add("Skill", KeyCode.K);
+    }
+
+    private void SetupDefaultKeybinds_Chinese()
+    {
+        keybindsDictionary.Add("攻击", KeyCode.Mouse0);
+        keybindsDictionary.Add("瞄准", KeyCode.Mouse1);
+        keybindsDictionary.Add("元素瓶", KeyCode.Alpha1);
+        keybindsDictionary.Add("冲刺", KeyCode.LeftShift);
+        keybindsDictionary.Add("弹反", KeyCode.Q);
+        keybindsDictionary.Add("水晶", KeyCode.F);
+        keybindsDictionary.Add("黑洞", KeyCode.R);
+        keybindsDictionary.Add("角色面板", KeyCode.C);
+        keybindsDictionary.Add("制造面板", KeyCode.B);
+        keybindsDictionary.Add("技能面板", KeyCode.K);
     }
 }
