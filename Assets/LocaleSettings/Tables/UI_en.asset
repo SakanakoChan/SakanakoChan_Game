@@ -78,6 +78,18 @@ MonoBehaviour:
     m_Localized: Show HP bar above character
     m_Metadata:
       m_Items: []
+  - m_Id: 426573830078464
+    m_Localized: Keybind Conflict!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 426779652964352
+    m_Localized: I am aware
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428563876331520
+    m_Localized: Save & Exit
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
