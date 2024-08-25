@@ -62,6 +62,22 @@ MonoBehaviour:
     m_Localized: Text Language
     m_Metadata:
       m_Items: []
+  - m_Id: 289328326295552
+    m_Localized: Master volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 290632880668672
+    m_Localized: Sound effect volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 297146458619904
+    m_Localized: BGM volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 300229699878912
+    m_Localized: Show HP bar above character
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

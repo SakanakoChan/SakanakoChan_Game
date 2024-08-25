@@ -59,6 +59,22 @@ MonoBehaviour:
     m_Key: Option_TextLanguage
     m_Metadata:
       m_Items: []
+  - m_Id: 289328326295552
+    m_Key: SoundOption_MasterVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 290632880668672
+    m_Key: SoundOption_SoundEffectVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 297146458619904
+    m_Key: SoundOption_BGMVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 300229699878912
+    m_Key: GameplayOption_HPBar
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
