@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae5101a895541243867bceb31609d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaveName: {fileID: 2986551918110402086}
-  behaveKeybind: {fileID: 240127036552452096}
+  behaveName_InUI: {fileID: 2986551918110402086}
+  behaveKeybind_InUI: {fileID: 240127036552452096}
   keybindButton: {fileID: 3667772110306227803}
   keybindConflictPromptWindowPrefab: {fileID: 4980148491276516577, guid: ece79c402c550d84583956dece9bfb41, type: 3}
 --- !u!1 &3432429798948953478
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 4
+  m_fontStyle: 5
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

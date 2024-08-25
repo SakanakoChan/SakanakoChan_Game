@@ -35,6 +35,7 @@ public class LanguageOptionDropdown_UI : MonoBehaviour
         LanguageManager.instance.localeID = _localeID;
         LanguageManager.instance.SetTextLanguageByLocaleID(_localeID);
 
+        KeyBindManager.instance.UpdateKeybindListLanguage();
         //yield return new WaitUntil(SetTextFont);
     }
 

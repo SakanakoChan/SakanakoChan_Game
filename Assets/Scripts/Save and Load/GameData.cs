@@ -23,7 +23,7 @@ public class GameData
 
     [Header("Keybind Settings")]
     public SerializableDictionary<string, KeyCode> keybindsDictionary;
-    public SerializableDictionary<string, KeyCode> keybindsDictionary_Chinese; 
+    //public SerializableDictionary<string, KeyCode> keybindsDictionary_Chinese; 
 
     [Header("Gameplay Settings")]
     public SerializableDictionary<string, bool> gameplayToggleSettingsDictionary;
@@ -58,8 +58,8 @@ public class GameData
         keybindsDictionary = new SerializableDictionary<string, KeyCode>();
         SetupDefaultKeybinds();
 
-        keybindsDictionary_Chinese = new SerializableDictionary<string, KeyCode>();
-        SetupDefaultKeybinds_Chinese();
+        //keybindsDictionary_Chinese = new SerializableDictionary<string, KeyCode>();
+        //SetupDefaultKeybinds_Chinese();
 
         //gameplay toggle settings
         gameplayToggleSettingsDictionary = new SerializableDictionary<string, bool>();

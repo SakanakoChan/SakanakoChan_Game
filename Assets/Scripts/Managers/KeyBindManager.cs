@@ -8,6 +8,8 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
 
     public Dictionary<string, KeyCode> keybindsDictionary;
 
+    [SerializeField] private KeybindList_UI keybindList;
+
     private void Awake()
     {
         if (instance == null)
@@ -22,25 +24,14 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
         keybindsDictionary = new Dictionary<string, KeyCode>();
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
 
     }
-
-    public void TestInputEnter()
+    
+    public void UpdateKeybindListLanguage()
     {
-        foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
-        {
-            if (Input.GetKeyDown(key))
-            {
-                Debug.Log("The entered key is: " + key.ToString());
-            }
-        }
+        keybindList.UpdateAllKeybindOptionsLanguage();
     }
 
     //public string GetKeyCodeByBehaveName(string _behaveName)
