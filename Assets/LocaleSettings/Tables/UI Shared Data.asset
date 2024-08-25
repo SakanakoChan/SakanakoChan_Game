@@ -87,6 +87,34 @@ MonoBehaviour:
     m_Key: Option_SaveAndExit
     m_Metadata:
       m_Items: []
+  - m_Id: 429232704241664
+    m_Key: Character_tab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 429404725231616
+    m_Key: SkillTree_Tab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 429515719098368
+    m_Key: Craft_Tab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 429669960433664
+    m_Key: Options_Tab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 430783837552640
+    m_Key: Craft_Type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 430902381166592
+    m_Key: Craft_CraftList
+    m_Metadata:
+      m_Items: []
+  - m_Id: 431039690096640
+    m_Key: Craft_Craft
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

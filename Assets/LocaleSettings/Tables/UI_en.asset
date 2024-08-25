@@ -90,6 +90,34 @@ MonoBehaviour:
     m_Localized: Save & Exit
     m_Metadata:
       m_Items: []
+  - m_Id: 429232704241664
+    m_Localized: Character
+    m_Metadata:
+      m_Items: []
+  - m_Id: 429404725231616
+    m_Localized: Skill Tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 429515719098368
+    m_Localized: Craft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 429669960433664
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 430783837552640
+    m_Localized: Type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 430902381166592
+    m_Localized: Craft List
+    m_Metadata:
+      m_Items: []
+  - m_Id: 431039690096640
+    m_Localized: Craft
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
