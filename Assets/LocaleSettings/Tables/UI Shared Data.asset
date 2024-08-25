@@ -115,6 +115,82 @@ MonoBehaviour:
     m_Key: Craft_Craft
     m_Metadata:
       m_Items: []
+  - m_Id: 432671270158336
+    m_Key: Character_InventoryHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 432958726782976
+    m_Key: Character_EquipmentHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433252239982592
+    m_Key: Character_MajorStatsHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433498252689408
+    m_Key: Character_OffensiveStatsHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433721804898304
+    m_Key: Character_DefensiveStatsHeader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433970229329920
+    m_Key: Character_Stats_Strength
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434151368736768
+    m_Key: Character_Stats_Agility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434281383772160
+    m_Key: Character_Stats_Intelligence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434428247326720
+    m_Key: Character_Stats_Vitality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434634770661376
+    m_Key: Character_Stats_Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434825716350976
+    m_Key: Character_Stats_FireDamage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435030792650752
+    m_Key: Character_Stats_CritChance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435177538764800
+    m_Key: Character_Stats_IceDamage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435322963673088
+    m_Key: Character_Stats_CritPower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435419579465728
+    m_Key: Character_Stats_LightningDamage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435729223958528
+    m_Key: Character_Stats_MaxHP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435881997287424
+    m_Key: Character_Stats_Evasion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435983050653696
+    m_Key: Character_Stats_Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436095982288896
+    m_Key: Character_Stats_MagicResistance
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

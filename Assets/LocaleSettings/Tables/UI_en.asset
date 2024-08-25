@@ -118,6 +118,82 @@ MonoBehaviour:
     m_Localized: Craft
     m_Metadata:
       m_Items: []
+  - m_Id: 432671270158336
+    m_Localized: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 432958726782976
+    m_Localized: Equipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433252239982592
+    m_Localized: Major Stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433498252689408
+    m_Localized: Offensive Stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433721804898304
+    m_Localized: Defensive Stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433970229329920
+    m_Localized: Strength
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434151368736768
+    m_Localized: Agility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434281383772160
+    m_Localized: Intelligence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434428247326720
+    m_Localized: Vitality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434634770661376
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434825716350976
+    m_Localized: Fire Dmg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435030792650752
+    m_Localized: Crit Chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435177538764800
+    m_Localized: Ice Dmg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435322963673088
+    m_Localized: Crit Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435419579465728
+    m_Localized: Lightning Dmg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435729223958528
+    m_Localized: Max HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435881997287424
+    m_Localized: Evasion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435983050653696
+    m_Localized: Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436095982288896
+    m_Localized: Magic Resist
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
