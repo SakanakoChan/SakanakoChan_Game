@@ -194,6 +194,17 @@ MonoBehaviour:
     m_Localized: Magic Resist
     m_Metadata:
       m_Items: []
+  - m_Id: 681456860708864
+    m_Localized: 'Press [Mouse-Right] to aim and then press [Mouse-Left] to throw
+      the sword
+
+      [On-Ground skill]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 683819528929280
+    m_Localized: Skill Price
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

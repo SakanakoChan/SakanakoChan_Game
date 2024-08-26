@@ -13,7 +13,15 @@ public class SkillToolTip_UI : MonoBehaviour
     {
         skillName.text = _skillName;
         skillDescription.text = _skillDescription;
-        skillPrice.text = $"Skill price: {_skillPrice}";
+
+        if (LanguageManager.instance.localeID == 0)
+        {
+            skillPrice.text = $"Skill price: {_skillPrice}";
+        }
+        else if (LanguageManager.instance.localeID == 1)
+        {
+            skillPrice.text = $"技能价格: {_skillPrice}";
+        }
 
         gameObject.SetActive(true);
     }

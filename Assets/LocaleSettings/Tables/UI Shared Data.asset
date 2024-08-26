@@ -191,6 +191,14 @@ MonoBehaviour:
     m_Key: Character_Stats_MagicResistance
     m_Metadata:
       m_Items: []
+  - m_Id: 681456860708864
+    m_Key: SkillTree_SwordThrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 683819528929280
+    m_Key: SkillTree_SkillPrice
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

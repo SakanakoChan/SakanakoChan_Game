@@ -6,10 +6,19 @@ using UnityEngine.UI;
 
 public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, ISaveManager
 {
-    [SerializeField] private string skillName;
     [SerializeField] private int skillPrice;
+    [SerializeField] private List<string> boundBehaveNameList;
+
+    [Header("English")]
+    [SerializeField] private string skillName;
     [TextArea]
     [SerializeField] private string skillDescription;
+
+    [Header("Chinese")]
+    [SerializeField] private string skillName_Chinese;
+    [TextArea]
+    [SerializeField] private string skillDescription_Chinese;
+
     [Space]
     [SerializeField] private Color lockedSkillColor;
 
@@ -80,12 +89,39 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
         Debug.Log($"Successfully unlocked {skillName}");
     }
 
+    private string AddBehaveKeybindNameToDescription(string _skillDescription)
+    {
+        for (int i = 0; i < boundBehaveNameList.Count; i++)
+        {
+            if (_skillDescription.Contains($"BehaveName{i}"))
+            {
+                string _keybindName = KeyBindManager.instance.keybindsDictionary[boundBehaveNameList[i]].ToString();
+                _keybindName = KeyBindManager.instance.UniformKeybindName(_keybindName);
+                Debug.Log(_keybindName);
+                _skillDescription = _skillDescription.Replace($"BehaveName{i}", _keybindName);
+            }
+        }
+
+        return _skillDescription;
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         Vector2 offset = ui.SetupToolTipPositionOffsetAccordingToUISlotPosition(transform, 0.15f, 0.15f, 0.15f, 0.15f);
 
         ui.skillToolTip.transform.position = new Vector2(transform.position.x + offset.x, transform.position.y + offset.y);
-        ui.skillToolTip.ShowToolTip(skillName, skillDescription, skillPrice.ToString());
+
+        string completedSkillDescription = AddBehaveKeybindNameToDescription(skillDescription);
+        string completedSkillDescription_Chinese = AddBehaveKeybindNameToDescription(skillDescription_Chinese);
+
+        if (LanguageManager.instance.localeID == 0)
+        {
+            ui.skillToolTip.ShowToolTip(skillName, completedSkillDescription, skillPrice.ToString());
+        }
+        else if (LanguageManager.instance.localeID == 1)
+        {
+            ui.skillToolTip.ShowToolTip(skillName_Chinese, completedSkillDescription_Chinese, skillPrice.ToString());
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
