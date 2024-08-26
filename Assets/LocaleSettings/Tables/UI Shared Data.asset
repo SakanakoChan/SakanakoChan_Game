@@ -199,6 +199,10 @@ MonoBehaviour:
     m_Key: SkillTree_SkillPrice
     m_Metadata:
       m_Items: []
+  - m_Id: 750842124484608
+    m_Key: Keybind_Dash
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

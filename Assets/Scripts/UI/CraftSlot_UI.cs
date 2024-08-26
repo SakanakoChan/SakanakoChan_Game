@@ -16,7 +16,18 @@ public class CraftSlot_UI : InventorySlot_UI
 
         inventorySlot.item = _item;
         itemImage.sprite = _item.icon;
-        itemText.text = _item.itemName;
+        
+        //english
+        if (LanguageManager.instance.localeID == 0)
+        {
+            itemText.text = _item.itemName;
+        }
+        //chinese
+        else if (LanguageManager.instance.localeID == 1)
+        {
+            itemText.text = _item.itemName_Chinese;
+        }
+
 
         if (itemText.text.Length > 12)
         {

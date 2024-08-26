@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Stolen Sword
+  itemName_Chinese: "\u5077\u6765\u7684\u5251"
   icon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: 84aac932ec997c949a2b8a5c76b8eafc
   dropChance: 30
   equipmentType: 0
   itemEffects: []

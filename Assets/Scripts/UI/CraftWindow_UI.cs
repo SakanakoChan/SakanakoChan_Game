@@ -57,8 +57,20 @@ public class CraftWindow_UI : MonoBehaviour
 
         //setup the icon, name, stat info of the equipment to craft
         itemIcon.sprite = _itemToCraft.icon;
-        itemName.text = _itemToCraft.itemName;
         itemStatInfo.text = _itemToCraft.GetItemStatInfoAndEffectDescription();
+
+        //english
+        if (LanguageManager.instance.localeID == 0)
+        {
+            itemName.text = _itemToCraft.itemName;
+        }
+        //chinese
+        else if(LanguageManager.instance.localeID == 1)
+        {
+            itemName.text = _itemToCraft.itemName_Chinese;
+            itemStatInfo.text = LanguageManager.instance.TranslateItemStatInfoFromEnglishToChinese(itemStatInfo.text);
+        }
+
 
         craftButton.onClick.AddListener(() => Inventory.instance.CraftIfAvailable(_itemToCraft, _itemToCraft.requiredCraftMaterials));
     }

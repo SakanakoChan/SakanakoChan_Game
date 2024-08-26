@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Wooden Sword
+  itemName_Chinese: "\u6728\u5251"
   icon: {fileID: 1025091068, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: 57a4926164ce70c4693019ecadf97555
   dropChance: 70
   equipmentType: 0
-  itemCooldown: 0
   itemEffects: []
   strength: 0
   agility: 0

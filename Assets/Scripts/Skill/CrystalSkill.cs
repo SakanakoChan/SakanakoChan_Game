@@ -93,7 +93,18 @@ public class CrystalSkill : Skill
                 return true;
             }
 
-            player.fx.CreatePopUpText("Skill is in cooldown");
+            //english
+            if (LanguageManager.instance.localeID == 0)
+            {
+                player.fx.CreatePopUpText("Skill is in cooldown");
+
+            }
+            //chinese
+            else if (LanguageManager.instance.localeID == 1)
+            {
+                player.fx.CreatePopUpText("ººƒ‹¿‰»¥÷–£°");
+            }
+
             return false;
         }
     }

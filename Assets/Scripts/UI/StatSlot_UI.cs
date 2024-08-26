@@ -15,6 +15,8 @@ public class StatSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     [TextArea]
     [SerializeField] private string statDescription;
+    [TextArea]
+    [SerializeField] private string statDescription_Chinese;
 
     private void OnValidate()
     {
@@ -40,7 +42,7 @@ public class StatSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
-        if(playerStats != null)
+        if (playerStats != null)
         {
             statValueText.text = playerStats.GetStatByType(statType).GetValue().ToString();
 
@@ -85,7 +87,18 @@ public class StatSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Vector2 offset = ui.SetupToolTipPositionOffsetAccordingToUISlotPosition(transform, 0.1f, 0.1f, 0.18f, 0.04f);
         ui.statToolTip.transform.position = new Vector2(transform.position.x + offset.x, transform.position.y + offset.y);
-        ui.statToolTip.ShowStatToolTip(statDescription);
+
+        //english
+        if (LanguageManager.instance.localeID == 0)
+        {
+            ui.statToolTip.ShowStatToolTip(statDescription);
+
+        }
+        //chinese
+        else if (LanguageManager.instance.localeID == 1)
+        {
+            ui.statToolTip.ShowStatToolTip(statDescription_Chinese);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

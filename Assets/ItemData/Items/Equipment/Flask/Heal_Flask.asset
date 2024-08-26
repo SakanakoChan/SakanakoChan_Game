@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Heal Flask
+  itemName_Chinese: "\u6CBB\u6108\u74F6"
   icon: {fileID: -410334530, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: 4048611697350a94baf66b2166a2c3e5
   dropChance: 0
   equipmentType: 3
-  itemCooldown: 1
   itemEffects:
   - {fileID: 11400000, guid: c8c8bcf2c8b2fab46a1bef899d7fc214, type: 2}
   strength: 0

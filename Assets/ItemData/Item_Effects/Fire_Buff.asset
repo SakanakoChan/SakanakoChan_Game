@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectCooldown: 15
   effectDescription: Increase 50 fire damage for 10 seconds
+  effectDescription_Chinese: "10\u79D2\u5185\u63D0\u9AD850\u70B9\u706B\u7130\u4F24\u5BB3"
   buffStatType: 11
   buffValue: 50
   buffDuration: 10

@@ -19,6 +19,9 @@ public class ItemEffect : ScriptableObject
     [TextArea]
     public string effectDescription;
 
+    [TextArea]
+    public string effectDescription_Chinese;
+
     public virtual void ExecuteEffect(Transform _spawnTransform)
     {
         //Debug.Log("Effect Executed");

@@ -15,6 +15,7 @@ MonoBehaviour:
   effectCooldown: 0
   effectDescription: Increase 3 fire damage on each hit, every layer of buff lasts
     2 seconds
+  effectDescription_Chinese: "\u6BCF\u6B21\u547D\u4E2D\u654C\u4EBA\u83B7\u5F97\u4E00\u5C42\u706B\u7130\u4F24\u5BB3\u52A0\u6210\uFF0C\u6BCF\u5C42\u52A0\u6210\u63D0\u9AD83\u70B9\u706B\u7130\u4F24\u5BB3\uFF0C\u6BCF\u5C42\u4F24\u5BB3\u52A0\u6210\u6301\u7EED2\u79D2"
   buffStatType: 11
   buffValue: 3
   buffDuration: 2

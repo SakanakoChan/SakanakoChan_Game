@@ -17,6 +17,7 @@ public class ItemData : ScriptableObject
 {
     public ItemType itemType;
     public string itemName;
+    public string itemName_Chinese;
     public Sprite icon;
     public string itemID;
 

@@ -14,17 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Ice and Fire
+  itemName_Chinese: "\u51B0\u706B"
   icon: {fileID: 1398721256, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: b6b7326b43f9f9d4a928301c1025df85
   dropChance: 6
   equipmentType: 0
-  itemCooldown: 0
   itemEffects:
   - {fileID: 11400000, guid: bad5b3a4734c5214fbb2825a035231a7, type: 2}
   - {fileID: 11400000, guid: 4721820f35762d4498106763b265100b, type: 2}
-  itemEffectDescription: '[unique] 3rd primary attack will release sword arcane
-
-    [unique]
-    when successfully hitting enemy, fire damage will have a temporary increasement'
   strength: 0
   agility: 0
   intelligence: 0

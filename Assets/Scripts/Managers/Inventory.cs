@@ -222,6 +222,11 @@ public class Inventory : MonoBehaviour, ISaveManager
             equippedEquipmentSlotDictionary.Remove(_equipmentToRemove);
             _equipmentToRemove.RemoveModifiers();
         }
+
+        if (_equipmentToRemove.equipmentType == EquipmentType.Flask)
+        {
+            Flask_UI.instance.SetFlaskImage(null);
+        }
     }
 
     public bool CanAddEquipmentToInventory()

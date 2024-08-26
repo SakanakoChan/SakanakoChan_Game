@@ -216,15 +216,33 @@ public class ItemData_Equipment : ItemData
 
         for (int i = 0; i < itemEffects.Length; i++)
         {
-            if (itemEffects[i].effectDescription.Length > 0)
+            sb.AppendLine();
+
+            //english
+            if (LanguageManager.instance.localeID == 0)
             {
-                sb.AppendLine();
-                sb.Append($"[unique effect]\n{itemEffects[i].effectDescription}\n");
-                statInfoLength++;
+                if (itemEffects[i].effectDescription.Length > 0)
+                {
+                    sb.Append($"[unique effect]\n{itemEffects[i].effectDescription}\n");
+                }
             }
+            //chinese
+            else if (LanguageManager.instance.localeID == 1)
+            {
+                if (itemEffects[i].effectDescription_Chinese.Length > 0)
+                {
+                    sb.Append($"[¹ÌÓÐÐ§¹û]\n{itemEffects[i].effectDescription_Chinese}\n");
+                }
+            }
+
+            statInfoLength++;
         }
 
-        sb.Remove(sb.Length - 1, 1);
+        //make sure the space below unique effect is same as the one below stat info so that item tool tip looks nicer
+        if (sb.ToString()[sb.Length - 1] == '\n')
+        {
+            sb.Remove(sb.Length - 1, 1);
+        }
 
 
         //if (statInfoLength < minStatInfoLength)

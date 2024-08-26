@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectCooldown: 1
   effectDescription: Heal 30% HP
+  effectDescription_Chinese: "\u6062\u590D30%\u751F\u547D\u503C"
   healPercent: 0.3

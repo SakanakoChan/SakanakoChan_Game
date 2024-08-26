@@ -205,6 +205,10 @@ MonoBehaviour:
     m_Localized: Skill Price
     m_Metadata:
       m_Items: []
+  - m_Id: 750842124484608
+    m_Localized: LSHIFT
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectCooldown: 5
   effectDescription: Freeze nearby enemy for 2 seconds
+  effectDescription_Chinese: "\u51BB\u7ED3\u654C\u4EBA2\u79D2"
   freezeDuration: 2

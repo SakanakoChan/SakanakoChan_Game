@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Heal&Armor Flask
+  itemName_Chinese: "\u7597\u4F24&\u62A4\u7532\u74F6"
   icon: {fileID: -165920498, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: 3cd68e2d20f041c4baa845d471169481
   dropChance: 0
   equipmentType: 3
-  itemCooldown: 15
   itemEffects:
   - {fileID: 11400000, guid: ffe1b6374502be34fa99c6f981fe360b, type: 2}
   - {fileID: 11400000, guid: c8c8bcf2c8b2fab46a1bef899d7fc214, type: 2}

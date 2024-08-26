@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Time Armor
+  itemName_Chinese: "\u65F6\u95F4\u88C5\u7532"
   icon: {fileID: 288293509, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: 578fb7165e9d37549bc41ea2bf837786
   dropChance: 0
   equipmentType: 1
-  itemCooldown: 5
   itemEffects:
   - {fileID: 11400000, guid: 4a13b6ab06b248b4e8409edd72d26d3f, type: 2}
-  itemEffectDescription: '[unique] when HP is below 50%, freeze close enemies when
-    getting hit'
   strength: 0
   agility: 0
   intelligence: 0

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
 
 public class ItemToolTip_UI : MonoBehaviour
 {
@@ -24,9 +26,20 @@ public class ItemToolTip_UI : MonoBehaviour
             return;
         }
 
-        itemNameText.text = item.itemName;
         itemTypeText.text = item.equipmentType.ToString();
         itemStatInfo.text = item.GetItemStatInfoAndEffectDescription();
+
+        if (LanguageManager.instance.localeID == 0)
+        {
+            itemNameText.text = item.itemName;
+        }
+        else if (LanguageManager.instance.localeID == 1)
+        {
+            itemNameText.text = item.itemName_Chinese;
+            itemTypeText.text = LanguageManager.instance.EnglishToChineseEquipmentTypeDictionary[itemTypeText.text];
+            itemStatInfo.text = LanguageManager.instance.TranslateItemStatInfoFromEnglishToChinese(itemStatInfo.text);
+        }
+
 
         if (itemNameText.text.Length > 12)
         {
@@ -41,6 +54,20 @@ public class ItemToolTip_UI : MonoBehaviour
 
         //Debug.Log(itemNameText.text);
     }
+
+
+    //public string TranslateItemStatInfoFromEnglishToChinese(string _itemStatInfo)
+    //{
+    //    foreach (var search in LanguageManager.instance.EnglishToChineseStatDictionary)
+    //    {
+    //        string stat_English = search.Key;
+
+    //        _itemStatInfo = _itemStatInfo.Replace(stat_English, LanguageManager.instance.EnglishToChineseStatDictionary[stat_English]);
+    //    }
+
+    //    return _itemStatInfo;
+    //}
+
 
     public void HideToolTip()
     {

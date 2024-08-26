@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Sword with super long name
+  itemName_Chinese: "\u540D\u5B57\u8D85\u7EA7\u957F\u957F\u957F\u957F\u957F\u7684\u5251"
   icon: {fileID: 1071341138, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: ba776585c9e3c284082b77e499293d62
   dropChance: 0
   equipmentType: 0
-  itemCooldown: 0
   itemEffects: []
-  itemEffectDescription: Dont' you feel this sword has a super long name? Also is
-    this description?
   strength: 5
   agility: 5
   intelligence: 5

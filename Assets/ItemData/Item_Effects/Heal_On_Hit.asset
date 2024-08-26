@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Heal_On_Hit
   m_EditorClassIdentifier: 
   effectCooldown: 1
-  effectDescription: Heal 10% HP when taking damage
+  effectDescription: Heal 10% HP when dealing damage
+  effectDescription_Chinese: "\u9020\u6210\u4F24\u5BB3\u65F6\u6062\u590D10%\u751F\u547D\u503C"
   healPercent: 0.1

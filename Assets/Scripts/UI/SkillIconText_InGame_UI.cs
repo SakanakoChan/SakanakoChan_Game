@@ -11,37 +11,18 @@ public class SkillIconText_InGame_UI : MonoBehaviour
     {
         if (KeyBindManager.instance.keybindsDictionary.TryGetValue(skillName, out KeyCode keybind))
         {
-            GetComponent<TextMeshProUGUI>().text = UniformKeybindName(keybind.ToString());
-        }
-    }
+            GetComponent<TextMeshProUGUI>().text = KeyBindManager.instance.UniformKeybindName(keybind.ToString());
 
-    private string UniformKeybindName(string _behaveKeybind)
-    {
-        if (_behaveKeybind.StartsWith("Alpha"))
-        {
-            _behaveKeybind = _behaveKeybind.Remove(0, 5);
+            //chinese needs to decrease font size a bit
+            if (LanguageManager.instance.localeID == 1)
+            {
+                GetComponent<TextMeshProUGUI>().fontSize = 22;
+            }
+            //english
+            else if (LanguageManager.instance.localeID == 0)
+            {
+                GetComponent<TextMeshProUGUI>().fontSize = 26;
+            }
         }
-
-        if (_behaveKeybind.Equals("Mouse0"))
-        {
-            _behaveKeybind = "LMB";
-        }
-
-        if (_behaveKeybind.Equals("Mouse1"))
-        {
-            _behaveKeybind = "RMB";
-        }
-
-        if (_behaveKeybind.Equals("Mouse2"))
-        {
-            _behaveKeybind = "MID";
-        }
-
-        if (_behaveKeybind.StartsWith("Left"))
-        {
-            _behaveKeybind = _behaveKeybind.Remove(1, 3);
-        }
-
-        return _behaveKeybind;
     }
 }

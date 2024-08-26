@@ -6953,6 +6953,7 @@ MonoBehaviour:
   statNameText: {fileID: 335519750}
   statDescription: Increase the possibility that you won't take damage when enemy
     hits you
+  statDescription_Chinese: "\u63D0\u9AD8\u4E0D\u4F1A\u53D7\u5230\u654C\u4EBA\u653B\u51FB\u7684\u4F24\u5BB3\u7684\u6982\u7387"
 --- !u!114 &89262870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7006,7 +7007,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -10006,6 +10007,7 @@ MonoBehaviour:
   statValueText: {fileID: 238840310}
   statNameText: {fileID: 1505470617}
   statDescription: Your Fire Magic Damage
+  statDescription_Chinese: "\u4F60\u7684\u706B\u7130\u9B54\u6CD5\u4F24\u5BB3"
 --- !u!114 &238840310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10059,7 +10061,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -10892,6 +10894,7 @@ MonoBehaviour:
   statDescription: 'Your Max Health Point
 
     You will die when HP is 0'
+  statDescription_Chinese: "\u4F60\u7684\u6700\u5927\u751F\u547D\u503C\n\u751F\u547D\u503C\u4E3A0\u65F6\u5C31\u4F1A\u6B7B\u4EA1"
 --- !u!114 &270819981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10945,7 +10948,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -11354,6 +11357,7 @@ MonoBehaviour:
   statValueText: {fileID: 276472335}
   statNameText: {fileID: 1189165207}
   statDescription: Your Lightning Magic Damage
+  statDescription_Chinese: "\u4F60\u7684\u96F7\u7535\u9B54\u6CD5\u4F24\u5BB3"
 --- !u!114 &276472335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11407,7 +11411,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -23805,6 +23809,7 @@ MonoBehaviour:
   statValueText: {fileID: 383976760}
   statNameText: {fileID: 1112222789}
   statDescription: Decrease your taken Physical Damage
+  statDescription_Chinese: "\u51CF\u5C11\u53D7\u5230\u7684\u7269\u7406\u4F24\u5BB3"
 --- !u!114 &383976760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23858,7 +23863,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -30949,6 +30954,7 @@ MonoBehaviour:
   statValueText: {fileID: 473269746}
   statNameText: {fileID: 378299902}
   statDescription: Increase Magic Damage and Magic Resistance
+  statDescription_Chinese: "\u63D0\u9AD8\u9B54\u6CD5\u4F24\u5BB3\u548C\u9B54\u6CD5\u6297\u6027"
 --- !u!114 &473269746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31002,7 +31008,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -31466,6 +31472,7 @@ MonoBehaviour:
   statValueText: {fileID: 487337443}
   statNameText: {fileID: 757522264}
   statDescription: Increase Damage and Crit Power
+  statDescription_Chinese: "\u63D0\u9AD8\u4F24\u5BB3\u548C\u66B4\u51FB\u4F24\u5BB3"
 --- !u!114 &487337443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31519,7 +31526,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -38143,6 +38150,7 @@ MonoBehaviour:
   statValueText: {fileID: 726958032}
   statNameText: {fileID: 258500722}
   statDescription: Increase Max HP
+  statDescription_Chinese: "\u63D0\u9AD8\u6700\u5927\u751F\u547D\u503C"
 --- !u!114 &726958032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38196,7 +38204,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -52358,6 +52366,7 @@ MonoBehaviour:
   statNameText: {fileID: 1135131600}
   statDescription: The possibility that you do Critical Damage when you do Physical
     attack
+  statDescription_Chinese: "\u7269\u7406\u653B\u51FB\u65F6\u9020\u6210\u66B4\u51FB\u4F24\u5BB3\u7684\u6982\u7387"
 --- !u!114 &912865645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52411,7 +52420,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -67866,6 +67875,7 @@ MonoBehaviour:
   statValueText: {fileID: 1103282780}
   statNameText: {fileID: 82668044}
   statDescription: Your Ice Magic Damage
+  statDescription_Chinese: "\u4F60\u7684\u5BD2\u51B0\u9B54\u6CD5\u4F24\u5BB3"
 --- !u!114 &1103282780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67919,7 +67929,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -86067,6 +86077,7 @@ MonoBehaviour:
   statValueText: {fileID: 1258800754}
   statNameText: {fileID: 790997432}
   statDescription: The damage incease rate when you do Critical Damage
+  statDescription_Chinese: "\u9020\u6210\u66B4\u51FB\u4F24\u5BB3\u65F6\u7684\u4F24\u5BB3\u63D0\u5347\u500D\u7387"
 --- !u!114 &1258800754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86120,7 +86131,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -103525,7 +103536,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -103903,6 +103914,7 @@ MonoBehaviour:
   statValueText: {fileID: 1483797028}
   statNameText: {fileID: 1347573235}
   statDescription: Increase Evasion and Crit Chance
+  statDescription_Chinese: "\u63D0\u9AD8\u95EA\u907F\u548C\u66B4\u51FB\u7387"
 --- !u!114 &1483797028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103956,7 +103968,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -124567,6 +124579,7 @@ MonoBehaviour:
   statValueText: {fileID: 1949057789}
   statNameText: {fileID: 1546331733}
   statDescription: Decrease your taken Magical Damage
+  statDescription_Chinese: "\u51CF\u5C11\u53D7\u5230\u7684\u9B54\u6CD5\u4F24\u5BB3"
 --- !u!114 &1949057789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124620,7 +124633,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -125423,6 +125436,7 @@ MonoBehaviour:
   statValueText: {fileID: 1997610814}
   statNameText: {fileID: 139248947}
   statDescription: Your Physical Damage
+  statDescription_Chinese: "\u4F60\u7684\u7269\u7406\u4F24\u5BB3"
 --- !u!114 &1997610814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125476,7 +125490,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535

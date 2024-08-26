@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Sword Charm
+  itemName_Chinese: "\u5251\u62A4\u7B26"
   icon: {fileID: -1342722037, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: 65c685ae0d9c1134eada0c697b72cdb8
   dropChance: 0
   equipmentType: 2
-  itemCooldown: 0
   itemEffects: []
   strength: 5
   agility: 0

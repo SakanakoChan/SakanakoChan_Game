@@ -31,6 +31,7 @@ public class Flask_UI : MonoBehaviour
     }
 
     //called in Inventory.EquipItem if the item to equip is a flask
+    //also called in Inventroy.UnequipItem if there's no flask equipped
     public void SetFlaskImage(ItemData_Equipment _flask)
     {
         if (_flask == null)
