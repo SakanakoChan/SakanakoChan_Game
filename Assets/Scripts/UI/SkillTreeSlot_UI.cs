@@ -97,7 +97,6 @@ public class SkillTreeSlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
             {
                 string _keybindName = KeyBindManager.instance.keybindsDictionary[boundBehaveNameList[i]].ToString();
                 _keybindName = KeyBindManager.instance.UniformKeybindName(_keybindName);
-                Debug.Log(_keybindName);
                 _skillDescription = _skillDescription.Replace($"BehaveName{i}", _keybindName);
             }
         }
