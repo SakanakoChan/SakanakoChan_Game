@@ -49,8 +49,10 @@ public class SkillIconText_InGame_UI : MonoBehaviour
 
             if (_behaveKeybind_InUI.StartsWith("Left"))
             {
-                _behaveKeybind_InUI = _behaveKeybind_InUI.Remove(1, 4);
+                _behaveKeybind_InUI = _behaveKeybind_InUI.Remove(1, 3);
             }
+
+            _behaveKeybind_InUI = _behaveKeybind_InUI.ToUpper();
         }
         //chinese
         else if (LanguageManager.instance.localeID == 1)
