@@ -8,8 +8,9 @@
 <s><li>Add falling attack which will throw enemy and player onto ground</li></s>
 <s><li>Add downable ground and related mechanics which allows player to jump off certain platforms</li></s>
 <li>Add more enemy types</li>
-<li>Add text language settings which allows switching language between chinese and english</li>
+<s><li>Add text language settings which allows switching language between chinese and english</li></s>
 <s><li>Add Keybind manager</li></s>
+<s><li>Add Options button and related functions to MainMenu</li></s>
 <li>***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai***</li>
 </ol>
 
