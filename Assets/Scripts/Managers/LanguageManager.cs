@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
@@ -87,7 +84,7 @@ public class LanguageManager : MonoBehaviour, ISaveManager
     public string GetEnglishNameByChinese(string _chineseName)
     {
         string result = string.Empty;
-        
+
         foreach (var search in EnglishToChineseKeybindsDictionary)
         {
             if (search.Value == _chineseName)
