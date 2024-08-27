@@ -8,13 +8,13 @@ public class LanguageOptionDropdown_UI : MonoBehaviour
     [SerializeField] private string optionName;
     [SerializeField] private TMP_Dropdown optionDropdown;
 
-    [Header("Chinese Language")]
-    [SerializeField] private TMP_FontAsset chineseFont;
+    //[Header("Chinese Language")]
+    //[SerializeField] private TMP_FontAsset chineseFont;
 
-    [Header("English Language")]
-    [SerializeField] private TMP_FontAsset englishFont;
+    //[Header("English Language")]
+    //[SerializeField] private TMP_FontAsset englishFont;
 
-    private TextMeshProUGUI[] texts;
+    //private TextMeshProUGUI[] texts;
 
     private void Start()
     {
@@ -35,32 +35,32 @@ public class LanguageOptionDropdown_UI : MonoBehaviour
         LanguageManager.instance.localeID = _localeID;
         LanguageManager.instance.SetTextLanguageByLocaleID(_localeID);
 
-        KeyBindManager.instance.UpdateKeybindListLanguage();
-        SkillPanel_InGame_UI.instance.UpdateAllSkillIconTexts();
+        KeyBindManager.instance?.UpdateKeybindListLanguage();
+        SkillPanel_InGame_UI.instance?.UpdateAllSkillIconTexts();
         //yield return new WaitUntil(SetTextFont);
     }
 
-    private bool SetTextFont()
-    {
-        if (LanguageManager.instance.localeID == 1)
-        {
-            foreach (var text in texts)
-            {
-                text.font = chineseFont;
-            }
+    //private bool SetTextFont()
+    //{
+    //    if (LanguageManager.instance.localeID == 1)
+    //    {
+    //        foreach (var text in texts)
+    //        {
+    //            text.font = chineseFont;
+    //        }
 
-            return true;
-        }
-        else if (LanguageManager.instance.localeID == 0)
-        {
-            foreach (var text in texts)
-            {
-                text.font = englishFont;
-            }
+    //        return true;
+    //    }
+    //    else if (LanguageManager.instance.localeID == 0)
+    //    {
+    //        foreach (var text in texts)
+    //        {
+    //            text.font = englishFont;
+    //        }
 
-            return true;
-        }
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 }

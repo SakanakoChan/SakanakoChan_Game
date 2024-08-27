@@ -203,6 +203,10 @@ MonoBehaviour:
     m_Key: Keybind_Dash
     m_Metadata:
       m_Items: []
+  - m_Id: 1028689976147968
+    m_Key: MainMenu_Options
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

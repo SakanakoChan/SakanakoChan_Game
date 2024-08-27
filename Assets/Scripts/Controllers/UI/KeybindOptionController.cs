@@ -124,19 +124,21 @@ public class KeybindOptionController : MonoBehaviour
             behaveKeybind_InUI.text = "µÈ´ýÊäÈë°´¼ü";
         }
 
-        UI.instance.EnableUIKeyInput(false);
+        UI.instance?.EnableUIKeyInput(false);
+        MainMenu_UI.instance?.EnableKeyInput(false);
 
         yield return new WaitUntil(CheckInput);
 
         keybindButton.onClick.RemoveAllListeners();
-        SkillPanel_InGame_UI.instance.UpdateAllSkillIconTexts();
+        SkillPanel_InGame_UI.instance?.UpdateAllSkillIconTexts();
 
         yield return new WaitWhile(HasAnyKey);
 
         keybindButton.interactable = true;
         keybindButton.onClick.AddListener(ChangeKeybind);
 
-        UI.instance.EnableUIKeyInput(true);
+        UI.instance?.EnableUIKeyInput(true);
+        MainMenu_UI.instance?.EnableKeyInput(true);
     }
 
     private bool CheckInput()
