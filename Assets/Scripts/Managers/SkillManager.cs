@@ -7,7 +7,7 @@ public class SkillManager : MonoBehaviour
     public DashSkill dash { get; private set; }
     public CloneSkill clone { get; private set; }
     public SwordSkill sword { get; private set; }
-    public BlackholeSkill blackholeSkill { get; private set; }
+    public BlackholeSkill blackhole { get; private set; }
     public CrystalSkill crystal { get; private set; }
     public ParrySkill parry { get; private set; }
     public DodgeSkill dodge { get; private set; }
@@ -22,14 +22,11 @@ public class SkillManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    private void Start()
-    {
         dash = GetComponent<DashSkill>();
         clone = GetComponent<CloneSkill>();
         sword = GetComponent<SwordSkill>();
-        blackholeSkill = GetComponent<BlackholeSkill>();
+        blackhole = GetComponent<BlackholeSkill>();
         crystal = GetComponent<CrystalSkill>();
         parry = GetComponent<ParrySkill>();
         dodge = GetComponent<DodgeSkill>();

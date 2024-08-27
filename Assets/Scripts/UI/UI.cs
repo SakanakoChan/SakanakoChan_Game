@@ -93,6 +93,9 @@ public class UI : MonoBehaviour, ISaveManager
         {
             if (currentUI != ingame_UI)
             {
+                skillToolTip.gameObject.SetActive(false);
+                itemToolTip.gameObject.SetActive(false);
+                statToolTip.gameObject.SetActive(false);
                 SwitchToMenu(ingame_UI);
             }
             else

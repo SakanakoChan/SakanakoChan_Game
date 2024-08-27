@@ -84,7 +84,7 @@ public class InGame_UI : MonoBehaviour
             SetSkillCooldownImage(throwSwordImage);
         }
 
-        if (Input.GetKeyDown(/*KeyCode.R*/ KeyBindManager.instance.keybindsDictionary["Blackhole"]) && skill.blackholeSkill.blackholeUnlocked)
+        if (Input.GetKeyDown(/*KeyCode.R*/ KeyBindManager.instance.keybindsDictionary["Blackhole"]) && skill.blackhole.blackholeUnlocked)
         {
             SetSkillCooldownImage(blackholeImage);
         }
@@ -97,7 +97,7 @@ public class InGame_UI : MonoBehaviour
         FillSkillCooldownImage(parryImage, skill.parry.cooldown);
         FillSkillCooldownImage(crystalImage, skill.crystal.GetCrystalCooldown());
         FillSkillCooldownImage(throwSwordImage, skill.sword.cooldown);
-        FillSkillCooldownImage(blackholeImage, skill.blackholeSkill.cooldown);
+        FillSkillCooldownImage(blackholeImage, skill.blackhole.cooldown);
         FillFlaskCooldownImage();
     }
 

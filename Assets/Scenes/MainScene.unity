@@ -90908,6 +90908,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd01061076b1ea40b722c794451c1ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashIcon: {fileID: 261640299}
+  parryIcon: {fileID: 315278280}
+  crystalIcon: {fileID: 1112804523}
+  throwSwordIcon: {fileID: 1184952767}
+  blackholeIcon: {fileID: 51510016}
 --- !u!224 &1435248875 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1617992023272518260, guid: 41cf0d71cf03e134bb4e8d566b2c5326, type: 3}
@@ -128533,8 +128538,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionName: Text language
   optionDropdown: {fileID: 4501862664082413468}
-  chineseFont: {fileID: 11400000, guid: 3ab338fcec7d0c743a6791a33dbb00ff, type: 2}
-  englishFont: {fileID: 11400000, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
 --- !u!222 &8707857462603640886
 CanvasRenderer:
   m_ObjectHideFlags: 0

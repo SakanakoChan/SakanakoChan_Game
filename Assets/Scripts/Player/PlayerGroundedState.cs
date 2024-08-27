@@ -40,7 +40,7 @@ public class PlayerGroundedState : PlayerState
             SkillManager.instance.parry.UseSkillIfAvailable();
         }
 
-        if (Input.GetKeyDown(/*KeyCode.R*/ KeyBindManager.instance.keybindsDictionary["Blackhole"]) && player.skill.blackholeSkill.blackholeUnlocked && player.skill.blackholeSkill.SkillIsReadyToUse())
+        if (Input.GetKeyDown(/*KeyCode.R*/ KeyBindManager.instance.keybindsDictionary["Blackhole"]) && player.skill.blackhole.blackholeUnlocked && player.skill.blackhole.SkillIsReadyToUse())
         {
             stateMachine.ChangeState(player.blackholeSkillState);
         }

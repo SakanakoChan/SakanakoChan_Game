@@ -54,13 +54,13 @@ public class PlayerReleaseBlackholeSkillState : PlayerState
 
             if (!skillUsed)
             {
-                if (player.skill.blackholeSkill.UseSkillIfAvailable())
+                if (player.skill.blackhole.UseSkillIfAvailable())
                 {
                     skillUsed = true;
                 }
             }
 
-            if (player.skill.blackholeSkill.CanExitBlackholeSkill())
+            if (player.skill.blackhole.CanExitBlackholeSkill())
             {
                 player.stateMachine.ChangeState(player.airState);
             }
