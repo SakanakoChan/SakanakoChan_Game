@@ -36,6 +36,7 @@ public class LanguageOptionDropdown_UI : MonoBehaviour
         LanguageManager.instance.SetTextLanguageByLocaleID(_localeID);
 
         KeyBindManager.instance.UpdateKeybindListLanguage();
+        SkillPanel_InGame_UI.instance.UpdateAllSkillIconTexts();
         //yield return new WaitUntil(SetTextFont);
     }
 
