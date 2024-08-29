@@ -118,7 +118,8 @@ public class SkeletonBattleState : EnemyState
 
     private bool CanAttack()
     {
-        if (Time.time - enemy.lastTimeAttacked >= enemy.attackCooldown && !enemy.isKnockbacked)
+        //skeleton can only attack when it's on ground
+        if (Time.time - enemy.lastTimeAttacked >= enemy.attackCooldown && !enemy.isKnockbacked && rb.velocity.y <= 0.1f && rb.velocity.y >= -0.1f)
         {
             //enemy's attack frequency will be random
             enemy.attackCooldown = Random.Range(enemy.minAttackCooldown, enemy.maxAttackCooldown);

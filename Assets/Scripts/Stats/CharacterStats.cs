@@ -137,6 +137,12 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void DoDamge(CharacterStats _targetStats)
     {
+        //if target is invincible, it won't take damage
+        if (_targetStats.isInvincible)
+        {
+            return;
+        }
+
         if (TargetCanEvadeThisAttack(_targetStats))
         {
             return;

@@ -15,8 +15,9 @@ public class Entity : MonoBehaviour
 
     [Header("Knockback Info")]
     public Vector2 knockbackMovement;
+    public Vector2 randomKnockbackMovementOffsetRange;
     [SerializeField] protected float knockbackDuration;
-    public bool isKnockbacked { get; private set; }
+    public bool isKnockbacked { get; set; }
 
     public int facingDirection { get; private set; } = 1;
     protected bool facingRight = true;
@@ -68,7 +69,11 @@ public class Entity : MonoBehaviour
     protected virtual IEnumerator HitKnockback(float _knockbackDirection)
     {
         isKnockbacked = true;
-        rb.velocity = new Vector2(knockbackMovement.x * _knockbackDirection, knockbackMovement.y);
+
+        float xOffset = Random.Range(0, randomKnockbackMovementOffsetRange.x);
+        float yOffset = Random.Range(0, randomKnockbackMovementOffsetRange.y);
+
+        rb.velocity = new Vector2((knockbackMovement.x + xOffset) * _knockbackDirection, knockbackMovement.y + yOffset);
         //yield return new WaitForSeconds(0.1f);
         //rb.velocity = Vector2.zero;
 

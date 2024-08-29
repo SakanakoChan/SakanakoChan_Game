@@ -32,39 +32,45 @@ public class PlayerDownStrikeAttackCollider : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.GetComponent<Enemy>() != null)
+        if (player.stateMachine.currentState == player.downStrikeState)
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
-
-            Vector2 originalEnemyKnockbackMovement = enemy.knockbackMovement;
-            enemy.knockbackMovement = new Vector2(0, player.rb.velocity.y);
-
-            enemy.SetVelocity(player.rb.velocity.x, player.rb.velocity.y);
-
-            if (downStrikeAttackTimer < 0)
+            if (collision.GetComponent<Enemy>() != null)
             {
-                player.stats.DoDamge(enemy.stats);
-                downStrikeAttackTimer = downStrikAttackCooldown;
-            }
+                Enemy enemy = collision.GetComponent<Enemy>();
 
-            enemy.knockbackMovement = originalEnemyKnockbackMovement;
+                Vector2 originalEnemyKnockbackMovement = enemy.knockbackMovement;
+                enemy.knockbackMovement = new Vector2(0, player.rb.velocity.y);
+
+                enemy.SetVelocity(player.rb.velocity.x, player.rb.velocity.y);
+
+                if (downStrikeAttackTimer < 0)
+                {
+                    player.stats.DoDamge(enemy.stats);
+                    downStrikeAttackTimer = downStrikAttackCooldown;
+                }
+
+                enemy.knockbackMovement = originalEnemyKnockbackMovement;
+            }
         }
     }
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Enemy>() != null)
+        if (player.stateMachine.currentState == player.downStrikeState)
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
+            if (collision.GetComponent<Enemy>() != null)
+            {
+                Enemy enemy = collision.GetComponent<Enemy>();
 
-            //Vector2 originalEnemyKnockbackMovement = enemy.knockbackMovement;
-            //enemy.knockbackMovement = new Vector2(0, player.rb.velocity.y);
+                //Vector2 originalEnemyKnockbackMovement = enemy.knockbackMovement;
+                //enemy.knockbackMovement = new Vector2(0, player.rb.velocity.y);
 
-            enemy.SetVelocity(player.rb.velocity.x, player.rb.velocity.y);
-            player.stats.DoDamge(enemy.stats);
+                enemy.SetVelocity(player.rb.velocity.x, player.rb.velocity.y);
+                player.stats.DoDamge(enemy.stats);
 
-            //enemy.knockbackMovement = originalEnemyKnockbackMovement;
+                //enemy.knockbackMovement = originalEnemyKnockbackMovement;
+            }
         }
     }
 

@@ -25,8 +25,6 @@ public class SlimeStunnedState : SlimeState
     public override void Exit()
     {
         base.Exit();
-
-        enemy.fx.Invoke("CancelColorChange", 0);
     }
 
     public override void Update()
@@ -40,6 +38,12 @@ public class SlimeStunnedState : SlimeState
             enemy.SetVelocity(0, rb.velocity.y);
         }
 
+        if (rb.velocity.y < 0.1f && enemy.IsGroundDetected())
+        {
+            //StunTrigger only makes it play the animation that the slime becomes a puddle of water on ground 
+            enemy.anim.SetTrigger("StunTrigger");
+            enemy.fx.Invoke("CancelColorChange", 0);
+        }
 
         if (stateTimer < 0)
         {

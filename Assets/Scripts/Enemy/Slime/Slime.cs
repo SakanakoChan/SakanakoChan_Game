@@ -3,8 +3,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum SlimeType
+{
+    big,
+    medium,
+    small
+}
+
 public class Slime : Enemy
 {
+    [Header("Slime specification")]
+    [SerializeField] private SlimeType slimeType;
+    [SerializeField] private int amoutOfSlimeToSpawnAfterDeath;
+    [SerializeField] private GameObject slimePrefab;
+    [SerializeField] private Vector2 minSlimeSpawnSpeed;
+    [SerializeField] private Vector2 maxSlimeSpawnSpeed;
+
     #region States
     public SlimeIdleState idleState {  get; private set; }
     public SlimeMoveState moveState { get; private set; }
@@ -23,7 +37,7 @@ public class Slime : Enemy
         battleState = new SlimeBattleState(this, stateMachine, "Move", this);
         attackState = new SlimeAttackState(this, stateMachine, "Attack", this);
         stunnedState = new SlimeStunnedState(this, stateMachine, "Stunned", this);
-        deathState = new SlimeDeathState(this, stateMachine, "Death", this);
+        deathState = new SlimeDeathState(this, stateMachine, "Idle", this);
 
         SetupDefaultFacingDirection(-1);
     }
@@ -62,6 +76,14 @@ public class Slime : Enemy
         base.Die();
 
         stateMachine.ChangeState(deathState);
+
+        //small slime will not spawn any more slimes
+        if (slimeType == SlimeType.small)
+        {
+            return;
+        }
+
+        SpawnSlime(amoutOfSlimeToSpawnAfterDeath, slimePrefab);
     }
 
     public override void GetIntoBattleState()
@@ -71,9 +93,51 @@ public class Slime : Enemy
         //    return;
         //}
 
+        //player's attack will not interrupt big slime's attack
+        if (slimeType == SlimeType.big && (stateMachine.currentState == battleState || stateMachine.currentState == attackState))
+        {
+            return;
+        }
+
         if (stateMachine.currentState != battleState && stateMachine.currentState != stunnedState && stateMachine.currentState != deathState)
         {
             stateMachine.ChangeState(battleState);
         }
+    }
+
+    private void SpawnSlime(int _amountOfSlimeToSpawn, GameObject _slimePrefab)
+    {
+        for (int i = 0; i < _amountOfSlimeToSpawn; i++)
+        {
+            GameObject newSlime = Instantiate(_slimePrefab, transform.position, Quaternion.identity);
+
+            newSlime.GetComponent<Slime>()?.SetupSpawnedSlime(facingDirection);
+        }
+    }
+
+    public void SetupSpawnedSlime(int _facingDirection)
+    {
+        //if the spawned slime's facing direction
+        //is not equal to its parent's facing direction,
+        //flip it
+        if (facingDirection != _facingDirection)
+        {
+            Flip();
+        }
+
+        float xVelocity = Random.Range(minSlimeSpawnSpeed.x, maxSlimeSpawnSpeed.x);
+        float yVelocity = Random.Range(minSlimeSpawnSpeed.y, maxSlimeSpawnSpeed.y);
+
+        //to prevent the slime spawn speed being interrupted
+        isKnockbacked = true;
+
+        GetComponent<Rigidbody2D>().velocity = new Vector2(xVelocity * -facingDirection, yVelocity);
+
+        Invoke("CancelKnockback", 1.5f);
+    }
+
+    private void CancelKnockback()
+    {
+        isKnockbacked = false;
     }
 }

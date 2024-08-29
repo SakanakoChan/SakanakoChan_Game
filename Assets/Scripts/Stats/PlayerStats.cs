@@ -8,6 +8,8 @@ public class PlayerStats : CharacterStats
     private Player player;
     private PlayerFX playerFX;
 
+    private float playerDefaultMoveSpeed;
+
     protected override void Awake()
     {
         base.Awake();
@@ -19,6 +21,7 @@ public class PlayerStats : CharacterStats
         base.Start();
 
         player = GetComponent<Player>();
+        playerDefaultMoveSpeed = player.moveSpeed;
     }
 
     public override void DoDamge(CharacterStats _targetStats)
@@ -62,6 +65,8 @@ public class PlayerStats : CharacterStats
 
         _attackee.GetComponent<Entity>()?.DamageFlashEffect();
 
+        SlowerPlayerMoveSpeedForTime(0.2f);
+
         //player will get knockbacked when the taken damage is bigger than 30% of maxHP
         if (takenDamage >= player.stats.getMaxHP() * 0.3f)
         {
@@ -73,6 +78,20 @@ public class PlayerStats : CharacterStats
         {
             Die();
         }
+    }
+
+    private void SlowerPlayerMoveSpeedForTime(float _duration)
+    {
+        float defaultMoveSpeed = player.moveSpeed;
+
+        player.moveSpeed = player.moveSpeed * _duration;
+
+        Invoke("ReturnToDefaultMoveSpeed", _duration);
+    }
+
+    private void ReturnToDefaultMoveSpeed()
+    {
+        player.moveSpeed = playerDefaultMoveSpeed;
     }
 
     protected override void Die()

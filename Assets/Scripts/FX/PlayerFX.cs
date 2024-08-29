@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerFX : EntityFX
 {
+    private bool canScreenShake = true;
+
     [Header("Screen Shake FX")]
     [SerializeField] private float shakeMultiplier;
     public Vector3 shakeDirection_light;
@@ -45,8 +47,19 @@ public class PlayerFX : EntityFX
 
     public void ScreenShake(Vector3 _shakeDirection)
     {
-        screenShake.m_DefaultVelocity = new Vector3(_shakeDirection.x * player.facingDirection, _shakeDirection.y) * shakeMultiplier;
-        screenShake.GenerateImpulse();
+        //to prevent gigantic screenshake when hitting multiple enemies at the same time
+        if (canScreenShake)
+        {
+            screenShake.m_DefaultVelocity = new Vector3(_shakeDirection.x * player.facingDirection, _shakeDirection.y) * shakeMultiplier;
+            screenShake.GenerateImpulse();
+            canScreenShake = false;
+            Invoke("EnableScreenShake", 0.05f);
+        }
+    }
+
+    private void EnableScreenShake()
+    {
+        canScreenShake = true;
     }
 
     public void CreateAfterimage()
