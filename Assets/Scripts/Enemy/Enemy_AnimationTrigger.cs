@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_SkeletonAnimationTrigger : MonoBehaviour
+public class Enemy_AnimationTrigger : MonoBehaviour
 {
     private Enemy enemy => GetComponentInParent<Enemy>();
 

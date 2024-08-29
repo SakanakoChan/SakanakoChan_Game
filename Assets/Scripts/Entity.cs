@@ -170,6 +170,16 @@ public class Entity : MonoBehaviour
             Flip();
         }
     }
+
+    public void SetupDefaultFacingDirection(int _facingDirection)
+    {
+        facingDirection = _facingDirection;
+
+        if (facingDirection == -1)
+        {
+            facingRight = false;
+        }
+    }
     #endregion
 
 
