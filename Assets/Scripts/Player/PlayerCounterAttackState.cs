@@ -42,18 +42,21 @@ public class PlayerCounterAttackState : PlayerState
 
         foreach (var hit in colliders)
         {
+            //throw back enemy's range attack
+            if(hit.GetComponent<Arrow_Controller>() != null)
+            {
+                hit.GetComponent<Arrow_Controller>().FlipArrow();
+                SuccessfulCounterAttack();
+            }
+
+            //parry enemy's attack
             if (hit.GetComponent<Enemy>() != null)
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
 
                 if (enemy.CanBeStunnedByCounterAttack())
                 {
-                    //make a random big value here,
-                    //cuz this state will be exited by triggerCalled if successfully counter attacked
-                    stateTimer = 10;
-
-                    player.anim.SetBool("SuccessfulCounterAttack", true);
-                    player.fx.ScreenShake(player.fx.shakeDirection_medium);
+                    SuccessfulCounterAttack();
 
                     //parry recover hp/fp
                     player.skill.parry.RecoverHPFPInSuccessfulParry();
@@ -73,5 +76,15 @@ public class PlayerCounterAttackState : PlayerState
         {
             stateMachine.ChangeState(player.idleState);
         }
+    }
+
+    private void SuccessfulCounterAttack()
+    {
+        //make a random big value here,
+        //cuz this state will be exited by triggerCalled if successfully counter attacked
+        stateTimer = 10;
+
+        player.anim.SetBool("SuccessfulCounterAttack", true);
+        player.fx.ScreenShake(player.fx.shakeDirection_medium);
     }
 }
