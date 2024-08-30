@@ -13,6 +13,8 @@
 <s><li>Add Options button and related functions to MainMenu</li></s>
 <s><li>Make skill panel only show the unlcoked skills in game</li></s>
 <li>Add dialogue system like galgame</li>
+<li>Add throw sword selection panel for in-game UI</li>
+<li>Add camera movement when player is facing pit</li>
 <li>***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai***</li>
 </ol>
 
