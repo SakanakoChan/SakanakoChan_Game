@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SlimeBattleState : SlimeState
+public class ArcherBattleState : ArcherState
 {
     private Transform player;
 
-    private int moveDirection;
-
-    public SlimeBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Slime _slime) : base(_enemyBase, _stateMachine, _animBoolName, _slime)
+    public ArcherBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Archer _enemy) : base(_enemyBase, _stateMachine, _animBoolName, _enemy)
     {
     }
 
@@ -63,6 +61,19 @@ public class SlimeBattleState : SlimeState
             //If enemy can see player, then it's always in aggreesive mode
             stateTimer = enemy.aggressiveTime;
 
+            //if player is too close to archer, archer will jump if available
+            if (enemy.IsPlayerDetected().distance < enemy.jumpJudgeDistance)
+            {
+                if (CanJump())
+                {
+                    anim.SetBool("Idle", false);
+                    anim.SetBool("Move", false);
+                    stateMachine.ChangeState(enemy.jumpState);
+                    return;
+                }
+            }
+
+            //if player is inside archer's attack range, archer will attack player
             if (enemy.IsPlayerDetected() && Vector2.Distance(player.transform.position, enemy.transform.position) < enemy.attackDistance)
             {
 
@@ -94,25 +105,6 @@ public class SlimeBattleState : SlimeState
             return;
         }
 
-        if (player.position.x > enemy.transform.position.x)
-        {
-            moveDirection = 1;
-        }
-        else if (player.position.x < enemy.transform.position.x)
-        {
-            moveDirection = -1;
-        }
-
-        if (!enemy.IsGroundDetected())
-        {
-            enemy.SetVelocity(0, rb.velocity.y);
-            ChangeToIdleAnimation();
-            return;
-        }
-
-        enemy.SetVelocity(enemy.battleMoveSpeed * moveDirection, rb.velocity.y);
-        ChangeToMoveAnimation();
-
     }
 
     private bool CanAttack()
@@ -128,16 +120,28 @@ public class SlimeBattleState : SlimeState
         return false;
     }
 
+    private bool CanJump()
+    {
+        //if there's a pit behind archer, or there's a wall behind acher,
+        //archer will not jump away
+        if (!enemy.GroundBehindCheck() || enemy.WallBehindCheck())
+        {
+            return false;
+        }
+
+        if (Time.time - enemy.lastTimeJumped >= enemy.jumpCooldown && !enemy.isKnockbacked)
+        {
+            //enemy.lastTimeJumped is set in jumpState
+            return true;
+        }
+
+        return false;
+    }
+
     private void ChangeToIdleAnimation()
     {
         anim.SetBool("Move", false);
         anim.SetBool("Idle", true);
-    }
-
-    private void ChangeToMoveAnimation()
-    {
-        anim.SetBool("Idle", false);
-        anim.SetBool("Move", true);
     }
 
     private void FacePlayer()

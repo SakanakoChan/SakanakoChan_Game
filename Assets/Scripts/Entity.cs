@@ -5,18 +5,18 @@ public class Entity : MonoBehaviour
 {
     [Header("Collision Info")]
     [SerializeField] protected Transform groundCheck;
-    [SerializeField] protected float groundCheckDistance;
+    [SerializeField] protected float groundCheckDistance = 1;
     [SerializeField] protected Transform wallCheck;
-    [SerializeField] protected float wallCheckDistance;
+    [SerializeField] protected float wallCheckDistance = 0.6f;
     [SerializeField] protected LayerMask whatIsGround;
     [Space]
     public Transform attackCheck;
-    public float attackCheckRadius;
+    public float attackCheckRadius = 1.2f;
 
     [Header("Knockback Info")]
-    public Vector2 knockbackMovement;
+    public Vector2 knockbackMovement = new Vector2(5, 3);
     public Vector2 randomKnockbackMovementOffsetRange;
-    [SerializeField] protected float knockbackDuration;
+    [SerializeField] protected float knockbackDuration = 0.2f;
     public bool isKnockbacked { get; set; }
 
     public int facingDirection { get; private set; } = 1;

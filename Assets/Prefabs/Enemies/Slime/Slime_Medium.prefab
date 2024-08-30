@@ -212,13 +212,13 @@ MonoBehaviour:
   isChilled: 0
   isShocked: 0
   igniteDuration:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   chillDuration:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   shockDuration:
-    baseValue: 0
+    baseValue: 4
     modifiers: 
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0

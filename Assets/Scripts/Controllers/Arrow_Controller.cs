@@ -7,15 +7,22 @@ using UnityEngine.U2D;
 public class Arrow_Controller : MonoBehaviour
 {
     [SerializeField] private string targetLayerName = "Player";
-    [SerializeField] private int damage;
+    //[SerializeField] private int damage;
 
-    [SerializeField] private float xVelocity;
-    [SerializeField] private Rigidbody2D rb;
+    private float xVelocity;
+    private Rigidbody2D rb;
+    private CharacterStats archerStats;
 
     [SerializeField] private bool canMove = true;
     [SerializeField] private bool flipped = false;
 
     private bool isStuck = false;
+
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -29,6 +36,12 @@ public class Arrow_Controller : MonoBehaviour
         {
             Invoke("BecomeTransparentAndDestroyArrow", Random.Range(3, 5));
         }
+
+        //if the arrow flies too far and donsen't hit any targets, auto destroy it
+        if (Vector2.Distance(transform.position, archerStats.transform.position) > 25)
+        {
+            Invoke("BecomeTransparentAndDestroyArrow", 0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,7 +49,8 @@ public class Arrow_Controller : MonoBehaviour
         //if the arrow hits player
         if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
-            collision.GetComponent<CharacterStats>()?.TakeDamage(damage, transform, collision.transform, false); ;
+            //collision.GetComponent<CharacterStats>()?.TakeDamage(damage, transform, collision.transform, false); ;
+            archerStats.DoDamge(collision.GetComponent<CharacterStats>());
 
             StuckIntoCollidedObject(collision);
         }
@@ -45,6 +59,20 @@ public class Arrow_Controller : MonoBehaviour
         {
             StuckIntoCollidedObject(collision);
         }
+    }
+
+    public void SetupArrow(float _speed, CharacterStats _archerStats)
+    {
+        xVelocity = _speed;
+
+        //if the arrow is flying to the left side.
+        //needs to flip it first
+        if (xVelocity < 0)
+        {
+            transform.Rotate(0, 180, 0);
+        }
+
+        archerStats = _archerStats;
     }
 
     private void StuckIntoCollidedObject(Collider2D collision)

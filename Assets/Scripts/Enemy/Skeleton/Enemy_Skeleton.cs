@@ -29,6 +29,7 @@ public class Enemy_Skeleton : Enemy
     {
         base.Start();
 
+        InitializeLastTimeInfo();
         stateMachine.Initialize(idleState);
     }
 
@@ -77,5 +78,10 @@ public class Enemy_Skeleton : Enemy
         {
             stateMachine.ChangeState(battleState);
         }
+    }
+
+    protected override void InitializeLastTimeInfo()
+    {
+        lastTimeAttacked = 0;
     }
 }

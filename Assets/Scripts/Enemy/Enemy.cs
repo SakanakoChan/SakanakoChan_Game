@@ -15,26 +15,26 @@ public class Enemy : Entity
     private float defaultPatrolMoveSpeed;
 
     [Header("Recon Info")]
-    public float playerScanDistance;
-    public float playerHearDistance;
+    public float playerScanDistance = 10;
+    public float playerHearDistance = 3;
     [SerializeField] protected LayerMask whatIsPlayer;
 
     [Header("Battle/Aggressive Info")]
     public float battleMoveSpeed;
-    public float aggressiveTime;
+    public float aggressiveTime = 7;
 
     private float defaultBattleMoveSpeed;
 
     [Header("Attack Info")]
-    public float attackDistance;
-    public float attackCooldown;
-    public float minAttackCooldown;
-    public float maxAttackCooldown;
+    public float attackDistance = 2;
+    public float attackCooldown = 1.5f;
+    public float minAttackCooldown = 1;
+    public float maxAttackCooldown = 2;
     [HideInInspector] public float lastTimeAttacked;
 
     [Header("Stunned Info")]
-    public float stunDuration;
-    public Vector2 stunMovement;
+    public float stunDuration = 1;
+    public Vector2 stunMovement = new Vector2(3, 3);
     protected bool canBeStunned;
     [SerializeField] protected GameObject counterPromptImage;
 
@@ -86,6 +86,11 @@ public class Enemy : Entity
     public void AnimationTrigger()
     {
         stateMachine.currentState.AnimationFinishTrigger();
+    }
+
+    public virtual void SpecialAttackTrigger()
+    {
+
     }
 
     public virtual void FreezeEnemy(bool _freeze)
@@ -174,6 +179,11 @@ public class Enemy : Entity
     public override void DamageFlashEffect()
     {
         fx.StartCoroutine("FlashFX");
+    }
+
+    protected virtual void InitializeLastTimeInfo()
+    {
+
     }
 
 }

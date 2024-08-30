@@ -46,6 +46,7 @@ public class Slime : Enemy
     {
         base.Start();
 
+        InitializeLastTimeInfo();
         stateMachine.Initialize(idleState);
     }
 
@@ -139,5 +140,10 @@ public class Slime : Enemy
     private void CancelKnockback()
     {
         isKnockbacked = false;
+    }
+
+    protected override void InitializeLastTimeInfo()
+    {
+        lastTimeAttacked = 0;
     }
 }
