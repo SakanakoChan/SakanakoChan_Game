@@ -15,7 +15,7 @@ public class EnemyStats : CharacterStats
 
     protected override void Start()
     {
-        currencyDropAmount.SetDefaultValue(100);
+        //currencyDropAmount.SetDefaultValue(100);
 
         ModifyAllStatsAccordingToEnemyLevel();
 
@@ -51,6 +51,26 @@ public class EnemyStats : CharacterStats
         PlayerManager.instance.currency += currencyDropAmount.GetValue();
 
         Destroy(gameObject, 3f);
+    }
+
+    public void ZeroHP()
+    {
+        currentHP = 0;
+
+        base.Die();
+
+        if (onHealthChanged != null)
+        {
+            onHealthChanged();
+        }
+    }
+
+    public void DropCurrencyAndItem()
+    {
+        itemDropSystem.GenrateDrop();
+
+        //player will get currency when killing enemy
+        PlayerManager.instance.currency += currencyDropAmount.GetValue();
     }
 
     private void ModifyAllStatsAccordingToEnemyLevel()

@@ -15433,7 +15433,7 @@ MonoBehaviour:
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
   currencyDropAmount:
-    baseValue: 0
+    baseValue: 1000
     modifiers: 
   enemyLevel: 1
   percentageModifier: 0.4
@@ -15478,4 +15478,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxItemDropAmount: 0
   possibleDropItemList: []
-  dropItemPrefab: {fileID: 0}
+  dropItemPrefab: {fileID: 4638080574934848111, guid: b06e197012ccd2d47807612c4541912e, type: 3}

@@ -223,7 +223,7 @@ MonoBehaviour:
   thunderStrikePrefab: {fileID: 5965230482557046128, guid: 96a9af3bd80a234469d642bc52e2f31d, type: 3}
   currentHP: 0
   currencyDropAmount:
-    baseValue: 0
+    baseValue: 200
     modifiers: 
   enemyLevel: 1
   percentageModifier: 0.4

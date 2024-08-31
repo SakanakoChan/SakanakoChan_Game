@@ -191,7 +191,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Die()
     {
-
+        
     }
 
     public virtual void SlowSpeedBy(float _percentage, float _duration)
