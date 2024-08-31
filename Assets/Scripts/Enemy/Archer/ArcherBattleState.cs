@@ -48,6 +48,7 @@ public class ArcherBattleState : ArcherState
             return;
         }
 
+
         //AudioManager.instance.PlaySFX(24, enemy.transform);
 
         //AudioManager.instance.PlaySFX(14, enemy.transform);
@@ -60,9 +61,10 @@ public class ArcherBattleState : ArcherState
         {
             //If enemy can see player, then it's always in aggreesive mode
             stateTimer = enemy.aggressiveTime;
+            Debug.Log("I see player");
 
             //if player is too close to archer, archer will jump if available
-            if (enemy.IsPlayerDetected().distance < enemy.jumpJudgeDistance)
+            if (Vector2.Distance(player.transform.position, enemy.transform.position) < enemy.jumpJudgeDistance)
             {
                 if (CanJump())
                 {

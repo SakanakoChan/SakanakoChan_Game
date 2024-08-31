@@ -98,7 +98,10 @@ public class Archer : Enemy
         //Debug.Log("shoot arrow");
         
         GameObject newArrow = Instantiate(arrowPrefab, attackCheck.position, Quaternion.identity);
-        newArrow.GetComponent<Arrow_Controller>()?.SetupArrow(arrowFlySpeed * facingDirection, stats);
+
+        Vector2 flyDirection = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
+        Vector2 finalFlySpeed = new Vector2(flyDirection.normalized.x * arrowFlySpeed, flyDirection.normalized.y * arrowFlySpeed);
+        newArrow.GetComponent<Arrow_Controller>()?.SetupArrow(finalFlySpeed, stats);
     }
 
     protected override void InitializeLastTimeInfo()
@@ -122,5 +125,10 @@ public class Archer : Enemy
         base.OnDrawGizmos();
 
         Gizmos.DrawWireCube(groundBehindCheck.position, groundBehindCheckSize);
+    }
+
+    public override RaycastHit2D IsPlayerDetected()
+    {
+        return Physics2D.CircleCast(wallCheck.position, playerScanDistance, Vector2.right * facingDirection, 0, whatIsPlayer);
     }
 }

@@ -9,7 +9,8 @@ public class Arrow_Controller : MonoBehaviour
     [SerializeField] private string targetLayerName = "Player";
     //[SerializeField] private int damage;
 
-    private float xVelocity;
+    //private float xVelocity;
+    private Vector2 flySpeed;
     private Rigidbody2D rb;
     private CharacterStats archerStats;
 
@@ -28,7 +29,8 @@ public class Arrow_Controller : MonoBehaviour
     {
         if (canMove)
         {
-            rb.velocity = new Vector2(xVelocity, rb.velocity.y);
+            rb.velocity = flySpeed;
+            transform.right = rb.velocity;
         }
 
         //make arrow transparent and destroy it in 3 ~ 5 seconds after stuck into object
@@ -61,13 +63,13 @@ public class Arrow_Controller : MonoBehaviour
         }
     }
 
-    public void SetupArrow(float _speed, CharacterStats _archerStats)
+    public void SetupArrow(Vector2 _speed, CharacterStats _archerStats)
     {
-        xVelocity = _speed;
+        flySpeed = _speed;
 
         //if the arrow is flying to the left side.
         //needs to flip it first
-        if (xVelocity < 0)
+        if (flySpeed.x < 0)
         {
             transform.Rotate(0, 180, 0);
         }
@@ -113,7 +115,8 @@ public class Arrow_Controller : MonoBehaviour
         }
 
         //flip the arrow
-        xVelocity *= -1;
+        flySpeed.x *= -1;
+        flySpeed.y *= -1;
         transform.Rotate(0, 180, 0);
         flipped = true;
 
