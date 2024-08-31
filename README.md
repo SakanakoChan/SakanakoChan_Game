@@ -15,6 +15,8 @@
 <li>Add dialogue system like galgame</li>
 <li>Add throw sword selection panel for in-game UI</li>
 <li>Add camera movement when player is facing pit</li>
+<li>Add shop system</li>
+<li>Add in-game behave keybind hint for ingame UI</li>
 <li>***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai***</li>
 </ol>
 
