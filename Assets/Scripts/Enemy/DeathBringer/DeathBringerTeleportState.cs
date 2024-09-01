@@ -12,6 +12,7 @@ public class DeathBringerTeleportState : DeathBringerState
     {
         base.Enter();
 
+        enemy.chanceToTeleport = enemy.defaultChanceToTeleport;
         enemy.stats.BecomeInvincible(true);
     }
 
@@ -32,7 +33,14 @@ public class DeathBringerTeleportState : DeathBringerState
 
         if (triggerCalled)
         {
-            stateMachine.ChangeState(enemy.battleState);
+            if (enemy.CanCastSpell())
+            {
+                stateMachine.ChangeState(enemy.castState);
+            }
+            else
+            {
+                stateMachine.ChangeState(enemy.battleState);
+            }
         }
     }
 }

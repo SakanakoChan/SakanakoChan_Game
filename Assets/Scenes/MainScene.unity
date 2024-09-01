@@ -30005,7 +30005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388020061}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 89.32, y: 10.83, z: -0.13631555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33145,16 +33145,21 @@ MonoBehaviour:
     m_Bits: 64
   battleMoveSpeed: 5
   aggressiveTime: 7
-  attackDistance: 2
-  attackCooldown: 1.5
-  minAttackCooldown: 1
-  maxAttackCooldown: 2
+  attackDistance: 4
+  attackCooldown: 1
+  minAttackCooldown: 0.8
+  maxAttackCooldown: 1.2
   lastTimeAttacked: 0
   stunDuration: 1
   stunMovement: {x: 3, y: 3}
   counterPromptImage: {fileID: 2013170141}
   teleportRegion: {fileID: 388020062}
   surroundingCheckSize: {x: 3, y: 3}
+  defaultChanceToTeleport: 30
+  spellPrefab: {fileID: 7059591973646746918, guid: cabffb2ec60f0dd43a19476279b3f2b6, type: 3}
+  spellCastStateCooldown: 10
+  castAmount: 5
+  castCooldown: 1
 --- !u!70 &534551609
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

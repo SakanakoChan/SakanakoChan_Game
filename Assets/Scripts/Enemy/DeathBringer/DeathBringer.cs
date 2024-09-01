@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class DeathBringer : Enemy
 {
+    public bool bossFightBegun { get; set; }
+
     [Header("Teleport Info")]
     [SerializeField] private BoxCollider2D teleportRegion;
     [SerializeField] private Vector2 surroundingCheckSize;
+    public float defaultChanceToTeleport;
+    public float chanceToTeleport { get; set; }
+
+    [Header("Spell Cast Info")]
+    [SerializeField] private GameObject spellPrefab;
+    [SerializeField] private float spellCastStateCooldown;
+    public float lastTimeEnterSpellCastState {  get; set; }
+    public int castAmount;
+    public float castCooldown;
 
     #region States
     public DeathBringerIdleState idleState { get; private set; }
@@ -41,6 +52,8 @@ public class DeathBringer : Enemy
         base.Start();
 
         InitializeLastTimeInfo();
+        chanceToTeleport = defaultChanceToTeleport;
+
         stateMachine.Initialize(idleState);
     }
 
@@ -75,8 +88,8 @@ public class DeathBringer : Enemy
 
     public override void GetIntoBattleState()
     {
-        //player cannot interrunt deathbringer's attack
-        if (stateMachine.currentState == battleState || stateMachine.currentState == attackState)
+        //player cannot interrunt deathbringer's attack or spell
+        if (stateMachine.currentState == battleState || stateMachine.currentState == attackState || stateMachine.currentState == castState)
         {
             return;
         }
@@ -117,11 +130,51 @@ public class DeathBringer : Enemy
 
         transform.position = new Vector3(x, y);
         transform.position = new Vector3(transform.position.x, transform.position.y - HasGroundBelow().distance + (cd.size.y / 2));
-        
+
         if (!HasGroundBelow() || HasSomethingSurrounded())
         {
             Debug.Log("Need to find new teleport position");
             FindTeleportPosition();
         }
+    }
+
+    public bool CanTeleport()
+    {
+        if (Random.Range(0, 100) <= chanceToTeleport)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool CanCastSpell()
+    {
+        if (Time.time - lastTimeEnterSpellCastState >= spellCastStateCooldown)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void CastSpell()
+    {
+        Vector3 spellSpawnPosition;
+
+        //spell will predict player's movement to decide its spawn position
+        //if player is moving, spell will spawn in front of player;
+        if (player.rb.velocity.x != 0)
+        {
+            spellSpawnPosition = new Vector3(player.transform.position.x + player.facingDirection * 3, player.transform.position.y + 1.65f);
+        }
+        //if player is not moving, spell will spawn right above player
+        else
+        {
+            spellSpawnPosition = new Vector3(player.transform.position.x, player.transform.position.y + 1.65f);
+        }
+
+        GameObject newSpell = Instantiate(spellPrefab, spellSpawnPosition, Quaternion.identity);
+        newSpell.GetComponent<SpellController>()?.SetupSpell(stats);
     }
 }

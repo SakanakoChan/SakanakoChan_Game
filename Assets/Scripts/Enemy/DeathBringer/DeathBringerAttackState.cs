@@ -46,7 +46,15 @@ public class DeathBringerAttackState : DeathBringerState
 
         if (triggerCalled)
         {
-            stateMachine.ChangeState(enemy.teleportState);
+            if (enemy.CanTeleport())
+            {
+                stateMachine.ChangeState(enemy.teleportState);
+            }
+            else
+            {
+                enemy.chanceToTeleport += 10;
+                stateMachine.ChangeState(enemy.battleState);
+            }
         }
 
     }
