@@ -17,7 +17,18 @@
 <li>Add camera movement when player is facing pit</li>
 <li>Add shop system</li>
 <li>Add in-game behave keybind hint for ingame UI</li>
+<li>Add save data file check when selecting New Game in MainMenu</li>
 <li>***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai***</li>
+</ol>
+
+<br>
+<h2>What is already here:</h2>
+<ol>
+  <li><b>Player Attack</b>: ground primary attack, air launch attack, down strike</li>
+  <li><b>Options sub menu</b>: keybind option, gameplay option, sound option, text language option(chinese/english)</li>
+  <li><b>Environment</b>: Downable platform, press s + space to jump off such ground, and press space to jump up to such ground as well</li>
+  <li><b>UI Panel</b>: character panel, skill panel, craft panel, options panel</li>
+  <li><b>Optimized Flask cooldown Logic</b>: Each different flask's cooldown will be calculated seperately</li>
 </ol>
 
 <br>
