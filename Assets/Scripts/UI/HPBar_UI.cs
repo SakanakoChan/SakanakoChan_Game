@@ -20,11 +20,27 @@ public class HPBar_UI : MonoBehaviour
         myStats = GetComponentInParent<CharacterStats>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         entity.onFlipped += FlipUI;
         myStats.onHealthChanged += UpdateHPUI;
+    }
 
+    private void OnDisable()
+    {
+        if (entity != null)
+        {
+            entity.onFlipped -= FlipUI;
+        }
+
+        if (myStats != null)
+        {
+            myStats.onHealthChanged -= UpdateHPUI;
+        }
+    }
+
+    private void Start()
+    {
         //To make entity HP bar correctly updated in start
         //if not willing to use this function
         //can change script execution order in unity project settings
@@ -32,12 +48,6 @@ public class HPBar_UI : MonoBehaviour
         //StartCoroutine(UpdateHPBarInStart());
 
         UpdateHPUI();
-    }
-
-    private void OnDisable()
-    {
-        entity.onFlipped -= FlipUI;
-        myStats.onHealthChanged -= UpdateHPUI;
     }
 
     private void UpdateHPUI()

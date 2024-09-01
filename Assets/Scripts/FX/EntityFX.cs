@@ -33,10 +33,13 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private GameObject hitFXPrefab;
     [SerializeField] private GameObject critHitFXPrefab;
 
+    private GameObject HPBar;
+
 
     protected virtual void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
+        HPBar = GetComponentInChildren<HPBar_UI>()?.gameObject;
     }
 
     protected virtual void Start()
@@ -118,6 +121,26 @@ public class EntityFX : MonoBehaviour
         }
         else
         {
+            sr.color = Color.white;
+        }
+    }
+
+    public void MakeEntityTransparent_IncludingHPBar(bool _transparent)
+    {
+        if (_transparent)
+        {
+            if (HPBar != null)
+            {
+                HPBar.SetActive(false);
+            }
+            sr.color = Color.clear;
+        }
+        else
+        {
+            if (HPBar != null)
+            {
+                HPBar.SetActive(true);
+            }
             sr.color = Color.white;
         }
     }

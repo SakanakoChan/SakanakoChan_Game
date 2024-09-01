@@ -12,14 +12,13 @@ public class DeathBringerTeleportState : DeathBringerState
     {
         base.Enter();
 
-        Debug.Log("Teleport!");
-        enemy.FindTeleportPosition();
-        stateTimer = 1;
+        enemy.stats.BecomeInvincible(true);
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.stats.BecomeInvincible(false);
     }
 
     public override void Update()
@@ -31,9 +30,9 @@ public class DeathBringerTeleportState : DeathBringerState
             return;
         }
 
-        if (stateTimer < 0)
+        if (triggerCalled)
         {
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
     }
 }

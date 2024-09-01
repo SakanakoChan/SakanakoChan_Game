@@ -48,8 +48,6 @@ public class DeathBringer : Enemy
     {
         base.Update();
 
-        Debug.Log(HasGroundBelow().distance);
-
         //to prevent counter image from always showing when skeleton's attack got interrupted
         if (stateMachine.currentState != attackState)
         {
