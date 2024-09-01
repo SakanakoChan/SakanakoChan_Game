@@ -14,6 +14,7 @@ public class DeathBringerGroundedState : DeathBringerState
     {
         base.Enter();
 
+        enemy.CloseBossHPAndName();
         player = PlayerManager.instance.player.transform;
     }
 
@@ -38,7 +39,6 @@ public class DeathBringerGroundedState : DeathBringerState
         //and also enter battleState
         if ((enemy.IsPlayerDetected() || Vector2.Distance(player.position, enemy.transform.position) < enemy.playerHearDistance) && !player.GetComponent<PlayerStats>().isDead)
         {
-            enemy.bossFightBegun = true;
             stateMachine.ChangeState(enemy.battleState);
             return;
         }

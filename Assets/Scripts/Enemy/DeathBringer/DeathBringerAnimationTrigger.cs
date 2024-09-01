@@ -14,11 +14,11 @@ public class DeathBringerAnimationTrigger : Enemy_AnimationTrigger
 
     private void MakeInvisible()
     {
-        deathBringer.fx.MakeEntityTransparent_IncludingHPBar(true);
+        deathBringer.fx.MakeEntityTransparent(true);
     }
 
     private void MakeVisible()
     {
-        deathBringer.fx.MakeEntityTransparent_IncludingHPBar(false);
+        deathBringer.fx.MakeEntityTransparent(false);
     }
 }

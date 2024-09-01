@@ -18,6 +18,8 @@ public class DeathBringerDeathState : DeathBringerState
         enemy.cd.enabled = false;
 
         stateTimer = 0.1f;
+
+        enemy.CloseBossHPAndName();
     }
 
     public override void Exit()

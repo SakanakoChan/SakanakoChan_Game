@@ -207,6 +207,10 @@ MonoBehaviour:
     m_Key: MainMenu_Options
     m_Metadata:
       m_Items: []
+  - m_Id: 2931831881908224
+    m_Key: UI/Boss_DeathBringer
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

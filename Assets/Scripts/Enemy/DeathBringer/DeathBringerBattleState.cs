@@ -28,6 +28,8 @@ public class DeathBringerBattleState : DeathBringerState
         //enemy will turn to player's side immediately
         FacePlayer();
 
+        enemy.ShowBossHPAndName();
+
         if (player.GetComponent<PlayerStats>().isDead)
         {
             stateMachine.ChangeState(enemy.moveState);
@@ -75,17 +77,16 @@ public class DeathBringerBattleState : DeathBringerState
                 }
             }
         }
-        //once boss fight is triggered, boss should always be in battle state
-
-        //else  //If enemy can't see player, 
-        //{
-        //    //If enemy can't see player or player is out of enemy's scan range, enemy will switch back to patrol mode
-        //    if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > enemy.playerScanDistance)
-        //    {
-        //        stateMachine.ChangeState(enemy.idleState);
-        //        return;
-        //    }
-        //}
+        //i think this is not a necessary end-level boss so player can escape from it
+        else  //If enemy can't see player, 
+        {
+            //the only way to make boss out of anger is to stay outside of boss's sight for certain seconds
+            if (stateTimer < 0)
+            {
+                stateMachine.ChangeState(enemy.idleState);
+                return;
+            }
+        }
 
         //this will make enemy move towards player only when player is far from enemy's attack distance
         //or player is behind enemy

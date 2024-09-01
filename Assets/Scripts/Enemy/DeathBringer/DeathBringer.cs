@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DeathBringer : Enemy
 {
-    public bool bossFightBegun { get; set; }
-
     [Header("Teleport Info")]
     [SerializeField] private BoxCollider2D teleportRegion;
     [SerializeField] private Vector2 surroundingCheckSize;
@@ -18,6 +16,10 @@ public class DeathBringer : Enemy
     public float lastTimeEnterSpellCastState {  get; set; }
     public int castAmount;
     public float castCooldown;
+
+    [Header("Boss Fight Info")]
+    [SerializeField] private GameObject bossNameAndHPUI;
+    public int stage { get; set; } = 1;
 
     #region States
     public DeathBringerIdleState idleState { get; private set; }
@@ -41,7 +43,7 @@ public class DeathBringer : Enemy
         attackState = new DeathBringerAttackState(this, stateMachine, "Attack", this);
         teleportState = new DeathBringerTeleportState(this, stateMachine, "Teleport", this);
         castState = new DeathBringerCastState(this, stateMachine, "Cast", this);
-        stunnedState = new DeathBringerStunnedState(this, stateMachine, "Stunned", this);
+        stunnedState = new DeathBringerStunnedState(this, stateMachine, "Idle", this);
         deathState = new DeathBringerDeathState(this, stateMachine, "Idle", this);
 
         SetupDefaultFacingDirection(-1);
@@ -53,6 +55,7 @@ public class DeathBringer : Enemy
 
         InitializeLastTimeInfo();
         chanceToTeleport = defaultChanceToTeleport;
+        stage = 1;
 
         stateMachine.Initialize(idleState);
     }
@@ -60,6 +63,12 @@ public class DeathBringer : Enemy
     protected override void Update()
     {
         base.Update();
+
+        //if boss's current HP is below 60%, entering stage 2
+        if (stats.currentHP <= stats.getMaxHP() * 0.6f)
+        {
+            stage = 2;
+        }
 
         //to prevent counter image from always showing when skeleton's attack got interrupted
         if (stateMachine.currentState != attackState)
@@ -140,6 +149,11 @@ public class DeathBringer : Enemy
 
     public bool CanTeleport()
     {
+        if (stage == 1)
+        {
+            return false;
+        }
+
         if (Random.Range(0, 100) <= chanceToTeleport)
         {
             return true;
@@ -150,6 +164,11 @@ public class DeathBringer : Enemy
 
     public bool CanCastSpell()
     {
+        if (stage == 1)
+        {
+            return false;
+        }
+
         if (Time.time - lastTimeEnterSpellCastState >= spellCastStateCooldown)
         {
             return true;
@@ -176,5 +195,15 @@ public class DeathBringer : Enemy
 
         GameObject newSpell = Instantiate(spellPrefab, spellSpawnPosition, Quaternion.identity);
         newSpell.GetComponent<SpellController>()?.SetupSpell(stats);
+    }
+
+    public void ShowBossHPAndName()
+    {
+        bossNameAndHPUI.SetActive(true);
+    }
+
+    public void CloseBossHPAndName()
+    {
+        bossNameAndHPUI.SetActive(false);
     }
 }

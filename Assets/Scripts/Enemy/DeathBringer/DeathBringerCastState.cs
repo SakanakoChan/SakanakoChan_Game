@@ -17,8 +17,6 @@ public class DeathBringerCastState : DeathBringerState
 
         castAmount = enemy.castAmount;
         castTimer = 0.5f;
-
-        stateTimer = Mathf.Infinity;
     }
 
     public override void Exit()
