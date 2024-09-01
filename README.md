@@ -22,7 +22,7 @@
 </ol>
 
 <br>
-<h2>What is already here:</h2>
+<h2>What is already here that I can remember:</h2>
 <ol>
   <li><b>Player Attack</b>: ground primary attack, (w + attack keybind) air launch attack, (s + attack keybind) down strike</li>
   <li><b>Options sub menu</b>: keybind option (and related functions/UIs), gameplay option, sound option (added master volume), text language option (chinese/english)</li>
@@ -32,6 +32,7 @@
   <li><b>Optimized Crystal Gun logic</b>: Multiple crystal now works like a half-auto gun, with auto reloading after several seconds without shooting</li>
   <li><b>Optimized In-game Skill Panel</b>: Now will only show unlocked and equipped skills/items' icons</li>
   <li><b>Optimized Enemy</b>: Archer can shoot arrow in any direction</li>
+  <li>And many other stuff I don't remember already</li>
 </ol>
 
 <br>
