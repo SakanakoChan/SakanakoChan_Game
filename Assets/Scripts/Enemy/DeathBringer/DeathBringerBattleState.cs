@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ArcherBattleState : ArcherState
+public class DeathBringerBattleState : DeathBringerState
 {
     private Transform player;
 
-    public ArcherBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Archer _enemy) : base(_enemyBase, _stateMachine, _animBoolName, _enemy)
+    private int moveDirection;
+
+    public DeathBringerBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, DeathBringer _enemy) : base(_enemyBase, _stateMachine, _animBoolName, _enemy)
     {
     }
 
@@ -22,7 +24,7 @@ public class ArcherBattleState : ArcherState
 
         player = PlayerManager.instance.player.transform;
 
-        //if player is attacking enemy from behind,
+        //if player is attacking enemy from behin,
         //enemy will turn to player's side immediately
         FacePlayer();
 
@@ -36,7 +38,7 @@ public class ArcherBattleState : ArcherState
     {
         base.Exit();
 
-        //AudioManager.instance.StopSFX(24);
+        AudioManager.instance.StopSFX(24);
     }
 
     public override void Update()
@@ -47,7 +49,6 @@ public class ArcherBattleState : ArcherState
         {
             return;
         }
-
 
         //AudioManager.instance.PlaySFX(24, enemy.transform);
 
@@ -61,22 +62,8 @@ public class ArcherBattleState : ArcherState
         {
             //If enemy can see player, then it's always in aggreesive mode
             stateTimer = enemy.aggressiveTime;
-            //Debug.Log("I see player");
 
-            //if player is too close to archer, archer will jump if available
-            if (Vector2.Distance(player.transform.position, enemy.transform.position) < enemy.jumpJudgeDistance)
-            {
-                if (CanJump())
-                {
-                    anim.SetBool("Idle", false);
-                    anim.SetBool("Move", false);
-                    stateMachine.ChangeState(enemy.jumpState);
-                    return;
-                }
-            }
-
-            //if player is inside archer's attack range, archer will attack player
-            if (enemy.IsPlayerDetected() && Vector2.Distance(player.transform.position, enemy.transform.position) < enemy.attackDistance)
+            if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
             {
 
                 if (CanAttack())
@@ -104,14 +91,35 @@ public class ArcherBattleState : ArcherState
         if (enemy.IsPlayerDetected() && Vector2.Distance(enemy.transform.position, player.transform.position) < enemy.attackDistance)
         {
             ChangeToIdleAnimation();
+            enemy.SetVelocity(0, rb.velocity.y);
             return;
         }
+
+        if (player.position.x > enemy.transform.position.x)
+        {
+            moveDirection = 1;
+        }
+        else if (player.position.x < enemy.transform.position.x)
+        {
+            moveDirection = -1;
+        }
+
+        if (!enemy.IsGroundDetected())
+        {
+            enemy.SetVelocity(0, rb.velocity.y);
+            ChangeToIdleAnimation();
+            return;
+        }
+
+        enemy.SetVelocity(enemy.battleMoveSpeed * moveDirection, rb.velocity.y);
+        ChangeToMoveAnimation();
 
     }
 
     private bool CanAttack()
     {
-        if (Time.time - enemy.lastTimeAttacked >= enemy.attackCooldown && !enemy.isKnockbacked)
+        //skeleton can only attack when it's on ground
+        if (Time.time - enemy.lastTimeAttacked >= enemy.attackCooldown && !enemy.isKnockbacked && rb.velocity.y <= 0.1f && rb.velocity.y >= -0.1f)
         {
             //enemy's lastTimeAttacked is set in attackState
             //enemy's attack frequency will be random
@@ -122,28 +130,16 @@ public class ArcherBattleState : ArcherState
         return false;
     }
 
-    private bool CanJump()
-    {
-        //if there's a pit behind archer, or there's a wall behind acher,
-        //archer will not jump away
-        if (!enemy.GroundBehindCheck() || enemy.WallBehindCheck())
-        {
-            return false;
-        }
-
-        if (Time.time - enemy.lastTimeJumped >= enemy.jumpCooldown && !enemy.isKnockbacked)
-        {
-            //enemy.lastTimeJumped is set in jumpState
-            return true;
-        }
-
-        return false;
-    }
-
     private void ChangeToIdleAnimation()
     {
         anim.SetBool("Move", false);
         anim.SetBool("Idle", true);
+    }
+
+    private void ChangeToMoveAnimation()
+    {
+        anim.SetBool("Idle", false);
+        anim.SetBool("Move", true);
     }
 
     private void FacePlayer()
