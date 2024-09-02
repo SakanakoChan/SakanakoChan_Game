@@ -38,6 +38,10 @@ MonoBehaviour:
     m_Localized: Press [S + Space] to jump off platform
     m_Metadata:
       m_Items: []
+  - m_Id: 62593798291456
+    m_Localized: Press [BehaveName0] to attack
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -31,6 +31,10 @@ MonoBehaviour:
     m_Key: Tutorial_JumpOff
     m_Metadata:
       m_Items: []
+  - m_Id: 62593798291456
+    m_Key: Tutorial_Attack
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
