@@ -16,7 +16,7 @@
 - Add throw sword selection panel for in-game UI
 - Add camera movement when player is facing pit
 - Add shop system
-- Add in-game behave keybind hint for ingame UI
+- ~~Add in-game behave keybind hint for ingame UI~~
 - ~~Add save data file check when selecting New Game in MainMenu~~
 - ***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai***
 
