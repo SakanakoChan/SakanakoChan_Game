@@ -247,6 +247,18 @@ MonoBehaviour:
     m_Key: Equip/Unequip
     m_Metadata:
       m_Items: []
+  - m_Id: 3220586945626112
+    m_Key: Keybind_Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220676212998144
+    m_Key: UI/Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3221132364529664
+    m_Key: UI/JumpOff
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

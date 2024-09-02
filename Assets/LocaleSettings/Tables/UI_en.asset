@@ -253,6 +253,18 @@ MonoBehaviour:
     m_Localized: Equip/Unequip
     m_Metadata:
       m_Items: []
+  - m_Id: 3220586945626112
+    m_Localized: S + Space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3220676212998144
+    m_Localized: Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3221132364529664
+    m_Localized: Jump Off
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
