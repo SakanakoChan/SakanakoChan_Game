@@ -239,6 +239,14 @@ MonoBehaviour:
     m_Key: MouseLeft
     m_Metadata:
       m_Items: []
+  - m_Id: 3206061185875968
+    m_Key: UI/Learn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3206645628583936
+    m_Key: Equip/Unequip
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
