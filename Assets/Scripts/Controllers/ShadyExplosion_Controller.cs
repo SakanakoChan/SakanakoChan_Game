@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class ShadyExplosion_Controller : MonoBehaviour
@@ -49,7 +46,7 @@ public class ShadyExplosion_Controller : MonoBehaviour
                 shadyStats.DoDamge(hit.GetComponent<PlayerStats>());
             }
 
-            if(hit.GetComponent<Enemy>() != null)
+            if (hit.GetComponent<Enemy>() != null)
             {
                 if (hit.gameObject == gameObject)
                 {
