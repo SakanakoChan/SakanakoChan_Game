@@ -17,7 +17,7 @@
 <li>Add camera movement when player is facing pit</li>
 <li>Add shop system</li>
 <li>Add in-game behave keybind hint for ingame UI</li>
-<li>Add save data file check when selecting New Game in MainMenu</li>
+<s><li>Add save data file check when selecting New Game in MainMenu</li></s>
 <li>***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai***</li>
 </ol>
 
