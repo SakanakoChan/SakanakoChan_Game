@@ -211,6 +211,10 @@ MonoBehaviour:
     m_Key: UI/Boss_DeathBringer
     m_Metadata:
       m_Items: []
+  - m_Id: 3154578918653952
+    m_Key: UI/NewGameConfirm
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

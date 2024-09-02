@@ -217,6 +217,10 @@ MonoBehaviour:
     m_Localized: Uncle popcorn the Hentai
     m_Metadata:
       m_Items: []
+  - m_Id: 3154578918653952
+    m_Localized: Existing save file detected, do you still wish to enter new game?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

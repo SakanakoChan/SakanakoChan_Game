@@ -10,6 +10,9 @@ public class MainMenu_UI : MonoBehaviour, ISaveManager
     [SerializeField] private GameObject continueButton;
     [SerializeField] private FadeScreen_UI fadeScreen;
 
+    [Header("NewGame")]
+    [SerializeField] private GameObject newGameConfirmWindow;
+
     [Header("Options")]
     [SerializeField] private GameObject optionsUI;
 
@@ -49,6 +52,40 @@ public class MainMenu_UI : MonoBehaviour, ISaveManager
     {
         //SceneManager.LoadScene(sceneName);
         StartCoroutine(LoadSceneWithFadeEffect(1.5f));
+    }
+
+    public void ShowNewGameConfirmWindow()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            //close all the other UIs
+            transform.GetChild(i).gameObject.SetActive(false);
+            newGameConfirmWindow.SetActive(true);
+        }
+    }
+
+    public void CloseAllConfirmWindow()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            //turn on all the other UIs
+            transform.GetChild(i).gameObject.SetActive(true);
+            newGameConfirmWindow.SetActive(false);
+            exitConfirmWindow.SetActive(false);
+            optionsUI.SetActive(false);
+        }
+    }
+
+    public void NewGame_DetectSaveFile()
+    {
+        if (SaveManager.instance.HasSaveData())
+        {
+            ShowNewGameConfirmWindow();
+        }
+        else
+        {
+            NewGame();
+        }
     }
 
     public void NewGame()
@@ -97,15 +134,6 @@ public class MainMenu_UI : MonoBehaviour, ISaveManager
         }
     }
 
-    public void CloseExitConfirmWindow()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            //turn on all the other UIs
-            transform.GetChild(i).gameObject.SetActive(true);
-            exitConfirmWindow.SetActive(false);
-        }
-    }
 
     public void EnableKeyInput(bool _value)
     {
