@@ -215,6 +215,18 @@ MonoBehaviour:
     m_Key: UI/NewGameConfirm
     m_Metadata:
       m_Items: []
+  - m_Id: 3186329296617472
+    m_Key: UI/Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3188049590403072
+    m_Key: UI/AirLaunchAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3195482312327168
+    m_Key: UI/DownStrike
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

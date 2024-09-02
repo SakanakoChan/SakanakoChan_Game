@@ -221,6 +221,18 @@ MonoBehaviour:
     m_Localized: Existing save file detected, do you still wish to enter new game?
     m_Metadata:
       m_Items: []
+  - m_Id: 3186329296617472
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3188049590403072
+    m_Localized: Air Launch Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3195482312327168
+    m_Localized: Down Strike
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
