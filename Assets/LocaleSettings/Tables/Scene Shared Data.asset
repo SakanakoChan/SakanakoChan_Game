@@ -35,6 +35,10 @@ MonoBehaviour:
     m_Key: Tutorial_Attack
     m_Metadata:
       m_Items: []
+  - m_Id: 77035646795776
+    m_Key: Tutorial_ActiveSkillPanel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

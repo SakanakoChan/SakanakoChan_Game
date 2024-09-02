@@ -42,6 +42,10 @@ MonoBehaviour:
     m_Localized: Press [BehaveName0] to attack
     m_Metadata:
       m_Items: []
+  - m_Id: 77035646795776
+    m_Localized: Learnd active skills are shown on the bottom of HUD
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
