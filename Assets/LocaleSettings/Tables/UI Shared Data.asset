@@ -227,6 +227,18 @@ MonoBehaviour:
     m_Key: UI/DownStrike
     m_Metadata:
       m_Items: []
+  - m_Id: 3198330894860288
+    m_Key: UI/Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3198828083462144
+    m_Key: UI/Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3199430796558336
+    m_Key: MouseLeft
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
