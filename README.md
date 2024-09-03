@@ -19,6 +19,7 @@
 - ~~Add in-game behave keybind hint for ingame UI~~
 - ~~Add save data file check when selecting New Game in MainMenu~~
 - Seperate options save file from game save file
+- Disable or destroy used map elements when loading game from save file
 - ***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai***
 
 ## What is already here that I can remember:
