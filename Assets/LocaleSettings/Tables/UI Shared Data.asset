@@ -259,6 +259,10 @@ MonoBehaviour:
     m_Key: UI/JumpOff
     m_Metadata:
       m_Items: []
+  - m_Id: 3643766768189440
+    m_Key: CraftButton
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

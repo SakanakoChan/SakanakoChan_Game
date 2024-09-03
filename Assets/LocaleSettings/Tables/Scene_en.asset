@@ -64,6 +64,18 @@ MonoBehaviour:
       and equipment'
     m_Metadata:
       m_Items: []
+  - m_Id: 401006271447040
+    m_Localized: You can acquire euqipment and materials from killed enemy or hidden
+      treasure placeses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 401829680431104
+    m_Localized: 'Now here comes a slime, kill him
+
+      Err...Should I say him
+      or it? Never mind.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

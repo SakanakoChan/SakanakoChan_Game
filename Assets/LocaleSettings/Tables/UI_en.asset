@@ -265,6 +265,10 @@ MonoBehaviour:
     m_Localized: Jump Off
     m_Metadata:
       m_Items: []
+  - m_Id: 3643766768189440
+    m_Localized: CRAFT
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

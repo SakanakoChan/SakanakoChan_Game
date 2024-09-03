@@ -51,6 +51,14 @@ MonoBehaviour:
     m_Key: Tutorial_PickUpItem
     m_Metadata:
       m_Items: []
+  - m_Id: 401006271447040
+    m_Key: Tutorial_AcquireEquipmentAndMaterial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 401829680431104
+    m_Key: Tutorial_KillSlime
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

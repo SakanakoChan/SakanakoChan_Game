@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd87f6a066765524ab9b47bd256f46af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxItemDropAmount: 0
+  maxItemDropAmount: 2
   possibleDropItemList: []
   dropItemPrefab: {fileID: 4638080574934848111, guid: b06e197012ccd2d47807612c4541912e, type: 3}
 --- !u!1 &4564705205898288277

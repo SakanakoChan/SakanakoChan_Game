@@ -36,7 +36,7 @@ public class ItemDrop : MonoBehaviour
     //DropItem is called when Enemy dies
     protected void DropItem(ItemData _itemToDrop)
     {
-        GameObject newDropItem = Instantiate(dropItemPrefab, transform.position, Quaternion.identity); ;
+        GameObject newDropItem = Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
 
         Vector2 dropVelocity = new Vector2(Random.Range(-5, 5), Random.Range(12, 15));
 
