@@ -8,8 +8,16 @@ public class CameraManager : MonoBehaviour
     public static CameraManager instance;
 
     public CinemachineVirtualCamera cm;
+
+    [Header("Camera Lens Info")]
     public float defaultCameraLensSize;
+    public float targetCameraLensSize;
+    public float cameraLensSizeChangeSpeed;
+
+    [Header("Camera Screen Y Position Info")]
     public float defaultCameraYPosition;
+    public float targetCameraYPosition;
+    public float cameraYPositionChangeSpeed;
 
     private Player player;
     private CinemachineFramingTransposer ft;
@@ -42,14 +50,14 @@ public class CameraManager : MonoBehaviour
         if (player.isOnPlatform)
         {
             //m means mirroring the default unity camera
-            if (cm.m_Lens.OrthographicSize < 14)
+            if (cm.m_Lens.OrthographicSize < targetCameraLensSize)
             {
-                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, 14, 2 * Time.deltaTime);
+                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, targetCameraLensSize, cameraLensSizeChangeSpeed * Time.deltaTime);
             }
 
-            if (ft.m_ScreenY > 0.5f)
+            if (ft.m_ScreenY > targetCameraYPosition)
             {
-                ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, 0.5f, 3 * Time.deltaTime);
+                ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, targetCameraYPosition, cameraYPositionChangeSpeed * Time.deltaTime);
             }
         }
         //vice versa
@@ -57,12 +65,12 @@ public class CameraManager : MonoBehaviour
         {
             if (cm.m_Lens.OrthographicSize > defaultCameraLensSize)
             {
-                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, 10, 2 * Time.deltaTime);
+                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, defaultCameraLensSize, cameraLensSizeChangeSpeed * Time.deltaTime);
             }
 
             if (ft.m_ScreenY < defaultCameraYPosition)
             {
-                ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, defaultCameraYPosition, 3 * Time.deltaTime);
+                ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, defaultCameraYPosition, cameraYPositionChangeSpeed * Time.deltaTime);
             }
         }
     }
