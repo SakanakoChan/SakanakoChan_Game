@@ -108,7 +108,7 @@ public class InGame_UI : MonoBehaviour
     {
         if (currencyAmount < PlayerManager.instance.GetCurrentCurrency())
         {
-            currentCurrency.fontSize = Mathf.Lerp(currentCurrency.fontSize, currencyFontSizeWhenIncreasing, 50 * Time.deltaTime);
+            IncraseCurrencyFontSize();
             currencyAmount += Time.deltaTime * increaseRate;
         }
         else
@@ -127,6 +127,11 @@ public class InGame_UI : MonoBehaviour
         {
             currentCurrency.text = currencyAmount.ToString("#,#");
         }
+    }
+
+    private void IncraseCurrencyFontSize()
+    {
+        currentCurrency.fontSize = Mathf.Lerp(currentCurrency.fontSize, currencyFontSizeWhenIncreasing, 50 * Time.deltaTime);
     }
 
     private void DecreaseCurrencyFontSizeToDefault()
