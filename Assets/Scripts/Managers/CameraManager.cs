@@ -8,9 +8,11 @@ public class CameraManager : MonoBehaviour
     public static CameraManager instance;
 
     public CinemachineVirtualCamera cm;
-    public int cameraDefaultLensSize;
+    public float defaultCameraLensSize;
+    public float defaultCameraYPosition;
 
     private Player player;
+    private CinemachineFramingTransposer ft;
 
 
     private void Awake()
@@ -23,6 +25,8 @@ public class CameraManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        ft = cm.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
     private void Start()
@@ -33,31 +37,32 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
+        //if player is on downable platform, camera lens size will increase
+        //meanwhile camera y position will decrease
         if (player.isOnPlatform)
         {
             //m means mirroring the default unity camera
             if (cm.m_Lens.OrthographicSize < 14)
             {
-                //cm.m_Lens.OrthographicSize += 0.01f;
-                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, 14, Time.deltaTime);
+                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, 14, 2 * Time.deltaTime);
             }
 
-            if (cm.GetCinemachineComponent<CinemachineFramingTransposer>()?.m_ScreenY > 0.5f)
+            if (ft.m_ScreenY > 0.5f)
             {
-                cm.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY -= 0.01f;
+                ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, 0.5f, 3 * Time.deltaTime);
             }
         }
+        //vice versa
         else
         {
-            if (cm.m_Lens.OrthographicSize > cameraDefaultLensSize)
+            if (cm.m_Lens.OrthographicSize > defaultCameraLensSize)
             {
-                //cm.m_Lens.OrthographicSize -= 0.01f;
-                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, 10, Time.deltaTime);
+                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, 10, 2 * Time.deltaTime);
             }
 
-            if (cm.GetCinemachineComponent<CinemachineFramingTransposer>()?.m_ScreenY < 0.65f)
+            if (ft.m_ScreenY < defaultCameraYPosition)
             {
-                cm.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY += 0.01f;
+                ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, defaultCameraYPosition, 3 * Time.deltaTime);
             }
         }
     }
