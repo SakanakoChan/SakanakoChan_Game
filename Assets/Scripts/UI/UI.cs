@@ -147,6 +147,9 @@ public class UI : MonoBehaviour, ISaveManager
         {
             //_menu.SetActive(false);
             //currentUI = null;
+            skillToolTip.gameObject.SetActive(false);
+            itemToolTip.gameObject.SetActive(false);
+            statToolTip.gameObject.SetActive(false);
             SwitchToMenu(ingame_UI);
         }
         else if (_menu != null && !_menu.activeSelf)  //if the menu to switch is not open, then switch to that menu

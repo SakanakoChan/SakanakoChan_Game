@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour, ISaveManager
     private Player player;
 
     [SerializeField] private Checkpoint[] checkpoints;
+    public string lastActivatedCheckpointID { get; set; }
 
     [Header("Dropped Currency")]
     [SerializeField] private GameObject deathBodyPrefab;
@@ -98,6 +99,11 @@ public class GameManager : MonoBehaviour, ISaveManager
         }
     }
 
+    private void LoadLastActivatedCheckpoint(GameData _data)
+    {
+        lastActivatedCheckpointID = _data.lastActivatedCheckpointID;
+    }
+
     private void SpawnPlayerAtClosestActivatedCheckpoint(GameData _data)
     {
         if (_data.closestActivatedCheckpointID == null)
@@ -114,6 +120,22 @@ public class GameManager : MonoBehaviour, ISaveManager
         }
     }
 
+    private void SpawnPlayerAtLastActivatedCheckpoint(GameData _data)
+    {
+        if (_data.lastActivatedCheckpointID == null)
+        {
+            return;
+        }
+
+        foreach (var checkpoint in checkpoints)
+        {
+            if (_data.lastActivatedCheckpointID == checkpoint.checkpointID)
+            {
+                player.transform.position = checkpoint.transform.position;
+            }
+        }
+    }
+
     public void LoadData(GameData _data)
     {
         LoadDroppedCurrency(_data);
@@ -121,8 +143,13 @@ public class GameManager : MonoBehaviour, ISaveManager
         //activate all the checkpoints which are saved as activated
         LoadCheckpoints(_data);
 
+        LoadLastActivatedCheckpoint(_data);
+
         //player will be spawned at the closest activated checkpoint
-        SpawnPlayerAtClosestActivatedCheckpoint(_data);
+        //SpawnPlayerAtClosestActivatedCheckpoint(_data);
+
+        //player will be spawned at the last activated checkpoint
+        SpawnPlayerAtLastActivatedCheckpoint(_data);
     }
 
     public void SaveData(ref GameData _data)
@@ -141,5 +168,7 @@ public class GameManager : MonoBehaviour, ISaveManager
         {
             _data.checkpointsDictionary.Add(checkpoint.checkpointID, checkpoint.activated);
         }
+
+        _data.lastActivatedCheckpointID = lastActivatedCheckpointID;
     }
 }

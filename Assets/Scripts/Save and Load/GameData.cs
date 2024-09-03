@@ -12,6 +12,7 @@ public class GameData
 
     public SerializableDictionary<string, bool> checkpointsDictionary;
     public string closestActivatedCheckpointID;
+    public string lastActivatedCheckpointID;
 
 
     [Header("Dropped Currency")]
@@ -51,6 +52,7 @@ public class GameData
         checkpointsDictionary = new SerializableDictionary<string, bool>();
 
         closestActivatedCheckpointID = string.Empty;
+        lastActivatedCheckpointID = string.Empty;
 
         //volumeSettingsDictionary<exposedParameter, value>
         volumeSettingsDictionary = new SerializableDictionary<string, float>();

@@ -27,6 +27,9 @@ public class Checkpoint : MonoBehaviour
 
     public void ActivateCheckpoint()
     {
+        GameManager.instance.lastActivatedCheckpointID = checkpointID;
+        AudioManager.instance.PlaySFX(5, transform);
+
         if (activated)
         {
             return;
@@ -34,7 +37,6 @@ public class Checkpoint : MonoBehaviour
 
         anim.SetBool("Active", true);
         activated = true;
-        AudioManager.instance.PlaySFX(5, transform);
     }
 
     [ContextMenu("Generate checkpoint ID")]

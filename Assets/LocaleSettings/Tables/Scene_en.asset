@@ -46,6 +46,10 @@ MonoBehaviour:
     m_Localized: Learnd active skills are shown on the bottom of HUD
     m_Metadata:
       m_Items: []
+  - m_Id: 315262341267456
+    m_Localized: Rapidly release dash twice to get over this pit
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
