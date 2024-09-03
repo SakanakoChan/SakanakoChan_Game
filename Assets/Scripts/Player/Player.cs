@@ -24,6 +24,10 @@ public class Player : Entity
     public float dashDirection { get; private set; }
     private float defaultDashSpeed;
 
+    [Header("Pit check")]
+    [SerializeField] private BoxCollider2D pitCheck;
+    public bool isFacingPit { get; set; }
+
     public bool isBusy { get; private set; }
 
     private DownablePlatform lastPlatform;
