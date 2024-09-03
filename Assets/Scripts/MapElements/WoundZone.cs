@@ -12,7 +12,16 @@ public class WoundZone : MonoBehaviour
         {
             if (collision.GetComponent<Player>() != null)
             {
-                collision.GetComponent<PlayerStats>()?.TakeDamage(30, transform, collision.transform, false);
+                //this damage can't kill player here lmao
+                int damage = 30;
+
+                //if player's hp is below 30 rn, this damage will make player only have 1 hp left
+                if (PlayerManager.instance.player.stats.currentHP < 30)
+                {
+                    damage = PlayerManager.instance.player.stats.currentHP - 1;
+                }
+
+                collision.GetComponent<PlayerStats>()?.TakeDamage(damage, transform, collision.transform, false);
                 hasDamagedPlayer = true;
             }
         }

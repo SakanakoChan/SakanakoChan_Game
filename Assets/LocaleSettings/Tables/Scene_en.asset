@@ -76,6 +76,30 @@ MonoBehaviour:
       or it? Never mind.'
     m_Metadata:
       m_Items: []
+  - m_Id: 444520271233024
+    m_Localized: 'You are hurt, I did it
+
+      There''s no point in blaming me
+
+      Now
+      go and pick up that flask in front of you'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 449591100882944
+    m_Localized: "Go to character panel \nand equip the flask you just picked up"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 452402677071872
+    m_Localized: "You can infinitely use any flasks\nThe only thing to notice is
+      \nDifferent flasks have different cooldown time"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458081043267584
+    m_Localized: 'I gave you some currency
+
+      Open skill tree and learn parry'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

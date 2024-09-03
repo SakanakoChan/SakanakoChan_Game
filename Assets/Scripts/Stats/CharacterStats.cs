@@ -54,7 +54,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private GameObject thunderStrikePrefab;
     private int thunderStrikeDamage;
 
-
+    //invicible detection is in DoDamage(), there's no invincible detection in TakeDamage()
     public bool isInvincible { get; private set; }
 
     [Space]

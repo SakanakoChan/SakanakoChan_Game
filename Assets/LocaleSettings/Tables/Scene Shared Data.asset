@@ -59,6 +59,22 @@ MonoBehaviour:
     m_Key: Tutorial_KillSlime
     m_Metadata:
       m_Items: []
+  - m_Id: 444520271233024
+    m_Key: Tutorial_HurtAndFlask
+    m_Metadata:
+      m_Items: []
+  - m_Id: 449591100882944
+    m_Key: Tutorial_EquipFlask
+    m_Metadata:
+      m_Items: []
+  - m_Id: 452402677071872
+    m_Key: Tutorial_FlaskMechanism
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458081043267584
+    m_Key: Tutorial_LearnParry
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

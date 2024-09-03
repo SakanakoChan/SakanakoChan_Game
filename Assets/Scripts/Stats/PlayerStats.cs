@@ -54,10 +54,10 @@ public class PlayerStats : CharacterStats
 
     public override void TakeDamage(int _damage, Transform _attacker, Transform _attackee, bool _isCrit)
     {
-        if (isInvincible)
-        {
-            return;
-        }
+        //if (isInvincible)
+        //{
+        //    return;
+        //}
 
         int takenDamage = DecreaseHPBy(_damage, _isCrit);
 
@@ -84,6 +84,7 @@ public class PlayerStats : CharacterStats
     {
         float defaultMoveSpeed = player.moveSpeed;
 
+        //im lazy here so i just use duration to slower player move speed
         player.moveSpeed = player.moveSpeed * _duration;
 
         Invoke("ReturnToDefaultMoveSpeed", _duration);

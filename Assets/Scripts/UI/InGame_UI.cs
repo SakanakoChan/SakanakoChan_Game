@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,8 @@ public class InGame_UI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentCurrency;
     [SerializeField] private float currencyAmount;
     [SerializeField] private float increaseRate = 100;
+    [SerializeField] private float defaultcurrencyFontSize;
+    [SerializeField] private float currencyFontSizeWhenIncreasing;
 
     private SkillManager skill;
     private Player player;
@@ -105,11 +108,14 @@ public class InGame_UI : MonoBehaviour
     {
         if (currencyAmount < PlayerManager.instance.GetCurrentCurrency())
         {
+            currentCurrency.fontSize = Mathf.Lerp(currentCurrency.fontSize, currencyFontSizeWhenIncreasing, 50 * Time.deltaTime);
             currencyAmount += Time.deltaTime * increaseRate;
         }
         else
         {
             currencyAmount = PlayerManager.instance.GetCurrentCurrency();
+            DecreaseCurrencyFontSizeToDefault();
+            //currentCurrency.fontSize = Mathf.Lerp(currentCurrency.fontSize, defaultcurrencyFontSize, 5 * Time.deltaTime);
         }
 
 
@@ -121,6 +127,11 @@ public class InGame_UI : MonoBehaviour
         {
             currentCurrency.text = currencyAmount.ToString("#,#");
         }
+    }
+
+    private void DecreaseCurrencyFontSizeToDefault()
+    {
+        currentCurrency.fontSize = Mathf.Lerp(currentCurrency.fontSize, defaultcurrencyFontSize, 5 * Time.deltaTime);
     }
 
     private void UpdateHPUI()

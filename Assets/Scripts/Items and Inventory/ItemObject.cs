@@ -14,6 +14,7 @@ public class ItemObject : MonoBehaviour
 
     private void Start()
     {
+        SetupItemIconAndName();
         DestroyPickedUpItemInMap();
     }
 
