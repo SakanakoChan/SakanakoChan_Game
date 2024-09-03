@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour, ISaveManager
     public int droppedCurrencyAmount;
     [SerializeField] private Vector2 deathPosition;
 
+    public List<GameObject> pickedUpItemInMapList { get; set; }
+
     private void Awake()
     {
         if (instance == null)
@@ -28,7 +31,8 @@ public class GameManager : MonoBehaviour, ISaveManager
 
         checkpoints = FindObjectsOfType<Checkpoint>();
         player = PlayerManager.instance.player;
-    }
+        pickedUpItemInMapList = new List<GameObject>();
+}
 
     public void RestartScene()
     {
@@ -136,9 +140,20 @@ public class GameManager : MonoBehaviour, ISaveManager
         }
     }
 
+    private void LoadPickedUpItemInMapList(GameData _data)
+    {
+        foreach (var item in _data.pickedUpItemInMapList)
+        {
+            pickedUpItemInMapList.Add(item);
+        }
+    }
+
     public void LoadData(GameData _data)
     {
         LoadDroppedCurrency(_data);
+
+        //picked up item-in-map will get destoyed automatically in ItemObject script
+        LoadPickedUpItemInMapList(_data);
 
         //activate all the checkpoints which are saved as activated
         LoadCheckpoints(_data);
@@ -169,6 +184,14 @@ public class GameManager : MonoBehaviour, ISaveManager
             _data.checkpointsDictionary.Add(checkpoint.checkpointID, checkpoint.activated);
         }
 
+        //save last activated checkpoint id
         _data.lastActivatedCheckpointID = lastActivatedCheckpointID;
+
+        //save pciked up item in map list;
+        _data.pickedUpItemInMapList.Clear();
+        foreach (var item in pickedUpItemInMapList)
+        {
+            _data.pickedUpItemInMapList.Add(item);
+        }
     }
 }

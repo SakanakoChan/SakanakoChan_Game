@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 [System.Serializable]
 public class GameData
@@ -14,10 +15,12 @@ public class GameData
     public string closestActivatedCheckpointID;
     public string lastActivatedCheckpointID;
 
-
     [Header("Dropped Currency")]
     public int droppedCurrencyAmount;
     public Vector2 deathPosition;
+
+    [Header("Item in map")]
+    public List<GameObject> pickedUpItemInMapList;
 
     [Header("Audio settings")]
     public SerializableDictionary<string, float> volumeSettingsDictionary;
@@ -37,6 +40,9 @@ public class GameData
         this.currecny = 0;
         this.droppedCurrencyAmount = 0;
         this.deathPosition = Vector2.zero;
+
+        //setup picked up item in map list, by default it should be empty
+        pickedUpItemInMapList = new List<GameObject>();
 
         //default language is english
         localeID = 0;

@@ -50,6 +50,20 @@ MonoBehaviour:
     m_Localized: Rapidly release dash twice to get over this pit
     m_Metadata:
       m_Items: []
+  - m_Id: 321957297700864
+    m_Localized: 'Come close to activate checkpoint.
+
+      You will spawn at last
+      passed actived checkpoint if you died'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326896019357696
+    m_Localized: 'This is my gift for you
+
+      Come close to pick up materials
+      and equipment'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

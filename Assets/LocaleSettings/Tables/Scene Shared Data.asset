@@ -43,6 +43,14 @@ MonoBehaviour:
     m_Key: Tutorial_DashTwice
     m_Metadata:
       m_Items: []
+  - m_Id: 321957297700864
+    m_Key: Tutorial_Checkpoint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326896019357696
+    m_Key: Tutorial_PickUpItem
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
