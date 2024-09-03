@@ -5,14 +5,6 @@ using UnityEngine.UI;
 
 public class InGame_UI : MonoBehaviour
 {
-    //*****************************
-    //Knowing Issue:
-    //When opening other UI
-    //InGameUI's skill icon cooldown indicator will be paused
-    //because InGameUI is set as InActive when other UI is open
-    //*****************************
-
-
     public static InGame_UI instance;
 
     [SerializeField] private PlayerStats playerStats;
