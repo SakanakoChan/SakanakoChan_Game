@@ -3,7 +3,7 @@
 - ~~Add Save & Exit function to Options UI~~
 - ~~Add Master Volume Option to sound settings, store all the options including "showing HP Bar above player" into save files~~
 - Add more sound effects
-- ~~Add sample levels, maybe a training level and level 1~~
+- ![#c5f015](https://placehold.co/15x15/c5f015/c5f015.png) [In progression] Add sample levels, maybe a training level and level 1
 - ~~Add air launch attack, which will launch enemies skyward~~
 - ~~Add falling attack which will throw enemy and player onto ground~~
 - ~~Add downable ground and related mechanics which allows player to jump off certain platforms~~
@@ -14,7 +14,7 @@
 - ~~Make skill panel only show the unlcoked skills in game~~
 - Add dialogue system like galgame
 - Add throw sword selection panel for in-game UI
-- ![#c5f015](https://placehold.co/15x15/c5f015/c5f015.png) [In progression] Add camera movement when player is facing pit 
+- ~~Add camera movement when player is facing pit or on downable platform~~
 - Add shop system
 - ~~Add in-game behave keybind hint for ingame UI~~
 - ~~Add save data file check when selecting New Game in MainMenu~~
