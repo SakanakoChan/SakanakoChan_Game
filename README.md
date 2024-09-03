@@ -3,7 +3,7 @@
 - ~~Add Save & Exit function to Options UI~~
 - ~~Add Master Volume Option to sound settings, store all the options including "showing HP Bar above player" into save files~~
 - Add more sound effects
-- [In progression] Add sample levels, maybe a training level and level 1 
+- <span style="color:green"> [In progression] Add sample levels, maybe a training level and level 1 </span>
 - ~~Add air launch attack, which will launch enemies skyward~~
 - ~~Add falling attack which will throw enemy and player onto ground~~
 - ~~Add downable ground and related mechanics which allows player to jump off certain platforms~~
