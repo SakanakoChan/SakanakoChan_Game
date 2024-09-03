@@ -42,7 +42,7 @@ public class SkillPanel_InGame_UI : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).GetComponentInChildren<SkillIconText_InGame_UI>()?.UpdateSkillIconText();
+            transform?.GetChild(i)?.GetComponentInChildren<SkillIconText_InGame_UI>()?.UpdateSkillIconText();
         }
     }
 

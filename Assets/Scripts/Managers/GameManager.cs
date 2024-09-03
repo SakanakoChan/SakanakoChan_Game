@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +17,8 @@ public class GameManager : MonoBehaviour, ISaveManager
     public int droppedCurrencyAmount;
     [SerializeField] private Vector2 deathPosition;
 
-    public List<GameObject> pickedUpItemInMapList { get; set; }
+    //public List<ItemObject> pickedUpItemInMapList { get; set; }
+    public List<int> pickedUpItemInMapIDList {  get; set; }
 
     private void Awake()
     {
@@ -31,8 +33,10 @@ public class GameManager : MonoBehaviour, ISaveManager
 
         checkpoints = FindObjectsOfType<Checkpoint>();
         player = PlayerManager.instance.player;
-        pickedUpItemInMapList = new List<GameObject>();
-}
+
+        //pickedUpItemInMapList = new List<ItemObject>();
+        pickedUpItemInMapIDList = new List<int>();
+    }
 
     public void RestartScene()
     {
@@ -140,20 +144,36 @@ public class GameManager : MonoBehaviour, ISaveManager
         }
     }
 
-    private void LoadPickedUpItemInMapList(GameData _data)
+    private void LoadPickedUpItemInMapIDList(GameData _data)
     {
-        foreach (var item in _data.pickedUpItemInMapList)
+        if (_data.pickedUpItemInMapIDList != null)
         {
-            pickedUpItemInMapList.Add(item);
+            foreach (var seach in _data.pickedUpItemInMapIDList)
+            {
+                pickedUpItemInMapIDList.Add(seach);
+            }
         }
     }
+
+
+    //private void LoadPickedUpItemInMapList(GameData _data)
+    //{
+    //    if (_data.pickedUpItemInMapList != null)
+    //    {
+    //        foreach (var item in _data.pickedUpItemInMapList)
+    //        {
+    //            pickedUpItemInMapList.Add(item);
+    //        }
+    //    }
+    //}
 
     public void LoadData(GameData _data)
     {
         LoadDroppedCurrency(_data);
 
         //picked up item-in-map will get destoyed automatically in ItemObject script
-        LoadPickedUpItemInMapList(_data);
+        LoadPickedUpItemInMapIDList(_data);
+        //LoadPickedUpItemInMapList(_data);
 
         //activate all the checkpoints which are saved as activated
         LoadCheckpoints(_data);
@@ -188,10 +208,10 @@ public class GameManager : MonoBehaviour, ISaveManager
         _data.lastActivatedCheckpointID = lastActivatedCheckpointID;
 
         //save pciked up item in map list;
-        _data.pickedUpItemInMapList.Clear();
-        foreach (var item in pickedUpItemInMapList)
+        _data.pickedUpItemInMapIDList.Clear();
+        foreach (var itemID in pickedUpItemInMapIDList)
         {
-            _data.pickedUpItemInMapList.Add(item);
+            _data.pickedUpItemInMapIDList.Add(itemID);
         }
     }
 }

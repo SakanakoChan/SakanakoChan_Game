@@ -20,7 +20,7 @@ public class GameData
     public Vector2 deathPosition;
 
     [Header("Item in map")]
-    public List<GameObject> pickedUpItemInMapList;
+    public List<int> pickedUpItemInMapIDList;
 
     [Header("Audio settings")]
     public SerializableDictionary<string, float> volumeSettingsDictionary;
@@ -42,7 +42,8 @@ public class GameData
         this.deathPosition = Vector2.zero;
 
         //setup picked up item in map list, by default it should be empty
-        pickedUpItemInMapList = new List<GameObject>();
+        pickedUpItemInMapIDList = new List<int>();
+        //pickedUpItemInMapList = new List<ItemObject>();
 
         //default language is english
         localeID = 0;

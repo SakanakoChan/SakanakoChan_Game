@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 
@@ -10,6 +9,7 @@ public class ItemObject : MonoBehaviour
 
     [Header("Item-in-map Info")]
     public bool isItemInMap;
+    [Tooltip("Make sure each item-in-map's id is unique!")]
     public int itemInMapID;
 
     private void Start()
@@ -21,11 +21,9 @@ public class ItemObject : MonoBehaviour
     {
         if (isItemInMap)
         {
-            var pickedUpItemList = GameManager.instance.pickedUpItemInMapList;
-
-            foreach (var item in pickedUpItemList)
+            foreach (var id in GameManager.instance.pickedUpItemInMapIDList)
             {
-                if (item.GetComponent<ItemObject>()?.itemInMapID == itemInMapID)
+                if (itemInMapID == id)
                 {
                     Destroy(gameObject);
                 }
@@ -54,7 +52,7 @@ public class ItemObject : MonoBehaviour
         Inventory.instance.AddItem(item);
         AudioManager.instance.PlaySFX(18, transform);
 
-        GameManager.instance.pickedUpItemInMapList.Add(gameObject);
+        GameManager.instance.pickedUpItemInMapIDList.Add(itemInMapID);
 
         Debug.Log($"Picked up item {item.itemName}");
         Destroy(gameObject);

@@ -36,7 +36,14 @@ public class LanguageOptionDropdown_UI : MonoBehaviour
         LanguageManager.instance.SetTextLanguageByLocaleID(_localeID);
 
         KeyBindManager.instance?.UpdateKeybindListLanguage();
-        SkillPanel_InGame_UI.instance?.UpdateAllSkillIconTexts();
+
+        //unity has bug, null check has to be in if-statement type here
+        //otherwise using ?-type will not work
+        if (SkillPanel_InGame_UI.instance != null)
+        {
+            SkillPanel_InGame_UI.instance.UpdateAllSkillIconTexts();
+        }
+
         //yield return new WaitUntil(SetTextFont);
     }
 
