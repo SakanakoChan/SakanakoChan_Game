@@ -6,11 +6,6 @@ public class WoundZone : MapElement
 {
     private bool hasDamagedPlayer = false;
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!hasDamagedPlayer)
