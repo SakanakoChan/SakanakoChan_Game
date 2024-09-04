@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu_UI : MonoBehaviour, ISaveManager
+public class MainMenu_UI : MonoBehaviour, ISettingsSaveManager
 {
     public static MainMenu_UI instance;
 
@@ -42,7 +42,7 @@ public class MainMenu_UI : MonoBehaviour, ISaveManager
 
     private void Start()
     {
-        if (!SaveManager.instance.HasSaveData())
+        if (!SaveManager.instance.HasGameSaveData())
         {
             continueButton.SetActive(false);
         }
@@ -78,7 +78,7 @@ public class MainMenu_UI : MonoBehaviour, ISaveManager
 
     public void NewGame_DetectSaveFile()
     {
-        if (SaveManager.instance.HasSaveData())
+        if (SaveManager.instance.HasGameSaveData())
         {
             ShowNewGameConfirmWindow();
         }
@@ -90,7 +90,7 @@ public class MainMenu_UI : MonoBehaviour, ISaveManager
 
     public void NewGame()
     {
-        SaveManager.instance.DeleteSavedData();
+        SaveManager.instance.DeleteGameProgressionSavedData();
         //SceneManager.LoadScene(sceneName);
         StartCoroutine(LoadSceneWithFadeEffect(1.5f));
     }
@@ -140,7 +140,7 @@ public class MainMenu_UI : MonoBehaviour, ISaveManager
         UIKeyFunctioning = _value;
     }
 
-    public void LoadData(GameData _data)
+    public void LoadData(SettingsData _data)
     {
         Debug.Log("Loading option data");
         //audio settings load
@@ -169,7 +169,7 @@ public class MainMenu_UI : MonoBehaviour, ISaveManager
         }
     }
 
-    public void SaveData(ref GameData _data)
+    public void SaveData(ref SettingsData _data)
     {
         Debug.Log("Saving option data");
         //Audio setttings save

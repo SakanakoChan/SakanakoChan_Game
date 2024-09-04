@@ -20,7 +20,9 @@ public class FileDataHandler
         encryptData = _encryptData;
     }
 
-    public void Save(GameData _data)
+    //maybe <T> here?
+    #region Settings Load and Save
+    public void SaveSettings(SettingsData _data)
     {
         string fullPath = Path.Combine(dataDirPath, dataFileName);
 
@@ -50,7 +52,75 @@ public class FileDataHandler
         }
     }
 
-    public GameData Load()
+    public SettingsData LoadSettings()
+    {
+        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        SettingsData loadData = null;
+
+        if (File.Exists(fullPath))
+        {
+            try
+            {
+                string dataToLoad = "";
+
+                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        dataToLoad = reader.ReadToEnd();
+                    }
+                }
+
+                if (encryptData)
+                {
+                    dataToLoad = EncryptAndDecrypt(dataToLoad);
+                }
+
+                //read json from the save file to gamedata
+                loadData = JsonUtility.FromJson<SettingsData>(dataToLoad);
+            }
+            catch (Exception e)
+            {
+                Debug.Log($"Failed to load game data from:\n{fullPath}\n{e.Message}");
+            }
+        }
+
+        return loadData;
+    }
+    #endregion
+
+    #region Game Progression Load And Save
+    public void SaveGameProgression(GameData _data)
+    {
+        string fullPath = Path.Combine(dataDirPath, dataFileName);
+
+        try
+        {
+            //create file directory to store the save file
+            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+            //parse the savedata to json, true means the json file will be formatted and easier to read
+            string dataToStore = JsonUtility.ToJson(_data, true);
+
+            if (encryptData)
+            {
+                dataToStore = EncryptAndDecrypt(dataToStore);
+            }
+
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            {
+                using (StreamWriter writer = new StreamWriter(stream))
+                {
+                    writer.Write(dataToStore);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Error: Failed to save data file: \n{fullPath}\n {e.Message}");
+        }
+    }
+
+    public GameData LoadGameProgression()
     {
         string fullPath = Path.Combine(dataDirPath, dataFileName);
         GameData loadData = null;
@@ -85,6 +155,8 @@ public class FileDataHandler
 
         return loadData;
     }
+    #endregion
+
 
     public void DeleteSave()
     {

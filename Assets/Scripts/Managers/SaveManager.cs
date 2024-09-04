@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Net.NetworkInformation;
 
 //Save location:
 //C:\Users\megum\AppData\LocalLow\DefaultCompany\BrandNewRPGGame_2nd
@@ -16,13 +17,20 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
 
-    [SerializeField] private string fileName;
+    [SerializeField] private string settingsFileName;
+    [SerializeField] private string gameFileName;
     [SerializeField] private bool encryptData;
 
     private GameData gameData;
+    private SettingsData settingsData;
 
-    private List<ISaveManager> saveManagers;
-    private FileDataHandler dataHandler;
+    
+    private List<IGameProgressionSaveManager> gameProgressionSaveManagers;
+    private FileDataHandler gameDataHandler;
+
+
+    private List<ISettingsSaveManager> settingsSaveManagers;
+    private FileDataHandler settingsDataHandler;
 
     private void Awake()
     {
@@ -38,9 +46,11 @@ public class SaveManager : MonoBehaviour
 
     private void Start()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
+        settingsDataHandler = new FileDataHandler(Application.persistentDataPath, settingsFileName, encryptData);
+        gameDataHandler = new FileDataHandler(Application.persistentDataPath, gameFileName, encryptData);
 
-        saveManagers = FindAllSaveManagers();
+        settingsSaveManagers = FindAllSettingsSaveManagers();
+        gameProgressionSaveManagers = FindAllGameProgressionSaveManagers();
 
         LoadGame();
     }
@@ -57,8 +67,34 @@ public class SaveManager : MonoBehaviour
 
     public void LoadGame()
     {
+        //Load Settings
+        LoadSettings();
+
+        //Load Game Progression
+        LoadGameProgression();
+    }
+
+    private void LoadSettings()
+    {
+        settingsData = settingsDataHandler.LoadSettings();
+
+        //default settings?
+        if (settingsData == null)
+        {
+            settingsData = new SettingsData();
+            Debug.Log("No settings data found, loading default settings");
+        }
+
+        foreach (var saveManager in settingsSaveManagers)
+        {
+            saveManager.LoadData(settingsData);
+        }
+    }
+
+    private void LoadGameProgression()
+    {
         // gameData = date from dataHandler
-        gameData = dataHandler.Load();
+        gameData = gameDataHandler.LoadGameProgression();
 
         if (gameData == null)
         {
@@ -66,7 +102,7 @@ public class SaveManager : MonoBehaviour
             NewGame();
         }
 
-        foreach (ISaveManager saveManager in saveManagers)
+        foreach (IGameProgressionSaveManager saveManager in gameProgressionSaveManagers)
         {
             saveManager.LoadData(gameData);
         }
@@ -76,34 +112,62 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        foreach (ISaveManager saveManager in saveManagers)
+        //Save settings...
+        SaveSettings();
+
+        //Save Game Progression
+        SaveGameProgression();
+    }
+
+    public void SaveSettings()
+    {
+        foreach (var saveManagers in settingsSaveManagers)
+        {
+            saveManagers.SaveData(ref settingsData);
+        }
+
+        settingsDataHandler.SaveSettings(settingsData);
+    }
+
+    private void SaveGameProgression()
+    {
+        foreach (IGameProgressionSaveManager saveManager in gameProgressionSaveManagers)
         {
             saveManager.SaveData(ref gameData);
         }
 
-        dataHandler.Save(gameData);
+        gameDataHandler.SaveGameProgression(gameData);
 
         //Debug.Log($"Saved currency: {gameData.currecny}");
     }
 
-    private List<ISaveManager> FindAllSaveManagers()
+
+    private List<ISettingsSaveManager> FindAllSettingsSaveManagers()
     {
-        IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<ISaveManager>();
+        IEnumerable<ISettingsSaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<ISettingsSaveManager>();
+        return new List<ISettingsSaveManager>(saveManagers);
+    }
+
+    private List<IGameProgressionSaveManager> FindAllGameProgressionSaveManagers()
+    {
+        IEnumerable<IGameProgressionSaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<IGameProgressionSaveManager>();
 
         //new List<ISaveManager>() here is just a constructor
-        return new List<ISaveManager>(saveManagers); 
+        return new List<IGameProgressionSaveManager>(saveManagers); 
     }
 
-    [ContextMenu("Delete save file")]
-    public void DeleteSavedData()
+
+
+    [ContextMenu("Delete game progression save file")]
+    public void DeleteGameProgressionSavedData()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
-        dataHandler.DeleteSave();
+        gameDataHandler = new FileDataHandler(Application.persistentDataPath, gameFileName, encryptData);
+        gameDataHandler.DeleteSave();
     }
 
-    public bool HasSaveData()
+    public bool HasGameSaveData()
     {
-        if (dataHandler.Load() != null)
+        if (gameDataHandler.LoadGameProgression() != null)
         {
             return true;
         }

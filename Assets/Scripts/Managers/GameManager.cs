@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour, ISaveManager
+public class GameManager : MonoBehaviour, IGameProgressionSaveManager
 {
     public static GameManager instance;
 

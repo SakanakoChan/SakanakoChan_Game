@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
-public class LanguageManager : MonoBehaviour, ISaveManager
+public class LanguageManager : MonoBehaviour, ISettingsSaveManager
 {
     public static LanguageManager instance;
 
@@ -108,15 +108,14 @@ public class LanguageManager : MonoBehaviour, ISaveManager
         return _itemStatInfo;
     }
 
-
-    void ISaveManager.LoadData(GameData _data)
+    public void LoadData(SettingsData _data)
     {
         localeID = _data.localeID;
 
         SetTextLanguageByLocaleID(localeID);
     }
 
-    void ISaveManager.SaveData(ref GameData _data)
+    public void SaveData(ref SettingsData _data)
     {
         _data.localeID = localeID;
     }

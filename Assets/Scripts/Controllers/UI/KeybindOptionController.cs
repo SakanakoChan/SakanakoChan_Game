@@ -130,7 +130,12 @@ public class KeybindOptionController : MonoBehaviour
         yield return new WaitUntil(CheckInput);
 
         keybindButton.onClick.RemoveAllListeners();
-        SkillPanel_InGame_UI.instance?.UpdateAllSkillIconTexts();
+
+        //unity has a bug, have to do null check like this here
+        if (SkillPanel_InGame_UI.instance != null)
+        {
+            SkillPanel_InGame_UI.instance?.UpdateAllSkillIconTexts();
+        }
 
         yield return new WaitWhile(HasAnyKey);
 

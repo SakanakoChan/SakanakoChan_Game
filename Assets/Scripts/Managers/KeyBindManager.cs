@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyBindManager : MonoBehaviour, ISaveManager
+public class KeyBindManager : MonoBehaviour, ISettingsSaveManager
 {
     public static KeyBindManager instance;
 
@@ -105,7 +105,7 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
     }
 
 
-    public void LoadData(GameData _data)
+    public void LoadData(SettingsData _data)
     {
         foreach (var search in _data.keybindsDictionary)
         {
@@ -113,7 +113,7 @@ public class KeyBindManager : MonoBehaviour, ISaveManager
         }
     }
 
-    public void SaveData(ref GameData _data)
+    public void SaveData(ref SettingsData _data)
     {
         _data.keybindsDictionary.Clear();
 

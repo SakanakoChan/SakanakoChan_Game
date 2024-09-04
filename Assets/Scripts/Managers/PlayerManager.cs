@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour, ISaveManager
+public class PlayerManager : MonoBehaviour, IGameProgressionSaveManager
 {
     public static PlayerManager instance;
     public Player player;

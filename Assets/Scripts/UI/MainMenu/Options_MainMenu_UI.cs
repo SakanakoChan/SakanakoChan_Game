@@ -7,12 +7,12 @@ public class Options_MainMenu_UI : MonoBehaviour
 {
     public void SaveAndReturnToTitle()
     {
-        StartCoroutine(SaveAndReturnToTitle_Coroutine());
+        StartCoroutine(SaveSettingsAndReturnToTitle_Coroutine());
     }
 
-    private IEnumerator SaveAndReturnToTitle_Coroutine()
+    private IEnumerator SaveSettingsAndReturnToTitle_Coroutine()
     {
-        SaveManager.instance.SaveGame();
+        SaveManager.instance.SaveSettings();
 
         yield return new WaitForSeconds(0.1f);
 

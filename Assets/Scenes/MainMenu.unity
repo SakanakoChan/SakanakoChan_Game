@@ -1023,6 +1023,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2949275423089623401, guid: d052c974ece2f904694aaefc08177808, type: 3}
+      propertyPath: gameFileName
+      value: GameSave.savedata
+      objectReference: {fileID: 0}
+    - target: {fileID: 2949275423089623401, guid: d052c974ece2f904694aaefc08177808, type: 3}
+      propertyPath: settingsFileName
+      value: SettingsSave.savedata
+      objectReference: {fileID: 0}
     - target: {fileID: 5457428000378712458, guid: d052c974ece2f904694aaefc08177808, type: 3}
       propertyPath: m_Name
       value: SaveManager

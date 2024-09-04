@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class UI : MonoBehaviour, ISaveManager
+public class UI : MonoBehaviour, ISettingsSaveManager
 {
     public static UI instance;
 
@@ -243,7 +243,7 @@ public class UI : MonoBehaviour, ISaveManager
         UIKeyFunctioning = _value;
     }
 
-    public void LoadData(GameData _data)
+    public void LoadData(SettingsData _data)
     {
         //audio settings load
         //volumeSettingsDictionary<exposedParameter, value>
@@ -271,7 +271,7 @@ public class UI : MonoBehaviour, ISaveManager
         }
     }
 
-    public void SaveData(ref GameData _data)
+    public void SaveData(ref SettingsData _data)
     {
         //Audio setttings save
         _data.volumeSettingsDictionary.Clear();

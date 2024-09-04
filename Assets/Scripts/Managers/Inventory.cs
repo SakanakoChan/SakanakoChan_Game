@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour, ISaveManager
+public class Inventory : MonoBehaviour, IGameProgressionSaveManager
 {
     public static Inventory instance;
 
