@@ -15,6 +15,8 @@ public class CraftWindow_UI : MonoBehaviour
     [SerializeField] private Transform referenceRequiredMaterialList;
     private Image[] materialImage;
 
+    private ItemData_Equipment equipmentToCraft;
+
     private void Awake()
     {
         materialImage = new Image[referenceRequiredMaterialList.childCount];
@@ -25,8 +27,18 @@ public class CraftWindow_UI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (equipmentToCraft != null)
+        {
+            UpdateItemTextLanguage(equipmentToCraft);
+        }
+    }
+
     public void SetupCraftWindow(ItemData_Equipment _itemToCraft)
     {
+        equipmentToCraft = _itemToCraft;
+
         //clear the craft button events to prevent from redundant functions
         craftButton.onClick.RemoveAllListeners();
 
@@ -59,19 +71,25 @@ public class CraftWindow_UI : MonoBehaviour
         itemIcon.sprite = _itemToCraft.icon;
         itemStatInfo.text = _itemToCraft.GetItemStatInfoAndEffectDescription();
 
+        UpdateItemTextLanguage(_itemToCraft);
+
+        craftButton.onClick.AddListener(() => Inventory.instance.CraftIfAvailable(_itemToCraft, _itemToCraft.requiredCraftMaterials));
+    }
+
+    private void UpdateItemTextLanguage(ItemData_Equipment _itemToCraft)
+    {
         //english
         if (LanguageManager.instance.localeID == 0)
         {
             itemName.text = _itemToCraft.itemName;
+            itemStatInfo.text = _itemToCraft.GetItemStatInfoAndEffectDescription();
         }
         //chinese
-        else if(LanguageManager.instance.localeID == 1)
+        else if (LanguageManager.instance.localeID == 1)
         {
             itemName.text = _itemToCraft.itemName_Chinese;
+            itemStatInfo.text = _itemToCraft.GetItemStatInfoAndEffectDescription();
             itemStatInfo.text = LanguageManager.instance.TranslateItemStatInfoFromEnglishToChinese(itemStatInfo.text);
         }
-
-
-        craftButton.onClick.AddListener(() => Inventory.instance.CraftIfAvailable(_itemToCraft, _itemToCraft.requiredCraftMaterials));
     }
 }

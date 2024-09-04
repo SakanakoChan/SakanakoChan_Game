@@ -2,9 +2,18 @@ using UnityEngine.EventSystems;
 
 public class CraftSlot_UI : InventorySlot_UI
 {
+    private ItemData_Equipment equipment;
+
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    //this function is to make the text lanaguge of this equipment's name
+    //to get updated immediately after changing text language in options
+    private void OnEnable()
+    {
+        SetupCraftSlot(equipment);
     }
 
     public void SetupCraftSlot(ItemData_Equipment _item)
@@ -13,6 +22,8 @@ public class CraftSlot_UI : InventorySlot_UI
         {
             return;
         }
+
+        equipment = _item;
 
         inventorySlot.item = _item;
         itemImage.sprite = _item.icon;
@@ -42,6 +53,5 @@ public class CraftSlot_UI : InventorySlot_UI
     public override void OnPointerDown(PointerEventData eventData)
     {
         ui.craftWindow.SetupCraftWindow(inventorySlot.item as ItemData_Equipment);
-
     }
 }
