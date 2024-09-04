@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour, ISaveManager
     [SerializeField] private Vector2 deathPosition;
 
     //public List<ItemObject> pickedUpItemInMapList { get; set; }
-    public List<int> pickedUpItemInMapIDList {  get; set; }
+    public List<int> UsedMapElementIDList {  get; set; }
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour, ISaveManager
         player = PlayerManager.instance.player;
 
         //pickedUpItemInMapList = new List<ItemObject>();
-        pickedUpItemInMapIDList = new List<int>();
+        UsedMapElementIDList = new List<int>();
     }
 
     public void RestartScene()
@@ -146,11 +146,11 @@ public class GameManager : MonoBehaviour, ISaveManager
 
     private void LoadPickedUpItemInMapIDList(GameData _data)
     {
-        if (_data.pickedUpItemInMapIDList != null)
+        if (_data.UsedMapElementIDList != null)
         {
-            foreach (var seach in _data.pickedUpItemInMapIDList)
+            foreach (var seach in _data.UsedMapElementIDList)
             {
-                pickedUpItemInMapIDList.Add(seach);
+                UsedMapElementIDList.Add(seach);
             }
         }
     }
@@ -208,10 +208,10 @@ public class GameManager : MonoBehaviour, ISaveManager
         _data.lastActivatedCheckpointID = lastActivatedCheckpointID;
 
         //save pciked up item in map list;
-        _data.pickedUpItemInMapIDList.Clear();
-        foreach (var itemID in pickedUpItemInMapIDList)
+        _data.UsedMapElementIDList.Clear();
+        foreach (var itemID in UsedMapElementIDList)
         {
-            _data.pickedUpItemInMapIDList.Add(itemID);
+            _data.UsedMapElementIDList.Add(itemID);
         }
     }
 }

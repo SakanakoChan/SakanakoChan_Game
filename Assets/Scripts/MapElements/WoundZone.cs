@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WoundZone : MonoBehaviour
+public class WoundZone : MapElement
 {
     private bool hasDamagedPlayer = false;
+
+    protected override void Start()
+    {
+        base.Start();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,6 +28,8 @@ public class WoundZone : MonoBehaviour
 
                 collision.GetComponent<PlayerStats>()?.TakeDamage(damage, transform, collision.transform, false);
                 hasDamagedPlayer = true;
+
+                GameManager.instance.UsedMapElementIDList.Add(mapElementID);
             }
         }
     }

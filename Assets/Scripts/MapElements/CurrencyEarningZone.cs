@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrencyEarningZone : MonoBehaviour
+public class CurrencyEarningZone : MapElement
 {
     private bool hasGivenPlayerCurrency = false;
 
@@ -14,6 +14,8 @@ public class CurrencyEarningZone : MonoBehaviour
             {
                 PlayerManager.instance.currency += 1000;
                 hasGivenPlayerCurrency = true;
+
+                GameManager.instance.UsedMapElementIDList.Add(mapElementID);
             }
         }
     }

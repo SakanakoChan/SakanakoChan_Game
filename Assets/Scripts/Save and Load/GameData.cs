@@ -19,8 +19,8 @@ public class GameData
     public int droppedCurrencyAmount;
     public Vector2 deathPosition;
 
-    [Header("Item in map")]
-    public List<int> pickedUpItemInMapIDList;
+    [Header("Map Elements")]
+    public List<int> UsedMapElementIDList;
 
     [Header("Audio settings")]
     public SerializableDictionary<string, float> volumeSettingsDictionary;
@@ -42,7 +42,7 @@ public class GameData
         this.deathPosition = Vector2.zero;
 
         //setup picked up item in map list, by default it should be empty
-        pickedUpItemInMapIDList = new List<int>();
+        UsedMapElementIDList = new List<int>();
         //pickedUpItemInMapList = new List<ItemObject>();
 
         //default language is english

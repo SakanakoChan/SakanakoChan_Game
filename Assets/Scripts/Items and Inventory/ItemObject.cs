@@ -2,34 +2,15 @@ using UnityEngine;
 
 
 //Remember to use Fill up item data base function in inventorymanager script in unity editor every time making a new item!
-public class ItemObject : MonoBehaviour
+public class ItemObject : MapElement
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private ItemData item;
 
-    [Header("Item-in-map Info")]
-    public bool isItemInMap;
-    [Tooltip("Make sure each item-in-map's id is unique!")]
-    public int itemInMapID;
-
-    private void Start()
+    protected override void Start()
     {
         SetupItemIconAndName();
-        DestroyPickedUpItemInMap();
-    }
-
-    private void DestroyPickedUpItemInMap()
-    {
-        if (isItemInMap)
-        {
-            foreach (var id in GameManager.instance.pickedUpItemInMapIDList)
-            {
-                if (itemInMapID == id)
-                {
-                    Destroy(gameObject);
-                }
-            }
-        }
+        base.Start();
     }
 
     public void SetupItemDrop(ItemData _item, Vector2 _dropVelocity)
@@ -53,7 +34,7 @@ public class ItemObject : MonoBehaviour
         Inventory.instance.AddItem(item);
         AudioManager.instance.PlaySFX(18, transform);
 
-        GameManager.instance.pickedUpItemInMapIDList.Add(itemInMapID);
+        GameManager.instance.UsedMapElementIDList.Add(mapElementID);
 
         Debug.Log($"Picked up item {item.itemName}");
         Destroy(gameObject);
