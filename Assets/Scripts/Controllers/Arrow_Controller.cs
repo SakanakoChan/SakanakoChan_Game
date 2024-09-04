@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.U2D;
 
 public class Arrow_Controller : MonoBehaviour
 {
@@ -48,13 +44,19 @@ public class Arrow_Controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Arrow collided with " + collision.gameObject.name);
+
         //if the arrow hits player
+        //using layerMask is dangerous here, because some child objects of player and enemy with collider components
+        //may also be in this targetLayer
         if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
-            //collision.GetComponent<CharacterStats>()?.TakeDamage(damage, transform, collision.transform, false); ;
-            archerStats.DoDamge(collision.GetComponent<CharacterStats>());
+            if (collision.GetComponent<CharacterStats>() != null)
+            {
+                archerStats.DoDamge(collision.GetComponent<CharacterStats>());
+                StuckIntoCollidedObject(collision);
+            }
 
-            StuckIntoCollidedObject(collision);
         }
         //if the arrow hits ground
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
