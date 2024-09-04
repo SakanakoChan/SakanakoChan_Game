@@ -61,32 +61,53 @@ public class CameraManager : MonoBehaviour
         //meaning increase of screen X value will make camera move to left instead
         float targetXPosition = defaultCameraXPosition + targetCameraXPositionOffset * (-player.facingDirection);
 
-        if (player.isFacingPit)
+        if (player.isNearPit)
         {
             //m means mirroring the default unity camera
+            //lens size change
             if (cm.m_Lens.OrthographicSize < targetCameraLensSize)
             {
                 cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, targetCameraLensSize, cameraLensSizeChangeSpeed * Time.deltaTime);
             }
+            else
+            {
+                cm.m_Lens.OrthographicSize = targetCameraLensSize;
+            }
 
-            if (ft.m_ScreenY > targetCameraYPosition)
+            //screen Y position change
+            if (ft.m_ScreenY > targetCameraYPosition - 0.2f)
             {
                 ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, targetCameraYPosition - 0.2f, cameraYPositionChangeSpeed * Time.deltaTime);
             }
-            
+            else
+            {
+                ft.m_ScreenY = targetCameraYPosition - 0.2f;
+            }
+
+
             //if player is facing left when facing pit, camera will move to left, vice versa
             ft.m_ScreenX = Mathf.Lerp(ft.m_ScreenX, targetXPosition, cameraXPositionChangeSpeed * Time.deltaTime);
         }
         else
         {
+            //lens size change
             if (cm.m_Lens.OrthographicSize > defaultCameraLensSize)
             {
                 cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, defaultCameraLensSize, cameraLensSizeChangeSpeed * Time.deltaTime);
             }
+            else
+            {
+                cm.m_Lens.OrthographicSize = defaultCameraLensSize;
+            }
 
+            //screen Y position change
             if (ft.m_ScreenY < defaultCameraYPosition)
             {
                 ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, defaultCameraYPosition, cameraYPositionChangeSpeed * Time.deltaTime);
+            }
+            else
+            {
+                ft.m_ScreenY = defaultCameraYPosition;
             }
 
             ft.m_ScreenX = Mathf.Lerp(ft.m_ScreenX, defaultCameraXPosition, cameraXPositionChangeSpeed * Time.deltaTime);

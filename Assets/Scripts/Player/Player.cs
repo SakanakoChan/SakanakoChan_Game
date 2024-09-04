@@ -26,7 +26,7 @@ public class Player : Entity
 
     [Header("Pit check")]
     [SerializeField] private BoxCollider2D pitCheck;
-    public bool isFacingPit { get; set; }
+    public bool isNearPit { get; set; }
 
     public bool isBusy { get; private set; }
 

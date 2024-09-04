@@ -15,7 +15,7 @@ public class PitCheck : MonoBehaviour
     {
         if (collision.GetComponent<Pit>())
         {
-            player.isFacingPit = true;
+            player.isNearPit = true;
         }
     }
 
@@ -23,7 +23,7 @@ public class PitCheck : MonoBehaviour
     {
         if(collision.GetComponent<Pit>())
         {
-            player.isFacingPit = false;
+            player.isNearPit = false;
         }
     }
 }

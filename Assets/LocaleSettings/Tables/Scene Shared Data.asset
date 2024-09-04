@@ -75,6 +75,10 @@ MonoBehaviour:
     m_Key: Tutorial_LearnParry
     m_Metadata:
       m_Items: []
+  - m_Id: 811325317758976
+    m_Key: Tutorial_JumpOffAndStartYourGame
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

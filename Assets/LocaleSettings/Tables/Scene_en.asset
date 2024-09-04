@@ -100,6 +100,12 @@ MonoBehaviour:
       Open skill tree and learn parry'
     m_Metadata:
       m_Items: []
+  - m_Id: 811325317758976
+    m_Localized: 'Jump off
+
+      Your adventure starts  here'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

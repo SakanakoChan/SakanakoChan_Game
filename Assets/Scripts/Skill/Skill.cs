@@ -35,7 +35,17 @@ public class Skill : MonoBehaviour
         }
         else
         {
-            player.fx.CreatePopUpText("Skill is in Cooldown");
+            //english
+            if (LanguageManager.instance.localeID == 0)
+            {
+                player.fx.CreatePopUpText("Skill is in cooldown");
+
+            }
+            //chinese
+            else if (LanguageManager.instance.localeID == 1)
+            {
+                player.fx.CreatePopUpText("技能冷却中！");
+            }
             return false;
         }
     }
@@ -49,8 +59,17 @@ public class Skill : MonoBehaviour
             return true;
         }
 
-        //Debug.Log("Skill is in cooldown");
-        player.fx.CreatePopUpText("Skill is in cooldown");
+        //english
+        if (LanguageManager.instance.localeID == 0)
+        {
+            player.fx.CreatePopUpText("Skill is in cooldown");
+
+        }
+        //chinese
+        else if (LanguageManager.instance.localeID == 1)
+        {
+            player.fx.CreatePopUpText("技能冷却中！");
+        }
         return false;
     }
 
