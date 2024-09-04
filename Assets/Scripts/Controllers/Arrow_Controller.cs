@@ -35,11 +35,9 @@ public class Arrow_Controller : MonoBehaviour
             Invoke("BecomeTransparentAndDestroyArrow", Random.Range(3, 5));
         }
 
-        //if the arrow flies too far and donsen't hit any targets, auto destroy it
-        if (Vector2.Distance(transform.position, archerStats.transform.position) > 25)
-        {
-            Invoke("BecomeTransparentAndDestroyArrow", 0);
-        }
+        //if the arrow flies too far and dosen't hit any targets, auto destroy it
+        //shouldn't use distance check here cuz when archer dies he's gonna fall down and this arrow will get destroyed too early
+        Invoke("BecomeTransparentAndDestroyArrow", 10f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
