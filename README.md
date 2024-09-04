@@ -57,5 +57,3 @@ Fuck Unity
 
 Anyway, this time I am fucking CLEAVER, I backed up my project in github from the beginning of my rework.
 # I AM NOT AFRAID OF YOUR UPDATE ANYMORE, UNITY HUB. I AM NOT. COME AND FIGHT MEEEEEEEE!
-
-<font color="green"> test </font>
