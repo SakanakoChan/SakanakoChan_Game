@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: IncreaseEvasionOnHit_Buff
   m_EditorClassIdentifier: 
   effectCooldown: 10
-  effectDescription: Increase 50 evasion for 5 seconds
-  effectDescription_Chinese: "5\u79D2\u5185\u63D0\u534750\u95EA\u907F"
+  effectDescription: Increase 50 evasion for 5 seconds when getting hit
+  effectDescription_Chinese: "\u53D7\u5230\u653B\u51FB\u65F65\u79D2\u5185\u63D0\u534750\u95EA\u907F"
   buffStatType: 9
   buffValue: 50
   buffDuration: 5

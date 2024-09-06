@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FreezeEnemy_Effect
   m_EditorClassIdentifier: 
   effectCooldown: 5
-  effectDescription: Freeze nearby enemy for 2 seconds
-  effectDescription_Chinese: "\u51BB\u7ED3\u654C\u4EBA2\u79D2"
+  effectDescription: Freeze nearby enemy for 2 seconds when getting hit if HP is
+    below 50%
+  effectDescription_Chinese: "\u751F\u547D\u503C\u4F4E\u4E8E50%\u65F6\uFF0C\u53D7\u5230\u654C\u4EBA\u653B\u51FB\u51BB\u7ED3\u654C\u4EBA2\u79D2"
   freezeDuration: 2

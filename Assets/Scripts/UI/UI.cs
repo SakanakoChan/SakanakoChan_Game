@@ -220,6 +220,7 @@ public class UI : MonoBehaviour, ISettingsSaveManager
     public void SwitchToEndScreen()
     {
         //fadeScreen.gameObject.SetActive(true);
+        UIKeyFunctioning = false;
         fadeScreen.FadeOut();
         StartCoroutine(EndScreenCoroutine());
     }
