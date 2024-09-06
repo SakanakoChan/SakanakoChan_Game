@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour, ISettingsSaveManager
 {
@@ -21,6 +22,10 @@ public class UI : MonoBehaviour, ISettingsSaveManager
     public FadeScreen_UI fadeScreen; //when player is dead, play the fadeout animation
     [SerializeField] private GameObject endText;
     [SerializeField] private GameObject tryAgainButton;
+
+    [Header("Thank you for playing")]
+    [SerializeField] private GameObject thankYouForPlayingText;
+    [SerializeField] private GameObject returnToTitleButton;
 
     [Header("Audio Settings")]
     [SerializeField] private VolumeSlider_UI[] volumeSettings;
@@ -215,6 +220,38 @@ public class UI : MonoBehaviour, ISettingsSaveManager
 
         Vector2 toolTipPositionOffset = new Vector2(_xOffset, _yOffset);
         return toolTipPositionOffset;
+    }
+
+    public void SwitchToThankYouForPlaying()
+    {
+        UIKeyFunctioning = false;
+        fadeScreen.FadeOut();
+        StartCoroutine(ThankYouForPlayingCoroutine());
+    }
+
+    private IEnumerator ThankYouForPlayingCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        thankYouForPlayingText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        returnToTitleButton.SetActive(true);
+
+    }
+
+    public void DeleteGameProgressionAndReturnToTitle()
+    {
+        StartCoroutine(DeleteGameProgressionAndReturnToTitle_Coroutine());
+    }
+
+    private IEnumerator DeleteGameProgressionAndReturnToTitle_Coroutine()
+    {
+        GameManager.instance.PauseGame(false);
+        fadeScreen.FadeOut();
+        SaveManager.instance.DeleteGameProgressionSavedData();
+
+        yield return new WaitForSeconds(0.5f);
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void SwitchToEndScreen()

@@ -127,6 +127,10 @@ MonoBehaviour:
     m_Key: Tutorial_Enemy
     m_Metadata:
       m_Items: []
+  - m_Id: 1485912263147520
+    m_Key: Tutorial_Boss
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

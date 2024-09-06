@@ -263,6 +263,18 @@ MonoBehaviour:
     m_Key: CraftButton
     m_Metadata:
       m_Items: []
+  - m_Id: 4731871516475392
+    m_Key: TryAgain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4731980794871808
+    m_Key: ThankYouForPlaying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4732062122426368
+    m_Key: ReturnToTitle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -93,6 +93,8 @@ public class DeathBringer : Enemy
         base.Die();
 
         stateMachine.ChangeState(deathState);
+
+        UI.instance.SwitchToThankYouForPlaying();
     }
 
     public override void GetIntoBattleState()

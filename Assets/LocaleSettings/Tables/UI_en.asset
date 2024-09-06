@@ -269,6 +269,18 @@ MonoBehaviour:
     m_Localized: CRAFT
     m_Metadata:
       m_Items: []
+  - m_Id: 4731871516475392
+    m_Localized: Try Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4731980794871808
+    m_Localized: Thank you for playing!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4732062122426368
+    m_Localized: Return to Title
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
