@@ -24,15 +24,15 @@ public class Player : Entity
     public float dashDirection { get; private set; }
     private float defaultDashSpeed;
 
-    [Header("Pit check")]
+    [Header("Environment Check")]
     [SerializeField] private BoxCollider2D pitCheck;
+    [SerializeField] private BoxCollider2D downablePlatformCheck;
+
     public bool isNearPit { get; set; }
+    public DownablePlatform lastPlatform { get; set; }
+    public bool isOnPlatform { get; set; } = false;
 
     public bool isBusy { get; private set; }
-
-    private DownablePlatform lastPlatform;
-    public bool isOnPlatform { get; private set; } = false;
-
     public PlayerFX fx { get; private set; }
 
     #region States and Statemachine
@@ -242,29 +242,9 @@ public class Player : Entity
         fx.StartCoroutine("FlashFX");
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.GetComponent<DownablePlatform>() != null)
-        {
-            lastPlatform = collision.gameObject.GetComponent<DownablePlatform>();
-            //isOnPlatform = collision.gameObject.GetComponent<DownablePlatform>().playerIsOnPlatform;
-            isOnPlatform = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<DownablePlatform>() != null)
-        {
-            lastPlatform = collision.gameObject.GetComponent<DownablePlatform>();
-            //isOnPlatform = collision.gameObject.GetComponent<DownablePlatform>().playerIsOnPlatform;
-            isOnPlatform = false;
-        }
-    }
-
     public void JumpOffPlatform()
     {
-        if(isOnPlatform)
+        if (isOnPlatform)
         {
             lastPlatform.TurnOffPlatformColliderForTime(0.5f);
         }

@@ -19,13 +19,13 @@ public class CameraManager : MonoBehaviour
     public float targetCameraYPosition;
     public float cameraYPositionChangeSpeed;
 
-    [Header("Camera Screen X Position Info")]
-    public float defaultCameraXPosition;
-    public float targetCameraXPositionOffset;
-    public float cameraXPositionChangeSpeed;
+    //[Header("Camera Screen X Position Info")]
+    //public float defaultCameraXPosition;
+    //public float targetCameraXPositionOffset;
+    //public float cameraXPositionChangeSpeed;
 
     private Player player;
-    private CinemachineFramingTransposer ft;
+    public CinemachineFramingTransposer ft { get; set; }
 
 
     private void Awake()
@@ -47,75 +47,7 @@ public class CameraManager : MonoBehaviour
         player = PlayerManager.instance.player;
     }
 
-
-    private void Update()
-    {
-        CameraMovementOnDownablePlatform();
-
-        CameraMovementOnPit();
-    }
-
-    private void CameraMovementOnPit()
-    {
-        //screen X in camera is opossite to player facing direction
-        //meaning increase of screen X value will make camera move to left instead
-        float targetXPosition = defaultCameraXPosition + targetCameraXPositionOffset * (-player.facingDirection);
-
-        if (player.isNearPit)
-        {
-            //m means mirroring the default unity camera
-            //lens size change
-            if (cm.m_Lens.OrthographicSize < targetCameraLensSize)
-            {
-                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, targetCameraLensSize, cameraLensSizeChangeSpeed * Time.deltaTime);
-            }
-            else
-            {
-                cm.m_Lens.OrthographicSize = targetCameraLensSize;
-            }
-
-            //screen Y position change
-            if (ft.m_ScreenY > targetCameraYPosition - 0.2f)
-            {
-                ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, targetCameraYPosition - 0.2f, cameraYPositionChangeSpeed * Time.deltaTime);
-            }
-            else
-            {
-                ft.m_ScreenY = targetCameraYPosition - 0.2f;
-            }
-
-
-            //if player is facing left when facing pit, camera will move to left, vice versa
-            ft.m_ScreenX = Mathf.Lerp(ft.m_ScreenX, targetXPosition, cameraXPositionChangeSpeed * Time.deltaTime);
-        }
-        else
-        {
-            //lens size change
-            if (cm.m_Lens.OrthographicSize > defaultCameraLensSize)
-            {
-                cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, defaultCameraLensSize, cameraLensSizeChangeSpeed * Time.deltaTime);
-            }
-            else
-            {
-                cm.m_Lens.OrthographicSize = defaultCameraLensSize;
-            }
-
-            //screen Y position change
-            if (ft.m_ScreenY < defaultCameraYPosition)
-            {
-                ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, defaultCameraYPosition, cameraYPositionChangeSpeed * Time.deltaTime);
-            }
-            else
-            {
-                ft.m_ScreenY = defaultCameraYPosition;
-            }
-
-            ft.m_ScreenX = Mathf.Lerp(ft.m_ScreenX, defaultCameraXPosition, cameraXPositionChangeSpeed * Time.deltaTime);
-        }
-    }
-
-
-    private void CameraMovementOnDownablePlatform()
+    public void CameraMovementOnDownablePlatform()
     {
         //if player is on downable platform, camera lens size will increase
         //meanwhile camera y position will decrease
@@ -125,24 +57,50 @@ public class CameraManager : MonoBehaviour
             if (cm.m_Lens.OrthographicSize < targetCameraLensSize)
             {
                 cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, targetCameraLensSize, cameraLensSizeChangeSpeed * Time.deltaTime);
+
+                if (cm.m_Lens.OrthographicSize >= targetCameraLensSize - 0.01f)
+                {
+                    cm.m_Lens.OrthographicSize = targetCameraLensSize;
+                }
             }
 
             if (ft.m_ScreenY > targetCameraYPosition)
             {
                 ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, targetCameraYPosition, cameraYPositionChangeSpeed * Time.deltaTime);
+
+                if (ft.m_ScreenY >= targetCameraYPosition + 0.01f)
+                {
+                    ft.m_ScreenY = targetCameraYPosition;
+                }
             }
         }
         //vice versa
         else
         {
+            //can't let this influence camera movement on pit
+            if (player.isNearPit)
+            {
+                return;
+            }
+
             if (cm.m_Lens.OrthographicSize > defaultCameraLensSize)
             {
                 cm.m_Lens.OrthographicSize = Mathf.Lerp(cm.m_Lens.OrthographicSize, defaultCameraLensSize, cameraLensSizeChangeSpeed * Time.deltaTime);
+
+                if (cm.m_Lens.OrthographicSize <= defaultCameraLensSize + 0.01f)
+                {
+                    cm.m_Lens.OrthographicSize = defaultCameraLensSize;
+                }
             }
 
             if (ft.m_ScreenY < defaultCameraYPosition)
             {
                 ft.m_ScreenY = Mathf.Lerp(ft.m_ScreenY, defaultCameraYPosition, cameraYPositionChangeSpeed * Time.deltaTime);
+
+                if (ft.m_ScreenY <= targetCameraYPosition - 0.01f)
+                {
+                    ft.m_ScreenY = targetCameraYPosition;
+                }
             }
         }
     }
