@@ -153,6 +153,26 @@ MonoBehaviour:
     m_Localized: "Turn \nBack"
     m_Metadata:
       m_Items: []
+  - m_Id: 1431390690000896
+    m_Localized: Castle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434137355141120
+    m_Localized: Path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436518218252288
+    m_Localized: Money
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1438454166372352
+    m_Localized: Equipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1448998998949888
+    m_Localized: Enemy
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

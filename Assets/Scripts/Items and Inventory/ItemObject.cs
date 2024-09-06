@@ -27,7 +27,17 @@ public class ItemObject : MapElement
         if (!Inventory.instance.CanAddEquipmentToInventory() && item.itemType == ItemType.Equipment)
         {
             rb.velocity = new Vector2(0, 5);
-            PlayerManager.instance.player.fx.CreatePopUpText("No more space in inventory!");
+
+            //english
+            if (LanguageManager.instance.localeID == 0)
+            {
+                PlayerManager.instance.player.fx.CreatePopUpText("No more space in inventory!");
+            }
+            //chinese
+            else if (LanguageManager.instance.localeID == 1)
+            {
+                PlayerManager.instance.player.fx.CreatePopUpText("±³°ü¿Õ¼ä²»×ã!");
+            }
             return;
         }
 

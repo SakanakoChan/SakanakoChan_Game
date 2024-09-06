@@ -6,6 +6,11 @@ public class TextEnemy : Enemy
 {
     public BoxCollider2D textCollider { get; set; }
 
+    [Header("Death Rewards")]
+    public int currencyToGive;
+    public List<GameObject> objectListToShow;
+    public List<GameObject> prefabListToInstantiate;
+
     #region States
     public TextEnemyIdleState idleState { get; private set; }
     public TextEnemyDeathState deathState { get; private set; }
@@ -36,6 +41,24 @@ public class TextEnemy : Enemy
     public override void Die()
     {
         base.Die();
+
+        if (currencyToGive != 0)
+        {
+            PlayerManager.instance.currency += currencyToGive;
+        }
+
+        if(objectListToShow.Count > 0)
+        {
+            for (int i = 0; i < objectListToShow.Count; i++)
+            {
+                objectListToShow[i].SetActive(true);
+            }
+        }
+
+        if(prefabListToInstantiate.Count > 0)
+        {
+            //instantiate prefab;
+        }
 
         stateMachine.ChangeState(deathState);
     }

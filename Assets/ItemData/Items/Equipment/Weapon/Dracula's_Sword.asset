@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName_Chinese: "\u5FB7\u53E4\u62C9\u4E4B\u5251"
   icon: {fileID: -1944902997, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemID: 862e93fc76271d949ab6034ab3a7da33
-  dropChance: 10
+  dropChance: 100
   equipmentType: 0
   itemEffects:
   - {fileID: 11400000, guid: 7ed9062b6919fe74fb972bf5eebd4636, type: 2}

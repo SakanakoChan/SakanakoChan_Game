@@ -26,6 +26,11 @@ public class PlayerManager : MonoBehaviour, IGameProgressionSaveManager
         //    Cheat_Get500Currency();
         //}
 
+        if (currency >= 999999)
+        {
+            currency = 999999;
+        }
+
     }
 
     private void Cheat_Get500Currency()

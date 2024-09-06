@@ -107,6 +107,26 @@ MonoBehaviour:
     m_Key: Tutorial_TurnBackEnemy
     m_Metadata:
       m_Items: []
+  - m_Id: 1431390690000896
+    m_Key: Tutorial_Castle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434137355141120
+    m_Key: Tutorial_Path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436518218252288
+    m_Key: Tutorial_Money
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1438454166372352
+    m_Key: Tutorial_Equipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1448998998949888
+    m_Key: Tutorial_Enemy
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
