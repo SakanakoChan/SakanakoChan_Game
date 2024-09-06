@@ -21,7 +21,6 @@
 - ~~Add currency texf font effect when earning currency~~
 - ~~Seperate options save file from game save file~~
 - ~~Disable or destroy used map elements when loading game from save file~~
-- Add slippy material to enemys to prevent them from getting stuck on wall?
 - ***Important: Add a special level about tossing shit to Uncle PopCorn The Meta Hentai***
 
 ## What is already here that I can remember:
