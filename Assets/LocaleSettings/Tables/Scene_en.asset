@@ -106,6 +106,53 @@ MonoBehaviour:
       Your adventure starts  here'
     m_Metadata:
       m_Items: []
+  - m_Id: 1386396935569408
+    m_Localized: You won't wanna go here
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1388529269391360
+    m_Localized: Don't Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1391419929182208
+    m_Localized: 'Why didn''t you listen to me?
+
+      Fine, this time you''ll go
+      right'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1395272837808128
+    m_Localized: 'Turn back
+
+      You should go right'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1397363685769216
+    m_Localized: 'TURN BACK TURN BACK TURN BACK TURN BACK TURN BACK TURN BACK TURN
+      BACK
+
+      TURN BACK TURN BACK TURN BACK TURN BACK TURN BACK TURN BACK TURN
+      BACK
+
+      TURN BACK TURN BACK TURN BACK TURN BACK TURN BACK TURN BACK TURN
+      BACK'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398832950460416
+    m_Localized: 'GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT
+      GO RIGHT
+
+      GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT
+      GO RIGHT
+
+      GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT GO RIGHT
+      GO RIGHT'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1400633644859392
+    m_Localized: "Turn \nBack"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

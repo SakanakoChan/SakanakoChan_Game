@@ -79,6 +79,34 @@ MonoBehaviour:
     m_Key: Tutorial_JumpOffAndStartYourGame
     m_Metadata:
       m_Items: []
+  - m_Id: 1386396935569408
+    m_Key: Tutorial_DontGoThisWay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1388529269391360
+    m_Key: Tutorial_DontJump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1391419929182208
+    m_Key: WhyDidntYouListenToMe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1395272837808128
+    m_Key: Tutorial_TurnBack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1397363685769216
+    m_Key: Tutorial_CrazyTurnBack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1398832950460416
+    m_Key: Tutorial_CrazyGoRight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1400633644859392
+    m_Key: Tutorial_TurnBackEnemy
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

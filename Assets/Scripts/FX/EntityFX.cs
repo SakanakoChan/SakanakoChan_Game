@@ -33,7 +33,7 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private GameObject hitFXPrefab;
     [SerializeField] private GameObject critHitFXPrefab;
 
-    private GameObject HPBar;
+    protected GameObject HPBar;
 
 
     protected virtual void Awake()
