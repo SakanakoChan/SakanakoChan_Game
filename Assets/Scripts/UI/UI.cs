@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,7 @@ public class UI : MonoBehaviour, ISettingsSaveManager
 
     [Header("Thank you for playing")]
     [SerializeField] private GameObject thankYouForPlayingText;
+    [SerializeField] private TextMeshProUGUI achievedEndingText;
     [SerializeField] private GameObject returnToTitleButton;
 
     [Header("Audio Settings")]
@@ -222,18 +224,23 @@ public class UI : MonoBehaviour, ISettingsSaveManager
         return toolTipPositionOffset;
     }
 
-    public void SwitchToThankYouForPlaying()
+    public void SwitchToThankYouForPlaying(string _achievedEndingText)
     {
         UIKeyFunctioning = false;
         fadeScreen.FadeOut();
-        StartCoroutine(ThankYouForPlayingCoroutine());
+        StartCoroutine(ThankYouForPlayingCoroutine(_achievedEndingText));
     }
 
-    private IEnumerator ThankYouForPlayingCoroutine()
+    private IEnumerator ThankYouForPlayingCoroutine(string _achievedEndingText)
     {
         yield return new WaitForSeconds(1.5f);
+
         thankYouForPlayingText.SetActive(true);
+        achievedEndingText.text = _achievedEndingText;
+        achievedEndingText.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(1f);
+
         returnToTitleButton.SetActive(true);
 
     }

@@ -13,7 +13,7 @@ public class DeathBringer : Enemy
     [Header("Spell Cast Info")]
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private float spellCastStateCooldown;
-    public float lastTimeEnterSpellCastState {  get; set; }
+    public float lastTimeEnterSpellCastState { get; set; }
     public int castAmount;
     public float castCooldown;
 
@@ -94,7 +94,17 @@ public class DeathBringer : Enemy
 
         stateMachine.ChangeState(deathState);
 
-        UI.instance.SwitchToThankYouForPlaying();
+        //english
+        if (LanguageManager.instance.localeID == 0)
+        {
+            UI.instance.SwitchToThankYouForPlaying("Achieved ending - Breaking the 4th wall");
+
+        }
+        //chinese
+        else if (LanguageManager.instance.localeID == 1)
+        {
+            UI.instance.SwitchToThankYouForPlaying("达成结局 — 打破第四面墙");
+        }
     }
 
     public override void GetIntoBattleState()
